@@ -21,6 +21,6 @@ TODO:
                ... AssertElementTextEquals(By.foo, expected, In(element))
 
 - in config, use i statements to setup ..
-               iAcceptThatNotUsingIdsMayIntroduceFlakeyness
-               iAcceptThatNotCheckUniquessOfElementsMayIntroduceFlakeyness
-
+               iAcceptThatFindingByAnythingButIdMayIntroduceFlakeyness
+               iAcceptThatNotCheckingForASingleUniqueElementMayIntroduceFlakeyness
+               iAcceptThatFindingFromWebElementsMayIntroduceFlakeyness
