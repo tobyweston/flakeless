@@ -19,3 +19,8 @@ TODO:
 - In() -> WebElement
 - change order ... Click(By.foo, In(webDriver))
                ... AssertElementTextEquals(By.foo, expected, In(element))
+
+- in config, use i statements to setup ..
+               iAcceptThatNotUsingIdsMayIntroduceFlakeyness
+               iAcceptThatNotCheckUniquessOfElementsMayIntroduceFlakeyness
+
