@@ -24,3 +24,10 @@ TODO:
                iAcceptThatFindingByAnythingButIdMayIntroduceFlakeyness
                iAcceptThatNotCheckingForASingleUniqueElementMayIntroduceFlakeyness
                iAcceptThatFindingFromWebElementsMayIntroduceFlakeyness
+
+assetCount0is another smell ... aka empty
+
+make the affirmations be opt in ...
+    so migrate upwards from flaky to flakeless
+
+- e.g. .disallowZeroElementCounts
