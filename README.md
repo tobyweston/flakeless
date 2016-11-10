@@ -12,3 +12,10 @@ Add the following lines to your build.sbt
 Code license
 ------------
 Apache License 2.0
+
+
+TODO:
+- support element path or SafeWebElement
+- In() -> WebElement
+- change order ... Click(By.foo, In(webDriver))
+               ... AssertElementTextEquals(By.foo, expected, In(element))
