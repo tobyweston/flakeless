@@ -5,6 +5,40 @@ import im.mange.driveby.DriveByConfig
 import org.openqa.selenium.{By, WebElement}
 
 
+private object WaitForInteractableElement {
+  def apply(in: WebElement, by: By,
+            description: (WebElement) => String,
+            condition: (WebElement) => Boolean = (e) => {true},
+            action: (WebElement) => Unit,
+            mustBeDisplayed: Boolean = true) = {
+
+    //TODO: we should check there is only one element
+    Wait.waitUpTo().forCondition(
+      {
+        val e = in.findElement(by)
+        (if (mustBeDisplayed) e.isDisplayed else true) && e.isEnabled && condition(e)
+      },
+      description(in.findElement(by)),
+      action(in.findElement(by))
+    )
+  }
+}
+
+
+private object WaitForElement {
+  def apply(in: WebElement, by: By,
+            description: (WebElement) => String,
+            condition: (WebElement) => Boolean) = {
+
+    //TODO: we should check there is only one element
+    Wait.waitUpTo().forCondition(
+      condition(in.findElement(by)),
+      description(in.findElement(by))
+    )
+  }
+}
+
+
 private object WaitForElements {
   import scala.collection.JavaConverters._
 
@@ -24,10 +58,11 @@ object Wait {
 }
 
 private[mange] class Wait(timeout: Long, pollPeriod: Long) {
-  def forCondition(f: => Boolean, desc: => String, onFail: () => Unit = () => ()) {
+  def forCondition(f: => Boolean, desc: => String, action: => Unit = {}) {
     if (!conditionSatisfied(f, pollPeriod)) {
-      onFail()
       throw new ConditionNotMetException("> FAILED: " + desc, timeout)
+    } else {
+      action
     }
   }
 
