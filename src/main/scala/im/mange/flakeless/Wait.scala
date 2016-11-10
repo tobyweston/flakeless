@@ -5,7 +5,7 @@ import org.openqa.selenium.{By, WebDriver, WebElement}
 
 import scala.annotation.tailrec
 
-private object Body {
+object Body {
   //TODO: shouldn't this be polling too?!
   def apply(webDriver: WebDriver) = webDriver.findElement(By.tagName("body"))
 }
@@ -34,7 +34,7 @@ private object AssertElementSelectedness {
   }
 }
 
-private object WaitForInteractableElement {
+object WaitForInteractableElement {
   def apply(in: WebElement, by: By,
             description: (WebElement) => String,
             condition: (WebElement) => Boolean = (e) => {true},
@@ -53,7 +53,7 @@ private object WaitForInteractableElement {
   }
 }
 
-private object WaitForElement {
+object WaitForElement {
   def apply(in: WebElement, by: By,
             description: (WebElement) => String,
             condition: (WebElement) => Boolean) = {
