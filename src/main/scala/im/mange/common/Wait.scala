@@ -2,6 +2,22 @@ package im.mange.common
 
 import scala.annotation.tailrec
 import im.mange.driveby.DriveByConfig
+import org.openqa.selenium.{By, WebElement}
+
+
+private object WaitForElements {
+  import scala.collection.JavaConverters._
+
+  def apply(in: WebElement, by: By,
+            description: (List[WebElement]) => String,
+            condition: (List[WebElement]) => Boolean) = {
+
+    Wait.waitUpTo().forCondition(
+      condition(in.findElements(by).asScala.toList),
+      description(in.findElements(by).asScala.toList)
+    )
+  }
+}
 
 object Wait {
   def waitUpTo(timeout: Long = DriveByConfig.waitTimeout, pollPeriod: Long = DriveByConfig.waitPollPeriod) = new Wait(timeout, pollPeriod)
