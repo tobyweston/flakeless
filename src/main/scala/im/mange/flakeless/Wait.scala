@@ -1,49 +1,13 @@
-package im.mange.common
+package im.mange.flakeless
 
-import scala.annotation.tailrec
 import im.mange.driveby.DriveByConfig
 import org.openqa.selenium.{By, WebDriver, WebElement}
 
-object Body {
+import scala.annotation.tailrec
+
+private object Body {
   //TODO: shouldn't this be polling too?!
   def apply(webDriver: WebDriver) = webDriver.findElement(By.tagName("body"))
-}
-
-object AssertElementAttributeEquals {
-  def apply(webDriver: WebDriver, by: By, attribute: String, expected: String): Unit = {
-    apply(Body(webDriver), by, attribute, expected)
-  }
-
-  def apply(in: WebElement, by: By, attribute: String, expected: String): Unit = {
-    WaitForElement(in, by,
-      description = e => s"AssertElementAttributeEquals\n| in: $in\n| $by\n| attribute: '$attribute'\n| expected: '$expected'\n| but was: '${e.getAttribute(attribute)}'",
-      condition = e => e.getAttribute(attribute) == expected)
-  }
-}
-
-object AssertElementAttributeContains {
-  def apply(webDriver: WebDriver, by: By, attribute: String, expected: String): Unit = {
-    apply(Body(webDriver), by, attribute, expected)
-  }
-
-  def apply(in: WebElement, by: By, attribute: String, expected: String): Unit = {
-    WaitForElement(in, by,
-      description = e => s"AssertElementAttributeContains\n| in: $in\n| $by\n| attribute: '$attribute'\n| expected: '$expected'\n| but was: '${e.getAttribute(attribute)}'",
-      condition = e => e.getAttribute(attribute).contains(expected))
-  }
-}
-
-
-object AssertElementCountEquals {
-  def apply(webDriver: WebDriver, by: By, expected: Int): Unit = {
-    apply(Body(webDriver), by, expected)
-  }
-
-  def apply(in: WebElement, by: By, expected: Int): Unit = {
-    WaitForElements(in, by,
-      description = e => s"AssertElementCountEquals\n| in: $in\n| $by\n| expected: '$expected'\n| but was: '${e.size}'",
-      condition = e => e.size == expected)
-  }
 }
 
 private object WaitForInteractableElement {
@@ -53,7 +17,7 @@ private object WaitForInteractableElement {
             action: (WebElement) => Unit,
             mustBeDisplayed: Boolean = true) = {
 
-    //TODO: we should check there is only one element
+    //TODO: we should check there is only one element - make configurable
     Wait.waitUpTo().forCondition(
       {
         val e = in.findElement(by)
@@ -70,7 +34,7 @@ private object WaitForElement {
             description: (WebElement) => String,
             condition: (WebElement) => Boolean) = {
 
-    //TODO: we should check there is only one element
+    //TODO: we should check there is only one element - make configurable
     Wait.waitUpTo().forCondition(
       condition(in.findElement(by)),
       description(in.findElement(by))
