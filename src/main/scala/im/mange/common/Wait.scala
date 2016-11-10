@@ -2,8 +2,24 @@ package im.mange.common
 
 import scala.annotation.tailrec
 import im.mange.driveby.DriveByConfig
-import org.openqa.selenium.{By, WebElement}
+import org.openqa.selenium.{By, WebDriver, WebElement}
 
+object Body {
+  //TODO: shouldn't this be polling too?!
+  def apply(webDriver: WebDriver) = webDriver.findElement(By.tagName("body"))
+}
+
+object AssertElementCountEquals {
+  def apply(webDriver: WebDriver, by: By, expected: Int): Unit = {
+    apply(Body(webDriver), by, expected)
+  }
+
+  def apply(in: WebElement, by: By, expected: Int): Unit = {
+    WaitForElements(in, by,
+      description = e => s"AssertElementCountEquals\n| in: $in\n| $by\n| expected: '$expected'\n| but was: '${e.size}'",
+      condition = e => e.size == expected)
+  }
+}
 
 private object WaitForInteractableElement {
   def apply(in: WebElement, by: By,
@@ -24,7 +40,6 @@ private object WaitForInteractableElement {
   }
 }
 
-
 private object WaitForElement {
   def apply(in: WebElement, by: By,
             description: (WebElement) => String,
@@ -37,7 +52,6 @@ private object WaitForElement {
     )
   }
 }
-
 
 private object WaitForElements {
   import scala.collection.JavaConverters._
@@ -53,7 +67,7 @@ private object WaitForElements {
   }
 }
 
-object Wait {
+private object Wait {
   def waitUpTo(timeout: Long = DriveByConfig.waitTimeout, pollPeriod: Long = DriveByConfig.waitPollPeriod) = new Wait(timeout, pollPeriod)
 }
 
@@ -86,6 +100,7 @@ private[mange] class Wait(timeout: Long, pollPeriod: Long) {
   }
 }
 
+//TODO: rename this ...
 class ConditionNotMetException(message: String) extends RuntimeException(message) {
   def this(conditionToCheck: String, millis: Long) = this(conditionToCheck + " (not met within " + millis + " millis)")
 }
