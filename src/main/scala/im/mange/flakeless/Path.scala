@@ -14,10 +14,6 @@ case class Path(bys: By*) extends By {
     }
 
     r.asJava
-
-//    WaitForElement()
-//    context.findElements(bys.head)
-//    List.empty[WebElement].asJavaCollection
   }
 
   private def findNext(ins: List[WebElement], remainingBys: List[By], current: By): List[WebElement] = {
