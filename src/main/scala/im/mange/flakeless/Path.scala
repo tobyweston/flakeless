@@ -9,8 +9,8 @@ case class Path(bys: By*) extends By {
 
   override def findElements(context: SearchContext): util.List[WebElement] = {
     val r = bys match {
-      case Nil => throw new RuntimeException("Path must contain at least one by")
-      case headBy :: remainingBys => findNext(context.findElements(headBy).asScala.toList, remainingBys)
+      case Nil => throw new RuntimeException("Path must contain at least one By")
+      case headBy :: remainingBys => findNext(context.findElements(headBy).asScala.toList, remainingBys, headBy)
     }
 
     r.asJava
@@ -20,12 +20,14 @@ case class Path(bys: By*) extends By {
 //    List.empty[WebElement].asJavaCollection
   }
 
-  private def findNext(ins: List[WebElement], bys: List[By]): List[WebElement] = {
-    bys match {
+  private def findNext(ins: List[WebElement], remainingBys: List[By], current: By): List[WebElement] = {
+    remainingBys match {
       case Nil => ins
-      case headBy :: remainingBys => {
-        if (ins.length != 1) throw new RuntimeException("by found multiple")
-        else findNext(ins.head.findElements(headBy).asScala.toList, remainingBys)
+      case headBy :: tailsBys => {
+        if (ins.length != 1) throw new RuntimeException(
+          s"Path '${bys.mkString(" -> ")}' should resolve to a single element at each level\n| but I found ${ins.length} elements for '${current}':\n| $ins\n"
+        )
+        else findNext(ins.head.findElements(headBy).asScala.toList, tailsBys, headBy)
       }
     }
   }
