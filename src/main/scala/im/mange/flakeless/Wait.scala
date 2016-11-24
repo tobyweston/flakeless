@@ -67,6 +67,7 @@ object WaitForElement {
   }
 }
 
+
 private object WaitForElements {
   import scala.collection.JavaConverters._
 
