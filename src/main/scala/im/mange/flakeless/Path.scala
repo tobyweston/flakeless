@@ -6,7 +6,7 @@ import org.openqa.selenium.{By, SearchContext, WebElement}
 
 object Foo extends App {
   private val p1 = Path(By.id("parent"))
-  private val p2 = p1.add(By.id("child"))
+  private val p2 = p1.extend(By.id("child"))
 
   println(p1)
   println(p2)
@@ -16,7 +16,7 @@ object Foo extends App {
 case class Path(private val bys: By*) extends By {
   import scala.collection.JavaConverters._
 
-  def add(by: By) = {
+  def extend(by: By) = {
     Path(by :: bys.toList:_*)
   }
 
