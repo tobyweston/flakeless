@@ -1,9 +1,8 @@
-package im.mange.flakeless.driver
+package im.mange.flakeless
 
-import im.mange.flakeless.{AssertElementAttributeContains, AssertElementAttributeEquals, AssertElementCountEquals}
 import org.openqa.selenium.{By, WebDriver, WebElement}
 
-trait FlakelessFluentDriver {
+trait FluentDriver {
 
   def assertElementAttributeContains(webDriver: WebDriver, by: By, attribute: String, expected: String): this.type = {
     AssertElementAttributeContains(webDriver, by, attribute, expected); this
