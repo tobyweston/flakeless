@@ -8,6 +8,7 @@ object Path {
   var debug = true
 }
 
+//
 case class Path(private val bys: By*) extends By {
   import scala.collection.JavaConverters._
 
