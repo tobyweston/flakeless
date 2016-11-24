@@ -1,7 +1,9 @@
 package im.mange.flakeless
 
+import java.util
+
 import im.mange.driveby.DriveByConfig
-import org.openqa.selenium.{By, WebDriver, WebElement}
+import org.openqa.selenium.{By, SearchContext, WebDriver, WebElement}
 
 import scala.annotation.tailrec
 
@@ -79,6 +81,34 @@ private object WaitForElements {
     )
   }
 }
+
+case class MultiBy(bys: List[By]) extends By {
+  import scala.collection.JavaConverters._
+
+  override def findElements(context: SearchContext): util.List[WebElement] = {
+    val r = bys match {
+      case Nil => throw new RuntimeException("bys must not be empty"); Nil
+      case headBy :: remainingBys => findNext(context.findElements(headBy).asScala.toList, remainingBys)
+    }
+
+    r.asJava
+
+//    WaitForElement()
+//    context.findElements(bys.head)
+//    List.empty[WebElement].asJavaCollection
+  }
+
+  private def findNext(ins: List[WebElement], bys: List[By]): List[WebElement] = {
+    bys match {
+      case Nil => ins
+      case headBy :: remainingBys => {
+        if (ins.length != 1) throw new RuntimeException("by found multiple")
+        else findNext(ins.head.findElements(headBy).asScala.toList, remainingBys)
+      }
+    }
+  }
+}
+
 
 private object Wait {
   def waitUpTo(timeout: Long = DriveByConfig.waitTimeout, pollPeriod: Long = DriveByConfig.waitPollPeriod) = new Wait(timeout, pollPeriod)
