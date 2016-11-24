@@ -2,9 +2,6 @@ package im.mange.flakeless
 
 import org.openqa.selenium.{By, WebElement}
 
-/**
-  * Created by pall on 10/11/2016.
-  */
 object UploadFile {
   def apply(in: WebElement, by: By, filename: String): Unit = {
     WaitForInteractableElement(in, by,
