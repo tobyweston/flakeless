@@ -4,12 +4,12 @@ import java.util
 
 import org.openqa.selenium.{By, SearchContext, WebElement}
 
-case class MultiBy(bys: List[By]) extends By {
+case class MultiBy(bys: By*) extends By {
   import scala.collection.JavaConverters._
 
   override def findElements(context: SearchContext): util.List[WebElement] = {
     val r = bys match {
-      case Nil => throw new RuntimeException("bys must not be empty"); Nil
+      case Nil => throw new RuntimeException("bys must not be empty")
       case headBy :: remainingBys => findNext(context.findElements(headBy).asScala.toList, remainingBys)
     }
 
