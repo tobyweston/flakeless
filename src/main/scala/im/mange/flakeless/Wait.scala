@@ -119,3 +119,6 @@ private[mange] class Wait(timeout: Long, pollPeriod: Long) {
 class ConditionNotMetException(message: String) extends RuntimeException(message) {
   def this(conditionToCheck: String, millis: Long) = this(conditionToCheck + " (not met within " + millis + " millis)")
 }
+
+//TODO: rename this ...
+class PathException(message: String) extends Exception(message)
