@@ -12,8 +12,8 @@ case class Path(private val bys: By*) extends By {
   }
 
   override def findElements(context: SearchContext): util.List[WebElement] = {
-    val r = bys match {
-      case all if all.isEmpty => throw new RuntimeException("Path must contain at least one By")
+    val r = bys.toList match {
+      case Nil => throw new RuntimeException("Path must contain at least one By")
       case headBy :: remainingBys => findNext(context.findElements(headBy).asScala.toList, remainingBys, headBy)
     }
 
