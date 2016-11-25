@@ -5,7 +5,7 @@ import java.util
 import org.openqa.selenium.{By, SearchContext, WebElement}
 
 object Path {
-  var debug = true
+  var debug = false
 }
 
 //
