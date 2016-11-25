@@ -17,7 +17,7 @@ case class Path(private val bys: By*) extends By {
   }
 
   override def findElements(context: SearchContext): util.List[WebElement] = {
-    if (Path.debug) println(s"> ${bys.toList.mkString(" -> ")} going to find Path")
+    if (Path.debug) println(s"> [${bys.toList.mkString(" -> ")}] going to find Path")
 
     try {
       val r = bys.toList match {
@@ -26,7 +26,7 @@ case class Path(private val bys: By*) extends By {
       }
 
       val x = r.asJava
-      if (Path.debug) println(s"> ${bys.toList.mkString(" -> ")} result: ${x}")
+      if (Path.debug) println(s"> [${bys.toList.mkString(" -> ")}] result: [${x}]\n")
       x
     }
     catch {
@@ -35,7 +35,7 @@ case class Path(private val bys: By*) extends By {
   }
 
   private def findNext(ins: List[WebElement], remainingBys: List[By], current: By): List[WebElement] = {
-    if (Path.debug) println(s"> ${bys.toList.mkString(" -> ")} findNext $current, remainder: ${remainingBys.mkString(" -> ")}")
+    if (Path.debug) println(s"> [${bys.toList.mkString(" -> ")}] findNext $current, remainder: [${remainingBys.mkString(" -> ")}]")
 
     remainingBys match {
       case Nil => ins
