@@ -9,7 +9,11 @@ private [flakeless] object AssertElementAbleness {
 
   def apply(in: WebElement, by: By, expected: Boolean): Unit = {
     WaitForElement(in, by,
-      description = e => s"AssertElement${if (expected) "Enabled" else "Disabled"}\n| in: $in\n| $by\n| but was: '${if (e.isEnabled) "enabled" else "disabled"}'",
+
+      description = e => Description(s"AssertElement${if (expected) "Enabled" else "Disabled"}", in, by,
+        actual = Some((e) => if (e.isEnabled) "enabled" else "disabled" ))
+        .describe(e),
+
       condition = e => e.isEnabled == expected)
   }
 }

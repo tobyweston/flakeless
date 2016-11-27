@@ -11,7 +11,9 @@ object AssertElementCountEquals {
   //TODO: I need to be converted to a Description
   def apply(in: WebElement, by: By, expected: Int): Unit = {
     WaitForElements(in, by,
+
       description = es => s"AssertElementCountEquals\n| in: $in\n| $by\n| expected: '$expected'\n| but was: '${es.size}'",
+
       condition = es => es.size == expected)
   }
 }
