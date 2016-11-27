@@ -20,8 +20,24 @@ object Click {
 object Moo extends App {
 //  println(Click(new WebDriver {}))
   println(Description("Click", By.id("x")).describe)
+  // s"AssertElementAttributeEquals\n| in: $in\n| $by\n| attribute: '$attribute'\n| expected: '$expected'\n| but was: '${e.getAttribute(attribute)}'",
+  println(Description("AssertElementAttributeEquals", By.id("x"), Map("attribute" -> "class"), Some("moo")).describe)
+
 }
 
-case class Description(command: String, by: By) {
-  def describe = Seq(Some(command), Some(by)).map(_.getOrElse("")).mkString("\n| ")
+case class Value(label: Option[String], value: String) {
+  def describe = label match {
+    case Some(l) => s"$l: '$value'"
+    case None => value
+  }
+}
+
+//TODO: add in, add butWas, render args
+case class Description(command: String, by: By, args: Map[String, String] = Map.empty, expected: Option[String] = None) {
+  def describe = Seq(
+    Some(Value(None, command)),
+    //in
+    Some(Value(Some("by"), by.toString)),
+    expected.map(e => Value(Some("expected"), e))
+  ).flatten.map(_.describe).mkString("\n| ")
 }
