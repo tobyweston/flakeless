@@ -9,7 +9,10 @@ private [flakeless] object AssertElementSelectedness {
 
   def apply(in: WebElement, by: By, expected: Boolean): Unit = {
     WaitForElement(in, by,
-      description = e => s"AssertElement${if (expected) "Selected" else "Unselected"}\n| in: $in\n| $by\n| but was: '${if (e.isSelected) "selected" else "unselected"}'",
+
+      description = e => Description(s"AssertElement${if (expected) "Selected" else "Unselected"}", in, by,
+        actual = Some((e) => if (e.isSelected) "selected" else "unselected")).describe(e),
+
       condition = e => e.isSelected == expected)
   }
 }
