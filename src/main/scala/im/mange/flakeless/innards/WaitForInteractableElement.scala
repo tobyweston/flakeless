@@ -9,7 +9,7 @@ object WaitForInteractableElement {
             action: (WebElement) => Unit,
             mustBeDisplayed: Boolean = true) = {
 
-    //TODO: we should check there is only one element - make configurable
+    //TODO: we should ensure there is only one element - make configurable
     Wait.waitUpTo().forCondition(
       {
         val e = in.findElement(by)

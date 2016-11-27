@@ -7,7 +7,7 @@ object WaitForElement {
             description: (WebElement) => String,
             condition: (WebElement) => Boolean) = {
 
-    //TODO: we should check there is only one element - make configurable
+    //TODO: we should ensure there is only one element - make configurable
     Wait.waitUpTo().forCondition(
       condition(in.findElement(by)),
       description(in.findElement(by))

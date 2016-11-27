@@ -1,14 +1,9 @@
 package im.mange.flakeless.innards
 
 import im.mange.driveby.DriveByConfig
-import org.openqa.selenium.{By, WebDriver, WebElement}
+import org.openqa.selenium.{By, WebElement}
 
 import scala.annotation.tailrec
-
-
-
-
-
 
 private [flakeless] object WaitForElements {
   import scala.collection.JavaConverters._

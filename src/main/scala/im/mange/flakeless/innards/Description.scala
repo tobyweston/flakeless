@@ -2,7 +2,7 @@ package im.mange.flakeless.innards
 
 import org.openqa.selenium.{By, WebElement}
 
-//TODO: this all needs to be jsonated later
+//TODO: jsonate me later
 case class Description(command: String, in: WebElement, by: By, args: Map[String, String] = Map.empty, expected: Option[String] = None, actual: Option[(WebElement) => String] = None) {
   case class LabelAndValue(label: Option[String], value: String) {
     def describe = label match {
