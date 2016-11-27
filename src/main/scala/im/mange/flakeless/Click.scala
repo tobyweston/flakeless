@@ -26,15 +26,15 @@ object Moo extends App {
 
 }
 
-case class Value(label: Option[String], value: String) {
-  def describe = label match {
-    case Some(l) => s"$l: '$value'"
-    case None => value
-  }
-}
-
 //TODO: this all needs to be jsonated later
 case class Description(command: String, in: WebElement, by: By, args: Map[String, String] = Map.empty, expected: Option[String] = None, actual: Option[(WebElement) => String] = None) {
+  case class LabelAndValue(label: Option[String], value: String) {
+    def describe = label match {
+      case Some(l) => s"$l: '$value'"
+      case None => value
+    }
+  }
+
   def describe(webElement: WebElement) = {
     try {
       reallyDescribe(webElement)
@@ -47,14 +47,14 @@ case class Description(command: String, in: WebElement, by: By, args: Map[String
   private def reallyDescribe(webElement: WebElement): String = {
     (
       Seq(
-        Some(Value(None, command)),
-        Some(Value(Some("in"), in.toString)),
-        Some(Value(Some("by"), by.toString))
+        Some(LabelAndValue(None, command)),
+        Some(LabelAndValue(Some("in"), in.toString)),
+        Some(LabelAndValue(Some("by"), by.toString))
       ) ++
-        args.map(kv => Some(Value(Some(kv._1), kv._2))) ++
+        args.map(kv => Some(LabelAndValue(Some(kv._1), kv._2))) ++
         Seq(
-          expected.map(e => Value(Some("expected"), e)),
-          actual.map(bw => Value(Some("actual"), butWasSafely(webElement, bw)))
+          expected.map(e => LabelAndValue(Some("expected"), e)),
+          actual.map(bw => LabelAndValue(Some("actual"), butWasSafely(webElement, bw)))
         )
       ).flatten.map(_.describe).mkString("\n| ")
   }
