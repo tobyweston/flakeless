@@ -34,10 +34,12 @@ case class Value(label: Option[String], value: String) {
 
 //TODO: add in, add butWas, render args
 case class Description(command: String, by: By, args: Map[String, String] = Map.empty, expected: Option[String] = None) {
-  def describe = Seq(
+  def describe = (Seq(
     Some(Value(None, command)),
     //in
-    Some(Value(Some("by"), by.toString)),
+    Some(Value(Some("by"), by.toString))) ++
+//    ++ args.map(kv => Some(Value(Some(kv._1), kv._2)))
+    Seq(
     expected.map(e => Value(Some("expected"), e))
-  ).flatten.map(_.describe).mkString("\n| ")
+  )).flatten.map(_.describe).mkString("\n| ")
 }
