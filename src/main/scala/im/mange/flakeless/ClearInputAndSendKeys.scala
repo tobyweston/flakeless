@@ -1,6 +1,6 @@
 package im.mange.flakeless
 
-import im.mange.flakeless.innards.{Body, WaitForInteractableElement}
+import im.mange.flakeless.innards.{Body, Description, WaitForInteractableElement}
 import org.openqa.selenium.{By, WebDriver, WebElement}
 
 object ClearInputAndSendKeys {
@@ -10,11 +10,14 @@ object ClearInputAndSendKeys {
 
   def apply(in: WebElement, by: By, keysToSend: CharSequence*): Unit = {
     WaitForInteractableElement(in, by,
-      description = e => s"ClearInputAndSendKeys\n| in: $in| $by\n| $keysToSend",
+
+      description = e => Description("ClearInputAndSendKeys", in, by, args = Map("keysToSend" -> keysToSend.toString())).describe(e),
+
       action = e => {
         e.clear()
         e.sendKeys(keysToSend: _*)
       }
+
     )
   }
 }
