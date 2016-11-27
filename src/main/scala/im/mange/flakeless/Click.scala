@@ -10,7 +10,7 @@ object Click {
 
   def apply(in: WebElement, by: By): Unit = {
     WaitForInteractableElement(in, by,
-      description = e => s"Click\n| in: $in\n| $by",
+      description = e => Description("Click", in, by).describe(e),
       action = e => e.click()
     )
   }
@@ -35,7 +35,6 @@ case class Value(label: Option[String], value: String) {
 
 //TODO: this all needs to be jsonated later
 case class Description(command: String, in: WebElement, by: By, args: Map[String, String] = Map.empty, expected: Option[String] = None, actual: Option[(WebElement) => String] = None) {
-
   def describe(webElement: WebElement) = {
     try {
       reallyDescribe(webElement)
