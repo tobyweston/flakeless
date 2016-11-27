@@ -5,35 +5,11 @@ import org.openqa.selenium.{By, WebDriver, WebElement}
 
 import scala.annotation.tailrec
 
-object Body {
-  //TODO: shouldn't this be polling too?!
-  //TODO: in-fact it should probably be a Path!!
-  def apply(webDriver: WebDriver) = webDriver.findElement(By.tagName("body"))
-}
 
-private [flakeless] object AssertElementAbleness {
-  def apply(webDriver: WebDriver, by: By, expected: Boolean): Unit = {
-    apply(Body(webDriver), by, expected)
-  }
 
-  def apply(in: WebElement, by: By, expected: Boolean): Unit = {
-    WaitForElement(in, by,
-      description = e => s"AssertElement${if (expected) "Enabled" else "Disabled"}\n| in: $in\n| $by\n| but was: '${if (e.isEnabled) "enabled" else "disabled"}'",
-      condition = e => e.isEnabled == expected)
-  }
-}
 
-private [flakeless] object AssertElementSelectedness {
-  def apply(webDriver: WebDriver, by: By, expected: Boolean): Unit = {
-    apply(Body(webDriver), by, expected)
-  }
 
-  def apply(in: WebElement, by: By, expected: Boolean): Unit = {
-    WaitForElement(in, by,
-      description = e => s"AssertElement${if (expected) "Selected" else "Unselected"}\n| in: $in\n| $by\n| but was: '${if (e.isSelected) "selected" else "unselected"}'",
-      condition = e => e.isSelected == expected)
-  }
-}
+
 
 object WaitForInteractableElement {
   def apply(in: WebElement, by: By,
@@ -115,10 +91,5 @@ private class Wait(timeout: Long, pollPeriod: Long) {
   }
 }
 
-//TODO: rename this ...
-class ConditionNotMetException(message: String) extends RuntimeException(message) {
-  def this(conditionToCheck: String, millis: Long) = this(conditionToCheck + " (not met within " + millis + " millis)")
-}
 
-//TODO: rename this ...
-class PathException(message: String) extends Exception(message)
+
