@@ -1,5 +1,6 @@
 package im.mange.flakeless
 
+import im.mange.flakeless.innards.{AssertElementAbleness, Body}
 import org.openqa.selenium.{By, WebDriver, WebElement}
 
 object AssertElementEnabled {

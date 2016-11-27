@@ -1,5 +1,6 @@
 package im.mange.flakeless
 
+import im.mange.flakeless.innards.{Body, WaitForInteractableElement}
 import org.openqa.selenium.{By, WebDriver, WebElement}
 
 object SendKeys {

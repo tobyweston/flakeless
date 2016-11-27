@@ -1,4 +1,4 @@
-package im.mange.flakeless
+package im.mange.flakeless.innards
 
 import im.mange.driveby.DriveByConfig
 import org.openqa.selenium.{By, WebDriver, WebElement}
@@ -11,7 +11,7 @@ object Body {
   def apply(webDriver: WebDriver) = webDriver.findElement(By.tagName("body"))
 }
 
-private object AssertElementAbleness {
+private [flakeless] object AssertElementAbleness {
   def apply(webDriver: WebDriver, by: By, expected: Boolean): Unit = {
     apply(Body(webDriver), by, expected)
   }
@@ -23,7 +23,7 @@ private object AssertElementAbleness {
   }
 }
 
-private object AssertElementSelectedness {
+private [flakeless] object AssertElementSelectedness {
   def apply(webDriver: WebDriver, by: By, expected: Boolean): Unit = {
     apply(Body(webDriver), by, expected)
   }
@@ -68,7 +68,7 @@ object WaitForElement {
 }
 
 
-private object WaitForElements {
+private [flakeless] object WaitForElements {
   import scala.collection.JavaConverters._
 
   def apply(in: WebElement, by: By,
@@ -86,7 +86,7 @@ private object Wait {
   def waitUpTo(timeout: Long = DriveByConfig.waitTimeout, pollPeriod: Long = DriveByConfig.waitPollPeriod) = new Wait(timeout, pollPeriod)
 }
 
-private[mange] class Wait(timeout: Long, pollPeriod: Long) {
+private class Wait(timeout: Long, pollPeriod: Long) {
   def forCondition(f: => Boolean, desc: => String, action: => Unit = {}) {
     if (!conditionSatisfied(f, pollPeriod)) {
       throw new ConditionNotMetException("> FAILED: " + desc, timeout)

@@ -1,5 +1,6 @@
 package im.mange.flakeless
 
+import im.mange.flakeless.innards.WaitForInteractableElement
 import org.openqa.selenium.{By, WebElement}
 
 object UploadFile {

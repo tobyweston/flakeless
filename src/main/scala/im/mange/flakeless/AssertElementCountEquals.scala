@@ -1,5 +1,6 @@
 package im.mange.flakeless
 
+import im.mange.flakeless.innards.{Body, WaitForElements}
 import org.openqa.selenium.{By, WebDriver, WebElement}
 
 object AssertElementCountEquals {

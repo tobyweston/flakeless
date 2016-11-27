@@ -2,6 +2,7 @@ package im.mange.flakeless
 
 import java.util
 
+import im.mange.flakeless.innards.PathException
 import org.openqa.selenium.{By, SearchContext, WebElement}
 
 object Path {
