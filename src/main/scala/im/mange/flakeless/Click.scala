@@ -15,3 +15,13 @@ object Click {
     )
   }
 }
+
+
+object Moo extends App {
+//  println(Click(new WebDriver {}))
+  println(Description("Click", By.id("x")).describe)
+}
+
+case class Description(command: String, by: By) {
+  def describe = Seq(Some(command), Some(by)).map(_.getOrElse("")).mkString("\n| ")
+}
