@@ -1,6 +1,6 @@
 package im.mange.flakeless
 
-import im.mange.flakeless.innards.{Body, WaitForElement}
+import im.mange.flakeless.innards.{Body, Description, WaitForElement}
 import org.openqa.selenium.{By, WebDriver, WebElement}
 
 object AssertElementAttributeContains {
