@@ -1,6 +1,6 @@
 package im.mange.flakeless
 
-import im.mange.flakeless.innards.{Body, WaitForElement}
+import im.mange.flakeless.innards.{Body, Description, WaitForElement}
 import org.openqa.selenium.{By, WebDriver, WebElement}
 
 object AssertElementTextEquals {
@@ -10,7 +10,11 @@ object AssertElementTextEquals {
 
   def apply(in: WebElement, by: By, expected: String): Unit = {
     WaitForElement(in, by,
-      description = e => s"AssertElementTextEquals\n| in: $in\n| $by\n| expected: '$expected'\n| but was: '${e.getText}'",
+
+      description = e => Description("AssertElementTextEquals", in, by, expected = Some(expected),
+        actual = Some((e) => e.getText))
+        .describe(e),
+
       condition = e => e.getText == expected)
   }
 }

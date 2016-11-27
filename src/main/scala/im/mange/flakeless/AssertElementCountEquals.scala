@@ -1,6 +1,6 @@
 package im.mange.flakeless
 
-import im.mange.flakeless.innards.{Body, Description, WaitForElements}
+import im.mange.flakeless.innards.{Body, WaitForElements}
 import org.openqa.selenium.{By, WebDriver, WebElement}
 
 object AssertElementCountEquals {
@@ -8,7 +8,7 @@ object AssertElementCountEquals {
     apply(Body(webDriver), by, expected)
   }
 
-  //TODO: I need to be converted to a Description
+  //TODO: I need to be converted to a Description, just not possible yet
   def apply(in: WebElement, by: By, expected: Int): Unit = {
     WaitForElements(in, by,
 
