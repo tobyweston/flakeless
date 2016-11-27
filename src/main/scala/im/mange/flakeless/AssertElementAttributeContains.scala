@@ -10,7 +10,13 @@ object AssertElementAttributeContains {
 
   def apply(in: WebElement, by: By, attribute: String, expected: String): Unit = {
     WaitForElement(in, by,
-      description = e => s"AssertElementAttributeContains\n| in: $in\n| $by\n| attribute: '$attribute'\n| expected: '$expected'\n| but was: '${e.getAttribute(attribute)}'",
+//      description = e => s"AssertElementAttributeContains\n| in: $in\n| $by\n| attribute: '$attribute'\n| expected: '$expected'\n| but was: '${e.getAttribute(attribute)}'",
+      description = e => Description("AssertElementAttributeContains",
+                                     by,
+                                     args = Map("attribute" -> attribute),
+                                     expected = Some(expected),
+                                     actual = Some((e) => e.getAttribute(attribute))).describe(e),
+
       condition = e => e.getAttribute(attribute).contains(expected))
   }
 }
