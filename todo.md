@@ -12,4 +12,3 @@ Add the following lines to your build.sbt
 Code license
 ------------
 Apache License 2.0
-
