@@ -1,6 +1,7 @@
 package im.mange.flakeless.innards
 
 import im.mange.driveby.DriveByConfig
+import im.mange.flakeless.ConditionNotMetException
 import org.openqa.selenium.{By, WebElement}
 
 import scala.annotation.tailrec
