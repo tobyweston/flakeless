@@ -20,11 +20,11 @@ trait FluentDriver {
     AssertElementAttributeEquals(webElement, by, attribute, expected); this
   }
 
-  def assertElementCountEquals(webDriver: WebDriver, by: By, expected: Int): this.type = {
-    AssertElementCountEquals(webDriver, by, expected); this
+  def assertElementListCountEquals(webDriver: WebDriver, by: By, expected: Int): this.type = {
+    AssertElementListCountEquals(webDriver, by, expected); this
   }
 
-  def assertElementCountEquals(webElement: WebElement, by: By, expected: Int): this.type = {
-    AssertElementCountEquals(webElement, by, expected); this
+  def assertElementListCountEquals(webElement: WebElement, by: By, expected: Int): this.type = {
+    AssertElementListCountEquals(webElement, by, expected); this
   }
 }
