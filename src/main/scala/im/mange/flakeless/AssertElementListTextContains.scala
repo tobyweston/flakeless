@@ -8,7 +8,7 @@ object AssertElementListTextContains {
     apply(Body(webDriver), by, expected)
   }
 
-  //TODO: I need to be converted to a Description, just not possible yet.
+  //TODO: I need to be converted to a Description, just not possible yet..
   def apply(in: WebElement, by: By, expected: String): Unit = {
     WaitForElements(in, by,
 
