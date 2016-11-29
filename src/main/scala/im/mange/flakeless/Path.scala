@@ -18,7 +18,7 @@ case class Path(private val bys: By*) extends By {
   }
 
   override def findElements(context: SearchContext): util.List[WebElement] = {
-    if (Path.debug) println(s"> [${bys.toList.mkString(" -> ")}] going to find Path")
+    if (Path.debug) println(s"> ${toString} going to find Path")
 
     try {
       val r = bys.toList match {
@@ -35,14 +35,18 @@ case class Path(private val bys: By*) extends By {
     }
   }
 
+  override def toString = {
+    s"Path: [${bys.toList.mkString(" -> ")}]"
+  }
+
   private def findNext(ins: List[WebElement], remainingBys: List[By], current: By): List[WebElement] = {
-    if (Path.debug) println(s"> [${bys.toList.mkString(" -> ")}] findNext $current, remainder: [${remainingBys.mkString(" -> ")}]")
+    if (Path.debug) println(s"> ${toString} findNext $current, remainder: [${remainingBys.mkString(" -> ")}]")
 
     remainingBys match {
       case Nil => ins
       case headBy :: tailsBys => {
         if (ins.length != 1) throw new PathException(
-          s"Path '${bys.mkString(" -> ")}' should resolve to a single element at each level\n| but I found ${ins.length} elements for '${current}':\n| $ins\n"
+          s"'${toString}' should resolve to a single element at each level\n| but I found ${ins.length} elements for '${current}':\n| $ins\n"
         )
         else findNext(ins.head.findElements(headBy).asScala.toList, tailsBys, headBy)
       }
