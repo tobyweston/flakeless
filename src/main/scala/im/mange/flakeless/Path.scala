@@ -9,7 +9,7 @@ object Path {
   var debug = false
 }
 
-//
+
 case class Path(private val bys: By*) extends By {
   import scala.collection.JavaConverters._
 
@@ -18,7 +18,7 @@ case class Path(private val bys: By*) extends By {
   }
 
   override def findElements(context: SearchContext): util.List[WebElement] = {
-    if (Path.debug) println(s"> ${toString} going to find Path")
+    if (Path.debug) println(s"> ${toString} going to find Path in '$context'")
 
     try {
       val r = bys.toList match {
@@ -27,7 +27,7 @@ case class Path(private val bys: By*) extends By {
       }
 
       val x = r.asJava
-      if (Path.debug) println(s"> [${bys.toList.mkString(" -> ")}] result: [${x}]\n")
+      if (Path.debug) println(s"> [${bys.toList.mkString(" -> ")}] in '$context' yields: [${x}]\n")
       x
     }
     catch {
