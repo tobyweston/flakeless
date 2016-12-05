@@ -12,7 +12,7 @@ object AssertElementListTextContains {
   def apply(in: WebElement, by: By, expected: String): Unit = {
     WaitForElements(in, by,
 
-       description = es => s"AssertElementListTextContains\n| in: $in\n| $by\n| expected: '$expected'\n| but was: '${es.map(t => s"'${t.getText}'").mkString(", ")}'",
+      description = es => s"AssertElementListTextContains\n| in: $in\n| $by\n| expected: '$expected'\n| but was: '${es.map(t => s"'${t.getText}'").mkString(", ")}'",
 
       condition = es => es.map(_.getText).contains(expected))
   }
