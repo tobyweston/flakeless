@@ -13,7 +13,7 @@ object UploadFilePhantomJs {
       description = e => Description("UploadFilePhantomJs", webElement, by, args = Map("filename" -> filename)).describe(e),
 
       action = e => {
-        in.asInstanceOf[PhantomJSDriver].executePhantomJS("var page = this; page.uploadFile('" + by + "', '" + filename + "');")
+        in.asInstanceOf[PhantomJSDriver].executePhantomJS(s"var page = this; page.uploadFile('$by', '$filename');")
       },
 
       mustBeDisplayed = false
