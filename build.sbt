@@ -16,8 +16,8 @@ resolvers ++= Seq(
 )
 
 libraryDependencies ++= Seq(
-  "org.seleniumhq.selenium" % "selenium-java" % "[2.53.1,2.99.9]" % "provided",
-  "com.codeborne" % "phantomjsdriver" % "[1.3.0,1.99.9]" % "provided"//,
+  "org.seleniumhq.selenium" % "selenium-java" % "[2.53.1,2.99.9]" % "provided"//,
+//  "com.codeborne" % "phantomjsdriver" % "[1.3.0,1.99.9]" % "provided"//,
 //  "org.seleniumhq.selenium" % "selenium-java" % "[2.53.1,2.99.9]" % "provided"//,
 //  "org.seleniumhq.selenium" % "selenium-java" % "2.53.1" % "test"
 //	"junit" % "junit" % "4.11" % "test->default",
