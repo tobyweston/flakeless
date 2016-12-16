@@ -1,9 +1,13 @@
 package im.mange.flakeless
 
-import im.mange.flakeless.innards.{Description, WaitForInteractableElement}
-import org.openqa.selenium.{By, WebElement}
+import im.mange.flakeless.innards.{Body, Description, WaitForInteractableElement}
+import org.openqa.selenium.{By, WebDriver, WebElement}
 
 object UploadFile {
+  def apply(webDriver: WebDriver, by: By, filename: String): Unit = {
+    apply(Body(webDriver), by, filename)
+  }
+
   def apply(in: WebElement, by: By, filename: String): Unit = {
     WaitForInteractableElement(in, by,
 
