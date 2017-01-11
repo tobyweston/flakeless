@@ -9,7 +9,7 @@ version := Try(sys.env("TRAVIS_BUILD_NUMBER")).map("0.0." + _).getOrElse("1.0-SN
 
 scalaVersion:= "2.12.1"
 
-//crossScalaVersions := Seq("2.10.4"/*, "2.11.0"*/)
+crossScalaVersions := Seq("2.12.1", "2.11.8")
 
 resolvers ++= Seq(
   "Sonatype OSS Releases" at "http://oss.sonatype.org/content/repositories/releases/"
