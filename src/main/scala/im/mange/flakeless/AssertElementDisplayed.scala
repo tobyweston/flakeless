@@ -4,8 +4,8 @@ import im.mange.flakeless.innards.{AssertElementDisplayedness, Body}
 import org.openqa.selenium.{By, WebDriver, WebElement}
 
 object AssertElementDisplayed {
-  def apply(webDriver: WebDriver, by: By): Unit = {
-    AssertElementDisplayedness(Body(webDriver), by, expected = true)
+  def apply(flakeless: Flakeless, by: By): Unit = {
+    AssertElementDisplayedness(Body(flakeless.driver), by, expected = true)
   }
 
   def apply(in: WebElement, by: By): Unit = {

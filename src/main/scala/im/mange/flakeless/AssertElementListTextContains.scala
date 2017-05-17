@@ -4,8 +4,8 @@ import im.mange.flakeless.innards.{Body, WaitForElements}
 import org.openqa.selenium.{By, WebDriver, WebElement}
 
 object AssertElementListTextContains {
-  def apply(webDriver: WebDriver, by: By, expected: String): Unit = {
-    apply(Body(webDriver), by, expected)
+  def apply(flakeless: Flakeless, by: By, expected: String): Unit = {
+    apply(Body(flakeless.driver), by, expected)
   }
 
   //TODO: I need to be converted to a Description, just not possible yet..

@@ -4,8 +4,8 @@ import im.mange.flakeless.innards.{Body, Description, WaitForInteractableElement
 import org.openqa.selenium.{By, WebDriver, WebElement}
 
 object Click {
-  def apply(webDriver: WebDriver, by: By): Unit = {
-    apply(Body(webDriver), by)
+  def apply(flakeless: Flakeless, by: By): Unit = {
+    apply(Body(flakeless.driver), by)
   }
 
   def apply(in: WebElement, by: By): Unit = {

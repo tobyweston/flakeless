@@ -4,8 +4,8 @@ import im.mange.flakeless.innards.{Body, Description, WaitForInteractableElement
 import org.openqa.selenium.{By, WebDriver, WebElement}
 
 object ClearInputAndSendKeys {
-  def apply(webDriver: WebDriver, by: By, keysToSend: CharSequence*): Unit = {
-    apply(Body(webDriver), by, keysToSend: _*)
+  def apply(flakeless: Flakeless, by: By, keysToSend: CharSequence*): Unit = {
+    apply(Body(flakeless.driver), by, keysToSend: _*)
   }
 
   def apply(in: WebElement, by: By, keysToSend: CharSequence*): Unit = {

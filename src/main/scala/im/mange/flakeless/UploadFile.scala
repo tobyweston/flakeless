@@ -4,8 +4,8 @@ import im.mange.flakeless.innards.{Body, Description, WaitForInteractableElement
 import org.openqa.selenium.{By, WebDriver, WebElement}
 
 object UploadFile {
-  def apply(webDriver: WebDriver, by: By, filename: String): Unit = {
-    apply(Body(webDriver), by, filename)
+  def apply(flakeless: Flakeless, by: By, filename: String): Unit = {
+    apply(Body(flakeless.driver), by, filename)
   }
 
   def apply(in: WebElement, by: By, filename: String): Unit = {

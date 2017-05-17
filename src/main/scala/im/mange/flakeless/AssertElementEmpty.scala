@@ -4,8 +4,8 @@ import im.mange.flakeless.innards.{Body, Description, WaitForElement}
 import org.openqa.selenium.{By, WebDriver, WebElement}
 
 object AssertElementEmpty {
-  def apply(webDriver: WebDriver, by: By): Unit = {
-    apply(Body(webDriver), by)
+  def apply(flakeless: Flakeless, by: By): Unit = {
+    apply(Body(flakeless.driver), by)
   }
 
   def apply(in: WebElement, by: By): Unit = {
