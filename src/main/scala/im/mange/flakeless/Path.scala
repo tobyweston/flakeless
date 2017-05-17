@@ -5,6 +5,7 @@ import java.util
 import im.mange.flakeless.innards.PathException
 import org.openqa.selenium.{By, SearchContext, WebElement}
 
+//TODO: move into flakelss.Config (re-purpose from DrivebyConfig)
 object Path {
   var debug = false
 }
