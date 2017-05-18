@@ -5,7 +5,7 @@ import org.openqa.selenium.{By, WebDriver, WebElement}
 
 object SendKeys {
   def apply(flakeless: Flakeless, by: By, keysToSend: CharSequence*): Unit = {
-    apply(Body(flakeless.driver), by, keysToSend: _*)
+    apply(Body(flakeless.webDriver), by, keysToSend: _*)
   }
 
   def apply(in: WebElement, by: By, keysToSend: CharSequence*): Unit = {

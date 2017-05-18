@@ -5,7 +5,7 @@ import org.openqa.selenium.{By, WebDriver, WebElement}
 
 object AssertElementListTextEquals {
   def apply(flakeless: Flakeless, by: By, expected: List[String]): Unit = {
-    apply(Body(flakeless.driver), by, expected)
+    apply(Body(flakeless.webDriver), by, expected)
   }
 
   //TODO: I need to be converted to a Description, just not possible yet..

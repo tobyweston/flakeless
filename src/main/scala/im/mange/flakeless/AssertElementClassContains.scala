@@ -5,7 +5,7 @@ import org.openqa.selenium.{By, WebDriver, WebElement}
 
 object AssertElementClassContains {
   def apply(flakeless: Flakeless, by: By, expected: String): Unit = {
-    apply(Body(flakeless.driver), by, expected)
+    apply(Body(flakeless.webDriver), by, expected)
   }
 
   def apply(in: WebElement, by: By, expected: String): Unit = {
