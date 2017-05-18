@@ -5,7 +5,9 @@ import org.openqa.selenium.{By, WebDriver, WebElement}
 
 object Click {
   def apply(flakeless: Flakeless, by: By): Unit = {
+    flakeless.record("> " + toString)
     apply(Body(flakeless.driver), by)
+    flakeless.record("< " + toString)
   }
 
   def apply(in: WebElement, by: By): Unit = {
