@@ -2,7 +2,7 @@ package im.mange.flakeless
 
 import org.openqa.selenium.WebDriver
 
-case class Flakeless(webDriver: WebDriver) {
+case class Flakeless(rawWebDriver: WebDriver) {
   private val currentFlight = new AtomicIntCounter(0)
   private val fdr = FlightDataRecorder()
 

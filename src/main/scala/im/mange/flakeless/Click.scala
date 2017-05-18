@@ -6,7 +6,7 @@ import org.openqa.selenium.{By, WebDriver, WebElement}
 object Click {
   def apply(flakeless: Flakeless, by: By): Unit = {
     flakeless.record("> " + toString)
-    apply(Body(flakeless.webDriver), by)
+    apply(Body(flakeless.rawWebDriver), by)
     flakeless.record("< " + toString)
   }
 

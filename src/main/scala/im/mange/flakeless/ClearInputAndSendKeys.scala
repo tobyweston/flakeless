@@ -5,7 +5,7 @@ import org.openqa.selenium.{By, WebDriver, WebElement}
 
 object ClearInputAndSendKeys {
   def apply(flakeless: Flakeless, by: By, keysToSend: CharSequence*): Unit = {
-    apply(Body(flakeless.webDriver), by, keysToSend: _*)
+    apply(Body(flakeless.rawWebDriver), by, keysToSend: _*)
   }
 
   def apply(in: WebElement, by: By, keysToSend: CharSequence*): Unit = {

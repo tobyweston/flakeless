@@ -5,7 +5,7 @@ import org.openqa.selenium.{By, WebDriver, WebElement}
 
 object UploadFile {
   def apply(flakeless: Flakeless, by: By, filename: String): Unit = {
-    apply(Body(flakeless.webDriver), by, filename)
+    apply(Body(flakeless.rawWebDriver), by, filename)
   }
 
   def apply(in: WebElement, by: By, filename: String): Unit = {

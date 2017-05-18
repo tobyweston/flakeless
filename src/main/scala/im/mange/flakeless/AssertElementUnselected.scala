@@ -5,7 +5,7 @@ import org.openqa.selenium.{By, WebDriver, WebElement}
 
 object AssertElementUnselected {
   def apply(flakeless: Flakeless, by: By): Unit = {
-    AssertElementSelectedness(Body(flakeless.webDriver), by, expected = false)
+    AssertElementSelectedness(Body(flakeless.rawWebDriver), by, expected = false)
   }
 
   def apply(in: WebElement, by: By): Unit = {

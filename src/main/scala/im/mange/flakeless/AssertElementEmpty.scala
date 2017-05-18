@@ -5,7 +5,7 @@ import org.openqa.selenium.{By, WebDriver, WebElement}
 
 object AssertElementEmpty {
   def apply(flakeless: Flakeless, by: By): Unit = {
-    apply(Body(flakeless.webDriver), by)
+    apply(Body(flakeless.rawWebDriver), by)
   }
 
   def apply(in: WebElement, by: By): Unit = {

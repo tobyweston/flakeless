@@ -5,7 +5,7 @@ import org.openqa.selenium.{By, WebDriver, WebElement}
 
 object AssertElementListTextContains {
   def apply(flakeless: Flakeless, by: By, expected: String): Unit = {
-    apply(Body(flakeless.webDriver), by, expected)
+    apply(Body(flakeless.rawWebDriver), by, expected)
   }
 
   //TODO: I need to be converted to a Description, just not possible yet..
