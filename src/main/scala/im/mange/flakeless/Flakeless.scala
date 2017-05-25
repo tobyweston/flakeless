@@ -1,6 +1,6 @@
 package im.mange.flakeless
 
-import im.mange.flakeless.innards.AtomicIntCounter
+import im.mange.flakeless.innards.{AtomicIntCounter, FlightDataRecorder}
 import org.openqa.selenium.WebDriver
 
 case class Flakeless(rawWebDriver: WebDriver) {
@@ -19,16 +19,3 @@ case class Flakeless(rawWebDriver: WebDriver) {
 }
 
 case class DataPoint(flightNumber: Int, when: Long, what: Any)
-
-case class FlightDataRecorder() {
-  private val dataByFlight: scala.collection.concurrent.TrieMap[Int, Seq[DataPoint]] =
-    new scala.collection.concurrent.TrieMap()
-
-  def record(flightNumber: Int, data: String) {
-    val current = dataByFlight.getOrElse(flightNumber, Seq.empty[DataPoint])
-    dataByFlight.update(flightNumber, current :+ DataPoint(flightNumber, System.currentTimeMillis(), data))
-  }
-
-  def data(flightNumber: Int): Seq[DataPoint] = dataByFlight.getOrElse(flightNumber, Nil)
-}
-
