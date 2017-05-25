@@ -1,9 +1,10 @@
 package im.mange.flakeless.innards
 
+import im.mange.flakeless.Flakeless
 import org.openqa.selenium.{By, WebElement}
 
 object WaitForInteractableElement {
-  def apply(in: WebElement, by: By,
+  def apply(flakeless: Option[Flakeless], in: WebElement, by: By,
             description: (WebElement) => String,
             condition: (WebElement) => Boolean = (e) => {true},
             action: (WebElement) => Unit,
@@ -13,7 +14,9 @@ object WaitForInteractableElement {
     Wait.waitUpTo().forCondition(
       {
         val e = in.findElement(by)
-        (if (mustBeDisplayed) e.isDisplayed else true) && e.isEnabled && condition(e)
+        val result = (if (mustBeDisplayed) e.isDisplayed else true) && e.isEnabled && condition(e)
+        flakeless.foreach(_.record(result, description(in.findElement(by))))
+        result
       },
       description(in.findElement(by)),
       action(in.findElement(by))

@@ -15,18 +15,11 @@ object Click {
 
 private class Click(flakeless: Option[Flakeless], in: WebElement, by: By) {
   def execute(): Unit = {
-    WaitForInteractableElement(in, by,
+    WaitForInteractableElement(flakeless, in, by,
 
-      description = e => describe(in, by, e),
+      description = e => Description("Click", in, by).describe(e),
 
-      action = e => {
-        e.click()
-        flakeless.foreach(_.record("> " + describe(in, by, e)))
-      }
+      action = e => e.click()
     )
-  }
-
-  private def describe(in: WebElement, by: By, e: WebElement) = {
-    Description("Click", in, by).describe(e)
   }
 }

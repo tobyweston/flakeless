@@ -10,8 +10,8 @@ case class Flakeless(rawWebDriver: WebDriver) {
     currentFlight.next
   }
 
-  def record(data: String) {
-    fdr.record(currentFlight.value.toString, data)
+  def record(success: Boolean, data: String) {
+    fdr.record((if (success) "/" else "x" ) ++ " " ++ currentFlight.value.toString, data)
   }
 
   def data(flight: Int = currentFlight.value) = fdr.data(flight.toString)
