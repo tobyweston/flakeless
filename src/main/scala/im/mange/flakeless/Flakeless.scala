@@ -1,5 +1,6 @@
 package im.mange.flakeless
 
+import im.mange.flakeless.innards.AtomicIntCounter
 import org.openqa.selenium.WebDriver
 
 case class Flakeless(rawWebDriver: WebDriver) {
@@ -31,13 +32,3 @@ case class FlightDataRecorder() {
   def data(flightNumber: Int): Seq[DataPoint] = dataByFlight.getOrElse(flightNumber, Nil)
 }
 
-case class AtomicIntCounter(start: Int = 1) {
-  private var count = start - 1
-
-  def next = synchronized {
-    count += 1
-    count
-  }
-
-  def value = count
-}
