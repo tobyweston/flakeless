@@ -1,7 +1,7 @@
 package im.mange.flakeless.innards
 
 import im.mange.driveby.DriveByConfig
-import im.mange.flakeless.ConditionNotMetException
+import im.mange.flakeless.{ConditionNotMetException, Flakeless}
 import org.openqa.selenium.{By, WebElement}
 
 import scala.annotation.tailrec
@@ -9,12 +9,16 @@ import scala.annotation.tailrec
 private [flakeless] object WaitForElements {
   import scala.collection.JavaConverters._
 
-  def apply(in: WebElement, by: By,
+  def apply(flakeless: Option[Flakeless], in: WebElement, by: By,
             description: (List[WebElement]) => String,
             condition: (List[WebElement]) => Boolean) = {
 
     Wait.waitUpTo().forCondition(
-      condition(in.findElements(by).asScala.toList),
+      {
+        val result = condition(in.findElements(by).asScala.toList)
+        flakeless.foreach(_.record(result, description(in.findElements(by).asScala.toList)))
+        result
+      },
       description(in.findElements(by).asScala.toList)
     )
   }
