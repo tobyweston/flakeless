@@ -3,32 +3,32 @@ package im.mange.flakeless
 import org.openqa.selenium.WebDriver
 
 case class Flakeless(rawWebDriver: WebDriver) {
-  private val currentFlightId = AtomicIntCounter()
+  private val currentFlightNumber = AtomicIntCounter()
   private val fdr = FlightDataRecorder()
 
   def newFlight(description: Option[String] = None) {
-    currentFlightId.next
+    currentFlightNumber.next
   }
 
   def record(success: Boolean, data: String) {
-    fdr.record((if (success) "/" else "x" ) ++ " " ++ currentFlightId.value.toString, data)
+    fdr.record(currentFlightNumber.value, (if (success) "/" else "x" ) + " " + currentFlightNumber.value + data)
   }
 
-  def flightData(flight: Int = currentFlightId.value) = fdr.data(flight.toString)
+  def flightData(flight: Int = currentFlightNumber.value) = fdr.data(flight)
 }
 
-case class DataPoint(flight: String, when: Long, what: Any)
+case class DataPoint(flightNumber: Int, when: Long, what: Any)
 
 case class FlightDataRecorder() {
-  private val dataByFlight: scala.collection.concurrent.TrieMap[String, Seq[DataPoint]] =
+  private val dataByFlight: scala.collection.concurrent.TrieMap[Int, Seq[DataPoint]] =
     new scala.collection.concurrent.TrieMap()
 
-  def record(flight: String, data: String) {
-    val current = dataByFlight.getOrElse(flight, Seq.empty[DataPoint])
-    dataByFlight.update(flight, current :+ DataPoint(flight, System.currentTimeMillis(), data))
+  def record(flightNumber: Int, data: String) {
+    val current = dataByFlight.getOrElse(flightNumber, Seq.empty[DataPoint])
+    dataByFlight.update(flightNumber, current :+ DataPoint(flightNumber, System.currentTimeMillis(), data))
   }
 
-  def data(flight: String): Seq[DataPoint] = dataByFlight.getOrElse(flight, Nil)
+  def data(flightNumber: Int): Seq[DataPoint] = dataByFlight.getOrElse(flightNumber, Nil)
 }
 
 case class AtomicIntCounter(start: Int = 1) {
