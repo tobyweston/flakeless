@@ -3,18 +3,18 @@ package im.mange.flakeless
 import org.openqa.selenium.WebDriver
 
 case class Flakeless(rawWebDriver: WebDriver) {
-  private val currentFlight = new AtomicIntCounter(0)
+  private val currentFlightId = AtomicIntCounter()
   private val fdr = FlightDataRecorder()
 
-  def nextFlight(description: Option[String] = None) {
-    currentFlight.next
+  def newFlight(description: Option[String] = None) {
+    currentFlightId.next
   }
 
   def record(success: Boolean, data: String) {
-    fdr.record((if (success) "/" else "x" ) ++ " " ++ currentFlight.value.toString, data)
+    fdr.record((if (success) "/" else "x" ) ++ " " ++ currentFlightId.value.toString, data)
   }
 
-  def data(flight: Int = currentFlight.value) = fdr.data(flight.toString)
+  def flightData(flight: Int = currentFlightId.value) = fdr.data(flight.toString)
 }
 
 case class DataPoint(flight: String, when: Long, what: Any)
@@ -28,10 +28,10 @@ case class FlightDataRecorder() {
     dataByFlight.update(flight, current :+ DataPoint(flight, System.currentTimeMillis(), data))
   }
 
-  def data(flight: String) = dataByFlight(flight)
+  def data(flight: String): Seq[DataPoint] = dataByFlight.getOrElse(flight, Nil)
 }
 
-class AtomicIntCounter(start: Int = 1) {
+case class AtomicIntCounter(start: Int = 1) {
   private var count = start - 1
 
   def next = synchronized {
