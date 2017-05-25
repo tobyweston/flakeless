@@ -5,17 +5,28 @@ import org.openqa.selenium.{By, WebDriver, WebElement}
 
 object Click {
   def apply(flakeless: Flakeless, by: By): Unit = {
-    flakeless.record("> " + toString)
-    apply(Body(flakeless.rawWebDriver), by)
-    flakeless.record("< " + toString)
+    apply(Body(flakeless.rawWebDriver), by, Some(flakeless))
   }
 
-  def apply(in: WebElement, by: By): Unit = {
+  def apply(in: WebElement, by: By, flakeless: Option[Flakeless] = None): Unit = {
+    new Click(flakeless, in, by).execute()
+  }
+}
+
+private class Click(flakeless: Option[Flakeless], in: WebElement, by: By) {
+  def execute(): Unit = {
     WaitForInteractableElement(in, by,
 
-      description = e => Description("Click", in, by).describe(e),
+      description = e => describe(in, by, e),
 
-      action = e => e.click()
+      action = e => {
+        e.click()
+        flakeless.foreach(_.record("> " + describe(in, by, e)))
+      }
     )
+  }
+
+  private def describe(in: WebElement, by: By, e: WebElement) = {
+    Description("Click", in, by).describe(e)
   }
 }
