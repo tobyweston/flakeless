@@ -7,6 +7,7 @@ import org.openqa.selenium.{By, WebElement}
 import scala.annotation.tailrec
 
 private object Wait {
+  //TODO: move config into Flakeless (just create a default one if not passed in)
   def waitUpTo(timeout: Long = DriveByConfig.waitTimeout, pollPeriod: Long = DriveByConfig.waitPollPeriod) = new Wait(timeout, pollPeriod)
 }
 
