@@ -5,11 +5,11 @@ import org.openqa.selenium.{By, WebDriver, WebElement}
 
 object AssertElementEmpty {
   def apply(flakeless: Flakeless, by: By): Unit = {
-    apply(Body(flakeless.rawWebDriver), by)
+    apply(Body(flakeless.rawWebDriver), by, Some(flakeless))
   }
 
-  def apply(in: WebElement, by: By): Unit = {
-    WaitForElement(in, by,
+  def apply(in: WebElement, by: By, flakeless: Option[Flakeless] = None): Unit = {
+    WaitForElement(flakeless, in, by,
 
       description = e =>
         Description("AssertElementEmpty", in, by, expected = Some(""),

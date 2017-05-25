@@ -8,7 +8,7 @@ object UploadFile {
     apply(Body(flakeless.rawWebDriver), by, filename, Some(flakeless))
   }
 
-  def apply(in: WebElement, by: By, filename: String, flakeless: Option[Flakeless]): Unit = {
+  def apply(in: WebElement, by: By, filename: String, flakeless: Option[Flakeless] = None): Unit = {
     WaitForInteractableElement(flakeless, in, by,
 
       description = e => Description("UploadFile", in, by, args = Map("filename" -> filename)).describe(e),

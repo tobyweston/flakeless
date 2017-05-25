@@ -5,13 +5,13 @@ import org.openqa.selenium.{By, WebDriver, WebElement}
 
 object AssertElementClassContains {
   def apply(flakeless: Flakeless, by: By, expected: String): Unit = {
-    apply(Body(flakeless.rawWebDriver), by, expected)
+    apply(Body(flakeless.rawWebDriver), by, expected, Some(flakeless))
   }
 
-  def apply(in: WebElement, by: By, expected: String): Unit = {
+  def apply(in: WebElement, by: By, expected: String, flakeless: Option[Flakeless] = None): Unit = {
     val attribute = "class"
 
-    WaitForElement(in, by,
+    WaitForElement(flakeless, in, by,
 
       description = e =>
         Description("AssertElementClassContains", in, by, args = Map("attribute" -> attribute), expected = Some(expected),

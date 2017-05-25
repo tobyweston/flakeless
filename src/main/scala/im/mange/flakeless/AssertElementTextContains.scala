@@ -5,11 +5,11 @@ import org.openqa.selenium.{By, WebDriver, WebElement}
 
 object AssertElementTextContains {
   def apply(flakeless: Flakeless, by: By, expected: String): Unit = {
-    apply(Body(flakeless.rawWebDriver), by, expected)
+    apply(Body(flakeless.rawWebDriver), by, expected, Some(flakeless))
   }
 
-  def apply(in: WebElement, by: By, expected: String): Unit = {
-    WaitForElement(in, by,
+  def apply(in: WebElement, by: By, expected: String, flakeless: Option[Flakeless] = None): Unit = {
+    WaitForElement(flakeless, in, by,
 
       description = e => Description("AssertElementTextContains", in, by, expected = Some(expected),
         actual = Some((e) => e.getText))

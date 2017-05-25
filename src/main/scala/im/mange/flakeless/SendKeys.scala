@@ -8,7 +8,7 @@ object SendKeys {
     apply(Body(flakeless.rawWebDriver), by, keysToSend, Some(flakeless))
   }
 
-  def apply(in: WebElement, by: By, keysToSend: String, flakeless: Option[Flakeless]): Unit = {
+  def apply(in: WebElement, by: By, keysToSend: String, flakeless: Option[Flakeless] = None): Unit = {
     WaitForInteractableElement(flakeless, in, by,
 
       description = e => Description("SendKeys", in, by, args = Map("keysToSend" -> keysToSend.toString())).describe(e),

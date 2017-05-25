@@ -5,10 +5,10 @@ import org.openqa.selenium.{By, WebDriver, WebElement}
 
 object AssertElementDisabled {
   def apply(flakeless: Flakeless, by: By): Unit = {
-    AssertElementAbleness(Body(flakeless.rawWebDriver), by, expected = false)
+    AssertElementAbleness(Body(flakeless.rawWebDriver), by, expected = false, Some(flakeless))
   }
 
-  def apply(in: WebElement, by: By): Unit = {
-    AssertElementAbleness(in, by, expected = false)
+  def apply(in: WebElement, by: By, flakeless: Option[Flakeless] = None): Unit = {
+    AssertElementAbleness(in, by, expected = false, flakeless)
   }
 }
