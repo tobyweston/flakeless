@@ -9,7 +9,7 @@ object ClearInputAndSendKeys {
   }
 
   def apply(flakeless: Flakeless, by: By, keysToSend: CharSequence*): Unit = {
-    apply(Body(flakeless.rawWebDriver), by, (keysToSend:_*).toString(), Some(flakeless))
+    apply(Body(flakeless.rawWebDriver), by, keysToSend.toList.toString(), Some(flakeless))
   }
 
   def apply(in: WebElement, by: By, keysToSend: String, flakeless: Option[Flakeless] = None): Unit = {
