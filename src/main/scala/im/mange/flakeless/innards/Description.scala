@@ -25,7 +25,9 @@ case class Description(command: String, in: WebElement, by: By, args: Map[String
       Seq(
         Some(LabelAndValue(None, command)),
         Some(LabelAndValue(Some("in"), in.toString)),
-        Some(LabelAndValue(Some("by"), by.toString))
+        Some(LabelAndValue(Some("by"), by.toString)),
+        if (!webElement.isDisplayed) Some(LabelAndValue(Some("displayed"), webElement.isDisplayed.toString)) else None,
+        if (!webElement.isEnabled) Some(LabelAndValue(Some("enabled"), webElement.isEnabled.toString)) else None
       ) ++
         args.map(kv => Some(LabelAndValue(Some(kv._1), kv._2))) ++
         Seq(
