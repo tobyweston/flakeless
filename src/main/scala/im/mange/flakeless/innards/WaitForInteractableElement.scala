@@ -15,10 +15,6 @@ object WaitForInteractableElement {
   }
 }
 
-trait Executable {
-  def execute(flakeless: Option[Flakeless])
-}
-
 private class WaitForInteractableElement(context: Context, in: WebElement, by: By,
             description: (WebElement) => String,
             condition: (WebElement) => Boolean = (e) => {true},
@@ -32,7 +28,7 @@ private class WaitForInteractableElement(context: Context, in: WebElement, by: B
         val e = in.findElement(by)
         val result = (if (mustBeDisplayed) e.isDisplayed else true) && e.isEnabled && condition(e)
         val value = description(in.findElement(by))
-        //TODO: ultimately don't do this
+        //TODO: ultimately don't do this here .. in Execute instead
         flakeless.foreach(_.record(result, value))
         context.remember(result, value)
         result
@@ -40,12 +36,5 @@ private class WaitForInteractableElement(context: Context, in: WebElement, by: B
       description(in.findElement(by)),
       action(in.findElement(by))
     )
-  }
-}
-
-object Execute {
-  def apply(flakeless: Option[Flakeless], executable: Executable): Unit = {
-    //TODO: probably should pass the context in here instead
-    executable.execute(flakeless)
   }
 }
