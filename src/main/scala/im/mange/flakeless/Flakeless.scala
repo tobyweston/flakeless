@@ -12,7 +12,7 @@ case class Flakeless(rawWebDriver: WebDriver) {
   }
 
   def record(success: Boolean, data: String) {
-    fdr.record(currentFlightNumber.value, (if (success) "/" else "x" ) + " " + currentFlightNumber.value + data)
+    fdr.record(currentFlightNumber.value, (if (success) "/" else "x" ) + " " + data)
   }
 
   def flightData(flight: Int = currentFlightNumber.value) = fdr.data(flight)
