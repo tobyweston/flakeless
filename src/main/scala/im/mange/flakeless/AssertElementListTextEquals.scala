@@ -12,7 +12,11 @@ object AssertElementListTextEquals {
   def apply(in: WebElement, by: By, expected: List[String], flakeless: Option[Flakeless] = None): Unit = {
     WaitForElements(flakeless, in, by,
 
-      description = es => s"AssertElementListTextEquals\n| in: $in\n| $by\n| expected: '$expected'\n| but was: '${es.map(t => s"'${t.getText}'").mkString(", ")}'",
+      //TODO: this produces strange output i.e.
+      //expected = 'List(Foo)' vs
+      //actual = ''Foo2''
+      description = es =>
+        s"AssertElementListTextEquals\n| in: $in\n| $by\n| expected: '$expected'\n| but was: '${es.map(t => s"'${t.getText}'").mkString(", ")}'",
 
       condition = es => es.map(_.getText) == expected)
   }
