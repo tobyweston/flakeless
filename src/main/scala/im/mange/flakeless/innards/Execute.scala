@@ -4,10 +4,21 @@ import im.mange.flakeless.Flakeless
 
 object Execute {
   def apply(flakeless: Option[Flakeless], executable: Executable): Unit = {
-    //TODO: ultimately don't pass flakeless, but do all the recording here ...
-//    flakeless.foreach(_.record(result, value))
-    //and record will take a context ...
-    //TODO: and the exception throwing ...
-    executable.execute(Context(), flakeless)
+    val context = Context()
+
+    try {
+      //TODO: need description ...
+      executable.execute(context, flakeless)
+      context.remember(true, "")
+      flakeless.foreach(_.record(true, "", Some(context)))
+    }
+
+    catch {
+      case e: Exception => {
+        flakeless.foreach(_.record(false, "", Some(context)))
+        throw e
+      }
+
+    }
   }
 }

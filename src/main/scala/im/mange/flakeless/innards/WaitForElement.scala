@@ -17,7 +17,7 @@ private class WaitForElement(in: WebElement, by: By,
             description: (WebElement) => String,
             condition: (WebElement) => Boolean) extends Executable {
 
-  def execute(context: Context, flakeless: Option[Flakeless]) {
+  override def execute(context: Context, flakeless: Option[Flakeless]) {
     //TODO: we should ensure there is only one element - make configurable
     Wait.waitUpTo().forCondition(
       {
