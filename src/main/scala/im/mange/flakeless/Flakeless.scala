@@ -4,18 +4,20 @@ import im.mange.flakeless.innards.{AtomicIntCounter, FlightDataRecorder}
 import org.openqa.selenium.WebDriver
 
 case class Flakeless(rawWebDriver: WebDriver) {
-  private val currentFlightNumber = AtomicIntCounter()
+  private val currentFlightNumberCounter = AtomicIntCounter()
   private val fdr = FlightDataRecorder()
 
   def newFlight(description: Option[String] = None) {
-    currentFlightNumber.next
+    currentFlightNumberCounter.next
   }
 
   def record(success: Boolean, data: String) {
-    fdr.record(currentFlightNumber.value, (if (success) "/" else "x" ) + " " + data)
+    fdr.record(currentFlightNumberCounter.value, (if (success) "/" else "x" ) + " " + data)
   }
 
-  def flightData(flight: Int = currentFlightNumber.value) = fdr.data(flight)
+  def flightData(flight: Int = currentFlightNumber) = fdr.data(flight)
+
+  def currentFlightNumber = currentFlightNumberCounter.value
 }
 
 case class DataPoint(flightNumber: Int, when: Long, what: Any)
