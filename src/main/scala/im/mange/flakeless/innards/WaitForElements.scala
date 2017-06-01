@@ -19,13 +19,11 @@ private class WaitForElements(in: WebElement, by: By,
             description: (List[WebElement]) => String,
             condition: (List[WebElement]) => Boolean) extends Executable {
 
-  override def execute(context: Context, flakeless: Option[Flakeless]) {
+  override def execute(context: Context) {
     Wait.waitUpTo().forCondition(
       {
         val result = condition(in.findElements(by).asScala.toList)
         val value = description(in.findElements(by).asScala.toList)
-        //TODO: ultimately don't do this here .. in Execute instead with a Some
-        flakeless.foreach(_.record(result, value, None))
         context.remember(result, value)
         result
       },

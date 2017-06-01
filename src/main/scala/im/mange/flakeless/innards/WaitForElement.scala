@@ -17,14 +17,12 @@ private class WaitForElement(in: WebElement, by: By,
             description: (WebElement) => String,
             condition: (WebElement) => Boolean) extends Executable {
 
-  override def execute(context: Context, flakeless: Option[Flakeless]) {
+  override def execute(context: Context) {
     //TODO: we should ensure there is only one element - make configurable
     Wait.waitUpTo().forCondition(
       {
         val result = condition(in.findElement(by))
         val value = description(in.findElement(by))
-        //TODO: ultimately don't do this here .. in Execute instead with a Some
-        flakeless.foreach(_.record(result, value, None))
         context.remember(result, value)
         result
       },
