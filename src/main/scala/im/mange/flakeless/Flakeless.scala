@@ -24,17 +24,5 @@ case class Flakeless(rawWebDriver: WebDriver) {
   def currentFlightNumber = currentFlightNumberCounter.value
 }
 
-case class DataPoint(flightNumber: Int, when: Long, what: Any)
 
-case class Context() {
-  private var failures = List[String]()
-  private var success: Option[Boolean] = None
 
-  def remember(result: Boolean, value: String) = {
-    if (result) {
-      success = Some(true)
-    } else {
-      failures = value :: failures
-    }
-  }
-}

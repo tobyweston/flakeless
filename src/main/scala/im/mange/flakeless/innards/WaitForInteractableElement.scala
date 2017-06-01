@@ -1,6 +1,6 @@
 package im.mange.flakeless.innards
 
-import im.mange.flakeless.{Context, Flakeless}
+import im.mange.flakeless.Flakeless
 import org.openqa.selenium.{By, WebElement}
 
 object WaitForInteractableElement {

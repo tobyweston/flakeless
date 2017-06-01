@@ -1,15 +1,13 @@
 package im.mange.flakeless.innards
 
-import im.mange.flakeless.DataPoint
-
 private [flakeless] case class FlightDataRecorder() {
-  private val dataByFlight: scala.collection.concurrent.TrieMap[Int, Seq[DataPoint]] =
+  private val dataByFlightNumber: scala.collection.concurrent.TrieMap[Int, Seq[DataPoint]] =
     new scala.collection.concurrent.TrieMap()
 
   def record(flightNumber: Int, data: String) {
-    val current = dataByFlight.getOrElse(flightNumber, Seq.empty[DataPoint])
-    dataByFlight.update(flightNumber, current :+ DataPoint(flightNumber, System.currentTimeMillis(), data))
+    val current = dataByFlightNumber.getOrElse(flightNumber, Seq.empty[DataPoint])
+    dataByFlightNumber.update(flightNumber, current :+ DataPoint(flightNumber, System.currentTimeMillis(), data))
   }
 
-  def data(flightNumber: Int): Seq[DataPoint] = dataByFlight.getOrElse(flightNumber, Nil)
+  def data(flightNumber: Int): Seq[DataPoint] = dataByFlightNumber.getOrElse(flightNumber, Nil)
 }

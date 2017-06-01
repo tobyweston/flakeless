@@ -1,6 +1,6 @@
 package im.mange.flakeless.innards
 
-import im.mange.flakeless.{Context, Flakeless}
+import im.mange.flakeless.Flakeless
 
 object Execute {
   def apply(flakeless: Option[Flakeless], executable: Executable): Unit = {
