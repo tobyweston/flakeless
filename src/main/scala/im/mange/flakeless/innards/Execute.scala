@@ -1,13 +1,13 @@
 package im.mange.flakeless.innards
 
-import im.mange.flakeless.Flakeless
+import im.mange.flakeless.{Context, Flakeless}
 
-/**
-  * Created by pall on 01/06/2017.
-  */
 object Execute {
   def apply(flakeless: Option[Flakeless], executable: Executable): Unit = {
-    //TODO: probably should pass the context in here instead
-    executable.execute(flakeless)
+    //TODO: ultimately don't pass flakeless, but do all the recording here ...
+//    flakeless.foreach(_.record(result, value))
+    //and record will take a context ...
+    //TODO: and the exception throwing ...
+    executable.execute(Context(), flakeless)
   }
 }

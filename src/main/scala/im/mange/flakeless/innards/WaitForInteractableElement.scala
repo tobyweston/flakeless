@@ -11,17 +11,17 @@ object WaitForInteractableElement {
             mustBeDisplayed: Boolean = true) {
 
     Execute(flakeless,
-      new WaitForInteractableElement(Context(), in, by, description, condition, action, mustBeDisplayed))
+      new WaitForInteractableElement(in, by, description, condition, action, mustBeDisplayed))
   }
 }
 
-private class WaitForInteractableElement(context: Context, in: WebElement, by: By,
+private class WaitForInteractableElement(in: WebElement, by: By,
             description: (WebElement) => String,
             condition: (WebElement) => Boolean = (e) => {true},
             action: (WebElement) => Unit,
             mustBeDisplayed: Boolean = true) extends Executable {
 
-  def execute(flakeless: Option[Flakeless]) {
+  def execute(context: Context, flakeless: Option[Flakeless]) {
     //TODO: we should ensure there is only one element - make configurable
     Wait.waitUpTo().forCondition(
       {

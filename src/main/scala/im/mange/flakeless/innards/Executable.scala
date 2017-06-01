@@ -1,10 +1,7 @@
 package im.mange.flakeless.innards
 
-import im.mange.flakeless.Flakeless
+import im.mange.flakeless.{Context, Flakeless}
 
-/**
-  * Created by pall on 01/06/2017.
-  */
 trait Executable {
-  def execute(flakeless: Option[Flakeless])
+  def execute(context: Context, flakeless: Option[Flakeless])
 }
