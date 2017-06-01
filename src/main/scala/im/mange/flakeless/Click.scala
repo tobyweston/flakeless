@@ -14,8 +14,6 @@ object Click {
 }
 
 private class Click(flakeless: Option[Flakeless], in: WebElement, by: By) {
-  private val context = Context()
-
   def execute(): Unit = {
     WaitForInteractableElement(flakeless, in, by,
 
