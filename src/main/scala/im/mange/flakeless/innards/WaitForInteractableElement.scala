@@ -28,8 +28,8 @@ private class WaitForInteractableElement(in: WebElement, by: By,
         val e = in.findElement(by)
         val result = (if (mustBeDisplayed) e.isDisplayed else true) && e.isEnabled && condition(e)
         val value = description(in.findElement(by))
-        //TODO: ultimately don't do this here .. in Execute instead
-        flakeless.foreach(_.record(result, value))
+        //TODO: ultimately don't do this here .. in Execute instead with a Some
+        flakeless.foreach(_.record(result, value, None))
         context.remember(result, value)
         result
       },

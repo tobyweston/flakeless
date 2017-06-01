@@ -2,18 +2,31 @@ package im.mange.flakeless.innards
 
 import im.mange.flakeless.Flakeless
 import org.openqa.selenium.{By, WebElement}
+import scala.collection.JavaConverters._
+
 
 private [flakeless] object WaitForElements {
-  import scala.collection.JavaConverters._
 
   def apply(flakeless: Option[Flakeless], in: WebElement, by: By,
             description: (List[WebElement]) => String,
             condition: (List[WebElement]) => Boolean) = {
 
+    Execute(flakeless, new WaitForElements(in, by, description, condition))
+  }
+}
+
+private class WaitForElements(in: WebElement, by: By,
+            description: (List[WebElement]) => String,
+            condition: (List[WebElement]) => Boolean) extends Executable {
+
+  override def execute(context: Context, flakeless: Option[Flakeless]) {
     Wait.waitUpTo().forCondition(
       {
         val result = condition(in.findElements(by).asScala.toList)
-        flakeless.foreach(_.record(result, description(in.findElements(by).asScala.toList)))
+        val value = description(in.findElements(by).asScala.toList)
+        //TODO: ultimately don't do this here .. in Execute instead with a Some
+        flakeless.foreach(_.record(result, value, None))
+        context.remember(result, value)
         result
       },
       description(in.findElements(by).asScala.toList)
