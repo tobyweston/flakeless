@@ -12,7 +12,11 @@ case class Flakeless(rawWebDriver: WebDriver) {
   }
 
   def record(success: Boolean, data: String) {
-    fdr.record(currentFlightNumberCounter.value, (if (success) "/" else "x" ) + " " + data)
+    fdr.record(currentFlightNumber, (if (success) "/" else "x" ) + " " + data)
+  }
+
+  def inflightAnnouncement(value: String) {
+    fdr.record(currentFlightNumber, value)
   }
 
   def flightData(flight: Int = currentFlightNumber) = fdr.data(flight)
@@ -21,7 +25,6 @@ case class Flakeless(rawWebDriver: WebDriver) {
 }
 
 case class DataPoint(flightNumber: Int, when: Long, what: Any)
-
 
 case class Context() {
   private var failures = List[String]()
