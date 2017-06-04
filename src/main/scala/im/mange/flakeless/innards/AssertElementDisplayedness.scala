@@ -13,7 +13,7 @@ private [flakeless] object AssertElementDisplayedness {
 
       description = e => Description(s"AssertElement${if (expected) "Displayed" else "Hidden"}", in, by,
         actual = Some((e) => if (e.isDisplayed) "displayed" else "hidden" ))
-        .describe(e),
+        .describeActual(e),
 
       condition = e => e.isDisplayed == expected)
   }

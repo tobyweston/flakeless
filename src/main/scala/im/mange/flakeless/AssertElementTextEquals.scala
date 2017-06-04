@@ -13,7 +13,7 @@ object AssertElementTextEquals {
 
       description = e => Description("AssertElementTextEquals", in, by, expected = Some(expected),
         actual = Some((e) => e.getText))
-        .describe(e),
+        .describeActual(e),
 
       condition = e => e.getText == expected)
   }

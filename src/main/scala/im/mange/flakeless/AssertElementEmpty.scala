@@ -16,7 +16,7 @@ object AssertElementEmpty {
           actual = Some((e) =>
             e.getText ++ " and " ++ e.findElements(By.xpath(".//*")).size.toString ++ " children "
           )
-        ).describe(e),
+        ).describeActual(e),
 
       condition = e => e.findElements(By.xpath(".//*")).size == 0 && e.getText.isEmpty)
   }

@@ -13,7 +13,7 @@ object AssertElementTextContains {
 
       description = e => Description("AssertElementTextContains", in, by, expected = Some(expected),
         actual = Some((e) => e.getText))
-        .describe(e),
+        .describeActual(e),
 
       condition = e => e.getText.contains(expected))
   }

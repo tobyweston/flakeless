@@ -17,7 +17,7 @@ private class Click(flakeless: Option[Flakeless], in: WebElement, by: By) {
   def execute(): Unit = {
     WaitForInteractableElement(flakeless, in, by,
 
-      description = e => Description("Click", in, by).describe(e),
+      description = e => Description("Click", in, by).describeActual(e),
 
       action = e => e.click()
     )

@@ -13,7 +13,7 @@ private [flakeless] object AssertElementSelectedness {
 
       description = e => Description(s"AssertElement${if (expected) "Selected" else "Unselected"}", in, by,
         actual = Some((e) => if (e.isSelected) "selected" else "unselected"))
-        .describe(e),
+        .describeActual(e),
 
       condition = e => e.isSelected == expected)
   }

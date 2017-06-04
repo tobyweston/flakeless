@@ -16,7 +16,7 @@ object AssertElementClassEquals {
       description = e =>
         Description("AssertElementClassEquals", in, by, args = Map("attribute" -> attribute), expected = Some(expected),
           actual = Some((e) => e.getAttribute(attribute)))
-          .describe(e),
+          .describeActual(e),
 
       condition = e => e.getAttribute(attribute) == expected)
   }

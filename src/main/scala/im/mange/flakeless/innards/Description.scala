@@ -11,7 +11,7 @@ case class Description(command: String, in: WebElement, by: By, args: Map[String
     }
   }
 
-  def describe(webElement: WebElement) = {
+  def describeActual(webElement: WebElement) = {
     try {
       reallyDescribe(webElement)
     }
