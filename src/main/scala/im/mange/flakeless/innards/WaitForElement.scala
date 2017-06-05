@@ -3,6 +3,12 @@ package im.mange.flakeless.innards
 import im.mange.flakeless.Flakeless
 import org.openqa.selenium.{By, WebElement}
 
+//TODO: model Condition
+//TODO: work out when description is an Actual and when its something else (like not found)
+//... Actual sounds assertion based
+//... other sounds like an Action ...
+//... in which case arr we in Action & Check extends Command land?
+
 object WaitForElement {
   def apply(flakeless: Option[Flakeless], command: Command,
             description: (WebElement) => String,
