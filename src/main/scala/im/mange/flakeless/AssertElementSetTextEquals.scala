@@ -14,7 +14,7 @@ object AssertElementSetTextEquals {
 
     WaitForElements(flakeless, intention,
 
-      description = es => s"$intention| but was: '${es.map(t => s"'${t.getText}'").mkString(", ")}'",
+      description = es => s"${intention.describe}| but was: '${es.map(t => s"'${t.getText}'").mkString(", ")}'",
 
       condition = es => es.map(_.getText).toSet == expected)
   }

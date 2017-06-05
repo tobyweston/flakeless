@@ -17,7 +17,7 @@ object AssertElementListTextEquals {
       //TODO: this produces strange output i.e.
       //expected = 'List(Foo)' vs
       //actual = ''Foo2''
-      description = es => s"$intention| but was: '${es.map(t => s"'${t.getText}'").mkString(", ")}'",
+      description = es => s"${intention.describe}| but was: '${es.map(t => s"'${t.getText}'").mkString(", ")}'",
 
       condition = es => es.map(_.getText) == expected)
   }
