@@ -1,6 +1,6 @@
 package im.mange.flakeless
 
-import im.mange.flakeless.innards.{Body, Description, Intention, WaitForInteractableElement}
+import im.mange.flakeless.innards.{Body, Description, Command, WaitForInteractableElement}
 import org.openqa.selenium.{By, WebDriver, WebElement}
 
 //TODO: should this be Enter? it isnt in webdriver
@@ -21,7 +21,7 @@ object SendKeys {
 
 private class SendKeys(flakeless: Option[Flakeless], in: WebElement, by: By, keysToSend: List[CharSequence]) {
   def execute(): Unit = {
-    val intention = Intention("SendKeys", in, by, args = Map("keysToSend" -> keysToSend.mkString))
+    val intention = Command("SendKeys", in, by, args = Map("keysToSend" -> keysToSend.mkString))
 
     WaitForInteractableElement(flakeless, intention,
 

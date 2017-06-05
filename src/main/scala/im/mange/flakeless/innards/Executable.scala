@@ -4,16 +4,15 @@ import org.openqa.selenium.{By, WebElement}
 
 trait Executable {
   def execute(context: Context)
-  val intention: Intention
+  val command: Command
 }
 
-//TODO: probably rename to Command
 //TODO: improve rendering of options and in etc ...
 //TODO: args at end? expected's earlier?
-case class Intention(name: String, in: WebElement, by: By,
-                     args: Map[String, String] = Map.empty,
-                     expected: Option[String] = None,
-                     expectedMany: Option[List[String]] = None) {
+case class Command(name: String, in: WebElement, by: By,
+                   args: Map[String, String] = Map.empty,
+                   expected: Option[String] = None,
+                   expectedMany: Option[List[String]] = None) {
 
   //TODO: this is all well hokey
   def describe = reallyDescribe

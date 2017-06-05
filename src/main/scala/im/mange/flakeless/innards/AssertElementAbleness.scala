@@ -9,7 +9,7 @@ private [flakeless] object AssertElementAbleness {
   }
 
   def apply(in: WebElement, by: By, expected: Boolean, flakeless: Option[Flakeless]): Unit = {
-    val intention = Intention(s"AssertElement${if (expected) "Enabled" else "Disabled"}", in, by)
+    val intention = Command(s"AssertElement${if (expected) "Enabled" else "Disabled"}", in, by)
 
     WaitForElement(flakeless, intention,
 

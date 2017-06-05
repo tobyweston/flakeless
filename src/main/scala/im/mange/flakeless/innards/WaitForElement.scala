@@ -5,7 +5,7 @@ import org.openqa.selenium.{By, WebElement}
 
 object WaitForElement {
   def apply(flakeless: Option[Flakeless],
-            intention: Intention,
+            intention: Command,
             description: (WebElement) => String,
             condition: (WebElement) => Boolean) = {
 
@@ -13,20 +13,20 @@ object WaitForElement {
   }
 }
 
-private class WaitForElement(val intention: Intention,
-            description: (WebElement) => String,
-            condition: (WebElement) => Boolean) extends Executable {
+private class WaitForElement(val command: Command,
+                             description: (WebElement) => String,
+                             condition: (WebElement) => Boolean) extends Executable {
 
   override def execute(context: Context) {
     //TODO: we should ensure there is only one element - make configurable
-    Wait.waitUpTo().forCondition(intention,
+    Wait.waitUpTo().forCondition(command,
       {
-        val result = condition(intention.in.findElement(intention.by))
-        val value = description(intention.in.findElement(intention.by))
+        val result = condition(command.in.findElement(command.by))
+        val value = description(command.in.findElement(command.by))
         context.remember(result, value)
         result
       },
-      description(intention.in.findElement(intention.by))
+      description(command.in.findElement(command.by))
     )
   }
 

@@ -9,12 +9,12 @@ object Execute {
     try {
       executable.execute(context)
       context.remember(true, "")
-      flakeless.foreach(_.record(true, executable.intention.describe, Some(context)))
+      flakeless.foreach(_.record(true, executable.command.describe, Some(context)))
     }
 
     catch {
       case e: Exception => {
-        flakeless.foreach(_.record(false, executable.intention.describe, Some(context)))
+        flakeless.foreach(_.record(false, executable.command.describe, Some(context)))
         throw e
       }
 

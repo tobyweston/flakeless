@@ -1,7 +1,7 @@
 package im.mange.flakeless
 
-import im.mange.flakeless.innards.{Body, Description, Intention, WaitForInteractableElement}
-import org.openqa.selenium.{By, WebDriver, WebElement}
+import im.mange.flakeless.innards.{Body, Command, Description, WaitForInteractableElement}
+import org.openqa.selenium.{By, WebElement}
 
 object Click {
   def apply(flakeless: Flakeless, by: By): Unit = {
@@ -15,7 +15,7 @@ object Click {
 
 private class Click(flakeless: Option[Flakeless], in: WebElement, by: By) {
   def execute(): Unit = {
-    val intention = Intention("Click", in, by)
+    val intention = Command("Click", in, by)
 
     WaitForInteractableElement(flakeless, intention,
 

@@ -9,7 +9,7 @@ private [flakeless] object AssertElementSelectedness {
   }
 
   def apply(in: WebElement, by: By, expected: Boolean, flakeless: Option[Flakeless]): Unit = {
-    val intention = Intention(s"AssertElement${if (expected) "Selected" else "Unselected"}", in, by)
+    val intention = Command(s"AssertElement${if (expected) "Selected" else "Unselected"}", in, by)
 
     WaitForElement(flakeless, intention,
 

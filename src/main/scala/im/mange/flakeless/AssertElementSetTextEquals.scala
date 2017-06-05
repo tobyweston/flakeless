@@ -1,6 +1,6 @@
 package im.mange.flakeless
 
-import im.mange.flakeless.innards.{Body, Intention, WaitForElements}
+import im.mange.flakeless.innards.{Body, Command, WaitForElements}
 import org.openqa.selenium.{By, WebDriver, WebElement}
 
 object AssertElementSetTextEquals {
@@ -10,7 +10,7 @@ object AssertElementSetTextEquals {
 
   //TODO: I need to be converted to a Description, just not possible yet..
   def apply(in: WebElement, by: By, expected: Set[String], flakeless: Option[Flakeless] = None): Unit = {
-    val intention = Intention("AssertElementSetTextEquals", in, by, expectedMany = Some(expected.toList))
+    val intention = Command("AssertElementSetTextEquals", in, by, expectedMany = Some(expected.toList))
 
     WaitForElements(flakeless, intention,
 

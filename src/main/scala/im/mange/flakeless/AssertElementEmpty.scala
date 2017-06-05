@@ -1,6 +1,6 @@
 package im.mange.flakeless
 
-import im.mange.flakeless.innards.{Body, Description, Intention, WaitForElement}
+import im.mange.flakeless.innards.{Body, Description, Command, WaitForElement}
 import org.openqa.selenium.{By, WebDriver, WebElement}
 
 object AssertElementEmpty {
@@ -9,7 +9,7 @@ object AssertElementEmpty {
   }
 
   def apply(in: WebElement, by: By, flakeless: Option[Flakeless] = None): Unit = {
-    val intention = Intention("AssertElementEmpty", in, by, expected = Some(""))
+    val intention = Command("AssertElementEmpty", in, by, expected = Some(""))
 
     WaitForElement(flakeless, intention,
 

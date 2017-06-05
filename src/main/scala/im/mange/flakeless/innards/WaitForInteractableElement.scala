@@ -4,7 +4,7 @@ import im.mange.flakeless.Flakeless
 import org.openqa.selenium.{By, WebElement}
 
 object WaitForInteractableElement {
-  def apply(flakeless: Option[Flakeless], intention: Intention,
+  def apply(flakeless: Option[Flakeless], intention: Command,
             description: (WebElement) => String,
             condition: (WebElement) => Boolean = (e) => {true},
             action: (WebElement) => Unit,
@@ -15,24 +15,24 @@ object WaitForInteractableElement {
   }
 }
 
-private class WaitForInteractableElement(val intention: Intention,
-            description: (WebElement) => String,
-            condition: (WebElement) => Boolean = (e) => {true},
-            action: (WebElement) => Unit,
-            mustBeDisplayed: Boolean = true) extends Executable {
+private class WaitForInteractableElement(val command: Command,
+                                         description: (WebElement) => String,
+                                         condition: (WebElement) => Boolean = (e) => {true},
+                                         action: (WebElement) => Unit,
+                                         mustBeDisplayed: Boolean = true) extends Executable {
 
   def execute(context: Context) {
     //TODO: we should ensure there is only one element - make configurable
-    Wait.waitUpTo().forCondition(intention,
+    Wait.waitUpTo().forCondition(command,
       {
-        val e = intention.in.findElement(intention.by)
+        val e = command.in.findElement(command.by)
         val result = (if (mustBeDisplayed) e.isDisplayed else true) && e.isEnabled && condition(e)
-        val value = description(intention.in.findElement(intention.by))
+        val value = description(command.in.findElement(command.by))
         context.remember(result, value)
         result
       },
-      description(intention.in.findElement(intention.by)),
-      action(intention.in.findElement(intention.by))
+      description(command.in.findElement(command.by)),
+      action(command.in.findElement(command.by))
     )
   }
 }
