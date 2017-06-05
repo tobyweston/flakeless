@@ -9,15 +9,9 @@ private [flakeless] object AssertElementDisplayedness {
   }
 
   def apply(in: WebElement, by: By, expected: Boolean, flakeless: Option[Flakeless]): Unit = {
-    val intention = Command(s"AssertElement${if (expected) "Displayed" else "Hidden"}", in, by)
-
-    WaitForElement(flakeless, intention,
-
-      description = e => {
-        Description(actual = Some((e) => if (e.isDisplayed) "displayed" else "hidden"))
-          .describeActual(e)
-      },
-
+    WaitForElement(flakeless,
+      Command(s"AssertElement${if (expected) "Displayed" else "Hidden"}", in, by),
+      description = e => Description(actual = Some((e) => if (e.isDisplayed) "displayed" else "hidden")).describeActual(e),
       condition = e => e.isDisplayed == expected)
   }
 }
