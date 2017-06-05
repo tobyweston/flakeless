@@ -15,9 +15,6 @@ case class Intention(command: String, in: WebElement, by: By,
                      expected: Option[String] = None,
                      expectedMany: Option[List[String]] = None) {
 
-
-//  def describe = s"$command $by $in $args $expected $expectedMany"
-
   //TODO: this is all well hokey
   def describe = reallyDescribe(None)
 
@@ -29,6 +26,7 @@ case class Intention(command: String, in: WebElement, by: By,
     }
   }
 
+  //TODO: render expectedMany
   private def reallyDescribe(webElement: Option[WebElement]): String = {
     (
       Seq(
