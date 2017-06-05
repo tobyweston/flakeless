@@ -1,8 +1,7 @@
 package im.mange.flakeless.innards
 
 import im.mange.driveby.DriveByConfig
-import im.mange.flakeless.{ConditionNotMetException, Flakeless}
-import org.openqa.selenium.{By, WebElement}
+import im.mange.flakeless.ConditionNotMetException
 
 import scala.annotation.tailrec
 
@@ -14,7 +13,7 @@ private object Wait {
 private class Wait(timeout: Long, pollPeriod: Long) {
   def forCondition(intention: Intention, f: => Boolean, desc: => String, action: => Unit = {}) {
     if (!conditionSatisfied(f, pollPeriod)) {
-      throw new ConditionNotMetException("> FAILED: " + intention + "`\n| actual: " + desc, timeout)
+      throw new ConditionNotMetException("> FAILED: \n| " + intention.describe + "`\n| actual: " + desc, timeout)
     } else {
       action
     }
