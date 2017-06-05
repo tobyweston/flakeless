@@ -7,27 +7,27 @@ import scala.collection.JavaConverters._
 
 private [flakeless] object WaitForElements {
 
-  def apply(flakeless: Option[Flakeless], in: WebElement, by: By,
+  def apply(flakeless: Option[Flakeless], intention: Intention,
             description: (List[WebElement]) => String,
             condition: (List[WebElement]) => Boolean) = {
 
-    Execute(flakeless, new WaitForElements(in, by, description, condition))
+    Execute(flakeless, new WaitForElements(intention, description, condition))
   }
 }
 
-private class WaitForElements(in: WebElement, by: By,
+private class WaitForElements(val intention: Intention,
             description: (List[WebElement]) => String,
             condition: (List[WebElement]) => Boolean) extends Executable {
 
   override def execute(context: Context) {
     Wait.waitUpTo().forCondition(
       {
-        val result = condition(in.findElements(by).asScala.toList)
-        val value = description(in.findElements(by).asScala.toList)
+        val result = condition(intention.in.findElements(intention.by).asScala.toList)
+        val value = description(intention.in.findElements(intention.by).asScala.toList)
         context.remember(result, value)
         result
       },
-      description(in.findElements(by).asScala.toList)
+      description(intention.in.findElements(intention.by).asScala.toList)
     )
   }
 }

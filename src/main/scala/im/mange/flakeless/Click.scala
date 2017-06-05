@@ -1,6 +1,6 @@
 package im.mange.flakeless
 
-import im.mange.flakeless.innards.{Body, Description, WaitForInteractableElement}
+import im.mange.flakeless.innards.{Body, Description, Intention, WaitForInteractableElement}
 import org.openqa.selenium.{By, WebDriver, WebElement}
 
 object Click {
@@ -15,9 +15,13 @@ object Click {
 
 private class Click(flakeless: Option[Flakeless], in: WebElement, by: By) {
   def execute(): Unit = {
-    WaitForInteractableElement(flakeless, in, by,
+    val intention = Intention("Click", in, by)
 
-      description = e => Description("Click", in, by).describeActual(e),
+    WaitForInteractableElement(flakeless, intention,
+
+      description = e => {
+        Description(intention).describeActual(e)
+      },
 
       action = e => e.click()
     )

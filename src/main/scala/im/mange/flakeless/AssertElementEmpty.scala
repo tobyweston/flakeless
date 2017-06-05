@@ -1,6 +1,6 @@
 package im.mange.flakeless
 
-import im.mange.flakeless.innards.{Body, Description, WaitForElement}
+import im.mange.flakeless.innards.{Body, Description, Intention, WaitForElement}
 import org.openqa.selenium.{By, WebDriver, WebElement}
 
 object AssertElementEmpty {
@@ -9,14 +9,17 @@ object AssertElementEmpty {
   }
 
   def apply(in: WebElement, by: By, flakeless: Option[Flakeless] = None): Unit = {
-    WaitForElement(flakeless, in, by,
+    val intention = Intention("AssertElementEmpty", in, by, expected = Some(""))
 
-      description = e =>
-        Description("AssertElementEmpty", in, by, expected = Some(""),
+    WaitForElement(flakeless, intention,
+
+      description = e => {
+        Description(intention,
           actual = Some((e) =>
             e.getText ++ " and " ++ e.findElements(By.xpath(".//*")).size.toString ++ " children "
           )
-        ).describeActual(e),
+        ).describeActual(e)
+      },
 
       condition = e => e.findElements(By.xpath(".//*")).size == 0 && e.getText.isEmpty)
   }

@@ -4,9 +4,7 @@ import org.openqa.selenium.{By, WebElement}
 
 //TODO: jsonate me later
 //TODO: maybe don't pass actual, but provide a function in describe instead
-case class Description(command: String, in: WebElement, by: By,
-                       args: Map[String, String] = Map.empty,
-                       expected: Option[String] = None,
+case class Description(intention: Intention,
                        actual: Option[(WebElement) => String] = None) {
 
   case class LabelAndValue(label: Option[String], value: String) {
@@ -37,15 +35,15 @@ case class Description(command: String, in: WebElement, by: By,
   private def reallyDescribe(webElement: Option[WebElement]): String = {
     (
       Seq(
-        Some(LabelAndValue(None, command)),
-        Some(LabelAndValue(Some("in"), in.toString)),
-        Some(LabelAndValue(Some("by"), by.toString)),
+        Some(LabelAndValue(None, intention.command)),
+        Some(LabelAndValue(Some("in"), intention.in.toString)),
+        Some(LabelAndValue(Some("by"), intention.by.toString)),
         webElement.map(e => LabelAndValue(Some("displayed"), e.isDisplayed.toString)),
         webElement.map(e => LabelAndValue(Some("enabled"), e.isEnabled.toString))
       ) ++
-        args.map(kv => Some(LabelAndValue(Some(kv._1), kv._2))) ++
+        intention.args.map(kv => Some(LabelAndValue(Some(kv._1), kv._2))) ++
         Seq(
-          expected.map(e => LabelAndValue(Some("expected"), e)),
+          intention.expected.map(e => LabelAndValue(Some("expected"), e)),
           actual.map(bw => LabelAndValue(Some("actual"), butWasSafely(webElement, bw)))
         )
       ).flatten.map(_.describe).mkString("\n| ")

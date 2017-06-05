@@ -9,11 +9,15 @@ private [flakeless] object AssertElementSelectedness {
   }
 
   def apply(in: WebElement, by: By, expected: Boolean, flakeless: Option[Flakeless]): Unit = {
-    WaitForElement(flakeless, in, by,
+    val intention = Intention(s"AssertElement${if (expected) "Selected" else "Unselected"}", in, by)
 
-      description = e => Description(s"AssertElement${if (expected) "Selected" else "Unselected"}", in, by,
-        actual = Some((e) => if (e.isSelected) "selected" else "unselected"))
-        .describeActual(e),
+    WaitForElement(flakeless, intention,
+
+      description = e => {
+        Description(intention,
+          actual = Some((e) => if (e.isSelected) "selected" else "unselected"))
+          .describeActual(e)
+      },
 
       condition = e => e.isSelected == expected)
   }

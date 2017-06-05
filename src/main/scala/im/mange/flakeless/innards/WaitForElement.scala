@@ -5,15 +5,15 @@ import org.openqa.selenium.{By, WebElement}
 
 object WaitForElement {
   def apply(flakeless: Option[Flakeless],
-            in: WebElement, by: By,
+            intention: Intention,
             description: (WebElement) => String,
             condition: (WebElement) => Boolean) = {
 
-    Execute(flakeless, new WaitForElement(in, by, description, condition))
+    Execute(flakeless, new WaitForElement(intention, description, condition))
   }
 }
 
-private class WaitForElement(in: WebElement, by: By,
+private class WaitForElement(val intention: Intention,
             description: (WebElement) => String,
             condition: (WebElement) => Boolean) extends Executable {
 
@@ -21,12 +21,12 @@ private class WaitForElement(in: WebElement, by: By,
     //TODO: we should ensure there is only one element - make configurable
     Wait.waitUpTo().forCondition(
       {
-        val result = condition(in.findElement(by))
-        val value = description(in.findElement(by))
+        val result = condition(intention.in.findElement(intention.by))
+        val value = description(intention.in.findElement(intention.by))
         context.remember(result, value)
         result
       },
-      description(in.findElement(by))
+      description(intention.in.findElement(intention.by))
     )
   }
 

@@ -1,6 +1,6 @@
 package im.mange.flakeless
 
-import im.mange.flakeless.innards.{Body, Description, WaitForElement}
+import im.mange.flakeless.innards.{Body, Description, Intention, WaitForElement}
 import org.openqa.selenium.{By, WebDriver, WebElement}
 
 object AssertElementAttributeContains {
@@ -9,12 +9,14 @@ object AssertElementAttributeContains {
   }
 
   def apply(in: WebElement, by: By, attribute: String, expected: String, flakeless: Option[Flakeless] = None): Unit = {
-    WaitForElement(flakeless, in, by,
+    val intention = Intention("AssertElementAttributeContains", in, by, args = Map("attribute" -> attribute), expected = Some(expected))
 
-      description = e =>
-        Description("AssertElementAttributeContains", in, by, args = Map("attribute" -> attribute), expected = Some(expected),
+    WaitForElement(flakeless, intention,
+      description = e => {
+        Description(intention,
           actual = Some((e) => e.getAttribute(attribute)))
-          .describeActual(e),
+          .describeActual(e)
+      },
 
       condition = e => e.getAttribute(attribute).contains(expected))
   }
