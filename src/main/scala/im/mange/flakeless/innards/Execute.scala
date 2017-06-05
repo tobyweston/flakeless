@@ -7,15 +7,14 @@ object Execute {
     val context = Context()
 
     try {
-      //TODO: need description ...
       executable.execute(context)
       context.remember(true, "")
-      flakeless.foreach(_.record(true, "SUCCESS", Some(context)))
+      flakeless.foreach(_.record(true, executable.intention.describe, Some(context)))
     }
 
     catch {
       case e: Exception => {
-        flakeless.foreach(_.record(false, "FAIL", Some(context)))
+        flakeless.foreach(_.record(false, executable.intention.describe, Some(context)))
         throw e
       }
 
