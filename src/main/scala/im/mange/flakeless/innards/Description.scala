@@ -40,15 +40,15 @@ case class Description(command: String, in: WebElement, by: By, args: Map[String
       ) ++
         args.map(kv => Some(LabelAndValue(Some(kv._1), kv._2))) ++
         Seq(
-          expected.map(e => LabelAndValue(Some("expected"), e))//,
-//          actual.map(bw => LabelAndValue(Some("actual"), butWasSafely(webElement, bw)))
+          expected.map(e => LabelAndValue(Some("expected"), e)),
+          actual.map(bw => LabelAndValue(Some("actual"), butWasSafely(webElement, bw)))
         )
       ).flatten.map(_.describe).mkString("\n| ")
   }
 
-  private def butWasSafely(webElement: WebElement, bw: (WebElement) => String) = {
+  private def butWasSafely(webElement: Option[WebElement], bw: (WebElement) => String): String = {
     try {
-      bw(webElement)
+      webElement.fold("no element"){bw(_)}
     }
     catch {
       case e: Exception => "Exception thrown while getting actual: " + e.getMessage
