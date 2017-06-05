@@ -21,6 +21,7 @@ case class Intention(command: String, in: WebElement, by: By,
   //TODO: this is all well hokey
   def describe = reallyDescribe(None)
 
+  //TODO: ultimately shouldn't need this here, extract formatter
   case class LabelAndValue(label: Option[String], value: String) {
     def describe = label match {
       case Some(l) => s"$l: '$value'"
@@ -40,8 +41,6 @@ case class Intention(command: String, in: WebElement, by: By,
         args.map(kv => Some(LabelAndValue(Some(kv._1), kv._2))) ++
         Seq(
           expected.map(e => LabelAndValue(Some("expected"), e))
-          //TODO: need this ...
-//          actual.map(bw => LabelAndValue(Some("actual"), butWasSafely(webElement, bw)))
         )
       ).flatten.map(_.describe).mkString("\n| ")
   }
