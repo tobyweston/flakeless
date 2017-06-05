@@ -23,7 +23,7 @@ private class WaitForInteractableElement(val intention: Intention,
 
   def execute(context: Context) {
     //TODO: we should ensure there is only one element - make configurable
-    Wait.waitUpTo().forCondition(
+    Wait.waitUpTo().forCondition(intention,
       {
         val e = intention.in.findElement(intention.by)
         val result = (if (mustBeDisplayed) e.isDisplayed else true) && e.isEnabled && condition(e)

@@ -20,7 +20,7 @@ private class WaitForElements(val intention: Intention,
             condition: (List[WebElement]) => Boolean) extends Executable {
 
   override def execute(context: Context) {
-    Wait.waitUpTo().forCondition(
+    Wait.waitUpTo().forCondition(intention,
       {
         val result = condition(intention.in.findElements(intention.by).asScala.toList)
         val value = description(intention.in.findElements(intention.by).asScala.toList)

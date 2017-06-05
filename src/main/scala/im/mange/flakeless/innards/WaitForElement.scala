@@ -19,7 +19,7 @@ private class WaitForElement(val intention: Intention,
 
   override def execute(context: Context) {
     //TODO: we should ensure there is only one element - make configurable
-    Wait.waitUpTo().forCondition(
+    Wait.waitUpTo().forCondition(intention,
       {
         val result = condition(intention.in.findElement(intention.by))
         val value = description(intention.in.findElement(intention.by))
