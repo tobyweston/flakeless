@@ -16,15 +16,6 @@ case class Description(intention: Intention,
     }
   }
 
-  def describeIntent = {
-    try {
-      reallyDescribe(None)
-    }
-    catch {
-      case e: Exception => s"Exception thrown while describing $this cause:\n" + e.getMessage
-    }
-  }
-
   def describeActual(webElement: WebElement) = {
     try {
       reallyDescribe(Some(webElement))
