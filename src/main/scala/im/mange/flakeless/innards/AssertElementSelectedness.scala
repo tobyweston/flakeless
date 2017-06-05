@@ -4,10 +4,6 @@ import im.mange.flakeless.Flakeless
 import org.openqa.selenium.{By, WebDriver, WebElement}
 
 private [flakeless] object AssertElementSelectedness {
-  def apply(webDriver: WebDriver, by: By, expected: Boolean, flakeless: Option[Flakeless]): Unit = {
-    apply(Body(webDriver), by, expected, flakeless)
-  }
-
   def apply(in: WebElement, by: By, expected: Boolean, flakeless: Option[Flakeless]): Unit = {
     WaitForElement(flakeless,
       Command(s"AssertElement${if (expected) "Selected" else "Unselected"}", in, by),
