@@ -14,8 +14,7 @@ object AssertElementEmpty {
     WaitForElement(flakeless, intention,
 
       description = e => {
-        Description(intention,
-          actual = Some((e) =>
+        Description(actual = Some((e) =>
             e.getText ++ " and " ++ e.findElements(By.xpath(".//*")).size.toString ++ " children "
           )
         ).describeActual(e)

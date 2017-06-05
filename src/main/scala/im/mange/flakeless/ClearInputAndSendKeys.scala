@@ -25,7 +25,7 @@ private class ClearInputAndSendKeys(flakeless: Option[Flakeless], in: WebElement
     WaitForInteractableElement(flakeless, intention,
 
       description = e => {
-        Description(intention).describeActual(e)
+        Description().describeActual(e)
       },
 
       action = e => {

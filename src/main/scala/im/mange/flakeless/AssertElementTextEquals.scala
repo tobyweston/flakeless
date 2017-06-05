@@ -14,8 +14,7 @@ object AssertElementTextEquals {
     WaitForElement(flakeless, intention,
 
       description = e => {
-        Description(intention,
-          actual = Some((e) => e.getText))
+        Description(actual = Some((e) => e.getText))
           .describeActual(e)
       },
 

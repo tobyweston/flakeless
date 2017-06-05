@@ -26,7 +26,7 @@ private class SendKeys(flakeless: Option[Flakeless], in: WebElement, by: By, key
     WaitForInteractableElement(flakeless, intention,
 
       description = e => {
-        Description(intention).describeActual(e)
+        Description().describeActual(e)
       },
 
       action = e => e.sendKeys(keysToSend:_*)

@@ -14,8 +14,7 @@ private [flakeless] object AssertElementSelectedness {
     WaitForElement(flakeless, intention,
 
       description = e => {
-        Description(intention,
-          actual = Some((e) => if (e.isSelected) "selected" else "unselected"))
+        Description(actual = Some((e) => if (e.isSelected) "selected" else "unselected"))
           .describeActual(e)
       },
 

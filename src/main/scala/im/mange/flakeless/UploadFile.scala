@@ -14,7 +14,7 @@ object UploadFile {
     WaitForInteractableElement(flakeless, intention,
 
       description = e => {
-        Description(intention).describeActual(e)
+        Description().describeActual(e)
       },
 
       action = e => e.sendKeys(filename),

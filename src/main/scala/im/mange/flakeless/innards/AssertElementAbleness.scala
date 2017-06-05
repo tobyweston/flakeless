@@ -14,8 +14,7 @@ private [flakeless] object AssertElementAbleness {
     WaitForElement(flakeless, intention,
 
       description = e => {
-        Description(intention,
-          actual = Some((e) => if (e.isEnabled) "enabled" else "disabled"))
+        Description(actual = Some((e) => if (e.isEnabled) "enabled" else "disabled"))
           .describeActual(e)
       },
 

@@ -14,8 +14,7 @@ object AssertElementAttributeEquals {
     WaitForElement(flakeless, intention,
 
       description = e => {
-        Description(intention,
-          actual = Some((e) => e.getAttribute(attribute)))
+        Description(actual = Some((e) => e.getAttribute(attribute)))
           .describeActual(e)
       },
 

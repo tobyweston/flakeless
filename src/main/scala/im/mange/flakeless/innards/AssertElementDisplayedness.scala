@@ -14,8 +14,7 @@ private [flakeless] object AssertElementDisplayedness {
     WaitForElement(flakeless, intention,
 
       description = e => {
-        Description(intention,
-          actual = Some((e) => if (e.isDisplayed) "displayed" else "hidden"))
+        Description(actual = Some((e) => if (e.isDisplayed) "displayed" else "hidden"))
           .describeActual(e)
       },
 

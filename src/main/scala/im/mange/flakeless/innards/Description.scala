@@ -1,13 +1,12 @@
 package im.mange.flakeless.innards
 
-import org.openqa.selenium.{By, WebElement}
+import org.openqa.selenium.WebElement
 
 //TODO: jsonate me later
 //TODO: maybe don't pass actual, but provide a function in describe instead
 //TODO: this is starting to look like an Actual
 //TODO; so shouldnt take an Intention
-case class Description(intention: Intention,
-                       actual: Option[(WebElement) => String] = None) {
+case class Description(actual: Option[(WebElement) => String] = None) {
 
   case class LabelAndValue(label: Option[String], value: String) {
     def describe = label match {

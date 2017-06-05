@@ -20,7 +20,7 @@ private class Click(flakeless: Option[Flakeless], in: WebElement, by: By) {
     WaitForInteractableElement(flakeless, intention,
 
       description = e => {
-        Description(intention).describeActual(e)
+        Description().describeActual(e)
       },
 
       action = e => e.click()
