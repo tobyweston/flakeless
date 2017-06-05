@@ -14,7 +14,7 @@ object AssertElementListCountEquals {
 
     WaitForElements(flakeless, intention,
 
-      description = es => s"${intention.describe}| but was: '${es.size}'",
+      description = es => s"${es.size}",
 
       condition = es => es.size == expected)
   }

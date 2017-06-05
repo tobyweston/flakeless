@@ -4,6 +4,8 @@ import org.openqa.selenium.{By, WebElement}
 
 //TODO: jsonate me later
 //TODO: maybe don't pass actual, but provide a function in describe instead
+//TODO: this is starting to look like an Actual
+//TODO; so shouldnt take an Intention
 case class Description(intention: Intention,
                        actual: Option[(WebElement) => String] = None) {
 
@@ -35,15 +37,15 @@ case class Description(intention: Intention,
   private def reallyDescribe(webElement: Option[WebElement]): String = {
     (
       Seq(
-        Some(LabelAndValue(None, intention.command)),
-        Some(LabelAndValue(Some("in"), intention.in.toString)),
-        Some(LabelAndValue(Some("by"), intention.by.toString)),
+//        Some(LabelAndValue(None, intention.command)),
+//        Some(LabelAndValue(Some("in"), intention.in.toString)),
+//        Some(LabelAndValue(Some("by"), intention.by.toString)),
         webElement.map(e => LabelAndValue(Some("displayed"), e.isDisplayed.toString)),
         webElement.map(e => LabelAndValue(Some("enabled"), e.isEnabled.toString))
       ) ++
-        intention.args.map(kv => Some(LabelAndValue(Some(kv._1), kv._2))) ++
+//        intention.args.map(kv => Some(LabelAndValue(Some(kv._1), kv._2))) ++
         Seq(
-          intention.expected.map(e => LabelAndValue(Some("expected"), e)),
+//          intention.expected.map(e => LabelAndValue(Some("expected"), e)),
           actual.map(bw => LabelAndValue(Some("actual"), butWasSafely(webElement, bw)))
         )
       ).flatten.map(_.describe).mkString("\n| ")
