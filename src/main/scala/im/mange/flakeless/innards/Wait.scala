@@ -11,9 +11,9 @@ private object Wait {
 }
 
 private class Wait(timeout: Long, pollPeriod: Long) {
-  def forCondition(intention: Command, f: => Boolean, desc: => String, action: => Unit = {}) {
+  def forCondition(command: Command, f: => Boolean, desc: => String, action: => Unit = {}) {
     if (!conditionSatisfied(f, pollPeriod)) {
-      throw new ConditionNotMetException("> FAILED: \n| " + intention.describe + "`\n| actual: " + desc, timeout)
+      throw new ConditionNotMetException("> FAILED: \n| " + command.describe + "`\n| actual: " + desc, timeout)
     } else {
       action
     }

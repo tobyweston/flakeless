@@ -4,12 +4,11 @@ import im.mange.flakeless.Flakeless
 import org.openqa.selenium.{By, WebElement}
 
 object WaitForElement {
-  def apply(flakeless: Option[Flakeless],
-            intention: Command,
+  def apply(flakeless: Option[Flakeless], command: Command,
             description: (WebElement) => String,
             condition: (WebElement) => Boolean) = {
 
-    Execute(flakeless, new WaitForElement(intention, description, condition))
+    Execute(flakeless, new WaitForElement(command, description, condition))
   }
 }
 

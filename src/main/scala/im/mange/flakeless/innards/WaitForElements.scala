@@ -6,12 +6,11 @@ import scala.collection.JavaConverters._
 
 
 private [flakeless] object WaitForElements {
-
-  def apply(flakeless: Option[Flakeless], intention: Command,
+  def apply(flakeless: Option[Flakeless], command: Command,
             description: (List[WebElement]) => String,
             condition: (List[WebElement]) => Boolean) = {
 
-    Execute(flakeless, new WaitForElements(intention, description, condition))
+    Execute(flakeless, new WaitForElements(command, description, condition))
   }
 }
 

@@ -30,8 +30,8 @@ case class Command(name: String, in: WebElement, by: By,
     (
       Seq(
         Some(LabelAndValue(None, name)),
-        Some(LabelAndValue(Some("in"), in.toString)),
-        Some(LabelAndValue(Some("by"), by.toString))
+        Some(LabelAndValue(Some("by"), by.toString)),
+        Some(LabelAndValue(Some("in"), in.toString))
       ) ++
         args.map(kv => Some(LabelAndValue(Some(kv._1), kv._2))) ++
         Seq(
@@ -39,5 +39,4 @@ case class Command(name: String, in: WebElement, by: By,
         )
       ).flatten.map(_.describe).mkString("\n| ")
   }
-
 }

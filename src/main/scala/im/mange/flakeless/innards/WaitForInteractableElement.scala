@@ -4,14 +4,13 @@ import im.mange.flakeless.Flakeless
 import org.openqa.selenium.{By, WebElement}
 
 object WaitForInteractableElement {
-  def apply(flakeless: Option[Flakeless], intention: Command,
+  def apply(flakeless: Option[Flakeless], command: Command,
             description: (WebElement) => String,
             condition: (WebElement) => Boolean = (e) => {true},
             action: (WebElement) => Unit,
             mustBeDisplayed: Boolean = true) {
 
-    Execute(flakeless,
-      new WaitForInteractableElement(intention, description, condition, action, mustBeDisplayed))
+    Execute(flakeless, new WaitForInteractableElement(command, description, condition, action, mustBeDisplayed))
   }
 }
 
