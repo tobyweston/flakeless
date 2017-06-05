@@ -3,7 +3,12 @@ package im.mange.flakeless.innards
 import org.openqa.selenium.{By, WebElement}
 
 //TODO: jsonate me later
-case class Description(command: String, in: WebElement, by: By, args: Map[String, String] = Map.empty, expected: Option[String] = None, actual: Option[(WebElement) => String] = None) {
+//TODO: maybe don't pass actual, but provide a function in describe instead
+case class Description(command: String, in: WebElement, by: By,
+                       args: Map[String, String] = Map.empty,
+                       expected: Option[String] = None,
+                       actual: Option[(WebElement) => String] = None) {
+
   case class LabelAndValue(label: Option[String], value: String) {
     def describe = label match {
       case Some(l) => s"$l: '$value'"
