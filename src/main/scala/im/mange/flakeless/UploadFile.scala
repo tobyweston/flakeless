@@ -3,6 +3,7 @@ package im.mange.flakeless
 import im.mange.flakeless.innards.{Body, Command, Description, WaitForInteractableElement}
 import org.openqa.selenium.{By, WebElement}
 
+//TODO: feels like I should be a factory for a private class ... see: Click
 object UploadFile {
   def apply(flakeless: Flakeless, by: By, filename: String): Unit = {
     apply(Body(flakeless.rawWebDriver), by, filename, Some(flakeless))
