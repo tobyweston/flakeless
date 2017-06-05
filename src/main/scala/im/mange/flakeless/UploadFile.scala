@@ -1,7 +1,7 @@
 package im.mange.flakeless
 
-import im.mange.flakeless.innards.{Body, Description, Command, WaitForInteractableElement}
-import org.openqa.selenium.{By, WebDriver, WebElement}
+import im.mange.flakeless.innards.{Body, Command, Description, WaitForInteractableElement}
+import org.openqa.selenium.{By, WebElement}
 
 object UploadFile {
   def apply(flakeless: Flakeless, by: By, filename: String): Unit = {
@@ -9,16 +9,10 @@ object UploadFile {
   }
 
   def apply(in: WebElement, by: By, filename: String, flakeless: Option[Flakeless] = None): Unit = {
-    val intention = Command("UploadFile", in, by, args = Map("filename" -> filename))
-
-    WaitForInteractableElement(flakeless, intention,
-
-      description = e => {
-        Description().describeActual(e)
-      },
-
+    WaitForInteractableElement(flakeless,
+      Command("UploadFile", in, by, args = Map("filename" -> filename)),
+      description = e => Description().describeActual(e),
       action = e => e.sendKeys(filename),
-
       mustBeDisplayed = false
     )
   }

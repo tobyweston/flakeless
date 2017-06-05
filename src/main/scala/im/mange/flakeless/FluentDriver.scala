@@ -2,6 +2,7 @@ package im.mange.flakeless
 
 import org.openqa.selenium.By
 
+//TODO: fill me out with all available primitives
 trait FluentDriver {
   val flakeless: Flakeless
 

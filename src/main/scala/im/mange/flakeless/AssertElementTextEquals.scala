@@ -1,7 +1,7 @@
 package im.mange.flakeless
 
-import im.mange.flakeless.innards.{Body, Description, Command, WaitForElement}
-import org.openqa.selenium.{By, WebDriver, WebElement}
+import im.mange.flakeless.innards.{Body, Command, Description, WaitForElement}
+import org.openqa.selenium.{By, WebElement}
 
 object AssertElementTextEquals {
   def apply(flakeless: Flakeless, by: By, expected: String): Unit = {
@@ -9,15 +9,9 @@ object AssertElementTextEquals {
   }
 
   def apply(in: WebElement, by: By, expected: String, flakeless: Option[Flakeless] = None): Unit = {
-    val intention = Command("AssertElementTextEquals", in, by, expected = Some(expected))
-
-    WaitForElement(flakeless, intention,
-
-      description = e => {
-        Description(actual = Some((e) => e.getText))
-          .describeActual(e)
-      },
-
+    WaitForElement(flakeless,
+      Command("AssertElementTextEquals", in, by, expected = Some(expected)),
+      description = e => Description(actual = Some((e) => e.getText)).describeActual(e),
       condition = e => e.getText == expected)
   }
 }

@@ -1,7 +1,7 @@
 package im.mange.flakeless
 
 import im.mange.flakeless.innards.{Body, Command, WaitForElements}
-import org.openqa.selenium.{By, WebDriver, WebElement}
+import org.openqa.selenium.{By, WebElement}
 
 object AssertElementSetTextEquals {
   def apply(flakeless: Flakeless, by: By, expected: Set[String]): Unit = {
@@ -10,12 +10,9 @@ object AssertElementSetTextEquals {
 
   //TODO: I need to be converted to a Description, just not possible yet..
   def apply(in: WebElement, by: By, expected: Set[String], flakeless: Option[Flakeless] = None): Unit = {
-    val intention = Command("AssertElementSetTextEquals", in, by, expectedMany = Some(expected.toList))
-
-    WaitForElements(flakeless, intention,
-
+    WaitForElements(flakeless,
+      Command("AssertElementSetTextEquals", in, by, expectedMany = Some(expected.toList)),
       description = es => s"${es.map(t => s"'${t.getText}'").mkString(", ")}",
-
       condition = es => es.map(_.getText).toSet == expected)
   }
 }

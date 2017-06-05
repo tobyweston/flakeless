@@ -4,7 +4,7 @@ import im.mange.flakeless.innards.{Body, Description, Command, WaitForInteractab
 import org.openqa.selenium.{By, WebDriver, WebElement}
 
 //TODO: should this be Enter? it isnt in webdriver
-//TODO: this should share with ClearAndSendKeys
+//TODO: this should share with ClearAndSendKeys - all that is different is bool: clear
 object SendKeys {
   def apply(flakeless: Flakeless, by: By, keysToSend: CharSequence): Unit = {
     apply(Body(flakeless.rawWebDriver), by, List(keysToSend), Some(flakeless))
@@ -21,14 +21,9 @@ object SendKeys {
 
 private class SendKeys(flakeless: Option[Flakeless], in: WebElement, by: By, keysToSend: List[CharSequence]) {
   def execute(): Unit = {
-    val intention = Command("SendKeys", in, by, args = Map("keysToSend" -> keysToSend.mkString))
-
-    WaitForInteractableElement(flakeless, intention,
-
-      description = e => {
-        Description().describeActual(e)
-      },
-
+    WaitForInteractableElement(flakeless,
+      Command("SendKeys", in, by, args = Map("keysToSend" -> keysToSend.mkString)),
+      description = e => Description().describeActual(e),
       action = e => e.sendKeys(keysToSend:_*)
     )
   }

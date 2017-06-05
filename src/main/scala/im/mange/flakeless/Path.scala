@@ -35,6 +35,7 @@ case class Path(private val bys: By*) extends By {
 
   override def toString = s"Path: [${bys.toList.mkString(" -> ")}]"
 
+  //TODO: provide more useful debug info for when paths not found
   private def findNext(ins: List[WebElement], remainingBys: List[By], current: By): List[WebElement] = {
     if (Path.debug) println(s"> ${toString} findNext $current, remainder: [${remainingBys.mkString(" -> ")}]")
 

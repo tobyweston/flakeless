@@ -1,7 +1,7 @@
 package im.mange.flakeless
 
-import im.mange.flakeless.innards.{Body, Description, Command, WaitForElement}
-import org.openqa.selenium.{By, WebDriver, WebElement}
+import im.mange.flakeless.innards.{Body, Command, Description, WaitForElement}
+import org.openqa.selenium.{By, WebElement}
 
 object AssertElementEmpty {
   def apply(flakeless: Flakeless, by: By): Unit = {
@@ -9,16 +9,12 @@ object AssertElementEmpty {
   }
 
   def apply(in: WebElement, by: By, flakeless: Option[Flakeless] = None): Unit = {
-    val intention = Command("AssertElementEmpty", in, by, expected = Some(""))
+    WaitForElement(flakeless,
+      Command("AssertElementEmpty", in, by, expected = Some("")),
 
-    WaitForElement(flakeless, intention,
-
-      description = e => {
-        Description(actual = Some((e) =>
-            e.getText ++ " and " ++ e.findElements(By.xpath(".//*")).size.toString ++ " children "
-          )
-        ).describeActual(e)
-      },
+      description = e => Description(actual =
+        Some((e) => e.getText ++ " and " ++ e.findElements(By.xpath(".//*")).size.toString ++ " children ")
+      ).describeActual(e),
 
       condition = e => e.findElements(By.xpath(".//*")).size == 0 && e.getText.isEmpty)
   }

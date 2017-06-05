@@ -15,14 +15,9 @@ object Click {
 
 private class Click(flakeless: Option[Flakeless], in: WebElement, by: By) {
   def execute(): Unit = {
-    val intention = Command("Click", in, by)
-
-    WaitForInteractableElement(flakeless, intention,
-
-      description = e => {
-        Description().describeActual(e)
-      },
-
+    WaitForInteractableElement(flakeless,
+      Command("Click", in, by),
+      description = e => Description().describeActual(e),
       action = e => e.click()
     )
   }
