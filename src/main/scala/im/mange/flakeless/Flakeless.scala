@@ -13,7 +13,7 @@ case class Flakeless(rawWebDriver: WebDriver) {
   }
 
   def record(success: Boolean, data: String, context: Option[Context]) {
-    fdr.record(currentFlightNumber, (if (success) "/" else "x" ) + " " + data + " " + context)
+    fdr.record(currentFlightNumber, (if (success) "/" else "x" ) + " " + data + "\n| context: " + context)
   }
 
   def inflightAnnouncement(value: String) {
