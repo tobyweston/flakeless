@@ -9,6 +9,7 @@ case class Flakeless(rawWebDriver: WebDriver) {
 
   def newFlight(description: Option[String] = None) {
     currentFlightNumberCounter.next
+    description.foreach(d => fdr.record(currentFlightNumber, d))
   }
 
   def record(success: Boolean, data: String, context: Option[Context]) {
