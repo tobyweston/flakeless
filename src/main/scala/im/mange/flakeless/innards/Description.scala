@@ -27,10 +27,11 @@ case class Description(actual: Option[(WebElement) => String] = None) {
 
   private def reallyDescribe(webElement: Option[WebElement]): String = {
     (
-      Seq(
-        webElement.map(e => LabelAndValue(Some("displayed"), e.isDisplayed.toString)),
-        webElement.map(e => LabelAndValue(Some("enabled"), e.isEnabled.toString))
-      ) ++
+      //TODO: descide if we this extra debug when we json things, might be good for click etc
+//      Seq(
+//        webElement.map(e => LabelAndValue(Some("displayed"), e.isDisplayed.toString)),
+//        webElement.map(e => LabelAndValue(Some("enabled"), e.isEnabled.toString))
+//      ) ++
         Seq(
           actual.map(bw => LabelAndValue(Some("actual"), butWasSafely(webElement, bw)))
         )
