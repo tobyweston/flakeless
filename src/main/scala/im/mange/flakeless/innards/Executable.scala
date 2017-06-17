@@ -14,9 +14,6 @@ case class Command(name: String, in: Option[WebElement], by: By,
                    expected: Option[String] = None,
                    expectedMany: Option[List[String]] = None) {
 
-  //TODO: this is all well hokey
-  def describe = reallyDescribe
-
   //TODO: ultimately shouldn't need this here, extract formatter
   case class LabelAndValue(label: Option[String], value: String) {
     def describe = label match {
@@ -25,7 +22,7 @@ case class Command(name: String, in: Option[WebElement], by: By,
     }
   }
 
-  private def reallyDescribe: String = {
+  def describe = {
     (
       Seq(
         Some(LabelAndValue(None, name)),
