@@ -10,7 +10,7 @@ object AssertElementAttributeEquals {
 
   def apply(in: WebElement, by: By, attribute: String, expected: String, flakeless: Option[Flakeless] = None): Unit = {
     WaitForElement(flakeless,
-      Command("AssertElementAttributeEquals", Some(in), by, args = Map("attribute" -> attribute), expected = Some(expected)),
+      Command("AssertElementAttributeEquals", Some(in), Some(by), args = Map("attribute" -> attribute), expected = Some(expected)),
       description = e => Description(actual = Some((e) => e.getAttribute(attribute))).describeActual(e),
       condition = e => e.getAttribute(attribute) == expected)
   }

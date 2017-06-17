@@ -12,7 +12,7 @@ object AssertElementClassEquals {
     val attribute = "class"
 
     WaitForElement(flakeless,
-      Command("AssertElementClassEquals", Some(in), by, args = Map("attribute" -> attribute), expected = Some(expected)),
+      Command("AssertElementClassEquals", Some(in), Some(by), args = Map("attribute" -> attribute), expected = Some(expected)),
       description = e => Description(actual = Some((e) => e.getAttribute(attribute))).describeActual(e),
       condition = e => e.getAttribute(attribute) == expected)
   }

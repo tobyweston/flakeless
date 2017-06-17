@@ -11,7 +11,7 @@ object AssertElementListTextEquals {
   //TODO: I need to be converted to a Description, just not possible yet..
   def apply(in: WebElement, by: By, expected: List[String], flakeless: Option[Flakeless] = None): Unit = {
     WaitForElements(flakeless,
-      Command("AssertElementListTextEquals", Some(in), by, expectedMany = Some(expected)),
+      Command("AssertElementListTextEquals", Some(in), Some(by), expectedMany = Some(expected)),
 
       //TODO: this produces strange output i.e.
       //expected = 'List(Foo)' vs

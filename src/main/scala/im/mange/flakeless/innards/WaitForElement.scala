@@ -23,19 +23,21 @@ private class WaitForElement(val command: Command,
                              condition: (WebElement) => Boolean) extends Executable {
 
   override def execute(context: Context) {
-    command.in.foreach(in =>
-    //TODO: we should ensure there is only one element - make configurable
-    Wait.waitUpTo().forCondition(command,
-      {
-        val result = condition(in.findElement(command.by))
-        val value = description(in.findElement(command.by))
-        if (result) context.succeeded()
-        else context.failed(value)
-        result
-      },
-      description(in.findElement(command.by))
-    )
-    )
+    (command.in, command.by) match {
+      case (Some(in), Some(by)) =>
+        //TODO: we should ensure there is only one element - make configurable
+        Wait.waitUpTo().forCondition(command,
+          {
+            val result = condition(in.findElement(by))
+            val value = description(in.findElement(by))
+            if (result) context.succeeded()
+            else context.failed(value)
+            result
+          },
+          description(in.findElement(by))
+        )
+      case _ => throw new RuntimeException("cannot wait without in and by")
+    }
   }
 
 }

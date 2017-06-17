@@ -10,7 +10,7 @@ object AssertElementEmpty {
 
   def apply(in: WebElement, by: By, flakeless: Option[Flakeless] = None): Unit = {
     WaitForElement(flakeless,
-      Command("AssertElementEmpty", Some(in), by, expected = Some("")),
+      Command("AssertElementEmpty", Some(in), Some(by), expected = Some("")),
 
       description = e => Description(actual =
         Some((e) => e.getText ++ " and " ++ e.findElements(By.xpath(".//*")).size.toString ++ " children ")

@@ -19,17 +19,18 @@ private class WaitForElements(val command: Command,
                               condition: (List[WebElement]) => Boolean) extends Executable {
 
   override def execute(context: Context) {
-    command.in.foreach(in =>
-    Wait.waitUpTo().forCondition(command,
-      {
-        val result = condition(in.findElements(command.by).asScala.toList)
-        val value = description(in.findElements(command.by).asScala.toList)
-        if (result) context.succeeded()
-        else context.failed(value)
-        result
-      },
-      description(in.findElements(command.by).asScala.toList)
-    )
-    )
+    (command.in, command.by) match {
+      case (Some(in), Some(by)) =>
+        Wait.waitUpTo().forCondition(command, {
+          val result = condition(in.findElements(by).asScala.toList)
+          val value = description(in.findElements(by).asScala.toList)
+          if (result) context.succeeded()
+          else context.failed(value)
+          result
+        },
+          description(in.findElements(by).asScala.toList)
+        )
+      case _ => throw new RuntimeException("cannot wait without in and by")
+    }
   }
 }

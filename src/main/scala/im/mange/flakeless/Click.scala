@@ -17,7 +17,7 @@ object Click {
 private class Click(flakeless: Option[Flakeless], in: WebElement, by: By) {
   def execute(): Unit = {
     WaitForInteractableElement(flakeless,
-      Command("Click", Some(in), by),
+      Command("Click", Some(in), Some(by)),
       //TODO: these actual/description start to look a bit odd .. it's really a case of not found an interactable
       description = e => Description().describeActual(e),
       action = e => e.click()

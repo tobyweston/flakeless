@@ -21,7 +21,7 @@ object ClearInputAndSendKeys {
 private class ClearInputAndSendKeys(flakeless: Option[Flakeless], in: WebElement, by: By, keysToSend: List[CharSequence]) {
   def execute(): Unit = {
     WaitForInteractableElement(flakeless,
-      Command("ClearInputAndSendKeys", Some(in), by, args = Map("keysToSend" -> keysToSend.mkString)),
+      Command("ClearInputAndSendKeys", Some(in), Some(by), args = Map("keysToSend" -> keysToSend.mkString)),
 
       description = e => Description().describeActual(e),
 

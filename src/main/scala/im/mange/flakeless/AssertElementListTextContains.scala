@@ -11,7 +11,7 @@ object AssertElementListTextContains {
   //TODO: I need to be converted to a Description, just not possible yet..
   def apply(in: WebElement, by: By, expected: String, flakeless: Option[Flakeless] = None): Unit = {
     WaitForElements(flakeless,
-      Command("AssertElementListTextContains", Some(in), by, expected = Some(expected)),
+      Command("AssertElementListTextContains", Some(in), Some(by), expected = Some(expected)),
       description = es => s"${es.map(t => s"'${t.getText}'").mkString(", ")}",
       condition = es => es.map(_.getText).contains(expected))
   }

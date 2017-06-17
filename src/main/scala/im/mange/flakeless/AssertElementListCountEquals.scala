@@ -11,7 +11,7 @@ object AssertElementListCountEquals {
   //TODO: I need to be converted to a Description, just not possible yet
   def apply(in: WebElement, by: By, expected: Int, flakeless: Option[Flakeless] = None): Unit = {
     WaitForElements(flakeless,
-      Command("AssertElementListCountEquals", Some(in), by, expected = Some(expected.toString)),
+      Command("AssertElementListCountEquals", Some(in), Some(by), expected = Some(expected.toString)),
       description = es => s"${es.size}",
       condition = es => es.size == expected)
   }

@@ -11,7 +11,7 @@ object UploadFile {
 
   def apply(in: WebElement, by: By, filename: String, flakeless: Option[Flakeless] = None): Unit = {
     WaitForInteractableElement(flakeless,
-      Command("UploadFile", Some(in), by, args = Map("filename" -> filename)),
+      Command("UploadFile", Some(in), Some(by), args = Map("filename" -> filename)),
       description = e => Description().describeActual(e),
       action = e => e.sendKeys(filename),
       mustBeDisplayed = false

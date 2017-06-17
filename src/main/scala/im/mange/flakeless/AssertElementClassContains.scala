@@ -12,7 +12,7 @@ object AssertElementClassContains {
     val attribute = "class"
 
     WaitForElement(flakeless,
-      Command("AssertElementClassContains", Some(in), by, args = Map("attribute" -> attribute), expected = Some(expected)),
+      Command("AssertElementClassContains", Some(in), Some(by), args = Map("attribute" -> attribute), expected = Some(expected)),
       description = e => Description(actual = Some((e) => e.getAttribute(attribute))).describeActual(e),
       condition = e => e.getAttribute(attribute).contains(expected))
   }
