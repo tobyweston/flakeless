@@ -11,7 +11,7 @@ object Goto {
 private class Goto(flakeless: Flakeless, url: String) {
   def execute(): Unit = {
     WithoutElement(flakeless,
-      Command("Goto", None, None),
+      Command("Goto", None, None, args = Map {"url" -> url}),
       action = d => d.get(url)
     )
   }
