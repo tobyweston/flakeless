@@ -1,5 +1,7 @@
 package im.mange.flakeless
 
+import im.mange.flakeless.innards.{Command, Context}
+
 import scala.collection.JavaConverters._
 
 object Close {
@@ -12,5 +14,6 @@ object Close {
     })
 
     rawWebDriver.quit()
+    flakeless.record(Command("Close", None, None), Context().succeeded())
   }
 }

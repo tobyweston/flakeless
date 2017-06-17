@@ -6,8 +6,8 @@ import im.mange.flakeless.innards.{Command, Context}
 object Goto {
   def apply(flakeless: Flakeless, url: String): Unit = {
     //TODO: turn me into a proper Command and Execute me
-//    Command("Goto")
+
     flakeless.rawWebDriver.get(url)
-//    flakeless.record(s"Goto $url", Context())
+    flakeless.record(Command("Goto", None, None), Context().succeeded())
   }
 }
