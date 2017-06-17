@@ -9,15 +9,15 @@ case class Flakeless(rawWebDriver: WebDriver) {
 
   def newFlight(description: Option[String] = None) {
     currentFlightNumberCounter.next
-    description.foreach(d => fdr.record(currentFlightNumber, d))
+    description.foreach(d => fdr.record(currentFlightNumber, d, None))
   }
 
   def record(success: Boolean, data: String, context: Option[Context]) {
-    fdr.record(currentFlightNumber, (if (success) "/" else "x" ) + " " + data + "\n| context: " + context)
+    fdr.record(currentFlightNumber, (if (success) "/" else "x" ) + " " + data + "\n| context: " + context, context)
   }
 
   def inflightAnnouncement(value: String) {
-    fdr.record(currentFlightNumber, value)
+    fdr.record(currentFlightNumber, value, None)
   }
 
   def flightData(flight: Int = currentFlightNumber) = fdr.data(flight)

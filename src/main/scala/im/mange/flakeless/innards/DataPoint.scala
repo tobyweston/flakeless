@@ -1,3 +1,3 @@
 package im.mange.flakeless.innards
 
-case class DataPoint(flightNumber: Int, when: Long, what: String)
+case class DataPoint(flightNumber: Int, when: Long, what: String, context: Option[Context])
