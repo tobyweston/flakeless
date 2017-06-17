@@ -23,7 +23,8 @@ private class WaitForElements(val command: Command,
       {
         val result = condition(command.in.findElements(command.by).asScala.toList)
         val value = description(command.in.findElements(command.by).asScala.toList)
-        context.remember(result, value)
+        if (result) context.succeeded()
+        else context.failed(value)
         result
       },
       description(command.in.findElements(command.by).asScala.toList)

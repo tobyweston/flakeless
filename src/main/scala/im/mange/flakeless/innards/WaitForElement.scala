@@ -28,7 +28,8 @@ private class WaitForElement(val command: Command,
       {
         val result = condition(command.in.findElement(command.by))
         val value = description(command.in.findElement(command.by))
-        context.remember(result, value)
+        if (result) context.succeeded()
+        else context.failed(value)
         result
       },
       description(command.in.findElement(command.by))

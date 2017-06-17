@@ -8,7 +8,7 @@ object Execute {
 
     try {
       executable.execute(context)
-      context.remember(true, "")
+      context.succeeded()
       flakeless.foreach(_.record(true, executable.command.describe, Some(context)))
     }
 

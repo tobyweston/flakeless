@@ -27,7 +27,8 @@ private class WaitForInteractableElement(val command: Command,
         val e = command.in.findElement(command.by)
         val result = (if (mustBeDisplayed) e.isDisplayed else true) && e.isEnabled && condition(e)
         val value = description(command.in.findElement(command.by))
-        context.remember(result, value)
+        if (result) context.succeeded()
+        else context.failed(value)
         result
       },
       description(command.in.findElement(command.by)),
