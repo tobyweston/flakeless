@@ -25,17 +25,17 @@ case class Command(name: String, in: Option[WebElement], by: By,
     }
   }
 
-  //TODO: render expectedMany
   private def reallyDescribe: String = {
     (
       Seq(
         Some(LabelAndValue(None, name)),
-        Some(LabelAndValue(Some("by"), by.toString)),
-        Some(LabelAndValue(Some("in"), in.fold("???"){_.toString}))
+        Some(by).map(b => LabelAndValue(Some("by"), b.toString)),
+        in.map(i => LabelAndValue(Some("in"), i.toString))
       ) ++
         args.map(kv => Some(LabelAndValue(Some(kv._1), kv._2))) ++
         Seq(
-          expected.map(e => LabelAndValue(Some("expected"), e))
+          expected.map(e => LabelAndValue(Some("expected"), e)),
+          expectedMany.map(e => LabelAndValue(Some("expectedMany"), e.mkString(", ")))
         )
       ).flatten.map(_.describe).mkString("\n| ")
   }
