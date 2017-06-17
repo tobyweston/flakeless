@@ -21,18 +21,20 @@ private class WaitForInteractableElement(val command: Command,
                                          mustBeDisplayed: Boolean = true) extends Executable {
 
   def execute(context: Context) {
+    command.in.foreach(in =>
     //TODO: we should ensure there is only one element - make configurable
     Wait.waitUpTo().forCondition(command,
       {
-        val e = command.in.findElement(command.by)
+        val e = in.findElement(command.by)
         val result = (if (mustBeDisplayed) e.isDisplayed else true) && e.isEnabled && condition(e)
-        val value = description(command.in.findElement(command.by))
+        val value = description(in.findElement(command.by))
         if (result) context.succeeded()
         else context.failed(value)
         result
       },
-      description(command.in.findElement(command.by)),
-      action(command.in.findElement(command.by))
+      description(in.findElement(command.by)),
+      action(in.findElement(command.by))
+    )
     )
   }
 }

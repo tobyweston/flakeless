@@ -22,7 +22,7 @@ object SendKeys {
 private class SendKeys(flakeless: Option[Flakeless], in: WebElement, by: By, keysToSend: List[CharSequence]) {
   def execute(): Unit = {
     WaitForInteractableElement(flakeless,
-      Command("SendKeys", in, by, args = Map("keysToSend" -> keysToSend.mkString)),
+      Command("SendKeys", Some(in), by, args = Map("keysToSend" -> keysToSend.mkString)),
       description = e => Description().describeActual(e),
       action = e => e.sendKeys(keysToSend:_*)
     )

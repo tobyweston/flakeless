@@ -23,16 +23,18 @@ private class WaitForElement(val command: Command,
                              condition: (WebElement) => Boolean) extends Executable {
 
   override def execute(context: Context) {
+    command.in.foreach(in =>
     //TODO: we should ensure there is only one element - make configurable
     Wait.waitUpTo().forCondition(command,
       {
-        val result = condition(command.in.findElement(command.by))
-        val value = description(command.in.findElement(command.by))
+        val result = condition(in.findElement(command.by))
+        val value = description(in.findElement(command.by))
         if (result) context.succeeded()
         else context.failed(value)
         result
       },
-      description(command.in.findElement(command.by))
+      description(in.findElement(command.by))
+    )
     )
   }
 

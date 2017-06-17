@@ -9,7 +9,7 @@ trait Executable {
 
 //TODO: improve rendering of options and in etc ...
 //TODO: args at end? expected's earlier?
-case class Command(name: String, in: WebElement, by: By,
+case class Command(name: String, in: Option[WebElement], by: By,
                    args: Map[String, String] = Map.empty,
                    expected: Option[String] = None,
                    expectedMany: Option[List[String]] = None) {
@@ -31,7 +31,7 @@ case class Command(name: String, in: WebElement, by: By,
       Seq(
         Some(LabelAndValue(None, name)),
         Some(LabelAndValue(Some("by"), by.toString)),
-        Some(LabelAndValue(Some("in"), in.toString))
+        Some(LabelAndValue(Some("in"), in.fold("???"){_.toString}))
       ) ++
         args.map(kv => Some(LabelAndValue(Some(kv._1), kv._2))) ++
         Seq(

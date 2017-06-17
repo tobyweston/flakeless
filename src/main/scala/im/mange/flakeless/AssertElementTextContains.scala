@@ -10,7 +10,7 @@ object AssertElementTextContains {
 
   def apply(in: WebElement, by: By, expected: String, flakeless: Option[Flakeless] = None): Unit = {
     WaitForElement(flakeless,
-      Command("AssertElementTextContains", in, by, expected = Some(expected)),
+      Command("AssertElementTextContains", Some(in), by, expected = Some(expected)),
       description = e => Description(actual = Some((e) => e.getText)).describeActual(e),
       condition = e => e.getText.contains(expected))
   }
