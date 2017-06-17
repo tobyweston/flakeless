@@ -10,10 +10,8 @@ object Goto {
 
 private class Goto(flakeless: Flakeless, url: String) {
   def execute(): Unit = {
-    JustDoIt(flakeless,
+    WithoutElement(flakeless,
       Command("Goto", None, None),
-      //TODO: these actual/description start to look a bit odd .. it's really a case of not found an interactable
-      description = e => Description().describeActual(e),
       action = d => d.get(url)
     )
   }
