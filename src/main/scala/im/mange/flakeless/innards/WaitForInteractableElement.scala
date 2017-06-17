@@ -1,7 +1,7 @@
 package im.mange.flakeless.innards
 
 import im.mange.flakeless.Flakeless
-import org.openqa.selenium.{By, WebElement}
+import org.openqa.selenium.{By, WebDriver, WebElement}
 
 object WaitForInteractableElement {
   def apply(flakeless: Option[Flakeless], command: Command,
@@ -39,3 +39,7 @@ private class WaitForInteractableElement(val command: Command,
     }
   }
 }
+
+
+
+
