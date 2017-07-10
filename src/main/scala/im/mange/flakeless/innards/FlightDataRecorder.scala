@@ -4,15 +4,12 @@ import java.nio.file.Paths
 
 import im.mange.little.file.Filepath
 import im.mange.little.json.{LittleJodaSerialisers, LittleSerialisers}
-//import im.mange.shoreditch.api._
-//import im.mange.shoreditch._
-//import im.mange.shoreditch.engine.model.TestRunReport
 import org.json4s.{NoTypeHints, _}
 import org.json4s.native.{JsonParser, Serialization}
 import org.json4s.native.Serialization._
 import org.json4s.native.JsonMethods._
-//import scala.reflect.io.Directory
 
+//TODO: pull out the json bit to another thing
 
 private [flakeless] case class FlightDataRecorder() {
   private val dataByFlightNumber: scala.collection.concurrent.TrieMap[Int, Seq[DataPoint]] =
@@ -35,8 +32,6 @@ private [flakeless] case class FlightDataRecorder() {
   }
 
   private def writeReport(flightNumber: Int, dataPoints: Seq[DataPoint], outputDirectory: String) {
-    val jsonAst = Json.serialise(dataPoints)
-
     //TODO: we should delegate to the TestRunRegistry for this ...
 //    val directory = Directory(outputDirectory)
 //    if (!directory.exists) directory.createDirectory(force = true)
@@ -50,7 +45,6 @@ private [flakeless] case class FlightDataRecorder() {
 
 object Json {
   private val shoreditchFormats = Serialization.formats(NoTypeHints) ++ LittleSerialisers.all ++ LittleJodaSerialisers.all
-
 
   def serialise(r: Seq[DataPoint]) = {
     implicit val formats = shoreditchFormats
