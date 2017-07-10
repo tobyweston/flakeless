@@ -21,6 +21,11 @@ case class Flakeless(rawWebDriver: WebDriver) {
   }
 
   def flightData(flight: Int = currentFlightNumber) = fdr.data(flight)
+  def jsonFlightData(flight: Int = currentFlightNumber) = fdr.jsonData(flight)
+
+//  def writeFlightData(flight: Int = currentFlightNumber) {
+//    fdr.write(flight)
+//  }
 
   def currentFlightNumber = currentFlightNumberCounter.value
 }

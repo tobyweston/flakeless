@@ -12,6 +12,7 @@ import org.json4s.native.JsonMethods._
 //TODO: pull out the json bit to another thing
 
 private [flakeless] case class FlightDataRecorder() {
+
   private val dataByFlightNumber: scala.collection.concurrent.TrieMap[Int, Seq[DataPoint]] =
     new scala.collection.concurrent.TrieMap()
 
@@ -26,6 +27,8 @@ private [flakeless] case class FlightDataRecorder() {
   }
 
   def data(flightNumber: Int): Seq[DataPoint] = dataByFlightNumber.getOrElse(flightNumber, Nil)
+
+  def jsonData(flight: Int) = Json.serialise(data(flight))
 
   def write(flightNumber: Int, outputDirectory: String) {
     writeReport(flightNumber, data(flightNumber), outputDirectory)
