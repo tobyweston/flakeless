@@ -26,9 +26,8 @@ private [flakeless] case class FlightDataRecorder() {
 
   def data(flightNumber: Int): Seq[DataPoint] = dataByFlightNumber.getOrElse(flightNumber, Nil)
 
-  def write(flightNumber: Int, outputDirectory: String): Unit = {
-    val dataPoints: Seq[DataPoint] = data(flightNumber)
-    writeReport(flightNumber, dataPoints, outputDirectory)
+  def write(flightNumber: Int, outputDirectory: String) {
+    writeReport(flightNumber, data(flightNumber), outputDirectory)
   }
 
   private def writeReport(flightNumber: Int, dataPoints: Seq[DataPoint], outputDirectory: String) {
