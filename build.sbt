@@ -17,9 +17,22 @@ resolvers ++= Seq(
 
 libraryDependencies ++= Seq(
   "org.seleniumhq.selenium" % "selenium-java" % "[2.53.1,2.99.9]" % "provided",
-  "im.mange"          %% "little"                 % "0.0.44"
+  "im.mange"          %% "little"                 % "0.0.44",
 
-//  "com.codeborne" % "phantomjsdriver" % "[1.3.0,1.99.9]" % "provided"//,
+  "org.json4s"     %% "json4s-native" % "[3.2.11,3.99.99]"// % "provided"
+    exclude("org.scala-lang", "scala-compiler")
+    exclude("org.scala-lang", "scalap")
+    exclude("joda-time", "joda-time")
+  ,
+
+  "org.json4s"     %% "json4s-ext"    % "[3.2.11,3.99.99]" % "provided"
+    exclude("joda-time", "joda-time")
+  ,
+
+  "com.github.nscala-time" %% "nscala-time" % "2.16.0" //,
+
+
+  //  "com.codeborne" % "phantomjsdriver" % "[1.3.0,1.99.9]" % "provided"//,
 //  "org.seleniumhq.selenium" % "selenium-java" % "[2.53.1,2.99.9]" % "provided"//,
 //  "org.seleniumhq.selenium" % "selenium-java" % "2.53.1" % "test"
 //	"junit" % "junit" % "4.11" % "test->default",
