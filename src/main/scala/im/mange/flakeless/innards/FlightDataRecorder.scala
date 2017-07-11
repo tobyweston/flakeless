@@ -4,6 +4,7 @@ import java.nio.file.Paths
 
 import im.mange.little.file.Filepath
 import im.mange.little.json.{LittleJodaSerialisers, LittleSerialisers}
+import org.joda.time.DateTime
 import org.json4s.{NoTypeHints, _}
 import org.json4s.native.{JsonParser, Serialization}
 import org.json4s.native.Serialization._
@@ -17,13 +18,11 @@ private [flakeless] case class FlightDataRecorder() {
     new scala.collection.concurrent.TrieMap()
 
   def record(flightNumber: Int, description: String) {
-    val current = dataByFlightNumber.getOrElse(flightNumber, Seq.empty[DataPoint])
-    dataByFlightNumber.update(flightNumber, current :+ DataPoint(flightNumber, System.currentTimeMillis(), Some(description), None, None))
+    append(flightNumber, DataPoint(flightNumber, DateTime.now, Some(description), None, None))
   }
 
   def record(flightNumber: Int, command: Command, context: Context) {
-    val current = dataByFlightNumber.getOrElse(flightNumber, Seq.empty[DataPoint])
-    dataByFlightNumber.update(flightNumber, current :+ DataPoint(flightNumber, System.currentTimeMillis(), None, Some(command.report), Some(context)))
+    append(flightNumber, DataPoint(flightNumber, DateTime.now, None, Some(command.report), Some(context)))
   }
 
   def data(flightNumber: Int): Seq[DataPoint] = dataByFlightNumber.getOrElse(flightNumber, Nil)
@@ -32,6 +31,11 @@ private [flakeless] case class FlightDataRecorder() {
 
   def write(flightNumber: Int, outputDirectory: String) {
     writeReport(flightNumber, data(flightNumber), outputDirectory)
+  }
+
+  private def append(flightNumber: Int, dataPoint: DataPoint): Unit = {
+    val current = dataByFlightNumber.getOrElse(flightNumber, Seq.empty[DataPoint])
+    dataByFlightNumber.update(flightNumber, current :+ dataPoint)
   }
 
   private def writeReport(flightNumber: Int, dataPoints: Seq[DataPoint], outputDirectory: String) {
