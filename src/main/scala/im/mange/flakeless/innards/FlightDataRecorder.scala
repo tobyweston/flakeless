@@ -23,7 +23,7 @@ private [flakeless] case class FlightDataRecorder() {
 
   def record(flightNumber: Int, command: Command, context: Context) {
     val current = dataByFlightNumber.getOrElse(flightNumber, Seq.empty[DataPoint])
-    dataByFlightNumber.update(flightNumber, current :+ DataPoint(flightNumber, System.currentTimeMillis(), None, Some(command), Some(context)))
+    dataByFlightNumber.update(flightNumber, current :+ DataPoint(flightNumber, System.currentTimeMillis(), None, Some(command.report), Some(context)))
   }
 
   def data(flightNumber: Int): Seq[DataPoint] = dataByFlightNumber.getOrElse(flightNumber, Nil)
