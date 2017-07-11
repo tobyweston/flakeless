@@ -10,7 +10,7 @@ object Path {
   var debug = false
 }
 
-case class Path(private val bys: By*) extends By {
+case class Path(val bys: By*) extends By {
   import scala.collection.JavaConverters._
 
   def extend(by: By) = Path(bys.toList :+ by:_*)
