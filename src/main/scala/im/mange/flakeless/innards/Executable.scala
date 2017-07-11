@@ -7,6 +7,7 @@ trait Executable {
   val command: Command
 }
 
+//TODO: pull out more data about the in, tag, displayed etc
 case class ReportCommand(name: String, in: Option[String], by: Option[By],
                    args: Map[String, String] = Map.empty,
                    expected: Option[String] = None,
