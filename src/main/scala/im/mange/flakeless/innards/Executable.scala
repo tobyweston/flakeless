@@ -31,7 +31,7 @@ case class Command(name: String, in: Option[WebElement], by: Option[By],
     (
       Seq(
         Some(LabelAndValue(None, name)),
-        Some(by).map(b => LabelAndValue(Some("by"), b.toString)),
+        by.map(b => LabelAndValue(Some("by"), b.toString)),
         in.map(i => LabelAndValue(Some("in"), i.toString))
       ) ++
         args.map(kv => Some(LabelAndValue(Some(kv._1), kv._2))) ++
