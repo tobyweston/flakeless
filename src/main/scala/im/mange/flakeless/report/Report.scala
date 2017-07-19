@@ -7,25 +7,23 @@ import org.openqa.selenium.{OutputType, TakesScreenshot}
 object Example extends App {
   private val flakeless = Flakeless(null)
   flakeless.inflightAnnouncement("hello")
-  Report(flakeless, captureImage = false)
+  Report(flakeless, "target/test-reports", captureImage = false)
 }
 
 object Report {
   import java.nio.file.{Files, Paths}
 
-  def apply(flakeless: Flakeless, captureImage: Boolean = true) {
-    //TODO: pass in root
-    val filepathRoot: String = s"target/test-reports/${"%04d".format(flakeless.currentFlightNumber)}/"
-
-    Files.createDirectories(Paths.get(filepathRoot))
+  def apply(flakeless: Flakeless, outputDirectory: String, captureImage: Boolean = true) {
 
     try {
-      val when = System.currentTimeMillis()
+      val filepath = s"$outputDirectory/${"%04d".format(flakeless.currentFlightNumber)}/"
+      Files.createDirectories(Paths.get(filepath))
 
-      val imagePath = Paths.get(filepathRoot + s"$when.png")
-      val htmlPath = Paths.get(filepathRoot + s"$when.html")
-      val jsonPath = Paths.get(filepathRoot + s"$when.json")
-      val jsPath = Paths.get(filepathRoot + s"flakeless.js")
+      val when = System.currentTimeMillis()
+      val imagePath = Paths.get(filepath + s"$when.png")
+      val htmlPath = Paths.get(filepath + s"$when.html")
+      val jsonPath = Paths.get(filepath + s"$when.json")
+      val jsPath = Paths.get(filepath + s"flakeless.js")
 
       if (captureImage) Files.write(imagePath, flakeless.rawWebDriver.asInstanceOf[TakesScreenshot].getScreenshotAs(OutputType.BYTES))
       Files.write(htmlPath, htmlContent(when, flakeless).getBytes)
