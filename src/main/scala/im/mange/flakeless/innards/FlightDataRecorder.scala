@@ -12,11 +12,6 @@ import org.json4s.native.JsonMethods._
 
 //TODO: pull out the json bit to another thing
 
-object Spike extends App {
-  val text = io.Source.fromResource("flakeless.js").mkString
-  println(text)
-}
-
 private [flakeless] case class FlightDataRecorder() {
 
   private val dataByFlightNumber: scala.collection.concurrent.TrieMap[Int, Seq[DataPoint]] =
@@ -51,7 +46,6 @@ private [flakeless] case class FlightDataRecorder() {
     val content = Json.serialise(dataPoints)
     Filepath.save(content, Paths.get(filepath))
   }
-
 }
 
 
