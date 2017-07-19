@@ -13,8 +13,7 @@ import org.json4s.native.JsonMethods._
 //TODO: pull out the json bit to another thing
 
 object Spike extends App {
-  val text = io.Source.fromResource("eg.txt").mkString
-//  val text = io.Source.fromInputStream(getClass.getResourceAsStream("eg.txt")).mkString
+  val text = io.Source.fromResource("flakeless.js").mkString
   println(text)
 }
 
