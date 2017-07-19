@@ -1,5 +1,6 @@
 package im.mange.flakeless.report
 
+import im.mange.flakeless.innards.{Command, Context}
 import im.mange.flakeless.{Flakeless, report}
 import org.openqa.selenium.{OutputType, TakesScreenshot}
 
@@ -7,6 +8,8 @@ import org.openqa.selenium.{OutputType, TakesScreenshot}
 object Example extends App {
   private val flakeless = Flakeless(null)
   flakeless.inflightAnnouncement("hello")
+  flakeless.record(Command("command 1", None, None, Map.empty, Some("expected")), Context())
+  flakeless.record(Command("command 2", None, None, Map.empty, expectedMany = Some(List("expected", "expected2"))), Context())
   Report(flakeless, "target/test-reports", captureImage = false)
 }
 
