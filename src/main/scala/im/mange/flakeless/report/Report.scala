@@ -20,10 +20,10 @@ object Report {
       Files.createDirectories(Paths.get(filepath))
 
       val when = System.currentTimeMillis()
-      val imagePath = Paths.get(filepath + s"$when.png")
-      val htmlPath = Paths.get(filepath + s"$when.html")
-      val jsonPath = Paths.get(filepath + s"$when.json")
-      val jsPath = Paths.get(filepath + s"flakeless.js")
+      val imagePath = path(filepath, s"$when.png")
+      val htmlPath = path(filepath, s"$when.html")
+      val jsonPath = path(filepath, s"$when.json")
+      val jsPath = path(filepath, s"flakeless.js")
 
       if (captureImage) Files.write(imagePath, flakeless.rawWebDriver.asInstanceOf[TakesScreenshot].getScreenshotAs(OutputType.BYTES))
       Files.write(htmlPath, htmlContent(when, flakeless).getBytes)
@@ -51,4 +51,6 @@ object Report {
 """.stripMargin
 
   }
+
+  private def path(filepath: String, filename: String) = Paths.get(filepath + filename)
 }
