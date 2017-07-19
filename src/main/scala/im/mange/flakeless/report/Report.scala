@@ -32,7 +32,7 @@ object Example extends App {
 }
 
 object Report {
-  import java.nio.file.{Files, Paths}
+  import java.nio.file.{Files, Paths, Path}
 
   def apply(flakeless: Flakeless, outputDirectory: String, captureImage: Boolean = true) {
 
@@ -46,12 +46,14 @@ object Report {
       val jsonPath = path(filepath, s"$when.json")
       val jsPath = path(filepath, s"flakeless.js")
 
-      if (captureImage) Files.write(imagePath, flakeless.rawWebDriver.asInstanceOf[TakesScreenshot].getScreenshotAs(OutputType.BYTES))
-      Files.write(htmlPath, htmlContent(when, flakeless).getBytes)
-      Files.write(jsonPath, flakeless.jsonFlightData().getBytes)
-      if (!jsPath.toFile.exists()) Files.write(jsPath, report.Assets.flakelessJs.getBytes)
+      if (captureImage) write(imagePath, screenshot(flakeless))
 
-      System.err.println("Wrote report " + htmlPath.toAbsolutePath.toString)
+      write(htmlPath, htmlContent(when, flakeless).getBytes)
+      write(jsonPath, flakeless.jsonFlightData().getBytes)
+
+      if (!jsPath.toFile.exists()) write(jsPath, report.Assets.flakelessJs.getBytes)
+
+      System.err.println("*** Flakeless report " + htmlPath.toAbsolutePath.toString)
     } catch {
       case t: Exception => System.err.println("*** Failed to write report something bad happened ***\n")
     }
@@ -72,6 +74,11 @@ object Report {
 """.stripMargin
 
   }
+
+  private def write(path: Path, content: Array[Byte]) = Files.write(path, content)
+
+  private def screenshot(flakeless: Flakeless) =
+    flakeless.rawWebDriver.asInstanceOf[TakesScreenshot].getScreenshotAs(OutputType.BYTES)
 
   private def path(filepath: String, filename: String) = Paths.get(filepath + filename)
 }
