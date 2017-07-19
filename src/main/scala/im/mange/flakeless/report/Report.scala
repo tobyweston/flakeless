@@ -53,7 +53,7 @@ object Report {
 
       if (!jsPath.toFile.exists()) write(jsPath, report.Assets.flakelessJs.getBytes)
 
-      System.err.println("*** Flakeless report " + htmlPath.toAbsolutePath.toString)
+      System.err.println("*** Flakeless report: " + htmlPath.toAbsolutePath.toString)
     } catch {
       case t: Exception => System.err.println("*** Failed to write report something bad happened ***\n")
     }
