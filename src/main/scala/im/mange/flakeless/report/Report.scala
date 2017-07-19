@@ -1,16 +1,34 @@
 package im.mange.flakeless.report
 
 import im.mange.flakeless.innards.{Command, Context}
-import im.mange.flakeless.{Flakeless, report}
-import org.openqa.selenium.{OutputType, TakesScreenshot}
+import im.mange.flakeless.{Flakeless, Path, report}
+import org.openqa.selenium.remote.RemoteWebElement
+import org.openqa.selenium.{By, OutputType, TakesScreenshot}
 
 
 object Example extends App {
-  private val flakeless = Flakeless(null)
-  flakeless.inflightAnnouncement("hello")
-  flakeless.record(Command("command 1", None, None, Map.empty, Some("expected")), Context())
-  flakeless.record(Command("command 2", None, None, Map.empty, expectedMany = Some(List("expected", "expected2"))), Context())
-  Report(flakeless, "target/test-reports", captureImage = false)
+  def go {
+    val flakeless = Flakeless(null)
+    flakeless.inflightAnnouncement("hello")
+    flakeless.record(Command("command with expected", None, None, Map.empty, Some("expected")), Context())
+    flakeless.record(Command("command with expected many", None, None, Map.empty, expectedMany = Some(List("expected", "expected2"))), Context())
+    flakeless.record(Command("command with in", Some(createElement), None, Map.empty), Context())
+    flakeless.record(Command("command with by", None, Some(By.id("id")), Map.empty), Context())
+    flakeless.record(Command("command with by path", None, Some(Path(By.id("id"))), Map.empty), Context())
+    flakeless.record(Command("command with args", None, None, Map("key" -> "value")), Context())
+    flakeless.record(Command("command with context true", None, None), Context(success = Some(true)))
+    flakeless.record(Command("command with context false", None, None), Context(success = Some(false)))
+    flakeless.record(Command("command with context failures", None, None), Context(List("failures")))
+    Report(flakeless, "target/test-reports", captureImage = false)
+  }
+
+  def createElement: RemoteWebElement = {
+    val element = new RemoteWebElement()
+    element.setId("elementId")
+    element
+  }
+
+  go
 }
 
 object Report {
