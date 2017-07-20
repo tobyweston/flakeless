@@ -9,16 +9,23 @@ import org.openqa.selenium.{By, OutputType, TakesScreenshot}
 object Example extends App {
   def go {
     val flakeless = Flakeless(null)
-    flakeless.inflightAnnouncement("hello")
-    flakeless.record(Command("command with expected", None, None, Map.empty, Some("expected")), Context())
-    flakeless.record(Command("command with expected many", None, None, Map.empty, expectedMany = Some(List("expected", "expected2"))), Context())
-    flakeless.record(Command("command with in", Some(createElement), None, Map.empty), Context())
-    flakeless.record(Command("command with by", None, Some(By.id("id")), Map.empty), Context())
-    flakeless.record(Command("command with by path", None, Some(Path(By.id("id"))), Map.empty), Context())
-    flakeless.record(Command("command with args", None, None, Map("key" -> "value")), Context())
-    flakeless.record(Command("command with context true", None, None), Context(success = Some(true)))
-    flakeless.record(Command("command with context false", None, None), Context(success = Some(false)))
-    flakeless.record(Command("command with context failures", None, None), Context(List("failures")))
+
+//    flakeless.inflightAnnouncement("hello")
+//    flakeless.record(Command("command with expected", None, None, Map.empty, Some("expected")), Context())
+//    flakeless.record(Command("command with expected many", None, None, Map.empty, expectedMany = Some(List("expected", "expected2"))), Context())
+//    flakeless.record(Command("command with in", Some(createElement), None, Map.empty), Context())
+//    flakeless.record(Command("command with by", None, Some(By.id("id")), Map.empty), Context())
+//    flakeless.record(Command("command with by path", None, Some(Path(By.id("id"))), Map.empty), Context())
+//    flakeless.record(Command("command with args", None, None, Map("key" -> "value")), Context())
+//    flakeless.record(Command("command with context true", None, None), Context(success = Some(true)))
+//    flakeless.record(Command("command with context false", None, None), Context(success = Some(false)))
+//    flakeless.record(Command("command with context failures", None, None), Context(List("failures")))
+
+//    flakeless.record(Command("everything", Some(createElement), Some(Path(By.id("id"))), Map("key" -> "value"), Some("expected"), Some(List("expected", "expected2"))), Context(List("failures"), success = Some(false)))
+
+    //  if by's are a list then we are probably fine ... next Paths could be interesting .... (eek)
+    flakeless.record(Command("everything", Some(createElement), Some(By.id("id")), Map("key" -> "value"), Some("expected"), Some(List("expected", "expected2"))), Context(List("failures"), success = Some(false)))
+
     Report(flakeless, "target/test-reports", captureImage = false)
   }
 
