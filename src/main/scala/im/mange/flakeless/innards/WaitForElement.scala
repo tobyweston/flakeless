@@ -1,6 +1,6 @@
 package im.mange.flakeless.innards
 
-import im.mange.flakeless.Flakeless
+import im.mange.flakeless.{Config, Flakeless}
 import org.openqa.selenium.{By, WebElement}
 
 //TODO: model Condition
@@ -22,11 +22,11 @@ private class WaitForElement(val command: Command,
                              description: (WebElement) => String,
                              condition: (WebElement) => Boolean) extends Executable {
 
-  override def execute(context: Context) {
+  override def execute(context: Context, config: Config) {
     (command.in, command.by) match {
       case (Some(in), Some(by)) =>
         //TODO: we should ensure there is only one element - make configurable
-        Wait.waitUpTo().forCondition(command,
+        Wait.waitUpTo(config).forCondition(command,
           {
             val result = condition(in.findElement(by))
             val value = description(in.findElement(by))

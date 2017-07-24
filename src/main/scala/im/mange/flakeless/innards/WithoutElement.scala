@@ -1,6 +1,6 @@
 package im.mange.flakeless.innards
 
-import im.mange.flakeless.Flakeless
+import im.mange.flakeless.{Config, Flakeless}
 import org.openqa.selenium.{WebDriver, WebElement}
 
 object WithoutElement {
@@ -15,7 +15,7 @@ private class WithoutElement(val command: Command,
                              action: (WebDriver) => Unit,
                              webDriver: WebDriver) extends Executable {
 
-  def execute(context: Context) {
+  def execute(context: Context, config: Config) {
     action(webDriver)
   }
 }

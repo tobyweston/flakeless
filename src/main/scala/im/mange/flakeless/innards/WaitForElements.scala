@@ -1,7 +1,8 @@
 package im.mange.flakeless.innards
 
-import im.mange.flakeless.Flakeless
+import im.mange.flakeless.{Config, Flakeless}
 import org.openqa.selenium.{By, WebElement}
+
 import scala.collection.JavaConverters._
 
 
@@ -18,10 +19,10 @@ private class WaitForElements(val command: Command,
                               description: (List[WebElement]) => String,
                               condition: (List[WebElement]) => Boolean) extends Executable {
 
-  override def execute(context: Context) {
+  override def execute(context: Context, config: Config) {
     (command.in, command.by) match {
       case (Some(in), Some(by)) =>
-        Wait.waitUpTo().forCondition(command, {
+        Wait.waitUpTo(config).forCondition(command, {
           val result = condition(in.findElements(by).asScala.toList)
           val value = description(in.findElements(by).asScala.toList)
           if (result) context.succeeded()

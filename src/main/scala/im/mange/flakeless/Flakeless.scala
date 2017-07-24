@@ -4,7 +4,7 @@ import im.mange.flakeless.innards.{AtomicIntCounter, Command, Context, FlightDat
 import org.openqa.selenium.WebDriver
 
 //TODO: in Config, have option to forget prevoius flight data when calling newFlight
-case class Flakeless(rawWebDriver: WebDriver) {
+case class Flakeless(rawWebDriver: WebDriver, config: Config = Config()) {
   private val currentFlightNumberCounter = AtomicIntCounter()
   private val fdr = FlightDataRecorder()
 

@@ -1,6 +1,6 @@
 package im.mange.flakeless.innards
 
-import im.mange.flakeless.Flakeless
+import im.mange.flakeless.{Config, Flakeless}
 import org.openqa.selenium.{By, WebDriver, WebElement}
 
 object WaitForInteractableElement {
@@ -20,11 +20,11 @@ private class WaitForInteractableElement(val command: Command,
                                          action: (WebElement) => Unit,
                                          mustBeDisplayed: Boolean = true) extends Executable {
 
-  def execute(context: Context) {
+  def execute(context: Context, config: Config) {
     (command.in, command.by) match {
       case (Some(in), Some(by)) =>
         //TODO: we should ensure there is only one element - make configurable
-        Wait.waitUpTo().forCondition(command, {
+        Wait.waitUpTo(config).forCondition(command, {
           val e = in.findElement(by)
           val result = (if (mustBeDisplayed) e.isDisplayed else true) && e.isEnabled && condition(e)
           val value = description(in.findElement(by))

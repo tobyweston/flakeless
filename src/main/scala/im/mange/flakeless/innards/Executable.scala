@@ -1,9 +1,10 @@
 package im.mange.flakeless.innards
 
+import im.mange.flakeless.Config
 import org.openqa.selenium.{By, WebElement}
 
 trait Executable {
-  def execute(context: Context)
+  def execute(context: Context, config: Config)
   val command: Command
 }
 

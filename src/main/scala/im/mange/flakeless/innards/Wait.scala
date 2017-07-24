@@ -1,13 +1,13 @@
 package im.mange.flakeless.innards
 
 import im.mange.driveby.DriveByConfig
-import im.mange.flakeless.ConditionNotMetException
+import im.mange.flakeless.{ConditionNotMetException, Config}
 
 import scala.annotation.tailrec
 
 private object Wait {
   //TODO: move config into Flakeless (just create a default one if not passed in)
-  def waitUpTo(timeout: Long = DriveByConfig.waitTimeout, pollPeriod: Long = DriveByConfig.waitPollPeriod) = new Wait(timeout, pollPeriod)
+  def waitUpTo(config: Config, timeout: Long = DriveByConfig.waitTimeout, pollPeriod: Long = DriveByConfig.waitPollPeriod) = new Wait(timeout, pollPeriod)
 }
 
 private class Wait(timeout: Long, pollPeriod: Long) {
