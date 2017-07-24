@@ -16,6 +16,7 @@ object Execute {
     catch {
       case e: Exception => {
         flakeless.foreach(_.record(executable.command, context))
+        context.success = Some(false)
         throw e
       }
     }
