@@ -10,6 +10,7 @@ case class Flakeless(rawWebDriver: WebDriver) {
 
   def newFlight(description: Option[String] = None) {
     currentFlightNumberCounter.next
+    fdr.reset() // if config.resetOnNewFlight whateva
     description.foreach(d => fdr.record(currentFlightNumber, d))
   }
 

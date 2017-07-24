@@ -11,11 +11,14 @@ import org.json4s.native.Serialization._
 import org.json4s.native.JsonMethods._
 
 //TODO: pull out the json bit to another thing
-
+//TODO: might be able to drop the whole flight number thing from the json soon
 private [flakeless] case class FlightDataRecorder() {
-
-  private val dataByFlightNumber: scala.collection.concurrent.TrieMap[Int, Seq[DataPoint]] =
+  private var dataByFlightNumber: scala.collection.concurrent.TrieMap[Int, Seq[DataPoint]] =
     new scala.collection.concurrent.TrieMap()
+
+  def reset() {
+    dataByFlightNumber = new scala.collection.concurrent.TrieMap()
+  }
 
   def record(flightNumber: Int, description: String) {
     append(flightNumber, DataPoint(flightNumber, DateTime.now, Some(description), None, None))
@@ -29,9 +32,9 @@ private [flakeless] case class FlightDataRecorder() {
 
   def jsonData(flight: Int) = Json.serialise(data(flight))
 
-  def write(flightNumber: Int, outputDirectory: String) {
-    writeReport(flightNumber, data(flightNumber), outputDirectory)
-  }
+//  def write(flightNumber: Int, outputDirectory: String) {
+//    writeReport(flightNumber, data(flightNumber), outputDirectory)
+//  }
 
   private def append(flightNumber: Int, dataPoint: DataPoint): Unit = {
     val current = dataByFlightNumber.getOrElse(flightNumber, Seq.empty[DataPoint])
