@@ -1,26 +1,24 @@
 package im.mange.flakeless.innards
 
-import im.mange.driveby.DriveByConfig
 import im.mange.flakeless.{ConditionNotMetException, Config}
 
 import scala.annotation.tailrec
 
 private object Wait {
-  //TODO: move config into Flakeless (just create a default one if not passed in)
-  def waitUpTo(config: Config, timeout: Long = DriveByConfig.waitTimeout, pollPeriod: Long = DriveByConfig.waitPollPeriod) = new Wait(timeout, pollPeriod)
+  def waitUpTo(config: Config) = new Wait(config)
 }
 
-private class Wait(timeout: Long, pollPeriod: Long) {
+private class Wait(config: Config) {
   def forCondition(command: Command, f: => Boolean, desc: => String, action: => Unit = {}) {
-    if (!conditionSatisfied(f, pollPeriod)) {
-      throw new ConditionNotMetException("> FAILED: \n| " + command.describe + "\n| actual: " + desc + "\n", timeout)
+    if (!conditionSatisfied(f, config.waitPollPeriod)) {
+      throw new ConditionNotMetException("> FAILED: \n| " + command.describe + "\n| actual: " + desc + "\n", config.waitTimeout)
     } else {
       action
     }
   }
 
   private def conditionSatisfied[T](f: => Boolean, pollPeriod: Long): Boolean = {
-    val end_? = System.currentTimeMillis() + timeout
+    val end_? = System.currentTimeMillis() + config.waitTimeout
     val end = if (end_? > 0) end_? else Long.MaxValue
 
     def tryIt = try {f} catch {case _: Exception => false}
