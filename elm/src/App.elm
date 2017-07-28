@@ -27,7 +27,7 @@ init =
 view : Model -> Html Msg
 view model =
     div []
-        [ if MaybeExtra.isJust model.error then div [] [text (model.error |> Maybe.withDefault "") ] else text ""
+        [ if MaybeExtra.isJust model.error then div [] [text (model.error |> Maybe.withDefault "") ] else nowt
         , div [] (List.map (\dp -> renderDataPoint dp )model.dataPoints)
         , hr [] []
         , text ("raw:" ++ toString model.raw)
@@ -37,13 +37,16 @@ renderDataPoint : DataPoint -> Html msg
 renderDataPoint dataPoint =
     li [] [
     span [] [
-        span [style [ ("margin-right", "5px")]] [text dataPoint.when]
-        ,span [style [ ("margin-right", "5px")] ] [text (dataPoint.description |> Maybe.withDefault "") ]
-        ,span [style [ ("margin-right", "5px")] ] [text (dataPoint.command |> Maybe.map (toString) |> Maybe.withDefault "") ]
-        ,span [style [ ("margin-right", "5px")] ] [text (dataPoint.context |> Maybe.map (toString) |> Maybe.withDefault "") ]
+        span [style [ ("margin-right", "7px")]] [text dataPoint.when]
+        , if MaybeExtra.isJust dataPoint.description then span [style [ ("margin-right", "7px")] ] [text (dataPoint.description |> Maybe.withDefault "") ] else nowt
+        , if MaybeExtra.isJust dataPoint.command then span [style [ ("margin-right", "7px")] ] [text (dataPoint.command |> Maybe.map (toString) |> Maybe.withDefault "") ] else nowt
+        , if MaybeExtra.isJust dataPoint.context then span [style [ ("margin-right", "7px")] ] [text (dataPoint.context |> Maybe.map (toString) |> Maybe.withDefault "") ] else nowt
     ]
     ]
 
+nowt : Html msg
+nowt =
+    text ""
 
 update : Msg -> Model -> ( Model, Cmd Msg )
 update msg model =

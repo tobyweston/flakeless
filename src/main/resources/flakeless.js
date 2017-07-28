@@ -9474,6 +9474,7 @@ var _user$project$DataPointCodec$decodeDataPoint = A4(
 					_NoRedInk$elm_decode_pipeline$Json_Decode_Pipeline$decode(_user$project$DataPointCodec$DataPoint))))));
 var _user$project$DataPointCodec$decodeDataPointList = _elm_lang$core$Json_Decode$list(_user$project$DataPointCodec$decodeDataPoint);
 
+var _user$project$Main$nowt = _elm_lang$html$Html$text('');
 var _user$project$Main$renderDataPoint = function (dataPoint) {
 	return A2(
 		_elm_lang$html$Html$li,
@@ -9492,7 +9493,7 @@ var _user$project$Main$renderDataPoint = function (dataPoint) {
 							_0: _elm_lang$html$Html_Attributes$style(
 								{
 									ctor: '::',
-									_0: {ctor: '_Tuple2', _0: 'margin-right', _1: '5px'},
+									_0: {ctor: '_Tuple2', _0: 'margin-right', _1: '7px'},
 									_1: {ctor: '[]'}
 								}),
 							_1: {ctor: '[]'}
@@ -9504,14 +9505,14 @@ var _user$project$Main$renderDataPoint = function (dataPoint) {
 						}),
 					_1: {
 						ctor: '::',
-						_0: A2(
+						_0: _elm_community$maybe_extra$Maybe_Extra$isJust(dataPoint.description) ? A2(
 							_elm_lang$html$Html$span,
 							{
 								ctor: '::',
 								_0: _elm_lang$html$Html_Attributes$style(
 									{
 										ctor: '::',
-										_0: {ctor: '_Tuple2', _0: 'margin-right', _1: '5px'},
+										_0: {ctor: '_Tuple2', _0: 'margin-right', _1: '7px'},
 										_1: {ctor: '[]'}
 									}),
 								_1: {ctor: '[]'}
@@ -9521,17 +9522,17 @@ var _user$project$Main$renderDataPoint = function (dataPoint) {
 								_0: _elm_lang$html$Html$text(
 									A2(_elm_lang$core$Maybe$withDefault, '', dataPoint.description)),
 								_1: {ctor: '[]'}
-							}),
+							}) : _user$project$Main$nowt,
 						_1: {
 							ctor: '::',
-							_0: A2(
+							_0: _elm_community$maybe_extra$Maybe_Extra$isJust(dataPoint.command) ? A2(
 								_elm_lang$html$Html$span,
 								{
 									ctor: '::',
 									_0: _elm_lang$html$Html_Attributes$style(
 										{
 											ctor: '::',
-											_0: {ctor: '_Tuple2', _0: 'margin-right', _1: '5px'},
+											_0: {ctor: '_Tuple2', _0: 'margin-right', _1: '7px'},
 											_1: {ctor: '[]'}
 										}),
 									_1: {ctor: '[]'}
@@ -9544,17 +9545,17 @@ var _user$project$Main$renderDataPoint = function (dataPoint) {
 											'',
 											A2(_elm_lang$core$Maybe$map, _elm_lang$core$Basics$toString, dataPoint.command))),
 									_1: {ctor: '[]'}
-								}),
+								}) : _user$project$Main$nowt,
 							_1: {
 								ctor: '::',
-								_0: A2(
+								_0: _elm_community$maybe_extra$Maybe_Extra$isJust(dataPoint.context) ? A2(
 									_elm_lang$html$Html$span,
 									{
 										ctor: '::',
 										_0: _elm_lang$html$Html_Attributes$style(
 											{
 												ctor: '::',
-												_0: {ctor: '_Tuple2', _0: 'margin-right', _1: '5px'},
+												_0: {ctor: '_Tuple2', _0: 'margin-right', _1: '7px'},
 												_1: {ctor: '[]'}
 											}),
 										_1: {ctor: '[]'}
@@ -9567,7 +9568,7 @@ var _user$project$Main$renderDataPoint = function (dataPoint) {
 												'',
 												A2(_elm_lang$core$Maybe$map, _elm_lang$core$Basics$toString, dataPoint.context))),
 										_1: {ctor: '[]'}
-									}),
+									}) : _user$project$Main$nowt,
 								_1: {ctor: '[]'}
 							}
 						}
@@ -9590,7 +9591,7 @@ var _user$project$Main$view = function (model) {
 					_0: _elm_lang$html$Html$text(
 						A2(_elm_lang$core$Maybe$withDefault, '', model.error)),
 					_1: {ctor: '[]'}
-				}) : _elm_lang$html$Html$text(''),
+				}) : _user$project$Main$nowt,
 			_1: {
 				ctor: '::',
 				_0: A2(
