@@ -9697,28 +9697,7 @@ var _user$project$Main$renderCommand = function (maybeCommand) {
 						_1: {
 							ctor: '::',
 							_0: A2(_user$project$Main$renderExpected, _p5.expected, _p5.expectedMany),
-							_1: {
-								ctor: '::',
-								_0: A2(
-									_elm_lang$html$Html$div,
-									{
-										ctor: '::',
-										_0: _elm_lang$html$Html_Attributes$style(
-											{
-												ctor: '::',
-												_0: {ctor: '_Tuple2', _0: 'margin-right', _1: '7px'},
-												_1: {ctor: '[]'}
-											}),
-										_1: {ctor: '[]'}
-									},
-									{
-										ctor: '::',
-										_0: _elm_lang$html$Html$text(
-											_elm_lang$core$Basics$toString(_p5)),
-										_1: {ctor: '[]'}
-									}),
-								_1: {ctor: '[]'}
-							}
+							_1: {ctor: '[]'}
 						}
 					}
 				}
@@ -9883,11 +9862,10 @@ var _user$project$Main$update = F2(
 		while (true) {
 			var _p8 = msg;
 			if (_p8.ctor === 'LoadData') {
-				var model_ = _elm_lang$core$Native_Utils.update(
+				var _v7 = _user$project$Main$ParseData,
+					_v8 = _elm_lang$core$Native_Utils.update(
 					model,
 					{raw: _p8._0});
-				var _v7 = _user$project$Main$ParseData,
-					_v8 = model_;
 				msg = _v7;
 				model = _v8;
 				continue update;

@@ -81,7 +81,7 @@ renderCommand maybeCommand =
             , renderIn command.in_
             , renderExpected command.expected command.expectedMany
             --TODO: whack me when done ....
-            , div [style [ ("margin-right", "7px")]] [ text (toString command) ]
+--            , div [style [ ("margin-right", "7px")]] [ text (toString command) ]
             ]
 
 renderExpected : Maybe String -> Maybe (List String) -> Html msg
@@ -116,10 +116,7 @@ update : Msg -> Model -> ( Model, Cmd Msg )
 update msg model =
     case msg of
         LoadData data ->
-            let
-                model_ = { model | raw = data }
-            in
-            update ParseData model_
+            update ParseData { model | raw = data }
 
         ParseData ->
             let
