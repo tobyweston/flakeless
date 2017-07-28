@@ -1,6 +1,6 @@
 package im.mange.flakeless.innards
 
-import im.mange.flakeless.Config
+import im.mange.flakeless.{Config, Path}
 import org.openqa.selenium.{By, WebElement}
 
 trait Executable {
@@ -9,7 +9,7 @@ trait Executable {
 }
 
 //TODO: pull out more data about the in, tag, displayed etc
-case class ReportCommand(name: String, in: Option[String], by: Option[By],
+case class ReportCommand(name: String, in: Option[String], bys: Seq[By],
                    args: Map[String, String] = Map.empty,
                    expected: Option[String] = None,
                    expectedMany: Option[List[String]] = None)
@@ -46,6 +46,10 @@ case class Command(name: String, in: Option[WebElement], by: Option[By],
 
   def report = {
     val inString = in.map(i => i.toString)
-    ReportCommand(name, inString, by, args, expected, expectedMany)
+
+    //TODO: this needs to recurse on Path, or disallow nested Path (slight pref for latter)
+    val bys = by.fold(Seq.empty[By])(b => if (b.isInstanceOf[Path]) b.asInstanceOf[Path].bys else Seq(b))
+
+    ReportCommand(name, inString, bys, args, expected, expectedMany)
   }
 }
