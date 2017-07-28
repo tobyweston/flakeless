@@ -58,11 +58,8 @@ renderContext : Maybe Context -> Html msg
 renderContext maybeContext =
     case maybeContext of
         Nothing -> nowt
-        Just context -> if List.isEmpty context.failures then nowt else ul [] (List.map (\f -> li [] [text f]) context.failures)
---                                                Nothing -> "#cccc00
---            span [style [ ("margin-right", "7px")] ] [
---            text (toString context)
---            ]
+        Just context -> if List.isEmpty context.failures then nowt
+                        else ul [] (List.map (\f -> li [] [text f]) context.failures)
 
 nowt : Html msg
 nowt =
