@@ -9,9 +9,9 @@ import Dict as Dict
 type alias DataPoint =
     { flightNumber : Int
     , when : String
-    , description : Maybe String
-    , command : Maybe Command
-    , context : Maybe Context
+--    , description : Maybe String
+--    , command : Maybe Command
+--    , context : Maybe Context
     }
 
 type alias Args =
@@ -41,9 +41,9 @@ decodeDataPoint =
     Json.Decode.Pipeline.decode DataPoint
         |> Json.Decode.Pipeline.required "flightNumber" (Json.Decode.int)
         |> Json.Decode.Pipeline.required "when" (Json.Decode.string)
-        |> Json.Decode.Pipeline.required "description" (Json.Decode.maybe Json.Decode.string)
-        |> Json.Decode.Pipeline.required "command" (Json.Decode.maybe decodeDataPointCommand)
-        |> Json.Decode.Pipeline.required "context" (Json.Decode.maybe decodeDataPointContext)
+--        |> Json.Decode.Pipeline.required "description" (Json.Decode.maybe Json.Decode.string)
+--        |> Json.Decode.Pipeline.required "command" (Json.Decode.maybe decodeDataPointCommand)
+--        |> Json.Decode.Pipeline.required "context" (Json.Decode.maybe decodeDataPointContext)
 
 decodeDataPointCommandArgs : Json.Decode.Decoder Args
 decodeDataPointCommandArgs =
