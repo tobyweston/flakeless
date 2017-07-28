@@ -7,33 +7,46 @@ import DataPointCodec exposing (..)
 import Json.Decode exposing (decodeString)
 
 type alias Model =
-    String
+    { raw : String
+    , dataPoints : List DataPoint
+    , error : Maybe String}
+
 
 
 type Msg
     = LoadData String
+    | ParseData
 --    = DataPointsResponse (WebData (List DataPoint))
 
 
 init : ( Model, Cmd Msg )
 init =
-    ( "Thinking...", Cmd.none )
+    ( Model "" [] Nothing, Cmd.none )
 
 
 view : Model -> Html Msg
 view model =
     div []
-        [ text model ]
+        [ text (toString model) ]
 
 
 update : Msg -> Model -> ( Model, Cmd Msg )
 update msg model =
     case msg of
         LoadData data ->
-            (toString (Json.Decode.decodeString decodeDataPointList data) , Cmd.none)
+            let
+                model_ = { model | raw = data }
+            in
+            update ParseData model_
 
---        DataPointsResponse response ->
---            ( (toString response), Cmd.none )
+        ParseData ->
+            let
+                result = (Json.Decode.decodeString decodeDataPointList model.raw)
+                model_ = case result of
+                    Ok x -> {model | dataPoints = x}
+                    Err e -> {model | error = Just e }
+            in
+            ( model_, Cmd.none )
 
 
 port data : (String -> msg) -> Sub msg

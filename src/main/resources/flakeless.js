@@ -8938,28 +8938,66 @@ var _user$project$DataPointCodec$decodeDataPoint = A3(
 				_NoRedInk$elm_decode_pipeline$Json_Decode_Pipeline$decode(_user$project$DataPointCodec$DataPoint)))));
 var _user$project$DataPointCodec$decodeDataPointList = _elm_lang$core$Json_Decode$list(_user$project$DataPointCodec$decodeDataPoint);
 
-var _user$project$Main$update = F2(
-	function (msg, model) {
-		var _p0 = msg;
-		return {
-			ctor: '_Tuple2',
-			_0: _elm_lang$core$Basics$toString(
-				A2(_elm_lang$core$Json_Decode$decodeString, _user$project$DataPointCodec$decodeDataPointList, _p0._0)),
-			_1: _elm_lang$core$Platform_Cmd$none
-		};
-	});
 var _user$project$Main$view = function (model) {
 	return A2(
 		_elm_lang$html$Html$div,
 		{ctor: '[]'},
 		{
 			ctor: '::',
-			_0: _elm_lang$html$Html$text(model),
+			_0: _elm_lang$html$Html$text(
+				_elm_lang$core$Basics$toString(model)),
 			_1: {ctor: '[]'}
 		});
 };
-var _user$project$Main$init = {ctor: '_Tuple2', _0: 'Thinking...', _1: _elm_lang$core$Platform_Cmd$none};
 var _user$project$Main$data = _elm_lang$core$Native_Platform.incomingPort('data', _elm_lang$core$Json_Decode$string);
+var _user$project$Main$Model = F3(
+	function (a, b, c) {
+		return {raw: a, dataPoints: b, error: c};
+	});
+var _user$project$Main$init = {
+	ctor: '_Tuple2',
+	_0: A3(
+		_user$project$Main$Model,
+		'',
+		{ctor: '[]'},
+		_elm_lang$core$Maybe$Nothing),
+	_1: _elm_lang$core$Platform_Cmd$none
+};
+var _user$project$Main$ParseData = {ctor: 'ParseData'};
+var _user$project$Main$update = F2(
+	function (msg, model) {
+		update:
+		while (true) {
+			var _p0 = msg;
+			if (_p0.ctor === 'LoadData') {
+				var model_ = _elm_lang$core$Native_Utils.update(
+					model,
+					{raw: _p0._0});
+				var _v1 = _user$project$Main$ParseData,
+					_v2 = model_;
+				msg = _v1;
+				model = _v2;
+				continue update;
+			} else {
+				var result = A2(_elm_lang$core$Json_Decode$decodeString, _user$project$DataPointCodec$decodeDataPointList, model.raw);
+				var model_ = function () {
+					var _p1 = result;
+					if (_p1.ctor === 'Ok') {
+						return _elm_lang$core$Native_Utils.update(
+							model,
+							{dataPoints: _p1._0});
+					} else {
+						return _elm_lang$core$Native_Utils.update(
+							model,
+							{
+								error: _elm_lang$core$Maybe$Just(_p1._0)
+							});
+					}
+				}();
+				return {ctor: '_Tuple2', _0: model_, _1: _elm_lang$core$Platform_Cmd$none};
+			}
+		}
+	});
 var _user$project$Main$LoadData = function (a) {
 	return {ctor: 'LoadData', _0: a};
 };
