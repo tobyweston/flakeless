@@ -9606,12 +9606,13 @@ var _user$project$Main$renderDataPoint = function (dataPoint) {
 		});
 };
 var _user$project$Main$view = function (model) {
+	var isError = _elm_community$maybe_extra$Maybe_Extra$isJust(model.error);
 	return A2(
 		_elm_lang$html$Html$div,
 		{ctor: '[]'},
 		{
 			ctor: '::',
-			_0: _elm_community$maybe_extra$Maybe_Extra$isJust(model.error) ? A2(
+			_0: isError ? A2(
 				_elm_lang$html$Html$div,
 				{ctor: '[]'},
 				{

@@ -26,33 +26,33 @@ init =
 
 view : Model -> Html Msg
 view model =
-    div []
-        [ if MaybeExtra.isJust model.error then div [] [text (model.error |> Maybe.withDefault "") ] else nowt
-        , div [] (List.map (\dp -> renderDataPoint dp )model.dataPoints)
-        , hr [] []
-        , text ("raw:" ++ toString model.raw)
-        ]
+    let
+        isError = MaybeExtra.isJust model.error
+    in
+        div []
+            [ if isError then div [] [text (model.error |> Maybe.withDefault "") ] else nowt
+            , div [] (List.map (\dp -> renderDataPoint dp )model.dataPoints)
+            , hr [] []
+            , text ("raw:" ++ toString model.raw)
+            ]
 
 renderDataPoint : DataPoint -> Html msg
 renderDataPoint dataPoint =
     let
---        success = False --Maybe.map (\c -> MaybeExtra.isJust c.success ) dataPoint.context |> Maybe.withDefault False
---        failed = False
---        color = if success then "#00cc00" else if failed then "#cc0000" else "grey"
         color = case dataPoint.context of
                     Nothing -> "grey"
                     Just context -> case context.success of
                         Nothing -> "#cccc00"
                         Just success -> if success then "#00cc00" else "#cc0000"
     in
-    li [ style [ ("color", color) ] ] [
-    span [ ] [
-        span [style [ ("margin-right", "7px")]] [text dataPoint.when]
-        , if MaybeExtra.isJust dataPoint.description then span [style [ ("margin-right", "7px")] ] [text (dataPoint.description |> Maybe.withDefault "") ] else nowt
-        , if MaybeExtra.isJust dataPoint.command then span [style [ ("margin-right", "7px")] ] [text (dataPoint.command |> Maybe.map (toString) |> Maybe.withDefault "") ] else nowt
-        , if MaybeExtra.isJust dataPoint.context then span [style [ ("margin-right", "7px")] ] [text (dataPoint.context |> Maybe.map (toString) |> Maybe.withDefault "") ] else nowt
-    ]
-    ]
+        li [ style [ ("color", color) ] ] [
+            span [ ] [
+                span [style [ ("margin-right", "7px")]] [text dataPoint.when]
+                , if MaybeExtra.isJust dataPoint.description then span [style [ ("margin-right", "7px")] ] [text (dataPoint.description |> Maybe.withDefault "") ] else nowt
+                , if MaybeExtra.isJust dataPoint.command then span [style [ ("margin-right", "7px")] ] [text (dataPoint.command |> Maybe.map (toString) |> Maybe.withDefault "") ] else nowt
+                , if MaybeExtra.isJust dataPoint.context then span [style [ ("margin-right", "7px")] ] [text (dataPoint.context |> Maybe.map (toString) |> Maybe.withDefault "") ] else nowt
+            ]
+        ]
 
 nowt : Html msg
 nowt =
