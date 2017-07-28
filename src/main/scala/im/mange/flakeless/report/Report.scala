@@ -57,8 +57,9 @@ object Report {
 
       if (captureImage) write(imagePath, screenshot(flakeless))
 
-      write(htmlPath, htmlContent(when, flakeless).getBytes)
-      write(jsonPath, flakeless.jsonFlightData().getBytes)
+      val data = flakeless.jsonFlightData()
+      write(htmlPath, htmlContent(when, flakeless, data).getBytes)
+      write(jsonPath, data.getBytes)
 
       if (!jsPath.toFile.exists()) write(jsPath, report.Assets.flakelessJs.getBytes)
 
@@ -67,15 +68,17 @@ object Report {
       case t: Exception => System.err.println("*** Failed to write report something bad happened ***\n")
     }
 
-    def htmlContent(when: Long, flakeless: Flakeless): String =
-"""
+    def htmlContent(when: Long, flakeless: Flakeless, data: String): String =
+s"""
   |<html>
   |<head>
   |</head>
   |<body>
   |  <script type="text/javascript" src="flakeless.js"></script>
   |  <script>
+  |  var data = '${data.replaceAll("\n", "")}';
   |    var app = Elm.Main.fullscreen()
+  |    app.ports.data.send(data);
   |  </script>
   |</body>
   |</html>

@@ -1,22 +1,23 @@
-module Main exposing (..)
+port module Main exposing (..)
 
 import Html exposing (..)
 import Http exposing (..)
 import RemoteData exposing (..)
 import DataPointCodec exposing (..)
-
+import Json.Decode exposing (decodeString)
 
 type alias Model =
     String
 
 
 type Msg
-    = DataPointsResponse (WebData (List DataPoint))
+    = LoadData String
+--    = DataPointsResponse (WebData (List DataPoint))
 
 
 init : ( Model, Cmd Msg )
 init =
-    ( "Hello", loadDataPoints )
+    ( "Thinking...", Cmd.none )
 
 
 view : Model -> Html Msg
@@ -28,13 +29,18 @@ view model =
 update : Msg -> Model -> ( Model, Cmd Msg )
 update msg model =
     case msg of
-        DataPointsResponse response ->
-            ( (toString response), Cmd.none )
+        LoadData data ->
+            (toString (Json.Decode.decodeString decodeDataPointList data) , Cmd.none)
 
+--        DataPointsResponse response ->
+--            ( (toString response), Cmd.none )
+
+
+port data : (String -> msg) -> Sub msg
 
 subscriptions : Model -> Sub Msg
 subscriptions model =
-    Sub.none
+  data LoadData
 
 
 main : Program Never Model Msg
@@ -46,8 +52,8 @@ main =
         , subscriptions = subscriptions
         }
 
-loadDataPoints : Cmd Msg
-loadDataPoints  =
-    Http.get "/flakeless.json" decodeDataPointList
-    |> RemoteData.sendRequest
-    |> Cmd.map DataPointsResponse
+--loadDataPoints : Cmd Msg
+--loadDataPoints  =
+--    Http.get "/flakeless.json" decodeDataPointList
+--    |> RemoteData.sendRequest
+--    |> Cmd.map DataPointsResponse
