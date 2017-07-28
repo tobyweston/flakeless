@@ -9476,9 +9476,19 @@ var _user$project$DataPointCodec$decodeDataPointList = _elm_lang$core$Json_Decod
 
 var _user$project$Main$nowt = _elm_lang$html$Html$text('');
 var _user$project$Main$renderDataPoint = function (dataPoint) {
-	var failed = false;
-	var success = false;
-	var color = success ? '#00cc00' : (failed ? '#cc0000' : 'grey');
+	var color = function () {
+		var _p0 = dataPoint.context;
+		if (_p0.ctor === 'Nothing') {
+			return 'grey';
+		} else {
+			var _p1 = _p0._0.success;
+			if (_p1.ctor === 'Nothing') {
+				return '#cccc00';
+			} else {
+				return _p1._0 ? '#00cc00' : '#cc0000';
+			}
+		}
+	}();
 	return A2(
 		_elm_lang$html$Html$li,
 		{
@@ -9653,29 +9663,29 @@ var _user$project$Main$update = F2(
 	function (msg, model) {
 		update:
 		while (true) {
-			var _p0 = msg;
-			if (_p0.ctor === 'LoadData') {
+			var _p2 = msg;
+			if (_p2.ctor === 'LoadData') {
 				var model_ = _elm_lang$core$Native_Utils.update(
 					model,
-					{raw: _p0._0});
-				var _v1 = _user$project$Main$ParseData,
-					_v2 = model_;
-				msg = _v1;
-				model = _v2;
+					{raw: _p2._0});
+				var _v3 = _user$project$Main$ParseData,
+					_v4 = model_;
+				msg = _v3;
+				model = _v4;
 				continue update;
 			} else {
 				var result = A2(_elm_lang$core$Json_Decode$decodeString, _user$project$DataPointCodec$decodeDataPointList, model.raw);
 				var model_ = function () {
-					var _p1 = result;
-					if (_p1.ctor === 'Ok') {
+					var _p3 = result;
+					if (_p3.ctor === 'Ok') {
 						return _elm_lang$core$Native_Utils.update(
 							model,
-							{dataPoints: _p1._0});
+							{dataPoints: _p3._0});
 					} else {
 						return _elm_lang$core$Native_Utils.update(
 							model,
 							{
-								error: _elm_lang$core$Maybe$Just(_p1._0)
+								error: _elm_lang$core$Maybe$Just(_p3._0)
 							});
 					}
 				}();
