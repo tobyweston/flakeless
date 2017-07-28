@@ -13,11 +13,9 @@ type alias Model =
     , error : Maybe String}
 
 
-
 type Msg
     = LoadData String
     | ParseData
---    = DataPointsResponse (WebData (List DataPoint))
 
 
 init : ( Model, Cmd Msg )
@@ -69,9 +67,3 @@ main =
         , update = update
         , subscriptions = subscriptions
         }
-
---loadDataPoints : Cmd Msg
---loadDataPoints  =
---    Http.get "/flakeless.json" decodeDataPointList
---    |> RemoteData.sendRequest
---    |> Cmd.map DataPointsResponse
