@@ -1,5 +1,4 @@
-module DataPointCodec exposing (..)
---exposing (decodeDatapoint)
+module DataPointCodec exposing (DataPoint, decodeDataPointList)
 
 
 import Json.Encode
@@ -31,6 +30,10 @@ type alias DataPointContext =
     { failures : List String
     , success : String
     }
+
+decodeDataPointList : Json.Decode.Decoder (List DataPoint)
+decodeDataPointList =
+    Json.Decode.list <| decodeDataPoint
 
 decodeDataPoint : Json.Decode.Decoder DataPoint
 decodeDataPoint =
