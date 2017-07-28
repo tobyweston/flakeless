@@ -8944,7 +8944,11 @@ var _user$project$Main$subscriptions = function (model) {
 var _user$project$Main$update = F2(
 	function (msg, model) {
 		var _p0 = msg;
-		return {ctor: '_Tuple2', _0: model, _1: _elm_lang$core$Platform_Cmd$none};
+		return {
+			ctor: '_Tuple2',
+			_0: _elm_lang$core$Basics$toString(_p0._0),
+			_1: _elm_lang$core$Platform_Cmd$none
+		};
 	});
 var _user$project$Main$view = function (model) {
 	return A2(
@@ -8956,9 +8960,6 @@ var _user$project$Main$view = function (model) {
 			_1: {ctor: '[]'}
 		});
 };
-var _user$project$Main$init = {ctor: '_Tuple2', _0: 'Hello', _1: _elm_lang$core$Platform_Cmd$none};
-var _user$project$Main$main = _elm_lang$html$Html$program(
-	{init: _user$project$Main$init, view: _user$project$Main$view, update: _user$project$Main$update, subscriptions: _user$project$Main$subscriptions})();
 var _user$project$Main$DataPointsResponse = function (a) {
 	return {ctor: 'DataPointsResponse', _0: a};
 };
@@ -8966,7 +8967,10 @@ var _user$project$Main$loadDataPoints = A2(
 	_elm_lang$core$Platform_Cmd$map,
 	_user$project$Main$DataPointsResponse,
 	_krisajenkins$remotedata$RemoteData$sendRequest(
-		A2(_elm_lang$http$Http$get, '', _user$project$DataPointCodec$decodeDataPointList)));
+		A2(_elm_lang$http$Http$get, '/flakeless.json', _user$project$DataPointCodec$decodeDataPointList)));
+var _user$project$Main$init = {ctor: '_Tuple2', _0: 'Hello', _1: _user$project$Main$loadDataPoints};
+var _user$project$Main$main = _elm_lang$html$Html$program(
+	{init: _user$project$Main$init, view: _user$project$Main$view, update: _user$project$Main$update, subscriptions: _user$project$Main$subscriptions})();
 
 var Elm = {};
 Elm['DataPointCodec'] = Elm['DataPointCodec'] || {};

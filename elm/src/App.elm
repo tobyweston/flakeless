@@ -16,7 +16,7 @@ type Msg
 
 init : ( Model, Cmd Msg )
 init =
-    ( "Hello", Cmd.none )
+    ( "Hello", loadDataPoints )
 
 
 view : Model -> Html Msg
@@ -29,7 +29,7 @@ update : Msg -> Model -> ( Model, Cmd Msg )
 update msg model =
     case msg of
         DataPointsResponse response ->
-            ( model, Cmd.none )
+            ( (toString response), Cmd.none )
 
 
 subscriptions : Model -> Sub Msg
@@ -48,6 +48,6 @@ main =
 
 loadDataPoints : Cmd Msg
 loadDataPoints  =
-    Http.get "" decodeDataPointList
+    Http.get "/flakeless.json" decodeDataPointList
     |> RemoteData.sendRequest
     |> Cmd.map DataPointsResponse
