@@ -8869,15 +8869,15 @@ var _user$project$DataPointCodec$DataPoint = F4(
 	function (a, b, c, d) {
 		return {flightNumber: a, when: b, command: c, context: d};
 	});
-var _user$project$DataPointCodec$DataPointCommandArgs = function (a) {
+var _user$project$DataPointCodec$Args = function (a) {
 	return {key: a};
 };
 var _user$project$DataPointCodec$decodeDataPointCommandArgs = A3(
 	_NoRedInk$elm_decode_pipeline$Json_Decode_Pipeline$required,
 	'key',
 	_elm_lang$core$Json_Decode$string,
-	_NoRedInk$elm_decode_pipeline$Json_Decode_Pipeline$decode(_user$project$DataPointCodec$DataPointCommandArgs));
-var _user$project$DataPointCodec$DataPointCommand = F6(
+	_NoRedInk$elm_decode_pipeline$Json_Decode_Pipeline$decode(_user$project$DataPointCodec$Args));
+var _user$project$DataPointCodec$Command = F6(
 	function (a, b, c, d, e, f) {
 		return {name: a, in_: b, bys: c, args: d, expected: e, expectedMany: f};
 	});
@@ -8905,8 +8905,8 @@ var _user$project$DataPointCodec$decodeDataPointCommand = A3(
 						_NoRedInk$elm_decode_pipeline$Json_Decode_Pipeline$required,
 						'name',
 						_elm_lang$core$Json_Decode$string,
-						_NoRedInk$elm_decode_pipeline$Json_Decode_Pipeline$decode(_user$project$DataPointCodec$DataPointCommand)))))));
-var _user$project$DataPointCodec$DataPointContext = F2(
+						_NoRedInk$elm_decode_pipeline$Json_Decode_Pipeline$decode(_user$project$DataPointCodec$Command)))))));
+var _user$project$DataPointCodec$Context = F2(
 	function (a, b) {
 		return {failures: a, success: b};
 	});
@@ -8918,7 +8918,7 @@ var _user$project$DataPointCodec$decodeDataPointContext = A3(
 		_NoRedInk$elm_decode_pipeline$Json_Decode_Pipeline$required,
 		'failures',
 		_elm_lang$core$Json_Decode$list(_elm_lang$core$Json_Decode$string),
-		_NoRedInk$elm_decode_pipeline$Json_Decode_Pipeline$decode(_user$project$DataPointCodec$DataPointContext)));
+		_NoRedInk$elm_decode_pipeline$Json_Decode_Pipeline$decode(_user$project$DataPointCodec$Context)));
 var _user$project$DataPointCodec$decodeDataPoint = A3(
 	_NoRedInk$elm_decode_pipeline$Json_Decode_Pipeline$required,
 	'context',
