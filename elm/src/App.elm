@@ -50,13 +50,17 @@ renderDataPoint dataPoint =
                 span [style [ ("margin-right", "7px")]] [text dataPoint.when]
                 , if MaybeExtra.isJust dataPoint.description then span [style [ ("margin-right", "7px")] ] [text (dataPoint.description |> Maybe.withDefault "") ] else nowt
                 , if MaybeExtra.isJust dataPoint.command then span [style [ ("margin-right", "7px")] ] [text (dataPoint.command |> Maybe.map (toString) |> Maybe.withDefault "") ] else nowt
-                , if MaybeExtra.isJust dataPoint.context then renderContext dataPoint.context else nowt
+                , renderContext dataPoint.context
             ]
         ]
 
 renderContext : Maybe Context -> Html msg
 renderContext maybeContext =
-    span [style [ ("margin-right", "7px")] ] [text (maybeContext |> Maybe.map (toString) |> Maybe.withDefault "") ]
+    case maybeContext of
+        Nothing -> nowt
+        Just context -> span [style [ ("margin-right", "7px")] ] [
+            text (toString context)
+            ]
 
 nowt : Html msg
 nowt =
