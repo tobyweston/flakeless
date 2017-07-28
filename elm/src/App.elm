@@ -8,18 +8,18 @@ import DataPointCodec exposing (..)
 import Json.Decode exposing (decodeString)
 import Maybe.Extra as MaybeExtra
 
---TODO: image(s)
+--TODO: image(s)!
 --TODO: args
---TODO: expected/expectedMany
---TODO: improve in_ rendering (json to begin with)
+--TODO: improve in_ rendering (needs better json)
 --TODO: improve bys rendering (less map like)
 --TODO: show just the time element
 --TODO: maybe render failures on one line and quoted
 --TODO: render ticks and cross instead of whole line green/red
---TODO: render each by as a pill
+--TODO: render each 'by' as a pill
 --TODO: render 'in' and 'expected' in grey to de-emphasis
 --TODO: share styles
 --TODO: do something more clever with spaced, build a list of Html and set all their styles
+--TODO: consider expected before in
 
 type alias Model =
     { raw : String
