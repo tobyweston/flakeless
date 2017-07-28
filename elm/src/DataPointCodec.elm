@@ -10,7 +10,7 @@ type alias DataPoint =
     { flightNumber : Int
     , when : String
     , command : Command
-    , context : Context
+    , context : Maybe Context
     }
 
 type alias Args =
@@ -28,7 +28,7 @@ type alias Command =
 
 type alias Context =
     { failures : List String
-    , success : String
+    , success : Maybe Bool
     }
 
 decodeDataPointList : Json.Decode.Decoder (List DataPoint)
@@ -41,7 +41,7 @@ decodeDataPoint =
         |> Json.Decode.Pipeline.required "flightNumber" (Json.Decode.int)
         |> Json.Decode.Pipeline.required "when" (Json.Decode.string)
         |> Json.Decode.Pipeline.required "command" (decodeDataPointCommand)
-        |> Json.Decode.Pipeline.required "context" (decodeDataPointContext)
+        |> Json.Decode.Pipeline.required "context" (Json.Decode.maybe decodeDataPointContext)
 
 decodeDataPointCommandArgs : Json.Decode.Decoder Args
 decodeDataPointCommandArgs =
@@ -67,4 +67,4 @@ decodeDataPointContext : Json.Decode.Decoder Context
 decodeDataPointContext =
     Json.Decode.Pipeline.decode Context
         |> Json.Decode.Pipeline.required "failures" (Json.Decode.list Json.Decode.string)
-        |> Json.Decode.Pipeline.required "success" (Json.Decode.string)
+        |> Json.Decode.Pipeline.required "success" (Json.Decode.maybe Json.Decode.bool)

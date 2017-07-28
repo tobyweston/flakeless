@@ -8913,7 +8913,7 @@ var _user$project$DataPointCodec$Context = F2(
 var _user$project$DataPointCodec$decodeDataPointContext = A3(
 	_NoRedInk$elm_decode_pipeline$Json_Decode_Pipeline$required,
 	'success',
-	_elm_lang$core$Json_Decode$string,
+	_elm_lang$core$Json_Decode$maybe(_elm_lang$core$Json_Decode$bool),
 	A3(
 		_NoRedInk$elm_decode_pipeline$Json_Decode_Pipeline$required,
 		'failures',
@@ -8922,7 +8922,7 @@ var _user$project$DataPointCodec$decodeDataPointContext = A3(
 var _user$project$DataPointCodec$decodeDataPoint = A3(
 	_NoRedInk$elm_decode_pipeline$Json_Decode_Pipeline$required,
 	'context',
-	_user$project$DataPointCodec$decodeDataPointContext,
+	_elm_lang$core$Json_Decode$maybe(_user$project$DataPointCodec$decodeDataPointContext),
 	A3(
 		_NoRedInk$elm_decode_pipeline$Json_Decode_Pipeline$required,
 		'command',
