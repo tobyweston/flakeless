@@ -49,10 +49,18 @@ renderDataPoint dataPoint =
             span [ ] [
                 span [style [ ("margin-right", "7px")]] [text dataPoint.when]
                 , if MaybeExtra.isJust dataPoint.description then span [style [ ("margin-right", "7px")] ] [text (dataPoint.description |> Maybe.withDefault "") ] else nowt
-                , if MaybeExtra.isJust dataPoint.command then span [style [ ("margin-right", "7px")] ] [text (dataPoint.command |> Maybe.map (toString) |> Maybe.withDefault "") ] else nowt
+                , renderCommand dataPoint.command --then span [style [ ("margin-right", "7px")] ] [text (dataPoint.command |> Maybe.map (toString) |> Maybe.withDefault "") ] else nowt
                 , renderContext dataPoint.context
             ]
         ]
+
+renderCommand : Maybe Command -> Html msg
+renderCommand maybeCommand =
+    case maybeCommand of
+        Nothing -> nowt
+        Just command -> text (toString command)
+--        if List.isEmpty context.failures then nowt
+--                        else ul [] (List.map (\f -> li [] [text f]) context.failures)
 
 renderContext : Maybe Context -> Html msg
 renderContext maybeContext =
