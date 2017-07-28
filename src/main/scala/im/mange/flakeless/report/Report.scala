@@ -11,7 +11,7 @@ object Example extends App {
     val flakeless = Flakeless(null)
     flakeless.newFlight()
 
-    flakeless.inflightAnnouncement("hello")
+    flakeless.inflightAnnouncement("announcement")
     flakeless.record(Command("command with expected", None, None, Map.empty, Some("expected")), Context())
     flakeless.record(Command("command with expected many", None, None, Map.empty, expectedMany = Some(List("expected", "expected2"))), Context())
     flakeless.record(Command("command with in", Some(createElement), None, Map.empty), Context())

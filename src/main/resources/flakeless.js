@@ -9481,6 +9481,29 @@ var _user$project$DataPointCodec$decodeDataPoint = A4(
 var _user$project$DataPointCodec$decodeDataPointList = _elm_lang$core$Json_Decode$list(_user$project$DataPointCodec$decodeDataPoint);
 
 var _user$project$Main$nowt = _elm_lang$html$Html$text('');
+var _user$project$Main$renderContext = function (maybeContext) {
+	return A2(
+		_elm_lang$html$Html$span,
+		{
+			ctor: '::',
+			_0: _elm_lang$html$Html_Attributes$style(
+				{
+					ctor: '::',
+					_0: {ctor: '_Tuple2', _0: 'margin-right', _1: '7px'},
+					_1: {ctor: '[]'}
+				}),
+			_1: {ctor: '[]'}
+		},
+		{
+			ctor: '::',
+			_0: _elm_lang$html$Html$text(
+				A2(
+					_elm_lang$core$Maybe$withDefault,
+					'',
+					A2(_elm_lang$core$Maybe$map, _elm_lang$core$Basics$toString, maybeContext))),
+			_1: {ctor: '[]'}
+		});
+};
 var _user$project$Main$renderDataPoint = function (dataPoint) {
 	var color = function () {
 		var _p0 = dataPoint.context;
@@ -9576,27 +9599,7 @@ var _user$project$Main$renderDataPoint = function (dataPoint) {
 								}) : _user$project$Main$nowt,
 							_1: {
 								ctor: '::',
-								_0: _elm_community$maybe_extra$Maybe_Extra$isJust(dataPoint.context) ? A2(
-									_elm_lang$html$Html$span,
-									{
-										ctor: '::',
-										_0: _elm_lang$html$Html_Attributes$style(
-											{
-												ctor: '::',
-												_0: {ctor: '_Tuple2', _0: 'margin-right', _1: '7px'},
-												_1: {ctor: '[]'}
-											}),
-										_1: {ctor: '[]'}
-									},
-									{
-										ctor: '::',
-										_0: _elm_lang$html$Html$text(
-											A2(
-												_elm_lang$core$Maybe$withDefault,
-												'',
-												A2(_elm_lang$core$Maybe$map, _elm_lang$core$Basics$toString, dataPoint.context))),
-										_1: {ctor: '[]'}
-									}) : _user$project$Main$nowt,
+								_0: _elm_community$maybe_extra$Maybe_Extra$isJust(dataPoint.context) ? _user$project$Main$renderContext(dataPoint.context) : _user$project$Main$nowt,
 								_1: {ctor: '[]'}
 							}
 						}

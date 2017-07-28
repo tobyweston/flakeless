@@ -1,4 +1,4 @@
-module DataPointCodec exposing (DataPoint, decodeDataPointList)
+module DataPointCodec exposing (DataPoint, Context, decodeDataPointList)
 
 
 import Json.Encode
