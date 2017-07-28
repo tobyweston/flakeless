@@ -15,7 +15,7 @@ object Example extends App {
 //    flakeless.record(Command("command with expected many", None, None, Map.empty, expectedMany = Some(List("expected", "expected2"))), Context())
 //    flakeless.record(Command("command with in", Some(createElement), None, Map.empty), Context())
 //    flakeless.record(Command("command with by", None, Some(By.id("id")), Map.empty), Context())
-//    flakeless.record(Command("command with by path", None, Some(Path(By.id("id"))), Map.empty), Context())
+    flakeless.record(Command("command with by path", None, Some(Path(By.id("id"))), Map.empty), Context())
 //    flakeless.record(Command("command with args", None, None, Map("key" -> "value")), Context())
 //    flakeless.record(Command("command with context true", None, None), Context(success = Some(true)))
 //    flakeless.record(Command("command with context false", None, None), Context(success = Some(false)))
@@ -44,7 +44,7 @@ object Report {
   def apply(flakeless: Flakeless, outputDirectory: String, captureImage: Boolean = true) {
 
     try {
-      val filepath = s"$outputDirectory/${"%04d".format(flakeless.currentFlightNumber)}/"
+      val filepath = s"$outputDirectory/${"%04d".format(flakeless.getCurrentFlightNumber)}/"
       Files.createDirectories(Paths.get(filepath))
 
       val when = System.currentTimeMillis()

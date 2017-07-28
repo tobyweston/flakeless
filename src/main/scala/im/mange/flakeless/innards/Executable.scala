@@ -44,5 +44,8 @@ case class Command(name: String, in: Option[WebElement], by: Option[By],
       ).flatten.map(_.describe).mkString("\n| ")
   }
 
-  def report = ReportCommand(name, in.map(_.toString), by, args, expected, expectedMany)
+  def report = {
+    val inString = in.map(i => i.getTagName)
+    ReportCommand(name, inString, by, args, expected, expectedMany)
+  }
 }

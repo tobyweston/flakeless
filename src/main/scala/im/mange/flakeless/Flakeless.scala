@@ -13,7 +13,7 @@ object FlightNumber {
 
 case class Flakeless(rawWebDriver: WebDriver, config: Config = Config()) {
   private val fdr = FlightDataRecorder()
-  private var currentFlightNumber = -1
+  private var currentFlightNumber = -1 //TODO: should be Option instead
 
   def newFlight(description: Option[String] = None) {
     currentFlightNumber = FlightNumber.next
@@ -31,4 +31,5 @@ case class Flakeless(rawWebDriver: WebDriver, config: Config = Config()) {
 
   def flightData(flight: Int = currentFlightNumber) = fdr.data(flight)
   def jsonFlightData(flight: Int = currentFlightNumber) = fdr.jsonData(flight)
+  def getCurrentFlightNumber = currentFlightNumber
 }
