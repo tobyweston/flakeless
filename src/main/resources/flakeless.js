@@ -7875,24 +7875,78 @@ var _elm_lang$html$Html$summary = _elm_lang$html$Html$node('summary');
 var _elm_lang$html$Html$menuitem = _elm_lang$html$Html$node('menuitem');
 var _elm_lang$html$Html$menu = _elm_lang$html$Html$node('menu');
 
-var _user$project$DataPointCodec$Datapoint0CommandBy = function (a) {
-	return {id: a};
-};
-var _user$project$DataPointCodec$Datapoint0CommandArgs = function (a) {
-	return {key: a};
-};
-var _user$project$DataPointCodec$Datapoint0Command = F6(
-	function (a, b, c, d, e, f) {
-		return {name: a, in_: b, by: c, args: d, expected: e, expectedMany: f};
-	});
-var _user$project$DataPointCodec$Datapoint0Context = F2(
-	function (a, b) {
-		return {failures: a, success: b};
-	});
-var _user$project$DataPointCodec$Datapoint = F4(
+var _user$project$DataPointCodec$decodeBys = _elm_lang$core$Json_Decode$keyValuePairs(_elm_lang$core$Json_Decode$string);
+var _user$project$DataPointCodec$DataPoint = F4(
 	function (a, b, c, d) {
 		return {flightNumber: a, when: b, command: c, context: d};
 	});
+var _user$project$DataPointCodec$DataPointCommandArgs = function (a) {
+	return {key: a};
+};
+var _user$project$DataPointCodec$decodeDataPointCommandArgs = A3(
+	_NoRedInk$elm_decode_pipeline$Json_Decode_Pipeline$required,
+	'key',
+	_elm_lang$core$Json_Decode$string,
+	_NoRedInk$elm_decode_pipeline$Json_Decode_Pipeline$decode(_user$project$DataPointCodec$DataPointCommandArgs));
+var _user$project$DataPointCodec$DataPointCommand = F6(
+	function (a, b, c, d, e, f) {
+		return {name: a, in_: b, bys: c, args: d, expected: e, expectedMany: f};
+	});
+var _user$project$DataPointCodec$decodeDataPointCommand = A3(
+	_NoRedInk$elm_decode_pipeline$Json_Decode_Pipeline$required,
+	'expectedMany',
+	_elm_lang$core$Json_Decode$list(_elm_lang$core$Json_Decode$string),
+	A3(
+		_NoRedInk$elm_decode_pipeline$Json_Decode_Pipeline$required,
+		'expected',
+		_elm_lang$core$Json_Decode$string,
+		A3(
+			_NoRedInk$elm_decode_pipeline$Json_Decode_Pipeline$required,
+			'args',
+			_user$project$DataPointCodec$decodeDataPointCommandArgs,
+			A3(
+				_NoRedInk$elm_decode_pipeline$Json_Decode_Pipeline$required,
+				'bys',
+				_elm_lang$core$Json_Decode$list(_user$project$DataPointCodec$decodeBys),
+				A3(
+					_NoRedInk$elm_decode_pipeline$Json_Decode_Pipeline$required,
+					'in',
+					_elm_lang$core$Json_Decode$string,
+					A3(
+						_NoRedInk$elm_decode_pipeline$Json_Decode_Pipeline$required,
+						'name',
+						_elm_lang$core$Json_Decode$string,
+						_NoRedInk$elm_decode_pipeline$Json_Decode_Pipeline$decode(_user$project$DataPointCodec$DataPointCommand)))))));
+var _user$project$DataPointCodec$DataPointContext = F2(
+	function (a, b) {
+		return {failures: a, success: b};
+	});
+var _user$project$DataPointCodec$decodeDataPointContext = A3(
+	_NoRedInk$elm_decode_pipeline$Json_Decode_Pipeline$required,
+	'success',
+	_elm_lang$core$Json_Decode$string,
+	A3(
+		_NoRedInk$elm_decode_pipeline$Json_Decode_Pipeline$required,
+		'failures',
+		_elm_lang$core$Json_Decode$list(_elm_lang$core$Json_Decode$string),
+		_NoRedInk$elm_decode_pipeline$Json_Decode_Pipeline$decode(_user$project$DataPointCodec$DataPointContext)));
+var _user$project$DataPointCodec$decodeDataPoint = A3(
+	_NoRedInk$elm_decode_pipeline$Json_Decode_Pipeline$required,
+	'context',
+	_user$project$DataPointCodec$decodeDataPointContext,
+	A3(
+		_NoRedInk$elm_decode_pipeline$Json_Decode_Pipeline$required,
+		'command',
+		_user$project$DataPointCodec$decodeDataPointCommand,
+		A3(
+			_NoRedInk$elm_decode_pipeline$Json_Decode_Pipeline$required,
+			'when',
+			_elm_lang$core$Json_Decode$string,
+			A3(
+				_NoRedInk$elm_decode_pipeline$Json_Decode_Pipeline$required,
+				'flightNumber',
+				_elm_lang$core$Json_Decode$int,
+				_NoRedInk$elm_decode_pipeline$Json_Decode_Pipeline$decode(_user$project$DataPointCodec$DataPoint)))));
 
 var _user$project$Main$main = _elm_lang$virtual_dom$Native_VirtualDom.staticProgram(
 	_elm_lang$html$Html$text('Hello, World!'));

@@ -5,72 +5,63 @@ module DataPointCodec exposing (..)
 import Json.Encode
 import Json.Decode
 import Json.Decode.Pipeline
+import Dict as Dict
 
-type alias Datapoint0CommandBy =
-    { id : String
+type alias DataPoint =
+    { flightNumber : Int
+    , when : String
+    , command : DataPointCommand
+    , context : DataPointContext
     }
 
-type alias Datapoint0CommandArgs =
+type alias DataPointCommandArgs =
     { key : String
     }
 
-type alias Datapoint0Command =
+type alias DataPointCommand =
     { name : String
     , in_ : String
-    , by : Datapoint0CommandBy
-    , args : Datapoint0CommandArgs
+    , bys : List (List (String, String))
+    , args : DataPointCommandArgs
     , expected : String
     , expectedMany : List String
     }
 
-type alias Datapoint0Context =
+type alias DataPointContext =
     { failures : List String
     , success : String
     }
 
-type alias Datapoint =
-    { flightNumber : Int
-    , when : String
-    , command : Datapoint0Command
-    , context : Datapoint0Context
-    }
---
---decodeDatapoint : Json.Decode.Decoder Datapoint
---decodeDatapoint =
---    Json.Decode.Pipeline.decode Datapoint
---        |> Json.Decode.Pipeline.required "0" (decodeDatapoint0)
---
---decodeDatapoint0CommandBy : Json.Decode.Decoder Datapoint0CommandBy
---decodeDatapoint0CommandBy =
---    Json.Decode.Pipeline.decode Datapoint0CommandBy
---        |> Json.Decode.Pipeline.required "id" (Json.Decode.string)
---
---decodeDatapoint0CommandArgs : Json.Decode.Decoder Datapoint0CommandArgs
---decodeDatapoint0CommandArgs =
---    Json.Decode.Pipeline.decode Datapoint0CommandArgs
---        |> Json.Decode.Pipeline.required "key" (Json.Decode.string)
---
---decodeDatapoint0Command : Json.Decode.Decoder Datapoint0Command
---decodeDatapoint0Command =
---    Json.Decode.Pipeline.decode Datapoint0Command
---        |> Json.Decode.Pipeline.required "name" (Json.Decode.string)
---        |> Json.Decode.Pipeline.required "in" (Json.Decode.string)
---        |> Json.Decode.Pipeline.required "by" (decodeDatapoint0CommandBy)
---        |> Json.Decode.Pipeline.required "args" (decodeDatapoint0CommandArgs)
---        |> Json.Decode.Pipeline.required "expected" (Json.Decode.string)
---        |> Json.Decode.Pipeline.required "expectedMany" (Json.Decode.list Json.Decode.string)
---
---decodeDatapoint0Context : Json.Decode.Decoder Datapoint0Context
---decodeDatapoint0Context =
---    Json.Decode.Pipeline.decode Datapoint0Context
---        |> Json.Decode.Pipeline.required "failures" (Json.Decode.list Json.Decode.string)
---        |> Json.Decode.Pipeline.required "success" (Json.Decode.string)
---
---decodeDatapoint0 : Json.Decode.Decoder Datapoint
---decodeDatapoint0 =
---    Json.Decode.Pipeline.decode Datapoint
---        |> Json.Decode.Pipeline.required "flightNumber" (Json.Decode.int)
---        |> Json.Decode.Pipeline.required "when" (Json.Decode.string)
---        |> Json.Decode.Pipeline.required "command" (decodeDatapoint0Command)
---        |> Json.Decode.Pipeline.required "context" (decodeDatapoint0Context)
---
+decodeDataPoint : Json.Decode.Decoder DataPoint
+decodeDataPoint =
+    Json.Decode.Pipeline.decode DataPoint
+        |> Json.Decode.Pipeline.required "flightNumber" (Json.Decode.int)
+        |> Json.Decode.Pipeline.required "when" (Json.Decode.string)
+        |> Json.Decode.Pipeline.required "command" (decodeDataPointCommand)
+        |> Json.Decode.Pipeline.required "context" (decodeDataPointContext)
+
+decodeDataPointCommandArgs : Json.Decode.Decoder DataPointCommandArgs
+decodeDataPointCommandArgs =
+    Json.Decode.Pipeline.decode DataPointCommandArgs
+        |> Json.Decode.Pipeline.required "key" (Json.Decode.string)
+
+decodeDataPointCommand : Json.Decode.Decoder DataPointCommand
+decodeDataPointCommand =
+    Json.Decode.Pipeline.decode DataPointCommand
+        |> Json.Decode.Pipeline.required "name" (Json.Decode.string)
+        |> Json.Decode.Pipeline.required "in" (Json.Decode.string)
+        |> Json.Decode.Pipeline.required "bys" (Json.Decode.list decodeBys)
+        |> Json.Decode.Pipeline.required "args" (decodeDataPointCommandArgs)
+        |> Json.Decode.Pipeline.required "expected" (Json.Decode.string)
+        |> Json.Decode.Pipeline.required "expectedMany" (Json.Decode.list Json.Decode.string)
+
+
+decodeBys : Json.Decode.Decoder (List (String, String))
+decodeBys =
+    Json.Decode.keyValuePairs Json.Decode.string
+
+decodeDataPointContext : Json.Decode.Decoder DataPointContext
+decodeDataPointContext =
+    Json.Decode.Pipeline.decode DataPointContext
+        |> Json.Decode.Pipeline.required "failures" (Json.Decode.list Json.Decode.string)
+        |> Json.Decode.Pipeline.required "success" (Json.Decode.string)
