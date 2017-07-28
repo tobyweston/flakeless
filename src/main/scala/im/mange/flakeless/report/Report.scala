@@ -51,15 +51,15 @@ object Report {
 
       val when = System.currentTimeMillis()
       val imagePath = path(filepath, s"$when.png")
-      val htmlPath = path(filepath, s"$when.html")
-      val jsonPath = path(filepath, s"$when.json")
+      val htmlPath = path(filepath, s"flakeless.html")
+//      val jsonPath = path(filepath, s"$when.json")
       val jsPath = path(filepath, s"flakeless.js")
 
       if (captureImage) write(imagePath, screenshot(flakeless))
 
       val data = flakeless.jsonFlightData()
       write(htmlPath, htmlContent(when, flakeless, data).getBytes)
-      write(jsonPath, data.getBytes)
+//      write(jsonPath, data.getBytes)
 
       if (!jsPath.toFile.exists()) write(jsPath, report.Assets.flakelessJs.getBytes)
 
