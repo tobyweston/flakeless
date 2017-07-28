@@ -9487,37 +9487,36 @@ var _user$project$Main$renderContext = function (maybeContext) {
 	if (_p0.ctor === 'Nothing') {
 		return _user$project$Main$nowt;
 	} else {
-		return A2(
-			_elm_lang$html$Html$span,
-			{
-				ctor: '::',
-				_0: _elm_lang$html$Html_Attributes$style(
-					{
-						ctor: '::',
-						_0: {ctor: '_Tuple2', _0: 'margin-right', _1: '7px'},
-						_1: {ctor: '[]'}
-					}),
-				_1: {ctor: '[]'}
-			},
-			{
-				ctor: '::',
-				_0: _elm_lang$html$Html$text(
-					_elm_lang$core$Basics$toString(_p0._0)),
-				_1: {ctor: '[]'}
-			});
+		var _p1 = _p0._0;
+		return _elm_lang$core$List$isEmpty(_p1.failures) ? _user$project$Main$nowt : A2(
+			_elm_lang$html$Html$ul,
+			{ctor: '[]'},
+			A2(
+				_elm_lang$core$List$map,
+				function (f) {
+					return A2(
+						_elm_lang$html$Html$li,
+						{ctor: '[]'},
+						{
+							ctor: '::',
+							_0: _elm_lang$html$Html$text(f),
+							_1: {ctor: '[]'}
+						});
+				},
+				_p1.failures));
 	}
 };
 var _user$project$Main$renderDataPoint = function (dataPoint) {
 	var color = function () {
-		var _p1 = dataPoint.context;
-		if (_p1.ctor === 'Nothing') {
+		var _p2 = dataPoint.context;
+		if (_p2.ctor === 'Nothing') {
 			return 'grey';
 		} else {
-			var _p2 = _p1._0.success;
-			if (_p2.ctor === 'Nothing') {
+			var _p3 = _p2._0.success;
+			if (_p3.ctor === 'Nothing') {
 				return '#cccc00';
 			} else {
-				return _p2._0 ? '#00cc00' : '#cc0000';
+				return _p3._0 ? '#00cc00' : '#cc0000';
 			}
 		}
 	}();
@@ -9676,11 +9675,11 @@ var _user$project$Main$update = F2(
 	function (msg, model) {
 		update:
 		while (true) {
-			var _p3 = msg;
-			if (_p3.ctor === 'LoadData') {
+			var _p4 = msg;
+			if (_p4.ctor === 'LoadData') {
 				var model_ = _elm_lang$core$Native_Utils.update(
 					model,
-					{raw: _p3._0});
+					{raw: _p4._0});
 				var _v4 = _user$project$Main$ParseData,
 					_v5 = model_;
 				msg = _v4;
@@ -9689,16 +9688,16 @@ var _user$project$Main$update = F2(
 			} else {
 				var result = A2(_elm_lang$core$Json_Decode$decodeString, _user$project$DataPointCodec$decodeDataPointList, model.raw);
 				var model_ = function () {
-					var _p4 = result;
-					if (_p4.ctor === 'Ok') {
+					var _p5 = result;
+					if (_p5.ctor === 'Ok') {
 						return _elm_lang$core$Native_Utils.update(
 							model,
-							{dataPoints: _p4._0});
+							{dataPoints: _p5._0});
 					} else {
 						return _elm_lang$core$Native_Utils.update(
 							model,
 							{
-								error: _elm_lang$core$Maybe$Just(_p4._0)
+								error: _elm_lang$core$Maybe$Just(_p5._0)
 							});
 					}
 				}();
