@@ -78,9 +78,17 @@ renderCommand maybeCommand =
             span [style [ ("margin-right", "7px")]] [text command.name]
             , renderBys command.bys
             , renderIn command.in_
+            , renderExpected command.expected command.expectedMany
             --TODO: whack me when done ....
             , div [style [ ("margin-right", "7px")]] [ text (toString command) ]
             ]
+
+renderExpected : Maybe String -> Maybe (List String) -> Html msg
+renderExpected expected expectedMany =
+    case (expected, expectedMany) of
+        (Just e, _) -> text e
+        (_, Just me) -> text (toString me)
+        (_, _) -> nowt
 
 renderBys : List (List (String, String)) -> Html msg
 renderBys bys =
