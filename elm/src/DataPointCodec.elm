@@ -20,9 +20,10 @@ type alias Args =
 
 type alias Command =
     { name : String
-    , in_ : String
+    , in_ : Maybe String
     , bys : List (List (String, String))
-    , args : Args
+--TODO: args are busted right now ...
+--    , args : Maybe Args
     , expected : Maybe String
     , expectedMany : Maybe (List String)
     }
@@ -54,11 +55,11 @@ decodeDataPointCommand : Json.Decode.Decoder Command
 decodeDataPointCommand =
     Json.Decode.Pipeline.decode Command
         |> Json.Decode.Pipeline.required "name" (Json.Decode.string)
-        |> Json.Decode.Pipeline.required "in" (Json.Decode.string)
+        |> Json.Decode.Pipeline.optional "in" (Json.Decode.maybe Json.Decode.string) Nothing
         |> Json.Decode.Pipeline.required "bys" (Json.Decode.list decodeBys)
-        |> Json.Decode.Pipeline.required "args" (decodeDataPointCommandArgs)
-        |> Json.Decode.Pipeline.required "expected" (Json.Decode.maybe Json.Decode.string)
-        |> Json.Decode.Pipeline.required "expectedMany" (Json.Decode.maybe (Json.Decode.list Json.Decode.string))
+--        |> Json.Decode.Pipeline.required "args" (decodeDataPointCommandArgs)
+        |> Json.Decode.Pipeline.optional "expected" (Json.Decode.maybe Json.Decode.string) Nothing
+        |> Json.Decode.Pipeline.optional "expectedMany" (Json.Decode.maybe (Json.Decode.list Json.Decode.string)) Nothing
 
 
 decodeBys : Json.Decode.Decoder (List (String, String))

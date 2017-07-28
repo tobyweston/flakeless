@@ -9406,36 +9406,35 @@ var _user$project$DataPointCodec$decodeDataPointCommandArgs = A3(
 	'key',
 	_elm_lang$core$Json_Decode$string,
 	_NoRedInk$elm_decode_pipeline$Json_Decode_Pipeline$decode(_user$project$DataPointCodec$Args));
-var _user$project$DataPointCodec$Command = F6(
-	function (a, b, c, d, e, f) {
-		return {name: a, in_: b, bys: c, args: d, expected: e, expectedMany: f};
+var _user$project$DataPointCodec$Command = F5(
+	function (a, b, c, d, e) {
+		return {name: a, in_: b, bys: c, expected: d, expectedMany: e};
 	});
-var _user$project$DataPointCodec$decodeDataPointCommand = A3(
-	_NoRedInk$elm_decode_pipeline$Json_Decode_Pipeline$required,
+var _user$project$DataPointCodec$decodeDataPointCommand = A4(
+	_NoRedInk$elm_decode_pipeline$Json_Decode_Pipeline$optional,
 	'expectedMany',
 	_elm_lang$core$Json_Decode$maybe(
 		_elm_lang$core$Json_Decode$list(_elm_lang$core$Json_Decode$string)),
-	A3(
-		_NoRedInk$elm_decode_pipeline$Json_Decode_Pipeline$required,
+	_elm_lang$core$Maybe$Nothing,
+	A4(
+		_NoRedInk$elm_decode_pipeline$Json_Decode_Pipeline$optional,
 		'expected',
 		_elm_lang$core$Json_Decode$maybe(_elm_lang$core$Json_Decode$string),
+		_elm_lang$core$Maybe$Nothing,
 		A3(
 			_NoRedInk$elm_decode_pipeline$Json_Decode_Pipeline$required,
-			'args',
-			_user$project$DataPointCodec$decodeDataPointCommandArgs,
-			A3(
-				_NoRedInk$elm_decode_pipeline$Json_Decode_Pipeline$required,
-				'bys',
-				_elm_lang$core$Json_Decode$list(_user$project$DataPointCodec$decodeBys),
+			'bys',
+			_elm_lang$core$Json_Decode$list(_user$project$DataPointCodec$decodeBys),
+			A4(
+				_NoRedInk$elm_decode_pipeline$Json_Decode_Pipeline$optional,
+				'in',
+				_elm_lang$core$Json_Decode$maybe(_elm_lang$core$Json_Decode$string),
+				_elm_lang$core$Maybe$Nothing,
 				A3(
 					_NoRedInk$elm_decode_pipeline$Json_Decode_Pipeline$required,
-					'in',
+					'name',
 					_elm_lang$core$Json_Decode$string,
-					A3(
-						_NoRedInk$elm_decode_pipeline$Json_Decode_Pipeline$required,
-						'name',
-						_elm_lang$core$Json_Decode$string,
-						_NoRedInk$elm_decode_pipeline$Json_Decode_Pipeline$decode(_user$project$DataPointCodec$Command)))))));
+					_NoRedInk$elm_decode_pipeline$Json_Decode_Pipeline$decode(_user$project$DataPointCodec$Command))))));
 var _user$project$DataPointCodec$Context = F2(
 	function (a, b) {
 		return {failures: a, success: b};
