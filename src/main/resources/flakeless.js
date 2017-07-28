@@ -9574,11 +9574,87 @@ var _user$project$Main$renderExpected = F2(
 	function (expected, expectedMany) {
 		var _p3 = {ctor: '_Tuple2', _0: expected, _1: expectedMany};
 		if (_p3._0.ctor === 'Just') {
-			return _elm_lang$html$Html$text(_p3._0._0);
+			return A2(
+				_elm_lang$html$Html$span,
+				{
+					ctor: '::',
+					_0: _elm_lang$html$Html_Attributes$style(
+						{
+							ctor: '::',
+							_0: {ctor: '_Tuple2', _0: 'margin-right', _1: '7px'},
+							_1: {ctor: '[]'}
+						}),
+					_1: {ctor: '[]'}
+				},
+				{
+					ctor: '::',
+					_0: A2(
+						_elm_lang$html$Html$span,
+						{
+							ctor: '::',
+							_0: _elm_lang$html$Html_Attributes$style(
+								{
+									ctor: '::',
+									_0: {ctor: '_Tuple2', _0: 'margin-right', _1: '7px'},
+									_1: {ctor: '[]'}
+								}),
+							_1: {ctor: '[]'}
+						},
+						{
+							ctor: '::',
+							_0: _elm_lang$html$Html$text('expected'),
+							_1: {ctor: '[]'}
+						}),
+					_1: {
+						ctor: '::',
+						_0: _elm_lang$html$Html$text(
+							A2(
+								_elm_lang$core$Basics_ops['++'],
+								'\"',
+								A2(_elm_lang$core$Basics_ops['++'], _p3._0._0, '\"'))),
+						_1: {ctor: '[]'}
+					}
+				});
 		} else {
 			if (_p3._1.ctor === 'Just') {
-				return _elm_lang$html$Html$text(
-					_elm_lang$core$Basics$toString(_p3._1._0));
+				return A2(
+					_elm_lang$html$Html$span,
+					{
+						ctor: '::',
+						_0: _elm_lang$html$Html_Attributes$style(
+							{
+								ctor: '::',
+								_0: {ctor: '_Tuple2', _0: 'margin-right', _1: '7px'},
+								_1: {ctor: '[]'}
+							}),
+						_1: {ctor: '[]'}
+					},
+					{
+						ctor: '::',
+						_0: A2(
+							_elm_lang$html$Html$span,
+							{
+								ctor: '::',
+								_0: _elm_lang$html$Html_Attributes$style(
+									{
+										ctor: '::',
+										_0: {ctor: '_Tuple2', _0: 'margin-right', _1: '7px'},
+										_1: {ctor: '[]'}
+									}),
+								_1: {ctor: '[]'}
+							},
+							{
+								ctor: '::',
+								_0: _elm_lang$html$Html$text('expected'),
+								_1: {ctor: '[]'}
+							}),
+						_1: {
+							ctor: '::',
+							_0: _elm_lang$html$Html$text(
+								_elm_lang$core$Basics$toString(_p3._1._0)),
+							_1: {ctor: '[]'}
+						}
+					});
 			} else {
 				return _user$project$Main$nowt;
 			}

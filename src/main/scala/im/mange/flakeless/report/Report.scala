@@ -23,11 +23,11 @@ object Example extends App {
     flakeless.record(Command("command with context false", None, None), Context(success = Some(false)))
     flakeless.record(Command("command with context failures", None, None), Context(List("failures")))
 
-    flakeless.record(Command("everything", Some(createElement), Some(Path(By.id("id"))), Map("key" -> "value"), Some("expected"), Some(List("expected", "expected2"))), Context(List("failures"), success = Some(false)))
-
     //  if by's are a list then we are probably fine ... next Paths could be interesting .... (eek)
     flakeless.record(Command("everything", Some(createElement), Some(By.id("id")), Map("key" -> "value"), Some("expected"), Some(List("expected", "expected2"))), Context(List("failures"), success = Some(false)))
+    flakeless.record(Command("everything wiht path", Some(createElement), Some(Path(By.id("id"))), Map("key" -> "value"), Some("expected"), Some(List("expected", "expected2"))), Context(List("failures"), success = Some(false)))
 
+    //real world
     flakeless.record(Command("Click", Some(createElement), Some(By.id("id"))), Context(Nil, success = Some(true)))
     flakeless.record(Command("AssertElementListTextEquals", Some(createElement), Some(By.id("id")), expectedMany = Some(List("expected"))), Context(List("failures"), success = Some(false)))
 

@@ -19,6 +19,7 @@ import Maybe.Extra as MaybeExtra
 --TODO: render each by as a pill
 --TODO: render 'in' and 'expected' in grey to de-emphasis
 --TODO: share styles
+--TODO: do something more clever with spaced, build a list of Html and set all their styles
 
 type alias Model =
     { raw : String
@@ -86,8 +87,8 @@ renderCommand maybeCommand =
 renderExpected : Maybe String -> Maybe (List String) -> Html msg
 renderExpected expected expectedMany =
     case (expected, expectedMany) of
-        (Just e, _) -> text e
-        (_, Just me) -> text (toString me)
+        (Just e, _) -> span [style [ ("margin-right", "7px")]] [ span [style [ ("margin-right", "7px")]] [text "expected" ], text ("\"" ++ e ++ "\"") ]
+        (_, Just me) -> span [style [ ("margin-right", "7px")]] [ span [style [ ("margin-right", "7px")]] [text "expected" ], text (toString me) ]
         (_, _) -> nowt
 
 renderBys : List (List (String, String)) -> Html msg
