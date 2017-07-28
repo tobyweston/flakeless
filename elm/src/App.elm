@@ -35,8 +35,13 @@ view model =
 
 renderDataPoint : DataPoint -> Html msg
 renderDataPoint dataPoint =
-    li [] [
-    span [] [
+    let
+        success = False --Maybe.map (\c -> MaybeExtra.isJust c.success ) dataPoint.context |> Maybe.withDefault False
+        failed = False
+        color = if success then "#00cc00" else if failed then "#cc0000" else "grey"
+    in
+    li [ style [ ("color", color) ] ] [
+    span [ ] [
         span [style [ ("margin-right", "7px")]] [text dataPoint.when]
         , if MaybeExtra.isJust dataPoint.description then span [style [ ("margin-right", "7px")] ] [text (dataPoint.description |> Maybe.withDefault "") ] else nowt
         , if MaybeExtra.isJust dataPoint.command then span [style [ ("margin-right", "7px")] ] [text (dataPoint.command |> Maybe.map (toString) |> Maybe.withDefault "") ] else nowt

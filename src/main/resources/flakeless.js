@@ -9476,9 +9476,21 @@ var _user$project$DataPointCodec$decodeDataPointList = _elm_lang$core$Json_Decod
 
 var _user$project$Main$nowt = _elm_lang$html$Html$text('');
 var _user$project$Main$renderDataPoint = function (dataPoint) {
+	var failed = false;
+	var success = false;
+	var color = success ? '#00cc00' : (failed ? '#cc0000' : 'grey');
 	return A2(
 		_elm_lang$html$Html$li,
-		{ctor: '[]'},
+		{
+			ctor: '::',
+			_0: _elm_lang$html$Html_Attributes$style(
+				{
+					ctor: '::',
+					_0: {ctor: '_Tuple2', _0: 'color', _1: color},
+					_1: {ctor: '[]'}
+				}),
+			_1: {ctor: '[]'}
+		},
 		{
 			ctor: '::',
 			_0: A2(
