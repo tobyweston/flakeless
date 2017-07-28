@@ -8944,9 +8944,28 @@ var _user$project$Main$view = function (model) {
 		{ctor: '[]'},
 		{
 			ctor: '::',
-			_0: _elm_lang$html$Html$text(
-				_elm_lang$core$Basics$toString(model)),
-			_1: {ctor: '[]'}
+			_0: A2(
+				_elm_lang$html$Html$div,
+				{ctor: '[]'},
+				{
+					ctor: '::',
+					_0: _elm_lang$html$Html$text(
+						A2(_elm_lang$core$Maybe$withDefault, '', model.error)),
+					_1: {ctor: '[]'}
+				}),
+			_1: {
+				ctor: '::',
+				_0: A2(
+					_elm_lang$html$Html$hr,
+					{ctor: '[]'},
+					{ctor: '[]'}),
+				_1: {
+					ctor: '::',
+					_0: _elm_lang$html$Html$text(
+						_elm_lang$core$Basics$toString(model)),
+					_1: {ctor: '[]'}
+				}
+			}
 		});
 };
 var _user$project$Main$data = _elm_lang$core$Native_Platform.incomingPort('data', _elm_lang$core$Json_Decode$string);

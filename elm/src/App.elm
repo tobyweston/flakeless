@@ -27,7 +27,10 @@ init =
 view : Model -> Html Msg
 view model =
     div []
-        [ text (toString model) ]
+        [ div [] [text (model.error |> Maybe.withDefault "")]
+        , hr [] []
+        , text (toString model)
+        ]
 
 
 update : Msg -> Model -> ( Model, Cmd Msg )
