@@ -5,6 +5,7 @@ import Http exposing (..)
 import RemoteData exposing (..)
 import DataPointCodec exposing (..)
 import Json.Decode exposing (decodeString)
+import Maybe.Extra as MaybeExtra
 
 type alias Model =
     { raw : String
@@ -27,7 +28,7 @@ init =
 view : Model -> Html Msg
 view model =
     div []
-        [ div [] [text (model.error |> Maybe.withDefault "")]
+        [ if MaybeExtra.isJust model.error then div [] [text (model.error |> Maybe.withDefault "") ] else text ""
         , div [] [text (toString (model.dataPoints))]
         , hr [] []
         , text (toString model.raw)
