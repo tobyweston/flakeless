@@ -15,7 +15,9 @@ import Maybe.Extra as MaybeExtra
 --TODO: improve bys rendering (less map like)
 --TODO: show just the time element
 --TODO: maybe render failures on one line and quoted
-
+--TODO: render ticks and cross instead of whole line green/red
+--TODO: render each by as a pill
+--TODO: render 'in' and 'expected' in grey to de-emphasis
 
 type alias Model =
     { raw : String
