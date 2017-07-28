@@ -18,6 +18,7 @@ import Maybe.Extra as MaybeExtra
 --TODO: render ticks and cross instead of whole line green/red
 --TODO: render each by as a pill
 --TODO: render 'in' and 'expected' in grey to de-emphasis
+--TODO: share styles
 
 type alias Model =
     { raw : String
@@ -64,7 +65,7 @@ renderDataPoint dataPoint =
             span [ ] [
                 span [style [ ("margin-right", "7px")]] [text dataPoint.when]
                 , if MaybeExtra.isJust dataPoint.description then span [style [ ("margin-right", "7px")] ] [text (dataPoint.description |> Maybe.withDefault "") ] else nowt
-                , renderCommand dataPoint.command --then span [style [ ("margin-right", "7px")] ] [text (dataPoint.command |> Maybe.map (toString) |> Maybe.withDefault "") ] else nowt
+                , renderCommand dataPoint.command
                 , renderContext dataPoint.context
             ]
         ]
@@ -80,8 +81,6 @@ renderCommand maybeCommand =
             --TODO: whack me when done ....
             , div [style [ ("margin-right", "7px")]] [ text (toString command) ]
             ]
---        if List.isEmpty context.failures then nowt
---                        else ul [] (List.map (\f -> li [] [text f]) context.failures)
 
 renderBys : List (List (String, String)) -> Html msg
 renderBys bys =
