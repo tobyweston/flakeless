@@ -58,7 +58,12 @@ renderCommand : Maybe Command -> Html msg
 renderCommand maybeCommand =
     case maybeCommand of
         Nothing -> nowt
-        Just command -> text (toString command)
+        Just command -> span [] [
+            span [style [ ("margin-right", "7px")]] [text command.name]
+            , span [style [ ("margin-right", "7px")]] [ text (toString command.bys) ]
+            , span [style [ ("margin-right", "7px")]] [ span [style [ ("margin-right", "7px")]] [text "in" ], text (toString command.in_) ]
+            , div [style [ ("margin-right", "7px")]] [ text (toString command) ]
+            ]
 --        if List.isEmpty context.failures then nowt
 --                        else ul [] (List.map (\f -> li [] [text f]) context.failures)
 
