@@ -47,11 +47,12 @@ case class Command(name: String, in: Option[WebElement], by: Option[By],
   def report = {
     val inString = in.map(i => i.toString)
 
-    //TODO: this needs to recurse on Path, or disallow nested Path (slight pref for latter)
-    val bys = by.fold(Seq.empty[By]) {
-      case path: Path => path.bys
+    def flat(by: By): Seq[By] = by match {
+      case path: Path => path.bys.flatMap(flat)
       case b => Seq(b)
     }
+
+    val bys = by.fold(Seq.empty[By])(flat)
 
     ReportCommand(name, inString, bys, args, expected, expectedMany)
   }
