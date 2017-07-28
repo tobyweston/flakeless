@@ -8,6 +8,12 @@ import DataPointCodec exposing (..)
 import Json.Decode exposing (decodeString)
 import Maybe.Extra as MaybeExtra
 
+--TODO: image(s)
+--TODO: args
+--TODO: expected/expectedMany
+--TODO: improve in_ rendering (json to begin with)
+--TODO: improve bys rendering (less map like)
+
 type alias Model =
     { raw : String
     , dataPoints : List DataPoint
@@ -61,11 +67,17 @@ renderCommand maybeCommand =
         Just command -> span [] [
             span [style [ ("margin-right", "7px")]] [text command.name]
             , span [style [ ("margin-right", "7px")]] [ text (toString command.bys) ]
-            , span [style [ ("margin-right", "7px")]] [ span [style [ ("margin-right", "7px")]] [text "in" ], text (toString command.in_) ]
+            , renderIn command.in_
             , div [style [ ("margin-right", "7px")]] [ text (toString command) ]
             ]
 --        if List.isEmpty context.failures then nowt
 --                        else ul [] (List.map (\f -> li [] [text f]) context.failures)
+
+renderIn : Maybe String -> Html msg
+renderIn maybeIn =
+    case maybeIn of
+        Nothing -> nowt
+        Just in_ -> span [style [ ("margin-right", "7px")]] [ span [style [ ("margin-right", "7px")]] [text "in" ], text in_ ]
 
 renderContext : Maybe Context -> Html msg
 renderContext maybeContext =
