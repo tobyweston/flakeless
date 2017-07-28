@@ -20,7 +20,8 @@ import Maybe.Extra as MaybeExtra
 type alias Model =
     { raw : String
     , dataPoints : List DataPoint
-    , error : Maybe String}
+    , error : Maybe String
+    }
 
 
 type Msg
@@ -41,8 +42,11 @@ view model =
         div []
             [ if isError then div [] [text (model.error |> Maybe.withDefault "") ] else nowt
             , div [] (List.map (\dp -> renderDataPoint dp )model.dataPoints)
-            , hr [] []
-            , text ("raw:" ++ toString model.raw)
+            , if isError then div [] [
+                hr [] []
+                , text ("raw:" ++ toString model.raw)
+                ]
+                else nowt
             ]
 
 renderDataPoint : DataPoint -> Html msg

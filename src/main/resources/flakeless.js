@@ -9744,19 +9744,26 @@ var _user$project$Main$view = function (model) {
 						model.dataPoints)),
 				_1: {
 					ctor: '::',
-					_0: A2(
-						_elm_lang$html$Html$hr,
+					_0: isError ? A2(
+						_elm_lang$html$Html$div,
 						{ctor: '[]'},
-						{ctor: '[]'}),
-					_1: {
-						ctor: '::',
-						_0: _elm_lang$html$Html$text(
-							A2(
-								_elm_lang$core$Basics_ops['++'],
-								'raw:',
-								_elm_lang$core$Basics$toString(model.raw))),
-						_1: {ctor: '[]'}
-					}
+						{
+							ctor: '::',
+							_0: A2(
+								_elm_lang$html$Html$hr,
+								{ctor: '[]'},
+								{ctor: '[]'}),
+							_1: {
+								ctor: '::',
+								_0: _elm_lang$html$Html$text(
+									A2(
+										_elm_lang$core$Basics_ops['++'],
+										'raw:',
+										_elm_lang$core$Basics$toString(model.raw))),
+								_1: {ctor: '[]'}
+							}
+						}) : _user$project$Main$nowt,
+					_1: {ctor: '[]'}
 				}
 			}
 		});
