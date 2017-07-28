@@ -13,6 +13,9 @@ import Maybe.Extra as MaybeExtra
 --TODO: expected/expectedMany
 --TODO: improve in_ rendering (json to begin with)
 --TODO: improve bys rendering (less map like)
+--TODO: show just the time element
+--TODO: maybe render failures on one line and quoted
+
 
 type alias Model =
     { raw : String
@@ -66,12 +69,17 @@ renderCommand maybeCommand =
         Nothing -> nowt
         Just command -> span [] [
             span [style [ ("margin-right", "7px")]] [text command.name]
-            , span [style [ ("margin-right", "7px")]] [ text (toString command.bys) ]
+            , renderBys command.bys
             , renderIn command.in_
+            --TODO: whack me when done ....
             , div [style [ ("margin-right", "7px")]] [ text (toString command) ]
             ]
 --        if List.isEmpty context.failures then nowt
 --                        else ul [] (List.map (\f -> li [] [text f]) context.failures)
+
+renderBys : List (List (String, String)) -> Html msg
+renderBys bys =
+    if List.isEmpty bys then nowt else span [style [ ("margin-right", "7px")]] [ text (toString bys) ]
 
 renderIn : Maybe String -> Html msg
 renderIn maybeIn =

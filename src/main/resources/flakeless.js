@@ -9550,6 +9550,26 @@ var _user$project$Main$renderIn = function (maybeIn) {
 			});
 	}
 };
+var _user$project$Main$renderBys = function (bys) {
+	return _elm_lang$core$List$isEmpty(bys) ? _user$project$Main$nowt : A2(
+		_elm_lang$html$Html$span,
+		{
+			ctor: '::',
+			_0: _elm_lang$html$Html_Attributes$style(
+				{
+					ctor: '::',
+					_0: {ctor: '_Tuple2', _0: 'margin-right', _1: '7px'},
+					_1: {ctor: '[]'}
+				}),
+			_1: {ctor: '[]'}
+		},
+		{
+			ctor: '::',
+			_0: _elm_lang$html$Html$text(
+				_elm_lang$core$Basics$toString(bys)),
+			_1: {ctor: '[]'}
+		});
+};
 var _user$project$Main$renderCommand = function (maybeCommand) {
 	var _p3 = maybeCommand;
 	if (_p3.ctor === 'Nothing') {
@@ -9580,24 +9600,7 @@ var _user$project$Main$renderCommand = function (maybeCommand) {
 					}),
 				_1: {
 					ctor: '::',
-					_0: A2(
-						_elm_lang$html$Html$span,
-						{
-							ctor: '::',
-							_0: _elm_lang$html$Html_Attributes$style(
-								{
-									ctor: '::',
-									_0: {ctor: '_Tuple2', _0: 'margin-right', _1: '7px'},
-									_1: {ctor: '[]'}
-								}),
-							_1: {ctor: '[]'}
-						},
-						{
-							ctor: '::',
-							_0: _elm_lang$html$Html$text(
-								_elm_lang$core$Basics$toString(_p4.bys)),
-							_1: {ctor: '[]'}
-						}),
+					_0: _user$project$Main$renderBys(_p4.bys),
 					_1: {
 						ctor: '::',
 						_0: _user$project$Main$renderIn(_p4.in_),
