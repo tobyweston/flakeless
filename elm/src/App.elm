@@ -1,6 +1,7 @@
 port module Main exposing (..)
 
 import Html exposing (..)
+import Html.Attributes exposing (..)
 import Http exposing (..)
 import RemoteData exposing (..)
 import DataPointCodec exposing (..)
@@ -27,10 +28,21 @@ view : Model -> Html Msg
 view model =
     div []
         [ if MaybeExtra.isJust model.error then div [] [text (model.error |> Maybe.withDefault "") ] else text ""
-        , div [] [text (toString (model.dataPoints))]
+        , div [] (List.map (\dp -> renderDataPoint dp )model.dataPoints)
         , hr [] []
         , text ("raw:" ++ toString model.raw)
         ]
+
+renderDataPoint : DataPoint -> Html msg
+renderDataPoint dataPoint =
+    li [] [
+    span [] [
+        span [style [ ("margin-right", "5px")]] [text dataPoint.when]
+        ,span [style [ ("margin-right", "5px")] ] [text (dataPoint.description |> Maybe.withDefault "") ]
+        ,span [style [ ("margin-right", "5px")] ] [text (dataPoint.command |> Maybe.map (toString) |> Maybe.withDefault "") ]
+        ,span [style [ ("margin-right", "5px")] ] [text (dataPoint.context |> Maybe.map (toString) |> Maybe.withDefault "") ]
+    ]
+    ]
 
 
 update : Msg -> Model -> ( Model, Cmd Msg )
