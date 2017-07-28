@@ -11,7 +11,7 @@ type alias DataPoint =
     , when : String
     , description : Maybe String
     , command : Maybe Command
---    , context : Maybe Context
+    , context : Maybe Context
     }
 
 type alias Args =
@@ -43,7 +43,7 @@ decodeDataPoint =
         |> Json.Decode.Pipeline.required "when" (Json.Decode.string)
         |> Json.Decode.Pipeline.optional "description" (Json.Decode.maybe Json.Decode.string) Nothing
         |> Json.Decode.Pipeline.optional "command" (Json.Decode.maybe decodeDataPointCommand) Nothing
---        |> Json.Decode.Pipeline.required "context" (Json.Decode.maybe decodeDataPointContext)
+        |> Json.Decode.Pipeline.optional "context" (Json.Decode.maybe decodeDataPointContext) Nothing
 
 decodeDataPointCommandArgs : Json.Decode.Decoder Args
 decodeDataPointCommandArgs =

@@ -29,7 +29,7 @@ view model =
         [ if MaybeExtra.isJust model.error then div [] [text (model.error |> Maybe.withDefault "") ] else text ""
         , div [] [text (toString (model.dataPoints))]
         , hr [] []
-        , text (toString model.raw)
+        , text ("raw:" ++ toString model.raw)
         ]
 
 
