@@ -9,6 +9,7 @@ import org.openqa.selenium.{By, OutputType, TakesScreenshot}
 object Example extends App {
   def go {
     val flakeless = Flakeless(null)
+    flakeless.newFlight()
 
 //    flakeless.inflightAnnouncement("hello")
 //    flakeless.record(Command("command with expected", None, None, Map.empty, Some("expected")), Context())
