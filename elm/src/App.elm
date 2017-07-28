@@ -28,8 +28,9 @@ view : Model -> Html Msg
 view model =
     div []
         [ div [] [text (model.error |> Maybe.withDefault "")]
+        , div [] [text (toString (model.dataPoints))]
         , hr [] []
-        , text (toString model)
+        , text (toString model.raw)
         ]
 
 

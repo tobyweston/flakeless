@@ -9,7 +9,8 @@ import Dict as Dict
 type alias DataPoint =
     { flightNumber : Int
     , when : String
-    , command : Command
+    , description : Maybe String
+    , command : Maybe Command
     , context : Maybe Context
     }
 
@@ -22,8 +23,8 @@ type alias Command =
     , in_ : String
     , bys : List (List (String, String))
     , args : Args
-    , expected : String
-    , expectedMany : List String
+    , expected : Maybe String
+    , expectedMany : Maybe (List String)
     }
 
 type alias Context =
@@ -40,7 +41,8 @@ decodeDataPoint =
     Json.Decode.Pipeline.decode DataPoint
         |> Json.Decode.Pipeline.required "flightNumber" (Json.Decode.int)
         |> Json.Decode.Pipeline.required "when" (Json.Decode.string)
-        |> Json.Decode.Pipeline.required "command" (decodeDataPointCommand)
+        |> Json.Decode.Pipeline.required "description" (Json.Decode.maybe Json.Decode.string)
+        |> Json.Decode.Pipeline.required "command" (Json.Decode.maybe decodeDataPointCommand)
         |> Json.Decode.Pipeline.required "context" (Json.Decode.maybe decodeDataPointContext)
 
 decodeDataPointCommandArgs : Json.Decode.Decoder Args
@@ -55,8 +57,8 @@ decodeDataPointCommand =
         |> Json.Decode.Pipeline.required "in" (Json.Decode.string)
         |> Json.Decode.Pipeline.required "bys" (Json.Decode.list decodeBys)
         |> Json.Decode.Pipeline.required "args" (decodeDataPointCommandArgs)
-        |> Json.Decode.Pipeline.required "expected" (Json.Decode.string)
-        |> Json.Decode.Pipeline.required "expectedMany" (Json.Decode.list Json.Decode.string)
+        |> Json.Decode.Pipeline.required "expected" (Json.Decode.maybe Json.Decode.string)
+        |> Json.Decode.Pipeline.required "expectedMany" (Json.Decode.maybe (Json.Decode.list Json.Decode.string))
 
 
 decodeBys : Json.Decode.Decoder (List (String, String))

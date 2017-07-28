@@ -8865,9 +8865,9 @@ var _krisajenkins$remotedata$RemoteData$update = F2(
 	});
 
 var _user$project$DataPointCodec$decodeBys = _elm_lang$core$Json_Decode$keyValuePairs(_elm_lang$core$Json_Decode$string);
-var _user$project$DataPointCodec$DataPoint = F4(
-	function (a, b, c, d) {
-		return {flightNumber: a, when: b, command: c, context: d};
+var _user$project$DataPointCodec$DataPoint = F5(
+	function (a, b, c, d, e) {
+		return {flightNumber: a, when: b, description: c, command: d, context: e};
 	});
 var _user$project$DataPointCodec$Args = function (a) {
 	return {key: a};
@@ -8884,11 +8884,12 @@ var _user$project$DataPointCodec$Command = F6(
 var _user$project$DataPointCodec$decodeDataPointCommand = A3(
 	_NoRedInk$elm_decode_pipeline$Json_Decode_Pipeline$required,
 	'expectedMany',
-	_elm_lang$core$Json_Decode$list(_elm_lang$core$Json_Decode$string),
+	_elm_lang$core$Json_Decode$maybe(
+		_elm_lang$core$Json_Decode$list(_elm_lang$core$Json_Decode$string)),
 	A3(
 		_NoRedInk$elm_decode_pipeline$Json_Decode_Pipeline$required,
 		'expected',
-		_elm_lang$core$Json_Decode$string,
+		_elm_lang$core$Json_Decode$maybe(_elm_lang$core$Json_Decode$string),
 		A3(
 			_NoRedInk$elm_decode_pipeline$Json_Decode_Pipeline$required,
 			'args',
@@ -8926,16 +8927,20 @@ var _user$project$DataPointCodec$decodeDataPoint = A3(
 	A3(
 		_NoRedInk$elm_decode_pipeline$Json_Decode_Pipeline$required,
 		'command',
-		_user$project$DataPointCodec$decodeDataPointCommand,
+		_elm_lang$core$Json_Decode$maybe(_user$project$DataPointCodec$decodeDataPointCommand),
 		A3(
 			_NoRedInk$elm_decode_pipeline$Json_Decode_Pipeline$required,
-			'when',
-			_elm_lang$core$Json_Decode$string,
+			'description',
+			_elm_lang$core$Json_Decode$maybe(_elm_lang$core$Json_Decode$string),
 			A3(
 				_NoRedInk$elm_decode_pipeline$Json_Decode_Pipeline$required,
-				'flightNumber',
-				_elm_lang$core$Json_Decode$int,
-				_NoRedInk$elm_decode_pipeline$Json_Decode_Pipeline$decode(_user$project$DataPointCodec$DataPoint)))));
+				'when',
+				_elm_lang$core$Json_Decode$string,
+				A3(
+					_NoRedInk$elm_decode_pipeline$Json_Decode_Pipeline$required,
+					'flightNumber',
+					_elm_lang$core$Json_Decode$int,
+					_NoRedInk$elm_decode_pipeline$Json_Decode_Pipeline$decode(_user$project$DataPointCodec$DataPoint))))));
 var _user$project$DataPointCodec$decodeDataPointList = _elm_lang$core$Json_Decode$list(_user$project$DataPointCodec$decodeDataPoint);
 
 var _user$project$Main$view = function (model) {
@@ -8956,14 +8961,26 @@ var _user$project$Main$view = function (model) {
 			_1: {
 				ctor: '::',
 				_0: A2(
-					_elm_lang$html$Html$hr,
+					_elm_lang$html$Html$div,
 					{ctor: '[]'},
-					{ctor: '[]'}),
+					{
+						ctor: '::',
+						_0: _elm_lang$html$Html$text(
+							_elm_lang$core$Basics$toString(model.dataPoints)),
+						_1: {ctor: '[]'}
+					}),
 				_1: {
 					ctor: '::',
-					_0: _elm_lang$html$Html$text(
-						_elm_lang$core$Basics$toString(model)),
-					_1: {ctor: '[]'}
+					_0: A2(
+						_elm_lang$html$Html$hr,
+						{ctor: '[]'},
+						{ctor: '[]'}),
+					_1: {
+						ctor: '::',
+						_0: _elm_lang$html$Html$text(
+							_elm_lang$core$Basics$toString(model.raw)),
+						_1: {ctor: '[]'}
+					}
 				}
 			}
 		});
