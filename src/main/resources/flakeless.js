@@ -9439,8 +9439,8 @@ var _user$project$DataPointCodec$Context = F2(
 	function (a, b) {
 		return {failures: a, success: b};
 	});
-var _user$project$DataPointCodec$decodeDataPointContext = A3(
-	_NoRedInk$elm_decode_pipeline$Json_Decode_Pipeline$required,
+var _user$project$DataPointCodec$decodeDataPointContext = A4(
+	_NoRedInk$elm_decode_pipeline$Json_Decode_Pipeline$optional,
 	'success',
 	_elm_lang$core$Json_Decode$maybe(
 		A2(
@@ -9449,6 +9449,7 @@ var _user$project$DataPointCodec$decodeDataPointContext = A3(
 				return _elm_lang$core$Native_Utils.eq(v, 'true');
 			},
 			_elm_lang$core$Json_Decode$string)),
+	_elm_lang$core$Maybe$Nothing,
 	A3(
 		_NoRedInk$elm_decode_pipeline$Json_Decode_Pipeline$required,
 		'failures',

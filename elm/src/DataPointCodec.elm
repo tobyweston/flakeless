@@ -70,4 +70,4 @@ decodeDataPointContext : Json.Decode.Decoder Context
 decodeDataPointContext =
     Json.Decode.Pipeline.decode Context
         |> Json.Decode.Pipeline.required "failures" (Json.Decode.list Json.Decode.string)
-        |> Json.Decode.Pipeline.required "success" (Json.Decode.maybe (Json.Decode.map (\v -> v == "true") Json.Decode.string))
+        |> Json.Decode.Pipeline.optional "success" (Json.Decode.maybe (Json.Decode.map (\v -> v == "true") Json.Decode.string)) Nothing
