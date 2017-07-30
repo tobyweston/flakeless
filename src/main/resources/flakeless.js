@@ -11357,11 +11357,14 @@ var _user$project$Main$renderBys = function (bys) {
 			_1: {ctor: '[]'}
 		},
 		A2(
-			_elm_lang$core$List$map,
-			function (b) {
-				return _user$project$Main$renderBy(b);
-			},
-			bys));
+			_elm_lang$core$List$intersperse,
+			_elm_lang$html$Html$text(' -> '),
+			A2(
+				_elm_lang$core$List$map,
+				function (b) {
+					return _user$project$Main$renderBy(b);
+				},
+				bys)));
 };
 var _user$project$Main$renderExpected = F2(
 	function (expected, expectedMany) {
