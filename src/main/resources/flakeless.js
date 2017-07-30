@@ -11343,7 +11343,7 @@ var _user$project$Main$renderBy = function (by) {
 			}
 		});
 };
-var _user$project$Main$gap = {ctor: '_Tuple2', _0: 'margin-right', _1: '6px'};
+var _user$project$Main$gapRight = {ctor: '_Tuple2', _0: 'margin-right', _1: '5px'};
 var _user$project$Main$renderExpected = F2(
 	function (expected, expectedMany) {
 		var _p3 = {ctor: '_Tuple2', _0: expected, _1: expectedMany};
@@ -11358,7 +11358,7 @@ var _user$project$Main$renderExpected = F2(
 						_0: _elm_lang$html$Html_Attributes$style(
 							{
 								ctor: '::',
-								_0: _user$project$Main$gap,
+								_0: _user$project$Main$gapRight,
 								_1: {
 									ctor: '::',
 									_0: {ctor: '_Tuple2', _0: 'font-size', _1: 'smaller'},
@@ -11377,7 +11377,7 @@ var _user$project$Main$renderExpected = F2(
 							_0: _elm_lang$html$Html_Attributes$style(
 								{
 									ctor: '::',
-									_0: _user$project$Main$gap,
+									_0: _user$project$Main$gapRight,
 									_1: {ctor: '[]'}
 								}),
 							_1: {ctor: '[]'}
@@ -11409,7 +11409,7 @@ var _user$project$Main$renderExpected = F2(
 							_0: _elm_lang$html$Html_Attributes$style(
 								{
 									ctor: '::',
-									_0: _user$project$Main$gap,
+									_0: _user$project$Main$gapRight,
 									_1: {
 										ctor: '::',
 										_0: {ctor: '_Tuple2', _0: 'font-size', _1: 'smaller'},
@@ -11428,7 +11428,7 @@ var _user$project$Main$renderExpected = F2(
 								_0: _elm_lang$html$Html_Attributes$style(
 									{
 										ctor: '::',
-										_0: _user$project$Main$gap,
+										_0: _user$project$Main$gapRight,
 										_1: {ctor: '[]'}
 									}),
 								_1: {ctor: '[]'}
@@ -11458,7 +11458,7 @@ var _user$project$Main$renderBys = function (bys) {
 			_0: _elm_lang$html$Html_Attributes$style(
 				{
 					ctor: '::',
-					_0: _user$project$Main$gap,
+					_0: _user$project$Main$gapRight,
 					_1: {ctor: '[]'}
 				}),
 			_1: {ctor: '[]'}
@@ -11485,7 +11485,7 @@ var _user$project$Main$renderIn = function (maybeIn) {
 				_0: _elm_lang$html$Html_Attributes$style(
 					{
 						ctor: '::',
-						_0: _user$project$Main$gap,
+						_0: _user$project$Main$gapRight,
 						_1: {ctor: '[]'}
 					}),
 				_1: {ctor: '[]'}
@@ -11499,7 +11499,7 @@ var _user$project$Main$renderIn = function (maybeIn) {
 						_0: _elm_lang$html$Html_Attributes$style(
 							{
 								ctor: '::',
-								_0: _user$project$Main$gap,
+								_0: _user$project$Main$gapRight,
 								_1: {ctor: '[]'}
 							}),
 						_1: {ctor: '[]'}
@@ -11535,7 +11535,7 @@ var _user$project$Main$renderCommand = function (maybeCommand) {
 						_0: _elm_lang$html$Html_Attributes$style(
 							{
 								ctor: '::',
-								_0: _user$project$Main$gap,
+								_0: _user$project$Main$gapRight,
 								_1: {ctor: '[]'}
 							}),
 						_1: {ctor: '[]'}
@@ -11592,22 +11592,15 @@ var _user$project$Main$renderDataPoint = function (dataPoint) {
 							_0: _elm_lang$html$Html_Attributes$style(
 								{
 									ctor: '::',
-									_0: {ctor: '_Tuple2', _0: 'color', _1: color},
-									_1: {
-										ctor: '::',
-										_0: {ctor: '_Tuple2', _0: 'font-weight', _1: 'bold'},
-										_1: {
-											ctor: '::',
-											_0: _user$project$Main$gap,
-											_1: {ctor: '[]'}
-										}
-									}
+									_0: _user$project$Main$gapRight,
+									_1: {ctor: '[]'}
 								}),
 							_1: {ctor: '[]'}
 						},
 						{
 							ctor: '::',
-							_0: _elm_lang$html$Html$text('*'),
+							_0: _elm_lang$html$Html$text(
+								A3(_rluiten$elm_date_extra$Date_Extra_Format$format, _rluiten$elm_date_extra$Date_Extra_Config_Config_en_gb$config, '%H:%M:%S.%L', dataPoint.when)),
 							_1: {ctor: '[]'}
 						}),
 					_1: {
@@ -11619,15 +11612,22 @@ var _user$project$Main$renderDataPoint = function (dataPoint) {
 								_0: _elm_lang$html$Html_Attributes$style(
 									{
 										ctor: '::',
-										_0: _user$project$Main$gap,
-										_1: {ctor: '[]'}
+										_0: {ctor: '_Tuple2', _0: 'color', _1: color},
+										_1: {
+											ctor: '::',
+											_0: {ctor: '_Tuple2', _0: 'font-weight', _1: 'bold'},
+											_1: {
+												ctor: '::',
+												_0: _user$project$Main$gapRight,
+												_1: {ctor: '[]'}
+											}
+										}
 									}),
 								_1: {ctor: '[]'}
 							},
 							{
 								ctor: '::',
-								_0: _elm_lang$html$Html$text(
-									A3(_rluiten$elm_date_extra$Date_Extra_Format$format, _rluiten$elm_date_extra$Date_Extra_Config_Config_en_gb$config, '%H:%M:%S.%L', dataPoint.when)),
+								_0: _elm_lang$html$Html$text('*'),
 								_1: {ctor: '[]'}
 							}),
 						_1: {
@@ -11639,7 +11639,7 @@ var _user$project$Main$renderDataPoint = function (dataPoint) {
 									_0: _elm_lang$html$Html_Attributes$style(
 										{
 											ctor: '::',
-											_0: _user$project$Main$gap,
+											_0: _user$project$Main$gapRight,
 											_1: {ctor: '[]'}
 										}),
 									_1: {ctor: '[]'}

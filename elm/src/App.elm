@@ -66,23 +66,23 @@ renderDataPoint dataPoint =
     in
         div [ ] [
             span [ ] [
-                span [style [ ("color", color), ("font-weight", "bold"), gap ]] [ text "*"]
-                , span [style [ gap ]] [text (DateFormat.format config "%H:%M:%S.%L" dataPoint.when)]
-                , if MaybeExtra.isJust dataPoint.description then span [style [ gap ] ] [text (dataPoint.description |> Maybe.withDefault "") ] else nowt
+                span [style [ gapRight ]] [text (DateFormat.format config "%H:%M:%S.%L" dataPoint.when)]
+                , span [style [ ("color", color), ("font-weight", "bold"), gapRight ]] [ text "*"]
+                , if MaybeExtra.isJust dataPoint.description then span [style [ gapRight ] ] [text (dataPoint.description |> Maybe.withDefault "") ] else nowt
                 , renderCommand dataPoint.command
                 , renderContext dataPoint.context
             ]
         ]
 
-gap : (String, String)
-gap = ("margin-right", "6px")
+gapRight : (String, String)
+gapRight = ("margin-right", "5px")
 
 renderCommand : Maybe Command -> Html msg
 renderCommand maybeCommand =
     case maybeCommand of
         Nothing -> nowt
         Just command -> span [] [
-            span [style [ gap ]] [text command.name]
+            span [style [ gapRight ]] [text command.name]
             , renderBys command.bys
             , renderIn command.in_
             , renderExpected command.expected command.expectedMany
@@ -93,13 +93,13 @@ renderCommand maybeCommand =
 renderExpected : Maybe String -> Maybe (List String) -> Html msg
 renderExpected expected expectedMany =
     case (expected, expectedMany) of
-        (Just e, _) -> span [class "lozenge", style [ gap, ("font-size", "smaller")]] [ span [style [ gap ]] [text "expected:" ], text ("\"" ++ e ++ "\"") ]
-        (_, Just me) -> span [class "lozenge", style [ gap, ("font-size", "smaller")]] [ span [style [ gap ]] [text "expected:" ], text (toString me) ]
+        (Just e, _) -> span [class "lozenge", style [ gapRight, ("font-size", "smaller")]] [ span [style [ gapRight ]] [text "expected:" ], text ("\"" ++ e ++ "\"") ]
+        (_, Just me) -> span [class "lozenge", style [ gapRight, ("font-size", "smaller")]] [ span [style [ gapRight ]] [text "expected:" ], text (toString me) ]
         (_, _) -> nowt
 
 renderBys : List (List (String, String)) -> Html msg
 renderBys bys =
-    if List.isEmpty bys then nowt else span [style [ gap ]]
+    if List.isEmpty bys then nowt else span [style [ gapRight ]]
       ((List.map (\b -> renderBy b) bys) |> List.intersperse (text " -> "))
 
 
@@ -114,7 +114,7 @@ renderIn : Maybe String -> Html msg
 renderIn maybeIn =
     case maybeIn of
         Nothing -> nowt
-        Just in_ -> span [style [ gap ]] [ span [style [ gap ]] [text "in:" ], text in_ ]
+        Just in_ -> span [style [ gapRight ]] [ span [style [ gapRight ]] [text "in:" ], text in_ ]
 
 renderContext : Maybe Context -> Html msg
 renderContext maybeContext =
