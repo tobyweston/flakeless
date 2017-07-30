@@ -77,6 +77,12 @@ renderDataPoint dataPoint =
 gapRight : (String, String)
 gapRight = ("margin-right", "5px")
 
+grey : (String, String)
+grey = ("color", "grey")
+
+smaller : (String, String)
+smaller = ("font-size", "smaller")
+
 renderCommand : Maybe Command -> Html msg
 renderCommand maybeCommand =
     case maybeCommand of
@@ -90,11 +96,13 @@ renderCommand maybeCommand =
 --            , div [style [ ("margin-right", "7px")]] [ text (toString command) ]
             ]
 
+--class "lozenge",
+
 renderExpected : Maybe String -> Maybe (List String) -> Html msg
 renderExpected expected expectedMany =
     case (expected, expectedMany) of
-        (Just e, _) -> span [class "lozenge", style [ gapRight, ("font-size", "smaller")]] [ span [style [ gapRight ]] [text "expected:" ], text ("\"" ++ e ++ "\"") ]
-        (_, Just me) -> span [class "lozenge", style [ gapRight, ("font-size", "smaller")]] [ span [style [ gapRight ]] [text "expected:" ], text (toString me) ]
+        (Just e, _) -> span [style [ gapRight, smaller ]] [ span [style [ gapRight ]] [text "expected:" ], text ("\"" ++ e ++ "\"") ]
+        (_, Just me) -> span [style [ gapRight, smaller ]] [ span [style [ gapRight ]] [text "expected:" ], text (toString me) ]
         (_, _) -> nowt
 
 renderBys : List (List (String, String)) -> Html msg
@@ -108,13 +116,13 @@ renderBy by =
     let
       (key, value) = List.head by |> Maybe.withDefault ("???", "???")
     in
-      span [style [ ("font-size", "smaller") ]] [span [style [ ("font-size", "smaller"), ("color", "grey") ]] [text (key ++ ": ")], span [] [text value]]
+      span [style [ smaller ]] [span [style [ smaller, grey ]] [text (key ++ ": ")], span [] [text value]]
 
 renderIn : Maybe String -> Html msg
 renderIn maybeIn =
     case maybeIn of
         Nothing -> nowt
-        Just in_ -> span [style [ gapRight ]] [ span [style [ gapRight ]] [text "in:" ], text in_ ]
+        Just in_ -> span [style [ gapRight, smaller ]] [ span [style [ gapRight, grey, smaller ]] [text "in:" ], text in_ ]
 
 renderContext : Maybe Context -> Html msg
 renderContext maybeContext =

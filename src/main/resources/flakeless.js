@@ -11286,6 +11286,8 @@ var _user$project$Main$renderContext = function (maybeContext) {
 				_p1.failures));
 	}
 };
+var _user$project$Main$smaller = {ctor: '_Tuple2', _0: 'font-size', _1: 'smaller'};
+var _user$project$Main$grey = {ctor: '_Tuple2', _0: 'color', _1: 'grey'};
 var _user$project$Main$renderBy = function (by) {
 	var _p2 = A2(
 		_elm_lang$core$Maybe$withDefault,
@@ -11300,7 +11302,7 @@ var _user$project$Main$renderBy = function (by) {
 			_0: _elm_lang$html$Html_Attributes$style(
 				{
 					ctor: '::',
-					_0: {ctor: '_Tuple2', _0: 'font-size', _1: 'smaller'},
+					_0: _user$project$Main$smaller,
 					_1: {ctor: '[]'}
 				}),
 			_1: {ctor: '[]'}
@@ -11314,10 +11316,10 @@ var _user$project$Main$renderBy = function (by) {
 					_0: _elm_lang$html$Html_Attributes$style(
 						{
 							ctor: '::',
-							_0: {ctor: '_Tuple2', _0: 'font-size', _1: 'smaller'},
+							_0: _user$project$Main$smaller,
 							_1: {
 								ctor: '::',
-								_0: {ctor: '_Tuple2', _0: 'color', _1: 'grey'},
+								_0: _user$project$Main$grey,
 								_1: {ctor: '[]'}
 							}
 						}),
@@ -11352,21 +11354,17 @@ var _user$project$Main$renderExpected = F2(
 				_elm_lang$html$Html$span,
 				{
 					ctor: '::',
-					_0: _elm_lang$html$Html_Attributes$class('lozenge'),
-					_1: {
-						ctor: '::',
-						_0: _elm_lang$html$Html_Attributes$style(
-							{
+					_0: _elm_lang$html$Html_Attributes$style(
+						{
+							ctor: '::',
+							_0: _user$project$Main$gapRight,
+							_1: {
 								ctor: '::',
-								_0: _user$project$Main$gapRight,
-								_1: {
-									ctor: '::',
-									_0: {ctor: '_Tuple2', _0: 'font-size', _1: 'smaller'},
-									_1: {ctor: '[]'}
-								}
-							}),
-						_1: {ctor: '[]'}
-					}
+								_0: _user$project$Main$smaller,
+								_1: {ctor: '[]'}
+							}
+						}),
+					_1: {ctor: '[]'}
 				},
 				{
 					ctor: '::',
@@ -11403,21 +11401,17 @@ var _user$project$Main$renderExpected = F2(
 					_elm_lang$html$Html$span,
 					{
 						ctor: '::',
-						_0: _elm_lang$html$Html_Attributes$class('lozenge'),
-						_1: {
-							ctor: '::',
-							_0: _elm_lang$html$Html_Attributes$style(
-								{
+						_0: _elm_lang$html$Html_Attributes$style(
+							{
+								ctor: '::',
+								_0: _user$project$Main$gapRight,
+								_1: {
 									ctor: '::',
-									_0: _user$project$Main$gapRight,
-									_1: {
-										ctor: '::',
-										_0: {ctor: '_Tuple2', _0: 'font-size', _1: 'smaller'},
-										_1: {ctor: '[]'}
-									}
-								}),
-							_1: {ctor: '[]'}
-						}
+									_0: _user$project$Main$smaller,
+									_1: {ctor: '[]'}
+								}
+							}),
+						_1: {ctor: '[]'}
 					},
 					{
 						ctor: '::',
@@ -11486,7 +11480,11 @@ var _user$project$Main$renderIn = function (maybeIn) {
 					{
 						ctor: '::',
 						_0: _user$project$Main$gapRight,
-						_1: {ctor: '[]'}
+						_1: {
+							ctor: '::',
+							_0: _user$project$Main$smaller,
+							_1: {ctor: '[]'}
+						}
 					}),
 				_1: {ctor: '[]'}
 			},
@@ -11500,7 +11498,15 @@ var _user$project$Main$renderIn = function (maybeIn) {
 							{
 								ctor: '::',
 								_0: _user$project$Main$gapRight,
-								_1: {ctor: '[]'}
+								_1: {
+									ctor: '::',
+									_0: _user$project$Main$grey,
+									_1: {
+										ctor: '::',
+										_0: _user$project$Main$smaller,
+										_1: {ctor: '[]'}
+									}
+								}
 							}),
 						_1: {ctor: '[]'}
 					},
