@@ -11297,16 +11297,7 @@ var _user$project$Main$renderBy = function (by) {
 	var value = _p2._1;
 	return A2(
 		_elm_lang$html$Html$span,
-		{
-			ctor: '::',
-			_0: _elm_lang$html$Html_Attributes$style(
-				{
-					ctor: '::',
-					_0: _user$project$Main$smaller,
-					_1: {ctor: '[]'}
-				}),
-			_1: {ctor: '[]'}
-		},
+		{ctor: '[]'},
 		{
 			ctor: '::',
 			_0: A2(
@@ -11489,17 +11480,41 @@ var _user$project$Main$renderBys = function (bys) {
 		_elm_lang$html$Html$span,
 		{
 			ctor: '::',
-			_0: _elm_lang$html$Html_Attributes$style(
-				{
-					ctor: '::',
-					_0: _user$project$Main$gapRight,
-					_1: {ctor: '[]'}
-				}),
-			_1: {ctor: '[]'}
+			_0: _elm_lang$html$Html_Attributes$class('lozenge'),
+			_1: {
+				ctor: '::',
+				_0: _elm_lang$html$Html_Attributes$style(
+					{
+						ctor: '::',
+						_0: _user$project$Main$smaller,
+						_1: {
+							ctor: '::',
+							_0: _user$project$Main$gapRight,
+							_1: {ctor: '[]'}
+						}
+					}),
+				_1: {ctor: '[]'}
+			}
 		},
 		A2(
 			_elm_lang$core$List$intersperse,
-			_elm_lang$html$Html$text(' -> '),
+			A2(
+				_elm_lang$html$Html$span,
+				{
+					ctor: '::',
+					_0: _elm_lang$html$Html_Attributes$style(
+						{
+							ctor: '::',
+							_0: _user$project$Main$smaller,
+							_1: {ctor: '[]'}
+						}),
+					_1: {ctor: '[]'}
+				},
+				{
+					ctor: '::',
+					_0: _elm_lang$html$Html$text(' > '),
+					_1: {ctor: '[]'}
+				}),
 			A2(
 				_elm_lang$core$List$map,
 				function (b) {
@@ -11582,7 +11597,11 @@ var _user$project$Main$renderCommand = function (maybeCommand) {
 							{
 								ctor: '::',
 								_0: _user$project$Main$gapRight,
-								_1: {ctor: '[]'}
+								_1: {
+									ctor: '::',
+									_0: _user$project$Main$smaller,
+									_1: {ctor: '[]'}
+								}
 							}),
 						_1: {ctor: '[]'}
 					},
@@ -11593,7 +11612,23 @@ var _user$project$Main$renderCommand = function (maybeCommand) {
 					}),
 				_1: {
 					ctor: '::',
-					_0: _user$project$Main$renderBys(_p6.bys),
+					_0: A2(
+						_elm_lang$html$Html$span,
+						{
+							ctor: '::',
+							_0: _elm_lang$html$Html_Attributes$style(
+								{
+									ctor: '::',
+									_0: _user$project$Main$smaller,
+									_1: {ctor: '[]'}
+								}),
+							_1: {ctor: '[]'}
+						},
+						{
+							ctor: '::',
+							_0: _user$project$Main$renderBys(_p6.bys),
+							_1: {ctor: '[]'}
+						}),
 					_1: {
 						ctor: '::',
 						_0: _user$project$Main$renderIn(_p6.in_),
@@ -11623,7 +11658,16 @@ var _user$project$Main$renderDataPoint = function (dataPoint) {
 	}();
 	return A2(
 		_elm_lang$html$Html$div,
-		{ctor: '[]'},
+		{
+			ctor: '::',
+			_0: _elm_lang$html$Html_Attributes$style(
+				{
+					ctor: '::',
+					_0: {ctor: '_Tuple2', _0: 'min-height', _1: '20px'},
+					_1: {ctor: '[]'}
+				}),
+			_1: {ctor: '[]'}
+		},
 		{
 			ctor: '::',
 			_0: A2(

@@ -71,6 +71,7 @@ object Report {
       case t: Exception => System.err.println("*** Failed to write report something bad happened ***\n")
     }
 
+    //TODO: might be able to kill the lozenge now ...
     def htmlContent(when: Long, flakeless: Flakeless, data: String) =
 s"""
   |<html>
@@ -79,7 +80,7 @@ s"""
   |.lozenge {
   |  background-color: #fff;
   |  border: 1px solid #CCC;
-  |  padding: 2px 4px;
+  |  padding: 1px 4px;
   |  /*font-weight: bold;*/
   |
   |  -webkit-border-radius: 3px;

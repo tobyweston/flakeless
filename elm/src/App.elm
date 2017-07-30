@@ -64,7 +64,7 @@ renderDataPoint dataPoint =
                         Nothing -> "#cccc00"
                         Just success -> if success then "#00cc00" else "#cc0000"
     in
-        div [ ] [
+        div [ style [ ("min-height", "20px") ] ] [
             span [ ] [
                 span [style [ gapRight, smaller, grey ]] [text (DateFormat.format config "%H:%M:%S.%L" dataPoint.when)]
                 , span [style [ ("color", color), ("font-weight", "bold"), gapRight ]] [ text "*"]
@@ -88,8 +88,8 @@ renderCommand maybeCommand =
     case maybeCommand of
         Nothing -> nowt
         Just command -> span [] [
-            span [style [ gapRight ]] [text command.name]
-            , renderBys command.bys
+            span [style [ gapRight, smaller ]] [text command.name]
+            , span [style [smaller]] [renderBys command.bys]
             , renderIn command.in_
             , renderExpected command.expected command.expectedMany
             --TODO: whack me when done ....
@@ -107,8 +107,8 @@ renderExpected expected expectedMany =
 
 renderBys : List (List (String, String)) -> Html msg
 renderBys bys =
-    if List.isEmpty bys then nowt else span [style [ gapRight ]]
-      ((List.map (\b -> renderBy b) bys) |> List.intersperse (text " -> "))
+    if List.isEmpty bys then nowt else span [class "lozenge" ,style [ smaller, gapRight ]]
+      ((List.map (\b -> renderBy b) bys) |> List.intersperse (span [style [ smaller ]] [text " > "]))
 
 
 renderBy : List (String, String) -> Html msg
@@ -116,7 +116,7 @@ renderBy by =
     let
       (key, value) = List.head by |> Maybe.withDefault ("???", "???")
     in
-      span [style [ smaller ]] [span [style [ smaller, grey ]] [text (key ++ ": ")], span [] [text value]]
+      span [] [span [style [ smaller, grey ]] [text (key ++ ": ")], span [] [text value]]
 
 renderIn : Maybe String -> Html msg
 renderIn maybeIn =
