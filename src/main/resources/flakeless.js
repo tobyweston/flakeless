@@ -11382,7 +11382,27 @@ var _user$project$Main$renderExpected = F2(
 						},
 						{
 							ctor: '::',
-							_0: _elm_lang$html$Html$text('expected:'),
+							_0: A2(
+								_elm_lang$html$Html$span,
+								{
+									ctor: '::',
+									_0: _elm_lang$html$Html_Attributes$style(
+										{
+											ctor: '::',
+											_0: _user$project$Main$smaller,
+											_1: {
+												ctor: '::',
+												_0: _user$project$Main$grey,
+												_1: {ctor: '[]'}
+											}
+										}),
+									_1: {ctor: '[]'}
+								},
+								{
+									ctor: '::',
+									_0: _elm_lang$html$Html$text('expected:'),
+									_1: {ctor: '[]'}
+								}),
 							_1: {ctor: '[]'}
 						}),
 					_1: {
@@ -11429,7 +11449,27 @@ var _user$project$Main$renderExpected = F2(
 							},
 							{
 								ctor: '::',
-								_0: _elm_lang$html$Html$text('expected:'),
+								_0: A2(
+									_elm_lang$html$Html$span,
+									{
+										ctor: '::',
+										_0: _elm_lang$html$Html_Attributes$style(
+											{
+												ctor: '::',
+												_0: _user$project$Main$smaller,
+												_1: {
+													ctor: '::',
+													_0: _user$project$Main$grey,
+													_1: {ctor: '[]'}
+												}
+											}),
+										_1: {ctor: '[]'}
+									},
+									{
+										ctor: '::',
+										_0: _elm_lang$html$Html$text('expected:'),
+										_1: {ctor: '[]'}
+									}),
 								_1: {ctor: '[]'}
 							}),
 						_1: {
@@ -11599,7 +11639,15 @@ var _user$project$Main$renderDataPoint = function (dataPoint) {
 								{
 									ctor: '::',
 									_0: _user$project$Main$gapRight,
-									_1: {ctor: '[]'}
+									_1: {
+										ctor: '::',
+										_0: _user$project$Main$smaller,
+										_1: {
+											ctor: '::',
+											_0: _user$project$Main$grey,
+											_1: {ctor: '[]'}
+										}
+									}
 								}),
 							_1: {ctor: '[]'}
 						},

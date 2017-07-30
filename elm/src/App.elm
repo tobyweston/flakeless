@@ -66,7 +66,7 @@ renderDataPoint dataPoint =
     in
         div [ ] [
             span [ ] [
-                span [style [ gapRight ]] [text (DateFormat.format config "%H:%M:%S.%L" dataPoint.when)]
+                span [style [ gapRight, smaller, grey ]] [text (DateFormat.format config "%H:%M:%S.%L" dataPoint.when)]
                 , span [style [ ("color", color), ("font-weight", "bold"), gapRight ]] [ text "*"]
                 , if MaybeExtra.isJust dataPoint.description then span [style [ gapRight ] ] [text (dataPoint.description |> Maybe.withDefault "") ] else nowt
                 , renderCommand dataPoint.command
@@ -101,8 +101,8 @@ renderCommand maybeCommand =
 renderExpected : Maybe String -> Maybe (List String) -> Html msg
 renderExpected expected expectedMany =
     case (expected, expectedMany) of
-        (Just e, _) -> span [style [ gapRight, smaller ]] [ span [style [ gapRight ]] [text "expected:" ], text ("\"" ++ e ++ "\"") ]
-        (_, Just me) -> span [style [ gapRight, smaller ]] [ span [style [ gapRight ]] [text "expected:" ], text (toString me) ]
+        (Just e, _) -> span [style [ gapRight, smaller ]] [ span [style [ gapRight ]] [span [style [smaller, grey ]] [text "expected:"] ], text ("\"" ++ e ++ "\"") ]
+        (_, Just me) -> span [style [ gapRight, smaller ]] [ span [style [ gapRight ]] [span [style [smaller, grey] ] [text "expected:"] ], text (toString me) ]
         (_, _) -> nowt
 
 renderBys : List (List (String, String)) -> Html msg
