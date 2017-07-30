@@ -64,9 +64,10 @@ renderDataPoint dataPoint =
                         Nothing -> "#cccc00"
                         Just success -> if success then "#00cc00" else "#cc0000"
     in
-        li [ style [ ("color", color) ] ] [
+        div [ ] [
             span [ ] [
-                span [style [ gap ]] [text (DateFormat.format config "%H:%M:%S.%L" dataPoint.when)]
+                span [style [ ("color", color), ("font-weight", "bold"), gap ]] [ text "*"]
+                , span [style [ gap ]] [text (DateFormat.format config "%H:%M:%S.%L" dataPoint.when)]
                 , if MaybeExtra.isJust dataPoint.description then span [style [ gap ] ] [text (dataPoint.description |> Maybe.withDefault "") ] else nowt
                 , renderCommand dataPoint.command
                 , renderContext dataPoint.context

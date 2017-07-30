@@ -11576,17 +11576,8 @@ var _user$project$Main$renderDataPoint = function (dataPoint) {
 		}
 	}();
 	return A2(
-		_elm_lang$html$Html$li,
-		{
-			ctor: '::',
-			_0: _elm_lang$html$Html_Attributes$style(
-				{
-					ctor: '::',
-					_0: {ctor: '_Tuple2', _0: 'color', _1: color},
-					_1: {ctor: '[]'}
-				}),
-			_1: {ctor: '[]'}
-		},
+		_elm_lang$html$Html$div,
+		{ctor: '[]'},
 		{
 			ctor: '::',
 			_0: A2(
@@ -11601,20 +11592,27 @@ var _user$project$Main$renderDataPoint = function (dataPoint) {
 							_0: _elm_lang$html$Html_Attributes$style(
 								{
 									ctor: '::',
-									_0: _user$project$Main$gap,
-									_1: {ctor: '[]'}
+									_0: {ctor: '_Tuple2', _0: 'color', _1: color},
+									_1: {
+										ctor: '::',
+										_0: {ctor: '_Tuple2', _0: 'font-weight', _1: 'bold'},
+										_1: {
+											ctor: '::',
+											_0: _user$project$Main$gap,
+											_1: {ctor: '[]'}
+										}
+									}
 								}),
 							_1: {ctor: '[]'}
 						},
 						{
 							ctor: '::',
-							_0: _elm_lang$html$Html$text(
-								A3(_rluiten$elm_date_extra$Date_Extra_Format$format, _rluiten$elm_date_extra$Date_Extra_Config_Config_en_gb$config, '%H:%M:%S.%L', dataPoint.when)),
+							_0: _elm_lang$html$Html$text('*'),
 							_1: {ctor: '[]'}
 						}),
 					_1: {
 						ctor: '::',
-						_0: _elm_community$maybe_extra$Maybe_Extra$isJust(dataPoint.description) ? A2(
+						_0: A2(
 							_elm_lang$html$Html$span,
 							{
 								ctor: '::',
@@ -11629,16 +11627,37 @@ var _user$project$Main$renderDataPoint = function (dataPoint) {
 							{
 								ctor: '::',
 								_0: _elm_lang$html$Html$text(
-									A2(_elm_lang$core$Maybe$withDefault, '', dataPoint.description)),
+									A3(_rluiten$elm_date_extra$Date_Extra_Format$format, _rluiten$elm_date_extra$Date_Extra_Config_Config_en_gb$config, '%H:%M:%S.%L', dataPoint.when)),
 								_1: {ctor: '[]'}
-							}) : _user$project$Main$nowt,
+							}),
 						_1: {
 							ctor: '::',
-							_0: _user$project$Main$renderCommand(dataPoint.command),
+							_0: _elm_community$maybe_extra$Maybe_Extra$isJust(dataPoint.description) ? A2(
+								_elm_lang$html$Html$span,
+								{
+									ctor: '::',
+									_0: _elm_lang$html$Html_Attributes$style(
+										{
+											ctor: '::',
+											_0: _user$project$Main$gap,
+											_1: {ctor: '[]'}
+										}),
+									_1: {ctor: '[]'}
+								},
+								{
+									ctor: '::',
+									_0: _elm_lang$html$Html$text(
+										A2(_elm_lang$core$Maybe$withDefault, '', dataPoint.description)),
+									_1: {ctor: '[]'}
+								}) : _user$project$Main$nowt,
 							_1: {
 								ctor: '::',
-								_0: _user$project$Main$renderContext(dataPoint.context),
-								_1: {ctor: '[]'}
+								_0: _user$project$Main$renderCommand(dataPoint.command),
+								_1: {
+									ctor: '::',
+									_0: _user$project$Main$renderContext(dataPoint.context),
+									_1: {ctor: '[]'}
+								}
 							}
 						}
 					}
