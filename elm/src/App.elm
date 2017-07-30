@@ -7,6 +7,8 @@ import RemoteData exposing (..)
 import DataPointCodec exposing (..)
 import Json.Decode exposing (decodeString)
 import Maybe.Extra as MaybeExtra
+import Date.Extra.Format as DateFormat
+import Date.Extra.Config.Config_en_gb exposing (config)
 
 --TODO: image(s)!
 --TODO: args
@@ -64,7 +66,7 @@ renderDataPoint dataPoint =
     in
         li [ style [ ("color", color) ] ] [
             span [ ] [
-                span [style [ ("margin-right", "7px")]] [text dataPoint.when]
+                span [style [ ("margin-right", "7px")]] [text (DateFormat.format config "%H:%M:%S.%L" dataPoint.when)]
                 , if MaybeExtra.isJust dataPoint.description then span [style [ ("margin-right", "7px")] ] [text (dataPoint.description |> Maybe.withDefault "") ] else nowt
                 , renderCommand dataPoint.command
                 , renderContext dataPoint.context

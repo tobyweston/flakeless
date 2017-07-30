@@ -5,10 +5,12 @@ import Json.Encode
 import Json.Decode
 import Json.Decode.Pipeline
 import Dict as Dict
+import Date.Extra.Utils as DateUtils
+import Date exposing (..)
 
 type alias DataPoint =
     { flightNumber : Int
-    , when : String
+    , when : Date
     , description : Maybe String
     , command : Maybe Command
     , context : Maybe Context
@@ -41,7 +43,7 @@ decodeDataPoint : Json.Decode.Decoder DataPoint
 decodeDataPoint =
     Json.Decode.Pipeline.decode DataPoint
         |> Json.Decode.Pipeline.required "flightNumber" (Json.Decode.int)
-        |> Json.Decode.Pipeline.required "when" (Json.Decode.string)
+        |> Json.Decode.Pipeline.required "when" (Json.Decode.string |> Json.Decode.map DateUtils.unsafeFromString )
         |> Json.Decode.Pipeline.optional "description" (Json.Decode.maybe Json.Decode.string) Nothing
         |> Json.Decode.Pipeline.optional "command" (Json.Decode.maybe decodeDataPointCommand) Nothing
         |> Json.Decode.Pipeline.optional "context" (Json.Decode.maybe decodeDataPointContext) Nothing
