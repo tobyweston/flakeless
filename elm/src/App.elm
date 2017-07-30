@@ -95,7 +95,15 @@ renderExpected expected expectedMany =
 
 renderBys : List (List (String, String)) -> Html msg
 renderBys bys =
-    if List.isEmpty bys then nowt else span [style [ ("margin-right", "7px")]] [ text (toString bys) ]
+    if List.isEmpty bys then nowt else span [style [ ("margin-right", "7px")]] (List.map (\b -> renderBy b) bys)
+
+
+renderBy : List (String, String) -> Html msg
+renderBy by =
+    let
+     (key, value) = List.head by |> Maybe.withDefault ("???", "???")
+    in
+    text (key ++ ": " ++ value)
 
 renderIn : Maybe String -> Html msg
 renderIn maybeIn =
