@@ -11286,101 +11286,87 @@ var _user$project$Main$renderContext = function (maybeContext) {
 				_p1.failures));
 	}
 };
-var _user$project$Main$renderIn = function (maybeIn) {
-	var _p2 = maybeIn;
-	if (_p2.ctor === 'Nothing') {
-		return _user$project$Main$nowt;
-	} else {
-		return A2(
-			_elm_lang$html$Html$span,
-			{
-				ctor: '::',
-				_0: _elm_lang$html$Html_Attributes$style(
-					{
-						ctor: '::',
-						_0: {ctor: '_Tuple2', _0: 'margin-right', _1: '7px'},
-						_1: {ctor: '[]'}
-					}),
-				_1: {ctor: '[]'}
-			},
-			{
-				ctor: '::',
-				_0: A2(
-					_elm_lang$html$Html$span,
-					{
-						ctor: '::',
-						_0: _elm_lang$html$Html_Attributes$style(
-							{
-								ctor: '::',
-								_0: {ctor: '_Tuple2', _0: 'margin-right', _1: '7px'},
-								_1: {ctor: '[]'}
-							}),
-						_1: {ctor: '[]'}
-					},
-					{
-						ctor: '::',
-						_0: _elm_lang$html$Html$text('in:'),
-						_1: {ctor: '[]'}
-					}),
-				_1: {
-					ctor: '::',
-					_0: _elm_lang$html$Html$text(_p2._0),
-					_1: {ctor: '[]'}
-				}
-			});
-	}
-};
 var _user$project$Main$renderBy = function (by) {
-	var _p3 = A2(
+	var _p2 = A2(
 		_elm_lang$core$Maybe$withDefault,
 		{ctor: '_Tuple2', _0: '???', _1: '???'},
 		_elm_lang$core$List$head(by));
-	var key = _p3._0;
-	var value = _p3._1;
-	return _elm_lang$html$Html$text(
-		A2(
-			_elm_lang$core$Basics_ops['++'],
-			key,
-			A2(_elm_lang$core$Basics_ops['++'], ': ', value)));
-};
-var _user$project$Main$renderBys = function (bys) {
-	return _elm_lang$core$List$isEmpty(bys) ? _user$project$Main$nowt : A2(
+	var key = _p2._0;
+	var value = _p2._1;
+	return A2(
 		_elm_lang$html$Html$span,
 		{
 			ctor: '::',
 			_0: _elm_lang$html$Html_Attributes$style(
 				{
 					ctor: '::',
-					_0: {ctor: '_Tuple2', _0: 'margin-right', _1: '7px'},
+					_0: {ctor: '_Tuple2', _0: 'font-size', _1: 'smaller'},
 					_1: {ctor: '[]'}
 				}),
 			_1: {ctor: '[]'}
 		},
-		A2(
-			_elm_lang$core$List$intersperse,
-			_elm_lang$html$Html$text(' -> '),
-			A2(
-				_elm_lang$core$List$map,
-				function (b) {
-					return _user$project$Main$renderBy(b);
-				},
-				bys)));
-};
-var _user$project$Main$renderExpected = F2(
-	function (expected, expectedMany) {
-		var _p4 = {ctor: '_Tuple2', _0: expected, _1: expectedMany};
-		if (_p4._0.ctor === 'Just') {
-			return A2(
+		{
+			ctor: '::',
+			_0: A2(
 				_elm_lang$html$Html$span,
 				{
 					ctor: '::',
 					_0: _elm_lang$html$Html_Attributes$style(
 						{
 							ctor: '::',
-							_0: {ctor: '_Tuple2', _0: 'margin-right', _1: '7px'},
-							_1: {ctor: '[]'}
+							_0: {ctor: '_Tuple2', _0: 'font-size', _1: 'smaller'},
+							_1: {
+								ctor: '::',
+								_0: {ctor: '_Tuple2', _0: 'color', _1: 'grey'},
+								_1: {ctor: '[]'}
+							}
 						}),
 					_1: {ctor: '[]'}
+				},
+				{
+					ctor: '::',
+					_0: _elm_lang$html$Html$text(
+						A2(_elm_lang$core$Basics_ops['++'], key, ': ')),
+					_1: {ctor: '[]'}
+				}),
+			_1: {
+				ctor: '::',
+				_0: A2(
+					_elm_lang$html$Html$span,
+					{ctor: '[]'},
+					{
+						ctor: '::',
+						_0: _elm_lang$html$Html$text(value),
+						_1: {ctor: '[]'}
+					}),
+				_1: {ctor: '[]'}
+			}
+		});
+};
+var _user$project$Main$gap = {ctor: '_Tuple2', _0: 'margin-right', _1: '6px'};
+var _user$project$Main$renderExpected = F2(
+	function (expected, expectedMany) {
+		var _p3 = {ctor: '_Tuple2', _0: expected, _1: expectedMany};
+		if (_p3._0.ctor === 'Just') {
+			return A2(
+				_elm_lang$html$Html$span,
+				{
+					ctor: '::',
+					_0: _elm_lang$html$Html_Attributes$class('lozenge'),
+					_1: {
+						ctor: '::',
+						_0: _elm_lang$html$Html_Attributes$style(
+							{
+								ctor: '::',
+								_0: _user$project$Main$gap,
+								_1: {
+									ctor: '::',
+									_0: {ctor: '_Tuple2', _0: 'font-size', _1: 'smaller'},
+									_1: {ctor: '[]'}
+								}
+							}),
+						_1: {ctor: '[]'}
+					}
 				},
 				{
 					ctor: '::',
@@ -11391,7 +11377,7 @@ var _user$project$Main$renderExpected = F2(
 							_0: _elm_lang$html$Html_Attributes$style(
 								{
 									ctor: '::',
-									_0: {ctor: '_Tuple2', _0: 'margin-right', _1: '7px'},
+									_0: _user$project$Main$gap,
 									_1: {ctor: '[]'}
 								}),
 							_1: {ctor: '[]'}
@@ -11407,23 +11393,31 @@ var _user$project$Main$renderExpected = F2(
 							A2(
 								_elm_lang$core$Basics_ops['++'],
 								'\"',
-								A2(_elm_lang$core$Basics_ops['++'], _p4._0._0, '\"'))),
+								A2(_elm_lang$core$Basics_ops['++'], _p3._0._0, '\"'))),
 						_1: {ctor: '[]'}
 					}
 				});
 		} else {
-			if (_p4._1.ctor === 'Just') {
+			if (_p3._1.ctor === 'Just') {
 				return A2(
 					_elm_lang$html$Html$span,
 					{
 						ctor: '::',
-						_0: _elm_lang$html$Html_Attributes$style(
-							{
-								ctor: '::',
-								_0: {ctor: '_Tuple2', _0: 'margin-right', _1: '7px'},
-								_1: {ctor: '[]'}
-							}),
-						_1: {ctor: '[]'}
+						_0: _elm_lang$html$Html_Attributes$class('lozenge'),
+						_1: {
+							ctor: '::',
+							_0: _elm_lang$html$Html_Attributes$style(
+								{
+									ctor: '::',
+									_0: _user$project$Main$gap,
+									_1: {
+										ctor: '::',
+										_0: {ctor: '_Tuple2', _0: 'font-size', _1: 'smaller'},
+										_1: {ctor: '[]'}
+									}
+								}),
+							_1: {ctor: '[]'}
+						}
 					},
 					{
 						ctor: '::',
@@ -11434,7 +11428,7 @@ var _user$project$Main$renderExpected = F2(
 								_0: _elm_lang$html$Html_Attributes$style(
 									{
 										ctor: '::',
-										_0: {ctor: '_Tuple2', _0: 'margin-right', _1: '7px'},
+										_0: _user$project$Main$gap,
 										_1: {ctor: '[]'}
 									}),
 								_1: {ctor: '[]'}
@@ -11447,7 +11441,7 @@ var _user$project$Main$renderExpected = F2(
 						_1: {
 							ctor: '::',
 							_0: _elm_lang$html$Html$text(
-								_elm_lang$core$Basics$toString(_p4._1._0)),
+								_elm_lang$core$Basics$toString(_p3._1._0)),
 							_1: {ctor: '[]'}
 						}
 					});
@@ -11456,6 +11450,73 @@ var _user$project$Main$renderExpected = F2(
 			}
 		}
 	});
+var _user$project$Main$renderBys = function (bys) {
+	return _elm_lang$core$List$isEmpty(bys) ? _user$project$Main$nowt : A2(
+		_elm_lang$html$Html$span,
+		{
+			ctor: '::',
+			_0: _elm_lang$html$Html_Attributes$style(
+				{
+					ctor: '::',
+					_0: _user$project$Main$gap,
+					_1: {ctor: '[]'}
+				}),
+			_1: {ctor: '[]'}
+		},
+		A2(
+			_elm_lang$core$List$intersperse,
+			_elm_lang$html$Html$text(' -> '),
+			A2(
+				_elm_lang$core$List$map,
+				function (b) {
+					return _user$project$Main$renderBy(b);
+				},
+				bys)));
+};
+var _user$project$Main$renderIn = function (maybeIn) {
+	var _p4 = maybeIn;
+	if (_p4.ctor === 'Nothing') {
+		return _user$project$Main$nowt;
+	} else {
+		return A2(
+			_elm_lang$html$Html$span,
+			{
+				ctor: '::',
+				_0: _elm_lang$html$Html_Attributes$style(
+					{
+						ctor: '::',
+						_0: _user$project$Main$gap,
+						_1: {ctor: '[]'}
+					}),
+				_1: {ctor: '[]'}
+			},
+			{
+				ctor: '::',
+				_0: A2(
+					_elm_lang$html$Html$span,
+					{
+						ctor: '::',
+						_0: _elm_lang$html$Html_Attributes$style(
+							{
+								ctor: '::',
+								_0: _user$project$Main$gap,
+								_1: {ctor: '[]'}
+							}),
+						_1: {ctor: '[]'}
+					},
+					{
+						ctor: '::',
+						_0: _elm_lang$html$Html$text('in:'),
+						_1: {ctor: '[]'}
+					}),
+				_1: {
+					ctor: '::',
+					_0: _elm_lang$html$Html$text(_p4._0),
+					_1: {ctor: '[]'}
+				}
+			});
+	}
+};
 var _user$project$Main$renderCommand = function (maybeCommand) {
 	var _p5 = maybeCommand;
 	if (_p5.ctor === 'Nothing') {
@@ -11474,7 +11535,7 @@ var _user$project$Main$renderCommand = function (maybeCommand) {
 						_0: _elm_lang$html$Html_Attributes$style(
 							{
 								ctor: '::',
-								_0: {ctor: '_Tuple2', _0: 'margin-right', _1: '7px'},
+								_0: _user$project$Main$gap,
 								_1: {ctor: '[]'}
 							}),
 						_1: {ctor: '[]'}
@@ -11540,7 +11601,7 @@ var _user$project$Main$renderDataPoint = function (dataPoint) {
 							_0: _elm_lang$html$Html_Attributes$style(
 								{
 									ctor: '::',
-									_0: {ctor: '_Tuple2', _0: 'margin-right', _1: '7px'},
+									_0: _user$project$Main$gap,
 									_1: {ctor: '[]'}
 								}),
 							_1: {ctor: '[]'}
@@ -11560,7 +11621,7 @@ var _user$project$Main$renderDataPoint = function (dataPoint) {
 								_0: _elm_lang$html$Html_Attributes$style(
 									{
 										ctor: '::',
-										_0: {ctor: '_Tuple2', _0: 'margin-right', _1: '7px'},
+										_0: _user$project$Main$gap,
 										_1: {ctor: '[]'}
 									}),
 								_1: {ctor: '[]'}

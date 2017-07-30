@@ -66,19 +66,22 @@ renderDataPoint dataPoint =
     in
         li [ style [ ("color", color) ] ] [
             span [ ] [
-                span [style [ ("margin-right", "7px")]] [text (DateFormat.format config "%H:%M:%S.%L" dataPoint.when)]
-                , if MaybeExtra.isJust dataPoint.description then span [style [ ("margin-right", "7px")] ] [text (dataPoint.description |> Maybe.withDefault "") ] else nowt
+                span [style [ gap ]] [text (DateFormat.format config "%H:%M:%S.%L" dataPoint.when)]
+                , if MaybeExtra.isJust dataPoint.description then span [style [ gap ] ] [text (dataPoint.description |> Maybe.withDefault "") ] else nowt
                 , renderCommand dataPoint.command
                 , renderContext dataPoint.context
             ]
         ]
+
+gap : (String, String)
+gap = ("margin-right", "6px")
 
 renderCommand : Maybe Command -> Html msg
 renderCommand maybeCommand =
     case maybeCommand of
         Nothing -> nowt
         Just command -> span [] [
-            span [style [ ("margin-right", "7px")]] [text command.name]
+            span [style [ gap ]] [text command.name]
             , renderBys command.bys
             , renderIn command.in_
             , renderExpected command.expected command.expectedMany
@@ -89,13 +92,13 @@ renderCommand maybeCommand =
 renderExpected : Maybe String -> Maybe (List String) -> Html msg
 renderExpected expected expectedMany =
     case (expected, expectedMany) of
-        (Just e, _) -> span [style [ ("margin-right", "7px")]] [ span [style [ ("margin-right", "7px")]] [text "expected:" ], text ("\"" ++ e ++ "\"") ]
-        (_, Just me) -> span [style [ ("margin-right", "7px")]] [ span [style [ ("margin-right", "7px")]] [text "expected:" ], text (toString me) ]
+        (Just e, _) -> span [class "lozenge", style [ gap, ("font-size", "smaller")]] [ span [style [ gap ]] [text "expected:" ], text ("\"" ++ e ++ "\"") ]
+        (_, Just me) -> span [class "lozenge", style [ gap, ("font-size", "smaller")]] [ span [style [ gap ]] [text "expected:" ], text (toString me) ]
         (_, _) -> nowt
 
 renderBys : List (List (String, String)) -> Html msg
 renderBys bys =
-    if List.isEmpty bys then nowt else span [style [ ("margin-right", "7px")]]
+    if List.isEmpty bys then nowt else span [style [ gap ]]
       ((List.map (\b -> renderBy b) bys) |> List.intersperse (text " -> "))
 
 
@@ -104,13 +107,13 @@ renderBy by =
     let
       (key, value) = List.head by |> Maybe.withDefault ("???", "???")
     in
-      text (key ++ ": " ++ value)
+      span [style [ ("font-size", "smaller") ]] [span [style [ ("font-size", "smaller"), ("color", "grey") ]] [text (key ++ ": ")], span [] [text value]]
 
 renderIn : Maybe String -> Html msg
 renderIn maybeIn =
     case maybeIn of
         Nothing -> nowt
-        Just in_ -> span [style [ ("margin-right", "7px")]] [ span [style [ ("margin-right", "7px")]] [text "in:" ], text in_ ]
+        Just in_ -> span [style [ gap ]] [ span [style [ gap ]] [text "in:" ], text in_ ]
 
 renderContext : Maybe Context -> Html msg
 renderContext maybeContext =

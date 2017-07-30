@@ -71,21 +71,32 @@ object Report {
       case t: Exception => System.err.println("*** Failed to write report something bad happened ***\n")
     }
 
-    def htmlContent(when: Long, flakeless: Flakeless, data: String): String =
+    def htmlContent(when: Long, flakeless: Flakeless, data: String) =
 s"""
   |<html>
   |<head>
+  |<style>
+  |.lozenge {
+  |  background-color: #fff;
+  |  border: 1px solid #CCC;
+  |  padding: 2px 4px;
+  |  /*font-weight: bold;*/
+  |
+  |  -webkit-border-radius: 3px;
+  |     -moz-border-radius: 3px;
+  |          border-radius: 3px;
+  |}
+  |</style>
   |</head>
   |<body>
   |  <script type="text/javascript" src="flakeless.js"></script>
   |  <script>
-  |  var data = '${data.replaceAll("\n", "")}';
+  |    var data = '${data.replaceAll("\n", "")}';
   |    var app = Elm.Main.fullscreen()
   |    app.ports.data.send(data);
   |  </script>
   |</body>
   |</html>
-  |
 """.stripMargin
 
   }
