@@ -11319,7 +11319,7 @@ var _user$project$Main$renderIn = function (maybeIn) {
 					},
 					{
 						ctor: '::',
-						_0: _elm_lang$html$Html$text('in'),
+						_0: _elm_lang$html$Html$text('in:'),
 						_1: {ctor: '[]'}
 					}),
 				_1: {
@@ -11398,7 +11398,7 @@ var _user$project$Main$renderExpected = F2(
 						},
 						{
 							ctor: '::',
-							_0: _elm_lang$html$Html$text('expected'),
+							_0: _elm_lang$html$Html$text('expected:'),
 							_1: {ctor: '[]'}
 						}),
 					_1: {
@@ -11441,7 +11441,7 @@ var _user$project$Main$renderExpected = F2(
 							},
 							{
 								ctor: '::',
-								_0: _elm_lang$html$Html$text('expected'),
+								_0: _elm_lang$html$Html$text('expected:'),
 								_1: {ctor: '[]'}
 							}),
 						_1: {

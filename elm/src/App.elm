@@ -89,8 +89,8 @@ renderCommand maybeCommand =
 renderExpected : Maybe String -> Maybe (List String) -> Html msg
 renderExpected expected expectedMany =
     case (expected, expectedMany) of
-        (Just e, _) -> span [style [ ("margin-right", "7px")]] [ span [style [ ("margin-right", "7px")]] [text "expected" ], text ("\"" ++ e ++ "\"") ]
-        (_, Just me) -> span [style [ ("margin-right", "7px")]] [ span [style [ ("margin-right", "7px")]] [text "expected" ], text (toString me) ]
+        (Just e, _) -> span [style [ ("margin-right", "7px")]] [ span [style [ ("margin-right", "7px")]] [text "expected:" ], text ("\"" ++ e ++ "\"") ]
+        (_, Just me) -> span [style [ ("margin-right", "7px")]] [ span [style [ ("margin-right", "7px")]] [text "expected:" ], text (toString me) ]
         (_, _) -> nowt
 
 renderBys : List (List (String, String)) -> Html msg
@@ -110,7 +110,7 @@ renderIn : Maybe String -> Html msg
 renderIn maybeIn =
     case maybeIn of
         Nothing -> nowt
-        Just in_ -> span [style [ ("margin-right", "7px")]] [ span [style [ ("margin-right", "7px")]] [text "in" ], text in_ ]
+        Just in_ -> span [style [ ("margin-right", "7px")]] [ span [style [ ("margin-right", "7px")]] [text "in:" ], text in_ ]
 
 renderContext : Maybe Context -> Html msg
 renderContext maybeContext =
