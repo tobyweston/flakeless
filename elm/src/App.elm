@@ -68,7 +68,7 @@ renderDataPoint dataPoint =
             span [ ] [
                 span [style [ gapRight, smaller, grey ]] [text (DateFormat.format config "%H:%M:%S.%L" dataPoint.when)]
                 , span [style [ ("color", color), ("font-weight", "bold"), gapRight ]] [ text "*"]
-                , if MaybeExtra.isJust dataPoint.description then span [style [ gapRight ] ] [text (dataPoint.description |> Maybe.withDefault "") ] else nowt
+                , if MaybeExtra.isJust dataPoint.description then span [style [ gapRight, smaller ] ] [text (dataPoint.description |> Maybe.withDefault "") ] else nowt
                 , renderCommand dataPoint.command
                 , renderContext dataPoint.context
             ]

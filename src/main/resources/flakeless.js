@@ -11738,7 +11738,11 @@ var _user$project$Main$renderDataPoint = function (dataPoint) {
 										{
 											ctor: '::',
 											_0: _user$project$Main$gapRight,
-											_1: {ctor: '[]'}
+											_1: {
+												ctor: '::',
+												_0: _user$project$Main$smaller,
+												_1: {ctor: '[]'}
+											}
 										}),
 									_1: {ctor: '[]'}
 								},
