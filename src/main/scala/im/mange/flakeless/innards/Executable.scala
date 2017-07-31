@@ -24,7 +24,7 @@ case class Command(name: String, in: Option[WebElement], by: Option[By],
   //TODO: ultimately shouldn't need this here, extract formatter
   case class LabelAndValue(label: Option[String], value: String) {
     def describe = label match {
-      case Some(l) => s"""$l: "$value""""
+      case Some(l) => s"""$l: $value"""
       case None => value
     }
   }

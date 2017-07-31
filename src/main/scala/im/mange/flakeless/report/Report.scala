@@ -31,7 +31,7 @@ object Example extends App {
     flakeless.record(Command("Click", Some(createElement), Some(By.id("id"))), Context(Nil, success = Some(true)))
     flakeless.record(Command("AssertElementListTextEquals", Some(createElement), Some(By.id("id")), expectedMany = Some(List("expected"))), Context(List("failures"), success = Some(false)))
 
-    flakeless.record(Command("escaping", Some(createElement), Some(By.id("id")), expectedMany = Some(List("'expected'"))), Context(List("failures"), success = Some(false)))
+    flakeless.record(Command("escaping", Some(createElement), Some(By.id("id")), expectedMany = Some(List("expected"))), Context(List("failure 1", "2"), success = Some(false)))
 
     Report(flakeless, "target/test-reports", captureImage = false)
   }
@@ -94,7 +94,7 @@ s"""
   |<body>
   |  <script type="text/javascript" src="flakeless.js"></script>
   |  <script>
-  |    var data = '${data.replaceAll("\n", "").replaceAll("'", "\\\\'")}';
+  |    var data = '${data.replaceAll("\n", "").replaceAll("'", "")}';
   |    var app = Elm.Main.fullscreen()
   |    app.ports.data.send(data);
   |  </script>
