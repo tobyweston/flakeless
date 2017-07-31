@@ -27,15 +27,15 @@ case class Description(actual: Option[(WebElement) => String] = None) {
 
   private def reallyDescribe(webElement: Option[WebElement]): String = {
     (
-      //TODO: descide if we this extra debug when we json things, might be good for click etc
+      //TODO: decide if we this extra debug when we json things, might be good for click etc
 //      Seq(
 //        webElement.map(e => LabelAndValue(Some("displayed"), e.isDisplayed.toString)),
 //        webElement.map(e => LabelAndValue(Some("enabled"), e.isEnabled.toString))
 //      ) ++
         Seq(
-          actual.map(bw => LabelAndValue(Some("actual"), butWasSafely(webElement, bw)))
+          actual.map(bw => butWasSafely(webElement, bw))
         )
-      ).flatten.map(_.describe).mkString("\n| ")
+      ).flatten.mkString("\n| ")
   }
 
   private def butWasSafely(webElement: Option[WebElement], bw: (WebElement) => String): String = {
