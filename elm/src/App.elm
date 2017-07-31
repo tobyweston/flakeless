@@ -94,6 +94,7 @@ renderCommand maybeCommand =
             , span [style [smaller]] [renderBys command.bys]
             , renderIn command.in_
             , renderExpected command.expected command.expectedMany
+            , renderExpected command.expected command.expectedMany
             --TODO: whack me when done ....
 --            , div [style [ ("margin-right", "7px")]] [ text (toString command) ]
             ]
@@ -131,7 +132,7 @@ renderContext maybeContext =
     case maybeContext of
         Nothing -> nowt
         Just context -> if List.isEmpty context.failures then nowt
-                        else ul [] (List.map (\f -> li [] [text f]) context.failures)
+                        else span [] [text "actual: ", span [] ((List.map (\f -> span [] [text f]) context.failures) |> List.intersperse (span [style [ smaller ]] [text ", "]))]
 
 nowt : Html msg
 nowt =
