@@ -22,6 +22,8 @@ import Date.Extra.Config.Config_en_gb exposing (config)
 --TODO: share styles
 --TODO: do something more clever with spaced, build a list of Html and set all their styles
 --TODO: consider expected before in
+--TODO: connect screenshot with it's datapoint
+--TODO: for first cut maybe just have screenshot.png
 
 type alias Model =
     { raw : String
