@@ -25,11 +25,13 @@ object Example extends App {
 
     //  if by's are a list then we are probably fine ... next Paths could be interesting .... (eek)
     flakeless.record(Command("everything", Some(createElement), Some(By.id("id")), Map("key" -> "value"), Some("expected"), Some(List("expected", "expected2"))), Context(List("failures"), success = Some(false)))
-    flakeless.record(Command("everything wiht path", Some(createElement), Some(Path(By.id("id"))), Map("key" -> "value"), Some("expected"), Some(List("expected", "expected2"))), Context(List("failures"), success = Some(false)))
+    flakeless.record(Command("everything with path", Some(createElement), Some(Path(By.id("id"))), Map("key" -> "value"), Some("expected"), Some(List("expected", "expected2"))), Context(List("failures"), success = Some(false)))
 
     //real world
     flakeless.record(Command("Click", Some(createElement), Some(By.id("id"))), Context(Nil, success = Some(true)))
     flakeless.record(Command("AssertElementListTextEquals", Some(createElement), Some(By.id("id")), expectedMany = Some(List("expected"))), Context(List("failures"), success = Some(false)))
+
+    flakeless.record(Command("escaping", Some(createElement), Some(By.id("id")), expectedMany = Some(List("'expected'"))), Context(List("failures"), success = Some(false)))
 
     Report(flakeless, "target/test-reports", captureImage = false)
   }
@@ -92,7 +94,7 @@ s"""
   |<body>
   |  <script type="text/javascript" src="flakeless.js"></script>
   |  <script>
-  |    var data = '${data.replaceAll("\n", "")}';
+  |    var data = '${data.replaceAll("\n", "").replaceAll("'", "\\\\'")}';
   |    var app = Elm.Main.fullscreen()
   |    app.ports.data.send(data);
   |  </script>

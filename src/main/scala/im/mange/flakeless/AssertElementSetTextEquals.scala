@@ -12,7 +12,7 @@ object AssertElementSetTextEquals {
   def apply(in: WebElement, by: By, expected: Set[String], flakeless: Option[Flakeless] = None): Unit = {
     WaitForElements(flakeless,
       Command("AssertElementSetTextEquals", Some(in), Some(by), expectedMany = Some(expected.toList)),
-      description = es => s"${es.map(t => s"'${t.getText}'").mkString(", ")}",
+      description = es => s"${es.map(t => s""""${t.getText}"""").mkString(", ")}",
       condition = es => es.map(_.getText).toSet == expected)
   }
 }
