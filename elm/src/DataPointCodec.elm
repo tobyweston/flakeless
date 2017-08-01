@@ -25,7 +25,7 @@ type alias Command =
     , in_ : Maybe String
     , bys : List (List (String, String))
 --TODO: args are busted right now ...
---    , args : Maybe Args
+    , args : Dict.Dict String String
     , expected : Maybe String
     , expectedMany : Maybe (List String)
     }
@@ -48,10 +48,10 @@ decodeDataPoint =
         |> Json.Decode.Pipeline.optional "command" (Json.Decode.maybe decodeDataPointCommand) Nothing
         |> Json.Decode.Pipeline.optional "context" (Json.Decode.maybe decodeDataPointContext) Nothing
 
-decodeDataPointCommandArgs : Json.Decode.Decoder Args
-decodeDataPointCommandArgs =
-    Json.Decode.Pipeline.decode Args
-        |> Json.Decode.Pipeline.required "key" (Json.Decode.string)
+--decodeDataPointCommandArgs : Json.Decode.Decoder Args
+--decodeDataPointCommandArgs =
+--    Json.Decode.Pipeline.decode Args
+--        |> Json.Decode.Pipeline.required "key" (Json.Decode.string)
 
 decodeDataPointCommand : Json.Decode.Decoder Command
 decodeDataPointCommand =
@@ -60,6 +60,7 @@ decodeDataPointCommand =
         |> Json.Decode.Pipeline.optional "in" (Json.Decode.maybe Json.Decode.string) Nothing
         |> Json.Decode.Pipeline.required "bys" (Json.Decode.list decodeBys)
 --        |> Json.Decode.Pipeline.required "args" (decodeDataPointCommandArgs)
+        |> Json.Decode.Pipeline.required "args" (Json.Decode.dict Json.Decode.string)
         |> Json.Decode.Pipeline.optional "expected" (Json.Decode.maybe Json.Decode.string) Nothing
         |> Json.Decode.Pipeline.optional "expectedMany" (Json.Decode.maybe (Json.Decode.list Json.Decode.string)) Nothing
 

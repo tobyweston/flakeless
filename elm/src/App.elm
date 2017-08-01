@@ -92,6 +92,7 @@ renderCommand maybeCommand =
         Just command -> span [] [
             span [style [ gapRight, smaller ]] [text command.name]
             , span [style [smaller]] [renderBys command.bys]
+            , text (toString command.args)
             , renderIn command.in_
             , renderExpected command.expected command.expectedMany
             --TODO: whack me when done ....
