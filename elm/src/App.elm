@@ -124,8 +124,11 @@ renderArg k v =
 
 renderBys : List (List (String, String)) -> Html msg
 renderBys bys =
-    if List.isEmpty bys then nowt else span [class "lozengex" ,style [ smaller, gapRight ]]
-      ((List.map (\b -> renderBy b) bys) |> List.intersperse (span [style [ smaller ]] [text " > "]))
+    if List.isEmpty bys then nowt else span [class "lozengex" , style [ smaller, gapRight ]] [
+      span [ style [ grey] ] [ text "(" ]
+      , span [] ((List.map (\b -> renderBy b) bys) |> List.intersperse (span [style [ smaller ]] [text " > "]))
+      , span [ style [ grey] ] [ text ")" ]
+      ]
 
 
 renderBy : List (String, String) -> Html msg

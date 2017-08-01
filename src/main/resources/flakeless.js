@@ -11656,31 +11656,78 @@ var _user$project$Main$renderBys = function (bys) {
 				_1: {ctor: '[]'}
 			}
 		},
-		A2(
-			_elm_lang$core$List$intersperse,
-			A2(
+		{
+			ctor: '::',
+			_0: A2(
 				_elm_lang$html$Html$span,
 				{
 					ctor: '::',
 					_0: _elm_lang$html$Html_Attributes$style(
 						{
 							ctor: '::',
-							_0: _user$project$Main$smaller,
+							_0: _user$project$Main$grey,
 							_1: {ctor: '[]'}
 						}),
 					_1: {ctor: '[]'}
 				},
 				{
 					ctor: '::',
-					_0: _elm_lang$html$Html$text(' > '),
+					_0: _elm_lang$html$Html$text('('),
 					_1: {ctor: '[]'}
 				}),
-			A2(
-				_elm_lang$core$List$map,
-				function (b) {
-					return _user$project$Main$renderBy(b);
-				},
-				bys)));
+			_1: {
+				ctor: '::',
+				_0: A2(
+					_elm_lang$html$Html$span,
+					{ctor: '[]'},
+					A2(
+						_elm_lang$core$List$intersperse,
+						A2(
+							_elm_lang$html$Html$span,
+							{
+								ctor: '::',
+								_0: _elm_lang$html$Html_Attributes$style(
+									{
+										ctor: '::',
+										_0: _user$project$Main$smaller,
+										_1: {ctor: '[]'}
+									}),
+								_1: {ctor: '[]'}
+							},
+							{
+								ctor: '::',
+								_0: _elm_lang$html$Html$text(' > '),
+								_1: {ctor: '[]'}
+							}),
+						A2(
+							_elm_lang$core$List$map,
+							function (b) {
+								return _user$project$Main$renderBy(b);
+							},
+							bys))),
+				_1: {
+					ctor: '::',
+					_0: A2(
+						_elm_lang$html$Html$span,
+						{
+							ctor: '::',
+							_0: _elm_lang$html$Html_Attributes$style(
+								{
+									ctor: '::',
+									_0: _user$project$Main$grey,
+									_1: {ctor: '[]'}
+								}),
+							_1: {ctor: '[]'}
+						},
+						{
+							ctor: '::',
+							_0: _elm_lang$html$Html$text(')'),
+							_1: {ctor: '[]'}
+						}),
+					_1: {ctor: '[]'}
+				}
+			}
+		});
 };
 var _user$project$Main$renderIn = function (maybeIn) {
 	var _p6 = maybeIn;
