@@ -26,6 +26,15 @@ import Dict
 --TODO: connect screenshot with it's datapoint
 --TODO: for first cut maybe just have screenshot.png
 
+--outstanding:
+--rendering of actual for expectedMany is not listy ... expected: ["foo"] actual: "bar"
+--inflightAnnouncement needs isError and render in red, ideally set Context(success=Some(false))
+--better rendering of in. shorten to just Body etc
+--possibly fold in into by's
+--make images be base64 encoded into the page
+--maybe make js inline
+--can we snapshot the image and or html of the element under assertion (inline even better)
+
 type alias Model =
     { raw : String
     , dataPoints : List DataPoint
