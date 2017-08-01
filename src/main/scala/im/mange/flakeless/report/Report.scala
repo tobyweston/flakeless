@@ -55,7 +55,7 @@ object Report {
       Files.createDirectories(Paths.get(filepath))
 
       val when = System.currentTimeMillis()
-      val imagePath = path(filepath, s"$when.png")
+      val imagePath = path(filepath, s"flakeless.png")
       val htmlPath = path(filepath, s"flakeless.html")
 //      val jsonPath = path(filepath, s"$when.json")
       val jsPath = path(filepath, s"flakeless.js")
@@ -78,6 +78,7 @@ object Report {
 s"""
   |<html>
   |<head>
+  |<script type="text/javascript" src="flakeless.js"></script>
   |<style>
   |.lozenge {
   |  background-color: #fff;
@@ -90,12 +91,13 @@ s"""
   |          border-radius: 3px;
   |}
   |</style>
+  |
   |</head>
   |<body>
-  |  <script type="text/javascript" src="flakeless.js"></script>
+  |  <div id="content"></div>
   |  <script>
   |    var data = '${data.replaceAll("\n", "").replaceAll("'", "")}';
-  |    var app = Elm.Main.fullscreen()
+  |    var app = Elm.Main.embed(document.getElementById('content'));
   |    app.ports.data.send(data);
   |  </script>
   |</body>
