@@ -96,7 +96,7 @@ s"""
   |<body>
   |  <table>
   |  <tr>
-  |  <td style="width 40%;"><div id="content"></div></td>
+  |  <td style="width 40%;"><div style="font-family: Courier New;" id="content"></div></td>
   |  <td style="width 60%;"><img src="$when.png"></td>
   |  </tr>
   |  </table>

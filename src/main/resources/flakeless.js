@@ -11716,7 +11716,11 @@ var _user$project$Main$renderDataPoint = function (dataPoint) {
 				{
 					ctor: '::',
 					_0: {ctor: '_Tuple2', _0: 'min-height', _1: '20px'},
-					_1: {ctor: '[]'}
+					_1: {
+						ctor: '::',
+						_0: {ctor: '_Tuple2', _0: 'padding-bottom', _1: '5px'},
+						_1: {ctor: '[]'}
+					}
 				}),
 			_1: {ctor: '[]'}
 		},

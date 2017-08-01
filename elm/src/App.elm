@@ -66,7 +66,7 @@ renderDataPoint dataPoint =
                         Nothing -> "#cccc00"
                         Just success -> if success then "#00cc00" else "#cc0000"
     in
-        div [ style [ ("min-height", "20px") ] ] [
+        div [ style [ ("min-height", "20px"), ("padding-bottom", "5px") ] ] [
             span [ ] [
                 span [style [ gapRight, smaller, grey ]] [text (DateFormat.format config "%H:%M:%S.%L" dataPoint.when)]
                 , span [style [ ("color", color), ("font-weight", "bold"), gapRight ]] [ text "*"]
