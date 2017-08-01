@@ -11320,7 +11320,16 @@ var _user$project$Main$renderContext = function (maybeContext) {
 		var _p2 = _p1._0;
 		return _elm_lang$core$List$isEmpty(_p2.failures) ? _user$project$Main$nowt : A2(
 			_elm_lang$html$Html$span,
-			{ctor: '[]'},
+			{
+				ctor: '::',
+				_0: _elm_lang$html$Html_Attributes$style(
+					{
+						ctor: '::',
+						_0: _user$project$Main$smaller,
+						_1: {ctor: '[]'}
+					}),
+				_1: {ctor: '[]'}
+			},
 			{
 				ctor: '::',
 				_0: A2(
@@ -11376,7 +11385,11 @@ var _user$project$Main$renderContext = function (maybeContext) {
 										{ctor: '[]'},
 										{
 											ctor: '::',
-											_0: _elm_lang$html$Html$text(f),
+											_0: _elm_lang$html$Html$text(
+												A2(
+													_elm_lang$core$Basics_ops['++'],
+													'\"',
+													A2(_elm_lang$core$Basics_ops['++'], f, '\"'))),
 											_1: {ctor: '[]'}
 										});
 								},

@@ -132,7 +132,7 @@ renderContext maybeContext =
         Nothing -> nowt
         Just context -> if List.isEmpty context.failures then nowt
 --                        else span [] [text "actual: ", span [] ((List.map (\f -> span [] [text f]) context.failures) |> List.intersperse (span [style [ smaller ]] [text ", "]))]
-                        else span [] [span [style [grey, smaller]] [ text "actual: "], span [] ((List.map (\f -> span [] [text f]) context.failures) |> List.intersperse (span [style [ smaller ]] [text ", "]))]
+                        else span [style [smaller]] [span [style [grey, smaller]] [ text "actual: "], span [] ((List.map (\f -> span [] [text ("\"" ++ f ++ "\"")]) context.failures) |> List.intersperse (span [style [ smaller ]] [text ", "]))]
 
 nowt : Html msg
 nowt =
