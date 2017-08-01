@@ -9,6 +9,7 @@ import Json.Decode exposing (decodeString)
 import Maybe.Extra as MaybeExtra
 import Date.Extra.Format as DateFormat
 import Date.Extra.Config.Config_en_gb exposing (config)
+import Dict
 
 --TODO: image(s)!
 --TODO: args
@@ -92,7 +93,7 @@ renderCommand maybeCommand =
         Just command -> span [] [
             span [style [ gapRight, smaller ]] [text command.name]
             , span [style [smaller]] [renderBys command.bys]
-            , text (toString command.args)
+            , span [style [smaller]] [renderArgs command.args]
             , renderIn command.in_
             , renderExpected command.expected command.expectedMany
             --TODO: whack me when done ....
@@ -107,6 +108,19 @@ renderExpected expected expectedMany =
         (Just e, _) -> span [style [ gapRight, smaller ]] [ span [style [ gapRight ]] [span [style [smaller, grey ]] [text "expected:"] ], text ("\"" ++ e ++ "\"") ]
         (_, Just me) -> span [style [ gapRight, smaller ]] [ span [style [ gapRight ]] [span [style [smaller, grey] ] [text "expected:"] ], text (toString me) ]
         (_, _) -> nowt
+
+renderArgs : Dict.Dict String String -> Html msg
+renderArgs args =
+    if Dict.isEmpty args then nowt else span [class "lozenge" ,style [ smaller, gapRight ]]
+      ((List.map (\k -> renderArg k (Dict.get k args)) (Dict.keys args)) |> List.intersperse (span [style [ smaller ]] [text ",  "]))
+
+renderArg : String -> Maybe String -> Html msg
+renderArg k v =
+    let
+      (key, value) = (k, v |> Maybe.withDefault "???" )
+    in
+      span [] [span [style [ smaller, grey ]] [text (key ++ ": ")], span [] [text value]]
+
 
 renderBys : List (List (String, String)) -> Html msg
 renderBys bys =
