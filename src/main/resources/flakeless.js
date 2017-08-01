@@ -11365,42 +11365,24 @@ var _user$project$Main$renderContext = function (maybeContext) {
 					_0: A2(
 						_elm_lang$html$Html$span,
 						{ctor: '[]'},
-						A2(
-							_elm_lang$core$List$intersperse,
-							A2(
-								_elm_lang$html$Html$span,
-								{
-									ctor: '::',
-									_0: _elm_lang$html$Html_Attributes$style(
-										{
-											ctor: '::',
-											_0: _user$project$Main$smaller,
-											_1: {ctor: '[]'}
-										}),
-									_1: {ctor: '[]'}
-								},
-								{
-									ctor: '::',
-									_0: _elm_lang$html$Html$text(', '),
-									_1: {ctor: '[]'}
-								}),
-							A2(
-								_elm_lang$core$List$map,
-								function (f) {
-									return A2(
-										_elm_lang$html$Html$span,
-										{ctor: '[]'},
-										{
-											ctor: '::',
-											_0: _elm_lang$html$Html$text(
-												A2(
-													_elm_lang$core$Basics_ops['++'],
-													'\"',
-													A2(_elm_lang$core$Basics_ops['++'], f, '\"'))),
-											_1: {ctor: '[]'}
-										});
-								},
-								_p3.failures))),
+						{
+							ctor: '::',
+							_0: _elm_lang$html$Html$text(
+								A2(
+									_elm_lang$core$Maybe$withDefault,
+									'???',
+									A2(
+										_elm_lang$core$Maybe$map,
+										function (f) {
+											return A2(
+												_elm_lang$core$Basics_ops['++'],
+												'\"',
+												A2(_elm_lang$core$Basics_ops['++'], f, '\"'));
+										},
+										_elm_lang$core$List$head(
+											_elm_lang$core$List$reverse(_p3.failures))))),
+							_1: {ctor: '[]'}
+						}),
 					_1: {ctor: '[]'}
 				}
 			}) : _user$project$Main$nowt;
