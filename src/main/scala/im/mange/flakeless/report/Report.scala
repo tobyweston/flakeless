@@ -92,14 +92,22 @@ s"""
   |     -moz-border-radius: 3px;
   |          border-radius: 3px;
   |}
+  |.container {
+  |  width: 100%;
+  |  height: auto;
+  |}
+  |.container img {
+  |  width: 100%;
+  |  height: auto;
+  |}
   |</style>
   |
   |</head>
   |<body>
   |  <table>
   |  <tr>
-  |  <td style="width 40%;"><div style="font-family: Courier New;" id="content"></div></td>
-  |  <td style="width 60%;"><img src="$when.png"></td>
+  |  <td style="width 50%;"><div style="font-family: Courier New;" id="content"></div></td>
+  |  <td style="width 50%;"><div class="container"><img src="$when.png"></div></td>
   |  </tr>
   |  </table>
   |  <script>
