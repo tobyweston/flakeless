@@ -130,9 +130,12 @@ renderContext : Maybe Context -> Html msg
 renderContext maybeContext =
     case maybeContext of
         Nothing -> nowt
-        Just context -> if List.isEmpty context.failures then nowt
+        Just context -> if not (List.isEmpty context.failures) && not (case context.success of
+                                                                                     Nothing -> False
+                                                                                     Just success -> success) then
 --                        else span [] [text "actual: ", span [] ((List.map (\f -> span [] [text f]) context.failures) |> List.intersperse (span [style [ smaller ]] [text ", "]))]
-                        else span [style [smaller]] [span [style [grey, smaller]] [ text "actual: "], span [] ((List.map (\f -> span [] [text ("\"" ++ f ++ "\"")]) context.failures) |> List.intersperse (span [style [ smaller ]] [text ", "]))]
+                        span [style [smaller]] [span [style [grey, smaller]] [ text "actual: "], span [] ((List.map (\f -> span [] [text ("\"" ++ f ++ "\"")]) context.failures) |> List.intersperse (span [style [ smaller ]] [text ", "]))]
+                        else nowt
 
 nowt : Html msg
 nowt =

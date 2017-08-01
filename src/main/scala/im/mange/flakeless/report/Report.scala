@@ -28,7 +28,7 @@ object Example extends App {
     flakeless.record(Command("everything with path", Some(createElement), Some(Path(By.id("id"))), Map("key" -> "value"), Some("expected"), Some(List("expected", "expected2"))), Context(List("failures"), success = Some(false)))
 
     //real world
-    flakeless.record(Command("Click", Some(createElement), Some(By.id("id"))), Context(Nil, success = Some(true)))
+    flakeless.record(Command("Click", Some(createElement), Some(By.id("id"))), Context(List("failed for a bit"), success = Some(true)))
     flakeless.record(Command("AssertElementListTextEquals", Some(createElement), Some(By.id("id")), expectedMany = Some(List("expected"))), Context(List("failures"), success = Some(false)))
 
     flakeless.record(Command("escaping", Some(createElement), Some(By.id("id")), expectedMany = Some(List("expected"))), Context(List("failure 1", "2"), success = Some(false)))

@@ -11317,8 +11317,15 @@ var _user$project$Main$renderContext = function (maybeContext) {
 	if (_p1.ctor === 'Nothing') {
 		return _user$project$Main$nowt;
 	} else {
-		var _p2 = _p1._0;
-		return _elm_lang$core$List$isEmpty(_p2.failures) ? _user$project$Main$nowt : A2(
+		var _p3 = _p1._0;
+		return ((!_elm_lang$core$List$isEmpty(_p3.failures)) && (!function () {
+			var _p2 = _p3.success;
+			if (_p2.ctor === 'Nothing') {
+				return false;
+			} else {
+				return _p2._0;
+			}
+		}())) ? A2(
 			_elm_lang$html$Html$span,
 			{
 				ctor: '::',
@@ -11393,17 +11400,17 @@ var _user$project$Main$renderContext = function (maybeContext) {
 											_1: {ctor: '[]'}
 										});
 								},
-								_p2.failures))),
+								_p3.failures))),
 					_1: {ctor: '[]'}
 				}
-			});
+			}) : _user$project$Main$nowt;
 	}
 };
 var _user$project$Main$gapRight = {ctor: '_Tuple2', _0: 'margin-right', _1: '5px'};
 var _user$project$Main$renderExpected = F2(
 	function (expected, expectedMany) {
-		var _p3 = {ctor: '_Tuple2', _0: expected, _1: expectedMany};
-		if (_p3._0.ctor === 'Just') {
+		var _p4 = {ctor: '_Tuple2', _0: expected, _1: expectedMany};
+		if (_p4._0.ctor === 'Just') {
 			return A2(
 				_elm_lang$html$Html$span,
 				{
@@ -11465,12 +11472,12 @@ var _user$project$Main$renderExpected = F2(
 							A2(
 								_elm_lang$core$Basics_ops['++'],
 								'\"',
-								A2(_elm_lang$core$Basics_ops['++'], _p3._0._0, '\"'))),
+								A2(_elm_lang$core$Basics_ops['++'], _p4._0._0, '\"'))),
 						_1: {ctor: '[]'}
 					}
 				});
 		} else {
-			if (_p3._1.ctor === 'Just') {
+			if (_p4._1.ctor === 'Just') {
 				return A2(
 					_elm_lang$html$Html$span,
 					{
@@ -11529,7 +11536,7 @@ var _user$project$Main$renderExpected = F2(
 						_1: {
 							ctor: '::',
 							_0: _elm_lang$html$Html$text(
-								_elm_lang$core$Basics$toString(_p3._1._0)),
+								_elm_lang$core$Basics$toString(_p4._1._0)),
 							_1: {ctor: '[]'}
 						}
 					});
@@ -11586,8 +11593,8 @@ var _user$project$Main$renderBys = function (bys) {
 				bys)));
 };
 var _user$project$Main$renderIn = function (maybeIn) {
-	var _p4 = maybeIn;
-	if (_p4.ctor === 'Nothing') {
+	var _p5 = maybeIn;
+	if (_p5.ctor === 'Nothing') {
 		return _user$project$Main$nowt;
 	} else {
 		return A2(
@@ -11635,18 +11642,18 @@ var _user$project$Main$renderIn = function (maybeIn) {
 					}),
 				_1: {
 					ctor: '::',
-					_0: _elm_lang$html$Html$text(_p4._0),
+					_0: _elm_lang$html$Html$text(_p5._0),
 					_1: {ctor: '[]'}
 				}
 			});
 	}
 };
 var _user$project$Main$renderCommand = function (maybeCommand) {
-	var _p5 = maybeCommand;
-	if (_p5.ctor === 'Nothing') {
+	var _p6 = maybeCommand;
+	if (_p6.ctor === 'Nothing') {
 		return _user$project$Main$nowt;
 	} else {
-		var _p6 = _p5._0;
+		var _p7 = _p6._0;
 		return A2(
 			_elm_lang$html$Html$span,
 			{ctor: '[]'},
@@ -11670,7 +11677,7 @@ var _user$project$Main$renderCommand = function (maybeCommand) {
 					},
 					{
 						ctor: '::',
-						_0: _elm_lang$html$Html$text(_p6.name),
+						_0: _elm_lang$html$Html$text(_p7.name),
 						_1: {ctor: '[]'}
 					}),
 				_1: {
@@ -11689,15 +11696,15 @@ var _user$project$Main$renderCommand = function (maybeCommand) {
 						},
 						{
 							ctor: '::',
-							_0: _user$project$Main$renderBys(_p6.bys),
+							_0: _user$project$Main$renderBys(_p7.bys),
 							_1: {ctor: '[]'}
 						}),
 					_1: {
 						ctor: '::',
-						_0: _user$project$Main$renderIn(_p6.in_),
+						_0: _user$project$Main$renderIn(_p7.in_),
 						_1: {
 							ctor: '::',
-							_0: A2(_user$project$Main$renderExpected, _p6.expected, _p6.expectedMany),
+							_0: A2(_user$project$Main$renderExpected, _p7.expected, _p7.expectedMany),
 							_1: {ctor: '[]'}
 						}
 					}
@@ -11707,15 +11714,15 @@ var _user$project$Main$renderCommand = function (maybeCommand) {
 };
 var _user$project$Main$renderDataPoint = function (dataPoint) {
 	var color = function () {
-		var _p7 = dataPoint.context;
-		if (_p7.ctor === 'Nothing') {
+		var _p8 = dataPoint.context;
+		if (_p8.ctor === 'Nothing') {
 			return 'grey';
 		} else {
-			var _p8 = _p7._0.success;
-			if (_p8.ctor === 'Nothing') {
+			var _p9 = _p8._0.success;
+			if (_p9.ctor === 'Nothing') {
 				return '#cccc00';
 			} else {
-				return _p8._0 ? '#00cc00' : '#cc0000';
+				return _p9._0 ? '#00cc00' : '#cc0000';
 			}
 		}
 	}();
@@ -11902,28 +11909,28 @@ var _user$project$Main$update = F2(
 	function (msg, model) {
 		update:
 		while (true) {
-			var _p9 = msg;
-			if (_p9.ctor === 'LoadData') {
-				var _v7 = _user$project$Main$ParseData,
-					_v8 = _elm_lang$core$Native_Utils.update(
+			var _p10 = msg;
+			if (_p10.ctor === 'LoadData') {
+				var _v8 = _user$project$Main$ParseData,
+					_v9 = _elm_lang$core$Native_Utils.update(
 					model,
-					{raw: _p9._0});
-				msg = _v7;
-				model = _v8;
+					{raw: _p10._0});
+				msg = _v8;
+				model = _v9;
 				continue update;
 			} else {
 				var result = A2(_elm_lang$core$Json_Decode$decodeString, _user$project$DataPointCodec$decodeDataPointList, model.raw);
 				var model_ = function () {
-					var _p10 = result;
-					if (_p10.ctor === 'Ok') {
+					var _p11 = result;
+					if (_p11.ctor === 'Ok') {
 						return _elm_lang$core$Native_Utils.update(
 							model,
-							{dataPoints: _p10._0});
+							{dataPoints: _p11._0});
 					} else {
 						return _elm_lang$core$Native_Utils.update(
 							model,
 							{
-								error: _elm_lang$core$Maybe$Just(_p10._0)
+								error: _elm_lang$core$Maybe$Just(_p11._0)
 							});
 					}
 				}();
