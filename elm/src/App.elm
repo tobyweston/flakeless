@@ -34,6 +34,7 @@ import Dict
 --make images be base64 encoded into the page
 --maybe make js inline
 --can we snapshot the image and or html of the element under assertion (inline even better)
+--ensure we can handling quotes in messages ...
 
 type alias Model =
     { raw : String
