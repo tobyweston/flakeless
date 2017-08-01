@@ -11446,7 +11446,7 @@ var _user$project$Main$renderContext = function (maybeContext) {
 			}) : _user$project$Main$nowt;
 	}
 };
-var _user$project$Main$gapRight = {ctor: '_Tuple2', _0: 'margin-right', _1: '5px'};
+var _user$project$Main$gapRight = {ctor: '_Tuple2', _0: 'margin-right', _1: '6px'};
 var _user$project$Main$renderExpected = F2(
 	function (expected, expectedMany) {
 		var _p5 = {ctor: '_Tuple2', _0: expected, _1: expectedMany};
@@ -11590,7 +11590,7 @@ var _user$project$Main$renderArgs = function (args) {
 		_elm_lang$html$Html$span,
 		{
 			ctor: '::',
-			_0: _elm_lang$html$Html_Attributes$class('lozenge'),
+			_0: _elm_lang$html$Html_Attributes$class('lozengex'),
 			_1: {
 				ctor: '::',
 				_0: _elm_lang$html$Html_Attributes$style(
@@ -11640,7 +11640,7 @@ var _user$project$Main$renderBys = function (bys) {
 		_elm_lang$html$Html$span,
 		{
 			ctor: '::',
-			_0: _elm_lang$html$Html_Attributes$class('lozenge'),
+			_0: _elm_lang$html$Html_Attributes$class('lozengex'),
 			_1: {
 				ctor: '::',
 				_0: _elm_lang$html$Html_Attributes$style(
@@ -11810,7 +11810,23 @@ var _user$project$Main$renderCommand = function (maybeCommand) {
 							}),
 						_1: {
 							ctor: '::',
-							_0: _user$project$Main$renderIn(_p8.in_),
+							_0: A2(
+								_elm_lang$html$Html$span,
+								{
+									ctor: '::',
+									_0: _elm_lang$html$Html_Attributes$style(
+										{
+											ctor: '::',
+											_0: _user$project$Main$smaller,
+											_1: {ctor: '[]'}
+										}),
+									_1: {ctor: '[]'}
+								},
+								{
+									ctor: '::',
+									_0: _user$project$Main$renderIn(_p8.in_),
+									_1: {ctor: '[]'}
+								}),
 							_1: {
 								ctor: '::',
 								_0: A2(_user$project$Main$renderExpected, _p8.expected, _p8.expectedMany),

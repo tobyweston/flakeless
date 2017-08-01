@@ -78,7 +78,7 @@ renderDataPoint dataPoint =
         ]
 
 gapRight : (String, String)
-gapRight = ("margin-right", "5px")
+gapRight = ("margin-right", "6px")
 
 grey : (String, String)
 grey = ("color", "grey")
@@ -94,7 +94,7 @@ renderCommand maybeCommand =
             span [style [ gapRight, smaller ]] [text command.name]
             , span [style [smaller]] [renderBys command.bys]
             , span [style [smaller]] [renderArgs command.args]
-            , renderIn command.in_
+            , span [style [smaller]] [renderIn command.in_]
             , renderExpected command.expected command.expectedMany
             --TODO: whack me when done ....
 --            , div [style [ ("margin-right", "7px")]] [ text (toString command) ]
@@ -111,7 +111,7 @@ renderExpected expected expectedMany =
 
 renderArgs : Dict.Dict String String -> Html msg
 renderArgs args =
-    if Dict.isEmpty args then nowt else span [class "lozenge" ,style [ smaller, gapRight ]]
+    if Dict.isEmpty args then nowt else span [class "lozengex" ,style [ smaller, gapRight ]]
       ((List.map (\k -> renderArg k (Dict.get k args)) (Dict.keys args)) |> List.intersperse (span [style [ smaller ]] [text ",  "]))
 
 renderArg : String -> Maybe String -> Html msg
@@ -124,7 +124,7 @@ renderArg k v =
 
 renderBys : List (List (String, String)) -> Html msg
 renderBys bys =
-    if List.isEmpty bys then nowt else span [class "lozenge" ,style [ smaller, gapRight ]]
+    if List.isEmpty bys then nowt else span [class "lozengex" ,style [ smaller, gapRight ]]
       ((List.map (\b -> renderBy b) bys) |> List.intersperse (span [style [ smaller ]] [text " > "]))
 
 
