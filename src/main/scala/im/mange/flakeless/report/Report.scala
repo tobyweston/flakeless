@@ -68,7 +68,8 @@ object Report {
       write(htmlPath, htmlContent(when, flakeless, data).getBytes)
 //      write(jsonPath, data.getBytes)
 
-      if (!jsPath.toFile.exists()) write(jsPath, report.Assets.flakelessJs.getBytes)
+//      if (!jsPath.toFile.exists())
+      write(jsPath, report.Assets.flakelessJs.getBytes)
 
       System.err.println("*** Flakeless report: " + htmlPath.toAbsolutePath.toString)
     } catch {

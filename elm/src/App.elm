@@ -35,6 +35,8 @@ import Dict
 --maybe make js inline
 --can we snapshot the image and or html of the element under assertion (inline even better)
 --ensure we can handling quotes in messages ...
+--embolden the > in bys
+--consider timestamp filenames again to avoid windows logging
 
 type alias Model =
     { raw : String
