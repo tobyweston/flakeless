@@ -73,14 +73,8 @@ object Report {
       write(htmlPath, htmlContent(when, flakeless, b64).getBytes)
 //      write(jsonPath, data.getBytes)
 
-//      if (!jsPath.toFile.exists())
+      if (jsPath.toFile.exists()) jsPath.toFile.delete()
       write(jsPath, report.Assets.flakelessJs.getBytes)
-
-      import java.util.Base64
-      import java.nio.charset.StandardCharsets
-
-//      val b64 = Base64.getEncoder.encodeToString(data.getBytes(StandardCharsets.UTF_8))
-//      println(b64)
 
       System.err.println("*** Flakeless report: " + htmlPath.toAbsolutePath.toString)
     } catch {
