@@ -44,6 +44,7 @@ object Example extends App {
   def createElement: RemoteWebElement = {
     val element = new RemoteWebElement()
     element.setId("elementId")
+    element.getTagName
     element
   }
 

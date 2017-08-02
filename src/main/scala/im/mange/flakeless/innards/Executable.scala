@@ -34,7 +34,7 @@ case class Command(name: String, in: Option[WebElement], by: Option[By],
       Seq(
         Some(LabelAndValue(None, name)),
         by.map(b => LabelAndValue(Some("by"), b.toString)),
-        in.map(i => LabelAndValue(Some("in"), i.toString))
+        in.map(i => LabelAndValue(Some("in"), inAsString(i)))
       ) ++
         args.map(kv => Some(LabelAndValue(Some(kv._1), kv._2))) ++
         Seq(
@@ -42,6 +42,10 @@ case class Command(name: String, in: Option[WebElement], by: Option[By],
           expectedMany.map(e => LabelAndValue(Some("expectedMany"), e.mkString(", ")))
         )
       ).flatten.map(_.describe).mkString("\n| ")
+  }
+
+  private def inAsString(i: WebElement): String = {
+    if (i.getTagName == "body") "body" else i.toString
   }
 
   def report = {
