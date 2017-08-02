@@ -74,7 +74,7 @@ object Report {
       import java.util.Base64
       import java.nio.charset.StandardCharsets
 
-      val b64 = Base64.getEncoder.encodeToString("test".getBytes(StandardCharsets.UTF_8))
+      val b64 = Base64.getEncoder.encodeToString(data.getBytes(StandardCharsets.UTF_8))
       println(b64)
 
       System.err.println("*** Flakeless report: " + htmlPath.toAbsolutePath.toString)
