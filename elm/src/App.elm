@@ -10,6 +10,7 @@ import Maybe.Extra as MaybeExtra
 import Date.Extra.Format as DateFormat
 import Date.Extra.Config.Config_en_gb exposing (config)
 import Dict
+import Base64
 
 --TODO: image(s)!
 --TODO: args
@@ -176,7 +177,10 @@ update : Msg -> Model -> ( Model, Cmd Msg )
 update msg model =
     case msg of
         LoadData data ->
-            update ParseData { model | raw = data }
+            let
+                d = Debug.log "b64" (toString (Base64.decode "dGVzdA=="))
+            in
+                update ParseData { model | raw = data }
 
         ParseData ->
             let

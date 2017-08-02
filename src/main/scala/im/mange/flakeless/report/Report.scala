@@ -71,6 +71,12 @@ object Report {
 //      if (!jsPath.toFile.exists())
       write(jsPath, report.Assets.flakelessJs.getBytes)
 
+      import java.util.Base64
+      import java.nio.charset.StandardCharsets
+
+      val b64 = Base64.getEncoder.encodeToString("test".getBytes(StandardCharsets.UTF_8))
+      println(b64)
+
       System.err.println("*** Flakeless report: " + htmlPath.toAbsolutePath.toString)
     } catch {
       case t: Exception => System.err.println("*** Failed to write report something bad happened ***\n")
