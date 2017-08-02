@@ -12449,34 +12449,38 @@ var _user$project$Main$renderCommand = function (maybeCommand) {
 	}
 };
 var _user$project$Main$renderDataPoint = function (dataPoint) {
-	var color = function () {
+	var colorClass = function () {
 		var _p9 = dataPoint.context;
 		if (_p9.ctor === 'Nothing') {
-			return 'grey';
+			return 'message';
 		} else {
 			var _p10 = _p9._0.success;
 			if (_p10.ctor === 'Nothing') {
-				return '#cccc00';
+				return 'dunno';
 			} else {
-				return _p10._0 ? '#00cc00' : '#cc0000';
+				return _p10._0 ? 'pass' : 'fail';
 			}
 		}
 	}();
 	return A2(
-		_elm_lang$html$Html$div,
+		_elm_lang$html$Html$li,
 		{
 			ctor: '::',
-			_0: _elm_lang$html$Html_Attributes$style(
-				{
-					ctor: '::',
-					_0: {ctor: '_Tuple2', _0: 'min-height', _1: '20px'},
-					_1: {
+			_0: _elm_lang$html$Html_Attributes$class(colorClass),
+			_1: {
+				ctor: '::',
+				_0: _elm_lang$html$Html_Attributes$style(
+					{
 						ctor: '::',
-						_0: {ctor: '_Tuple2', _0: 'padding-bottom', _1: '5px'},
-						_1: {ctor: '[]'}
-					}
-				}),
-			_1: {ctor: '[]'}
+						_0: {ctor: '_Tuple2', _0: 'min-height', _1: '20px'},
+						_1: {
+							ctor: '::',
+							_0: {ctor: '_Tuple2', _0: 'padding-bottom', _1: '5px'},
+							_1: {ctor: '[]'}
+						}
+					}),
+				_1: {ctor: '[]'}
+			}
 		},
 		{
 			ctor: '::',
@@ -12513,63 +12517,35 @@ var _user$project$Main$renderDataPoint = function (dataPoint) {
 						}),
 					_1: {
 						ctor: '::',
-						_0: A2(
+						_0: _elm_community$maybe_extra$Maybe_Extra$isJust(dataPoint.description) ? A2(
 							_elm_lang$html$Html$span,
 							{
 								ctor: '::',
 								_0: _elm_lang$html$Html_Attributes$style(
 									{
 										ctor: '::',
-										_0: {ctor: '_Tuple2', _0: 'color', _1: color},
+										_0: _user$project$Main$gapRight,
 										_1: {
 											ctor: '::',
-											_0: {ctor: '_Tuple2', _0: 'font-weight', _1: 'bold'},
-											_1: {
-												ctor: '::',
-												_0: _user$project$Main$gapRight,
-												_1: {ctor: '[]'}
-											}
+											_0: _user$project$Main$smaller,
+											_1: {ctor: '[]'}
 										}
 									}),
 								_1: {ctor: '[]'}
 							},
 							{
 								ctor: '::',
-								_0: _elm_lang$html$Html$text('*'),
+								_0: _elm_lang$html$Html$text(
+									A2(_elm_lang$core$Maybe$withDefault, '', dataPoint.description)),
 								_1: {ctor: '[]'}
-							}),
+							}) : _user$project$Main$nowt,
 						_1: {
 							ctor: '::',
-							_0: _elm_community$maybe_extra$Maybe_Extra$isJust(dataPoint.description) ? A2(
-								_elm_lang$html$Html$span,
-								{
-									ctor: '::',
-									_0: _elm_lang$html$Html_Attributes$style(
-										{
-											ctor: '::',
-											_0: _user$project$Main$gapRight,
-											_1: {
-												ctor: '::',
-												_0: _user$project$Main$smaller,
-												_1: {ctor: '[]'}
-											}
-										}),
-									_1: {ctor: '[]'}
-								},
-								{
-									ctor: '::',
-									_0: _elm_lang$html$Html$text(
-										A2(_elm_lang$core$Maybe$withDefault, '', dataPoint.description)),
-									_1: {ctor: '[]'}
-								}) : _user$project$Main$nowt,
+							_0: _user$project$Main$renderCommand(dataPoint.command),
 							_1: {
 								ctor: '::',
-								_0: _user$project$Main$renderCommand(dataPoint.command),
-								_1: {
-									ctor: '::',
-									_0: _user$project$Main$renderContext(dataPoint.context),
-									_1: {ctor: '[]'}
-								}
+								_0: _user$project$Main$renderContext(dataPoint.context),
+								_1: {ctor: '[]'}
 							}
 						}
 					}
@@ -12596,7 +12572,7 @@ var _user$project$Main$view = function (model) {
 			_1: {
 				ctor: '::',
 				_0: A2(
-					_elm_lang$html$Html$div,
+					_elm_lang$html$Html$ul,
 					{ctor: '[]'},
 					A2(
 						_elm_lang$core$List$map,

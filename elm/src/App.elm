@@ -63,7 +63,7 @@ view model =
     in
         div []
             [ if isError then div [] [text (model.error |> Maybe.withDefault "") ] else nowt
-            , div [] (List.map (\dp -> renderDataPoint dp )model.dataPoints)
+            , ul [] (List.map (\dp -> renderDataPoint dp )model.dataPoints)
             , if isError then div [] [
                 hr [] []
                 , text ("raw:" ++ toString model.raw)
@@ -74,16 +74,16 @@ view model =
 renderDataPoint : DataPoint -> Html msg
 renderDataPoint dataPoint =
     let
-        color = case dataPoint.context of
-                    Nothing -> "grey"
+        colorClass = case dataPoint.context of
+                    Nothing -> "message"
                     Just context -> case context.success of
-                        Nothing -> "#cccc00"
-                        Just success -> if success then "#00cc00" else "#cc0000"
+                        Nothing -> "dunno"
+                        Just success -> if success then "pass" else "fail"
     in
-        div [ style [ ("min-height", "20px"), ("padding-bottom", "5px") ] ] [
+        li [ class colorClass, style [ ("min-height", "20px"), ("padding-bottom", "5px") ] ] [
             span [ ] [
                 span [style [ gapRight, smaller, grey ]] [text (DateFormat.format config "%H:%M:%S.%L" dataPoint.when)]
-                , span [style [ ("color", color), ("font-weight", "bold"), gapRight ]] [ text "*"]
+--                , span [style [ ("color", colorClass), ("font-weight", "bold"), gapRight ]] [ text "*"]
                 , if MaybeExtra.isJust dataPoint.description then span [style [ gapRight, smaller ] ] [text (dataPoint.description |> Maybe.withDefault "") ] else nowt
                 , renderCommand dataPoint.command
                 , renderContext dataPoint.context

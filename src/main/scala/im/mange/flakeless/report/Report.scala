@@ -106,8 +106,39 @@ s"""
   |  width: 100%;
   |  height: auto;
   |}
-  |</style>
   |
+  |ul {
+  |  list-style: none;
+  |  padding: 0;
+  |  margin: 0;
+  |}
+  |
+  |li {
+  |  padding-left: 1em;
+  |  text-indent: -.7em;
+  |}
+  |
+  |.message::before {
+  |  content: "• ";
+  |  font-size: x-large;
+  |  color: grey;
+  |}
+  |.pass::before {
+  |  content: "• ";
+  |  font-size: x-large;
+  |  color: #00cc00;
+  |}
+  |.fail::before {
+  |  content: "• ";
+  |  font-size: x-large;
+  |  color: cc0000;
+  |}
+  |.dunno::before {
+  |  content: "• ";
+  |  font-size: x-large;
+  |  color: cccc00;
+  |}
+  |</style>
   |</head>
   |<body>
   |  <table>
