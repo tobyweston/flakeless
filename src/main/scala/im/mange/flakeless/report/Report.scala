@@ -1,5 +1,8 @@
 package im.mange.flakeless.report
 
+import java.nio.charset.StandardCharsets
+import java.util.Base64
+
 import im.mange.flakeless.innards.{Command, Context}
 import im.mange.flakeless.{Flakeless, Path, report}
 import org.openqa.selenium.remote.RemoteWebElement
@@ -27,7 +30,7 @@ object Example extends App {
     flakeless.record(Command("everything", Some(createElement), Some(By.id("id")), Map("key" -> "value"), Some("expected"), Some(List("expected", "expected2"))), Context(List("failures"), success = Some(false)))
     flakeless.record(Command("everything with path", Some(createElement), Some(Path(By.id("id"))), Map("key" -> "value"), Some("expected"), Some(List("expected", "expected2"))), Context(List("failures"), success = Some(false)))
 
-    flakeless.record(Command("escaping", Some(createElement), Some(By.id("id")), expectedMany = Some(List("\"expected\""))), Context(List("failure \"1\"", "'2'"), success = Some(false)))
+    flakeless.record(Command("escaping", Some(createElement), Some(By.id("id")), expectedMany = Some(List("\"expected"))), Context(List("failure \"1\"", "'2'"), success = Some(false)))
 
     //real world
     flakeless.record(Command("Goto", None, None, Map("url" -> "http://foo.bar.com/baz")), Context(Nil, success = Some(true)))
@@ -65,7 +68,9 @@ object Report {
       if (captureImage) write(imagePath, screenshot(flakeless))
 
       val data = flakeless.jsonFlightData()
-      write(htmlPath, htmlContent(when, flakeless, data).getBytes)
+      val b64 = Base64.getEncoder.encodeToString(data.getBytes(StandardCharsets.UTF_8))
+
+      write(htmlPath, htmlContent(when, flakeless, b64).getBytes)
 //      write(jsonPath, data.getBytes)
 
 //      if (!jsPath.toFile.exists())
@@ -74,8 +79,8 @@ object Report {
       import java.util.Base64
       import java.nio.charset.StandardCharsets
 
-      val b64 = Base64.getEncoder.encodeToString(data.getBytes(StandardCharsets.UTF_8))
-      println(b64)
+//      val b64 = Base64.getEncoder.encodeToString(data.getBytes(StandardCharsets.UTF_8))
+//      println(b64)
 
       System.err.println("*** Flakeless report: " + htmlPath.toAbsolutePath.toString)
     } catch {
