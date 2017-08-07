@@ -44,7 +44,6 @@ object Example extends App {
   def createElement: RemoteWebElement = {
     val element = new RemoteWebElement()
     element.setId("elementId")
-    element.getTagName
     element
   }
 
@@ -145,7 +144,7 @@ s"""
   |  <table>
   |  <tr>
   |  <td style="width 50%;"><div style="font-family: Courier New;" id="content"></div></td>
-  |  <td style="width 50%;"><div class="container"><img src="$when.png"></div></td>
+  |  <td style="width 50%;"><div style="background-color: grey;" class="container"><img src="$when.png"></div></td>
   |  </tr>
   |  </table>
   |  <script>
