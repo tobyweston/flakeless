@@ -18,19 +18,15 @@ case class Flakeless(rawWebDriver: WebDriver, config: Config = Config()) {
   def newFlight(description: Option[String] = None) {
     currentFlightNumber = FlightNumber.next
     fdr.reset() // if config.resetOnNewFlight whateva
-    description.foreach(d => fdr.record(currentFlightNumber, d))
+    description.foreach(d => fdr.record(currentFlightNumber, d, None))
   }
 
   def record(command: Command, context: Context) {
     fdr.record(currentFlightNumber, command, context)
   }
 
-  def inflightAnnouncement(description: String) {
-    fdr.record(currentFlightNumber, description)
-  }
-
-  def inflightAnnouncement(log: List[String]) {
-    fdr.record(currentFlightNumber, log)
+  def inflightAnnouncement(description: String, log: Option[List[String]] = None) {
+    fdr.record(currentFlightNumber, description, log)
   }
 
   def flightData(flight: Int = currentFlightNumber) = fdr.data(flight)
