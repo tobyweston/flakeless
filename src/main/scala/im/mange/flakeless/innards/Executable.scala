@@ -44,14 +44,9 @@ case class Command(name: String, in: Option[WebElement], by: Option[By],
       ).flatten.map(_.describe).mkString("\n| ")
   }
 
-  private def inAsString(i: WebElement): String = {
-    try {
-      if (i.getTagName == "body") "body" else i.toString
-    }
-    catch {
-      case e: Throwable => i.toString
-    }
-  }
+  private def inAsString(i: WebElement) =
+    try { if (i.getTagName == "body") "body" else i.toString }
+    catch { case e: Throwable => i.toString }
 
   def report = {
     val inString = in.map(i => inAsString(i))
