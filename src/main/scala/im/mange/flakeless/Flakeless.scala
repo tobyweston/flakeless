@@ -25,8 +25,12 @@ case class Flakeless(rawWebDriver: WebDriver, config: Config = Config()) {
     fdr.record(currentFlightNumber, command, context)
   }
 
-  def inflightAnnouncement(value: String) {
-    fdr.record(currentFlightNumber, value)
+  def inflightAnnouncement(description: String) {
+    fdr.record(currentFlightNumber, description)
+  }
+
+  def inflightAnnouncement(log: List[String]) {
+    fdr.record(currentFlightNumber, log)
   }
 
   def flightData(flight: Int = currentFlightNumber) = fdr.data(flight)
