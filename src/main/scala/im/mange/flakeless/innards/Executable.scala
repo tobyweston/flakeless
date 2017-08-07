@@ -45,7 +45,12 @@ case class Command(name: String, in: Option[WebElement], by: Option[By],
   }
 
   private def inAsString(i: WebElement): String = {
-    if (i.getTagName == "body") "body" else i.toString
+    try {
+      if (i.getTagName == "body") "body" else i.toString
+    }
+    catch {
+      case e: Throwable => i.toString
+    }
   }
 
   def report = {
