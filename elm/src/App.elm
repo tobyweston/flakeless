@@ -174,7 +174,7 @@ renderLog : Maybe (List String) -> Html msg
 renderLog maybeLog =
     case maybeLog of
         Nothing -> nowt
-        Just log -> div [style [ smaller, grey, ("margin-left", "25px") ]] [ pre [ style [ smaller ]] [text ("\n" ++ (String.join "\n" log)) ] ]
+        Just log -> div [style [ smaller, grey, ("margin-left", "25px") ]] [ pre [ style [ smaller, ("white-space", "pre-wrap") ]] [text ("\n" ++ (String.join "\n" log)) ] ]
 
 nowt : Html msg
 nowt =
