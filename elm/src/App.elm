@@ -87,6 +87,7 @@ renderDataPoint dataPoint =
                 , if MaybeExtra.isJust dataPoint.description then span [style [ gapRight, smaller ] ] [text (dataPoint.description |> Maybe.withDefault "") ] else nowt
                 , renderCommand dataPoint.command
                 , renderContext dataPoint.context
+                , renderLog dataPoint.log
             ]
         ]
 
@@ -168,6 +169,12 @@ renderContext maybeContext =
 --                        span [style [smaller]] [span [style [grey, smaller]] [ text "actual: "], span [] ((List.map (\f -> span [] [text ("\"" ++ f ++ "\"")]) context.failures) |> List.intersperse (span [style [ smaller ]] [text ", "]))]
                         span [style [smaller]] [span [style [grey, smaller]] [ text "actual: "], span [ style [ ("color", "#cc0000") ]] [text (List.reverse context.failures |> List.head |> Maybe.map (\f -> "\"" ++ f ++ "\"") |> Maybe.withDefault "???" )] ]
                         else nowt
+
+renderLog : Maybe (List String) -> Html msg
+renderLog maybeLog =
+    case maybeLog of
+        Nothing -> nowt
+        Just log -> div [style [ smaller, grey, ("margin-left", "25px") ]] [ pre [ style [ smaller ]] [text ("\n" ++ (String.join "\n" log)) ] ]
 
 nowt : Html msg
 nowt =

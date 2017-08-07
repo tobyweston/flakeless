@@ -11717,9 +11717,9 @@ var _truqu$elm_base64$Base64$decode = _truqu$elm_base64$Base64_Decode$decode;
 var _truqu$elm_base64$Base64$encode = _truqu$elm_base64$Base64_Encode$encode;
 
 var _user$project$DataPointCodec$decodeBys = _elm_lang$core$Json_Decode$keyValuePairs(_elm_lang$core$Json_Decode$string);
-var _user$project$DataPointCodec$DataPoint = F5(
-	function (a, b, c, d, e) {
-		return {flightNumber: a, when: b, description: c, command: d, context: e};
+var _user$project$DataPointCodec$DataPoint = F6(
+	function (a, b, c, d, e, f) {
+		return {flightNumber: a, when: b, description: c, command: d, context: e, log: f};
 	});
 var _user$project$DataPointCodec$Args = function (a) {
 	return {key: a};
@@ -11779,28 +11779,34 @@ var _user$project$DataPointCodec$decodeDataPointContext = A4(
 		_NoRedInk$elm_decode_pipeline$Json_Decode_Pipeline$decode(_user$project$DataPointCodec$Context)));
 var _user$project$DataPointCodec$decodeDataPoint = A4(
 	_NoRedInk$elm_decode_pipeline$Json_Decode_Pipeline$optional,
-	'context',
-	_elm_lang$core$Json_Decode$maybe(_user$project$DataPointCodec$decodeDataPointContext),
+	'log',
+	_elm_lang$core$Json_Decode$maybe(
+		_elm_lang$core$Json_Decode$list(_elm_lang$core$Json_Decode$string)),
 	_elm_lang$core$Maybe$Nothing,
 	A4(
 		_NoRedInk$elm_decode_pipeline$Json_Decode_Pipeline$optional,
-		'command',
-		_elm_lang$core$Json_Decode$maybe(_user$project$DataPointCodec$decodeDataPointCommand),
+		'context',
+		_elm_lang$core$Json_Decode$maybe(_user$project$DataPointCodec$decodeDataPointContext),
 		_elm_lang$core$Maybe$Nothing,
 		A4(
 			_NoRedInk$elm_decode_pipeline$Json_Decode_Pipeline$optional,
-			'description',
-			_elm_lang$core$Json_Decode$maybe(_elm_lang$core$Json_Decode$string),
+			'command',
+			_elm_lang$core$Json_Decode$maybe(_user$project$DataPointCodec$decodeDataPointCommand),
 			_elm_lang$core$Maybe$Nothing,
-			A3(
-				_NoRedInk$elm_decode_pipeline$Json_Decode_Pipeline$required,
-				'when',
-				A2(_elm_lang$core$Json_Decode$map, _rluiten$elm_date_extra$Date_Extra_Utils$unsafeFromString, _elm_lang$core$Json_Decode$string),
+			A4(
+				_NoRedInk$elm_decode_pipeline$Json_Decode_Pipeline$optional,
+				'description',
+				_elm_lang$core$Json_Decode$maybe(_elm_lang$core$Json_Decode$string),
+				_elm_lang$core$Maybe$Nothing,
 				A3(
 					_NoRedInk$elm_decode_pipeline$Json_Decode_Pipeline$required,
-					'flightNumber',
-					_elm_lang$core$Json_Decode$int,
-					_NoRedInk$elm_decode_pipeline$Json_Decode_Pipeline$decode(_user$project$DataPointCodec$DataPoint))))));
+					'when',
+					A2(_elm_lang$core$Json_Decode$map, _rluiten$elm_date_extra$Date_Extra_Utils$unsafeFromString, _elm_lang$core$Json_Decode$string),
+					A3(
+						_NoRedInk$elm_decode_pipeline$Json_Decode_Pipeline$required,
+						'flightNumber',
+						_elm_lang$core$Json_Decode$int,
+						_NoRedInk$elm_decode_pipeline$Json_Decode_Pipeline$decode(_user$project$DataPointCodec$DataPoint)))))));
 var _user$project$DataPointCodec$decodeDataPointList = _elm_lang$core$Json_Decode$list(_user$project$DataPointCodec$decodeDataPoint);
 
 var _user$project$Main$nowt = _elm_lang$html$Html$text('');
@@ -11989,11 +11995,63 @@ var _user$project$Main$renderContext = function (maybeContext) {
 			}) : _user$project$Main$nowt;
 	}
 };
+var _user$project$Main$renderLog = function (maybeLog) {
+	var _p5 = maybeLog;
+	if (_p5.ctor === 'Nothing') {
+		return _user$project$Main$nowt;
+	} else {
+		return A2(
+			_elm_lang$html$Html$div,
+			{
+				ctor: '::',
+				_0: _elm_lang$html$Html_Attributes$style(
+					{
+						ctor: '::',
+						_0: _user$project$Main$smaller,
+						_1: {
+							ctor: '::',
+							_0: _user$project$Main$grey,
+							_1: {
+								ctor: '::',
+								_0: {ctor: '_Tuple2', _0: 'margin-left', _1: '25px'},
+								_1: {ctor: '[]'}
+							}
+						}
+					}),
+				_1: {ctor: '[]'}
+			},
+			{
+				ctor: '::',
+				_0: A2(
+					_elm_lang$html$Html$pre,
+					{
+						ctor: '::',
+						_0: _elm_lang$html$Html_Attributes$style(
+							{
+								ctor: '::',
+								_0: _user$project$Main$smaller,
+								_1: {ctor: '[]'}
+							}),
+						_1: {ctor: '[]'}
+					},
+					{
+						ctor: '::',
+						_0: _elm_lang$html$Html$text(
+							A2(
+								_elm_lang$core$Basics_ops['++'],
+								'\n',
+								A2(_elm_lang$core$String$join, '\n', _p5._0))),
+						_1: {ctor: '[]'}
+					}),
+				_1: {ctor: '[]'}
+			});
+	}
+};
 var _user$project$Main$gapRight = {ctor: '_Tuple2', _0: 'margin-right', _1: '6px'};
 var _user$project$Main$renderExpected = F2(
 	function (expected, expectedMany) {
-		var _p5 = {ctor: '_Tuple2', _0: expected, _1: expectedMany};
-		if (_p5._0.ctor === 'Just') {
+		var _p6 = {ctor: '_Tuple2', _0: expected, _1: expectedMany};
+		if (_p6._0.ctor === 'Just') {
 			return A2(
 				_elm_lang$html$Html$span,
 				{
@@ -12055,12 +12113,12 @@ var _user$project$Main$renderExpected = F2(
 							A2(
 								_elm_lang$core$Basics_ops['++'],
 								'\"',
-								A2(_elm_lang$core$Basics_ops['++'], _p5._0._0, '\"'))),
+								A2(_elm_lang$core$Basics_ops['++'], _p6._0._0, '\"'))),
 						_1: {ctor: '[]'}
 					}
 				});
 		} else {
-			if (_p5._1.ctor === 'Just') {
+			if (_p6._1.ctor === 'Just') {
 				return A2(
 					_elm_lang$html$Html$span,
 					{
@@ -12119,7 +12177,7 @@ var _user$project$Main$renderExpected = F2(
 						_1: {
 							ctor: '::',
 							_0: _elm_lang$html$Html$text(
-								_elm_lang$core$Basics$toString(_p5._1._0)),
+								_elm_lang$core$Basics$toString(_p6._1._0)),
 							_1: {ctor: '[]'}
 						}
 					});
@@ -12293,8 +12351,8 @@ var _user$project$Main$renderBys = function (bys) {
 		});
 };
 var _user$project$Main$renderIn = function (maybeIn) {
-	var _p6 = maybeIn;
-	if (_p6.ctor === 'Nothing') {
+	var _p7 = maybeIn;
+	if (_p7.ctor === 'Nothing') {
 		return _user$project$Main$nowt;
 	} else {
 		return A2(
@@ -12342,18 +12400,18 @@ var _user$project$Main$renderIn = function (maybeIn) {
 					}),
 				_1: {
 					ctor: '::',
-					_0: _elm_lang$html$Html$text(_p6._0),
+					_0: _elm_lang$html$Html$text(_p7._0),
 					_1: {ctor: '[]'}
 				}
 			});
 	}
 };
 var _user$project$Main$renderCommand = function (maybeCommand) {
-	var _p7 = maybeCommand;
-	if (_p7.ctor === 'Nothing') {
+	var _p8 = maybeCommand;
+	if (_p8.ctor === 'Nothing') {
 		return _user$project$Main$nowt;
 	} else {
-		var _p8 = _p7._0;
+		var _p9 = _p8._0;
 		return A2(
 			_elm_lang$html$Html$span,
 			{ctor: '[]'},
@@ -12377,7 +12435,7 @@ var _user$project$Main$renderCommand = function (maybeCommand) {
 					},
 					{
 						ctor: '::',
-						_0: _elm_lang$html$Html$text(_p8.name),
+						_0: _elm_lang$html$Html$text(_p9.name),
 						_1: {ctor: '[]'}
 					}),
 				_1: {
@@ -12396,7 +12454,7 @@ var _user$project$Main$renderCommand = function (maybeCommand) {
 						},
 						{
 							ctor: '::',
-							_0: _user$project$Main$renderBys(_p8.bys),
+							_0: _user$project$Main$renderBys(_p9.bys),
 							_1: {ctor: '[]'}
 						}),
 					_1: {
@@ -12415,7 +12473,7 @@ var _user$project$Main$renderCommand = function (maybeCommand) {
 							},
 							{
 								ctor: '::',
-								_0: _user$project$Main$renderArgs(_p8.args),
+								_0: _user$project$Main$renderArgs(_p9.args),
 								_1: {ctor: '[]'}
 							}),
 						_1: {
@@ -12434,12 +12492,12 @@ var _user$project$Main$renderCommand = function (maybeCommand) {
 								},
 								{
 									ctor: '::',
-									_0: _user$project$Main$renderIn(_p8.in_),
+									_0: _user$project$Main$renderIn(_p9.in_),
 									_1: {ctor: '[]'}
 								}),
 							_1: {
 								ctor: '::',
-								_0: A2(_user$project$Main$renderExpected, _p8.expected, _p8.expectedMany),
+								_0: A2(_user$project$Main$renderExpected, _p9.expected, _p9.expectedMany),
 								_1: {ctor: '[]'}
 							}
 						}
@@ -12450,15 +12508,15 @@ var _user$project$Main$renderCommand = function (maybeCommand) {
 };
 var _user$project$Main$renderDataPoint = function (dataPoint) {
 	var colorClass = function () {
-		var _p9 = dataPoint.context;
-		if (_p9.ctor === 'Nothing') {
+		var _p10 = dataPoint.context;
+		if (_p10.ctor === 'Nothing') {
 			return 'message';
 		} else {
-			var _p10 = _p9._0.success;
-			if (_p10.ctor === 'Nothing') {
+			var _p11 = _p10._0.success;
+			if (_p11.ctor === 'Nothing') {
 				return 'dunno';
 			} else {
-				return _p10._0 ? 'pass' : 'fail';
+				return _p11._0 ? 'pass' : 'fail';
 			}
 		}
 	}();
@@ -12545,7 +12603,11 @@ var _user$project$Main$renderDataPoint = function (dataPoint) {
 							_1: {
 								ctor: '::',
 								_0: _user$project$Main$renderContext(dataPoint.context),
-								_1: {ctor: '[]'}
+								_1: {
+									ctor: '::',
+									_0: _user$project$Main$renderLog(dataPoint.log),
+									_1: {ctor: '[]'}
+								}
 							}
 						}
 					}
@@ -12625,18 +12687,18 @@ var _user$project$Main$update = F2(
 	function (msg, model) {
 		update:
 		while (true) {
-			var _p11 = msg;
-			if (_p11.ctor === 'LoadData') {
-				var _p13 = _p11._0;
-				var result = _truqu$elm_base64$Base64$decode(_p13);
-				var _p12 = result;
-				if (_p12.ctor === 'Ok') {
-					var _v9 = _user$project$Main$ParseData,
-						_v10 = _elm_lang$core$Native_Utils.update(
+			var _p12 = msg;
+			if (_p12.ctor === 'LoadData') {
+				var _p14 = _p12._0;
+				var result = _truqu$elm_base64$Base64$decode(_p14);
+				var _p13 = result;
+				if (_p13.ctor === 'Ok') {
+					var _v10 = _user$project$Main$ParseData,
+						_v11 = _elm_lang$core$Native_Utils.update(
 						model,
-						{raw: _p12._0});
-					msg = _v9;
-					model = _v10;
+						{raw: _p13._0});
+					msg = _v10;
+					model = _v11;
 					continue update;
 				} else {
 					return {
@@ -12644,8 +12706,8 @@ var _user$project$Main$update = F2(
 						_0: _elm_lang$core$Native_Utils.update(
 							model,
 							{
-								raw: _p13,
-								error: _elm_lang$core$Maybe$Just(_p12._0)
+								raw: _p14,
+								error: _elm_lang$core$Maybe$Just(_p13._0)
 							}),
 						_1: _elm_lang$core$Platform_Cmd$none
 					};
@@ -12653,16 +12715,16 @@ var _user$project$Main$update = F2(
 			} else {
 				var result = A2(_elm_lang$core$Json_Decode$decodeString, _user$project$DataPointCodec$decodeDataPointList, model.raw);
 				var model_ = function () {
-					var _p14 = result;
-					if (_p14.ctor === 'Ok') {
+					var _p15 = result;
+					if (_p15.ctor === 'Ok') {
 						return _elm_lang$core$Native_Utils.update(
 							model,
-							{dataPoints: _p14._0});
+							{dataPoints: _p15._0});
 					} else {
 						return _elm_lang$core$Native_Utils.update(
 							model,
 							{
-								error: _elm_lang$core$Maybe$Just(_p14._0)
+								error: _elm_lang$core$Maybe$Just(_p15._0)
 							});
 					}
 				}();

@@ -14,6 +14,7 @@ type alias DataPoint =
     , description : Maybe String
     , command : Maybe Command
     , context : Maybe Context
+    , log : Maybe (List String)
     }
 
 type alias Args =
@@ -47,6 +48,7 @@ decodeDataPoint =
         |> Json.Decode.Pipeline.optional "description" (Json.Decode.maybe Json.Decode.string) Nothing
         |> Json.Decode.Pipeline.optional "command" (Json.Decode.maybe decodeDataPointCommand) Nothing
         |> Json.Decode.Pipeline.optional "context" (Json.Decode.maybe decodeDataPointContext) Nothing
+        |> Json.Decode.Pipeline.optional "log" (Json.Decode.maybe (Json.Decode.list Json.Decode.string)) Nothing
 
 --decodeDataPointCommandArgs : Json.Decode.Decoder Args
 --decodeDataPointCommandArgs =

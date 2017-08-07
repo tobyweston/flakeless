@@ -37,7 +37,7 @@ object Example extends App {
     flakeless.record(Command("Click", Some(createElement), Some(By.id("id"))), Context(List("failed for a bit"), success = Some(true)))
     flakeless.record(Command("AssertElementListTextEquals", Some(createElement), Some(By.id("id")), expectedMany = Some(List("expected"))), Context(List("failures"), success = Some(false)))
 
-    flakeless.inflightAnnouncement("foo log", Some(List("line 1", "line 2")))
+    flakeless.inflightAnnouncement("foo log", Some(List("line 1", "line 2", "line 3")))
 
     Report(flakeless, "target/test-reports", captureImage = false)
   }
