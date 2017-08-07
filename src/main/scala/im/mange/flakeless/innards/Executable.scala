@@ -49,7 +49,7 @@ case class Command(name: String, in: Option[WebElement], by: Option[By],
   }
 
   def report = {
-    val inString = in.map(i => i.toString)
+    val inString = in.map(i => inAsString(i))
 
     def flat(by: By): Seq[By] = by match {
       case path: Path => path.bys.flatMap(flat)
