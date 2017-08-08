@@ -23,10 +23,10 @@ private class WaitForElements(val command: Command,
     (command.in, command.by) match {
       case (Some(in), Some(by)) =>
         Wait.waitUpTo(config).forCondition(command, {
-          val result = condition(in.findElements(by).asScala.toList)
-          val value = description(in.findElements(by).asScala.toList)
+          val elements = in.findElements(by).asScala.toList
+          val result = condition(elements)
           if (result) context.succeeded()
-          else context.failed(value)
+          else context.failed(description(elements))
           result
         },
           description(in.findElements(by).asScala.toList)

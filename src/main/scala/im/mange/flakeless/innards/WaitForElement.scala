@@ -28,10 +28,10 @@ private class WaitForElement(val command: Command,
         //TODO: we should ensure there is only one element - make configurable
         Wait.waitUpTo(config).forCondition(command,
           {
-            val result = condition(in.findElement(by))
-            val value = description(in.findElement(by))
+            val element = in.findElement(by)
+            val result = condition(element)
             if (result) context.succeeded()
-            else context.failed(value)
+            else context.failed(description(element))
             result
           },
           description(in.findElement(by))
