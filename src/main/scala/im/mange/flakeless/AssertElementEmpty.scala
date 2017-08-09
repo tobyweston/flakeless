@@ -1,14 +1,14 @@
 package im.mange.flakeless
 
 import im.mange.flakeless.innards.{Body, Command, Description, WaitForElement}
-import org.openqa.selenium.{By, WebElement}
+import org.openqa.selenium.{By, SearchContext}
 
 object AssertElementEmpty {
   def apply(flakeless: Flakeless, by: By): Unit = {
     apply(Body(flakeless.rawWebDriver), by, Some(flakeless))
   }
 
-  def apply(in: WebElement, by: By, flakeless: Option[Flakeless] = None): Unit = {
+  def apply(in: SearchContext, by: By, flakeless: Option[Flakeless] = None): Unit = {
     WaitForElement(flakeless,
       Command("AssertElementEmpty", Some(in), Some(by), expected = Some("")),
 
