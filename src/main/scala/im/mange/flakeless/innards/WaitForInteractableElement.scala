@@ -27,9 +27,8 @@ private class WaitForInteractableElement(val command: Command,
         Wait.waitUpTo(config).forCondition(command, {
           val e = in.findElement(by)
           val result = (if (mustBeDisplayed) e.isDisplayed else true) && e.isEnabled && condition(e)
-          val value = description(in.findElement(by))
           if (result) context.succeeded()
-          else context.failed(value)
+          else context.failed(description(e))
           result
         },
           description(in.findElement(by)),
