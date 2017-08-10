@@ -1,11 +1,11 @@
 package im.mange.flakeless
 
-import im.mange.flakeless.innards.{Body, Command, Description, WaitForElement}
+import im.mange.flakeless.innards.{Command, Description, WaitForElement}
 import org.openqa.selenium.{By, SearchContext}
 
 object AssertElementAttributeContains {
   def apply(flakeless: Flakeless, by: By, attribute: String, expected: String): Unit = {
-    apply(Body(flakeless.rawWebDriver), by, attribute, expected, Some(flakeless))
+    apply(flakeless.rawWebDriver, by, attribute, expected, Some(flakeless))
   }
 
   def apply(in: SearchContext, by: By, attribute: String, expected: String, flakeless: Option[Flakeless] = None): Unit = {

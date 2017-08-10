@@ -1,17 +1,17 @@
 package im.mange.flakeless
 
-import im.mange.flakeless.innards.{Body, Command, Description, WaitForInteractableElement}
+import im.mange.flakeless.innards.{Command, Description, WaitForInteractableElement}
 import org.openqa.selenium.{By, SearchContext}
 
 //TODO: should this be Enter? it isnt in webdriver
 //TODO: this should share with ClearAndSendKeys - all that is different is bool: clear
 object SendKeys {
   def apply(flakeless: Flakeless, by: By, keysToSend: CharSequence): Unit = {
-    apply(Body(flakeless.rawWebDriver), by, List(keysToSend), Some(flakeless))
+    apply(flakeless.rawWebDriver, by, List(keysToSend), Some(flakeless))
   }
 
   def apply(flakeless: Flakeless, by: By, keysToSend: List[CharSequence]): Unit = {
-    apply(Body(flakeless.rawWebDriver), by, keysToSend, Some(flakeless))
+    apply(flakeless.rawWebDriver, by, keysToSend, Some(flakeless))
   }
 
   def apply(in: SearchContext, by: By, keysToSend: List[CharSequence], flakeless: Option[Flakeless] = None): Unit = {

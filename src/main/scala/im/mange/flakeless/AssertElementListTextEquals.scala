@@ -1,11 +1,11 @@
 package im.mange.flakeless
 
-import im.mange.flakeless.innards.{Body, Command, WaitForElements}
+import im.mange.flakeless.innards.{Command, WaitForElements}
 import org.openqa.selenium.{By, SearchContext}
 
 object AssertElementListTextEquals {
   def apply(flakeless: Flakeless, by: By, expected: List[String]): Unit = {
-    apply(Body(flakeless.rawWebDriver), by, expected, Some(flakeless))
+    apply(flakeless.rawWebDriver, by, expected, Some(flakeless))
   }
 
   //TODO: I need to be converted to a Description, just not possible yet..

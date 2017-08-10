@@ -1,12 +1,12 @@
 package im.mange.flakeless
 
-import im.mange.flakeless.innards.{Body, Command, Description, WaitForInteractableElement}
+import im.mange.flakeless.innards.{Command, Description, WaitForInteractableElement}
 import org.openqa.selenium.{By, SearchContext}
 
 //TODO: decide if we really need the execute() stuff, we probably only need it for composites ... (i.e. integration)
 object Click {
   def apply(flakeless: Flakeless, by: By): Unit = {
-    apply(Body(flakeless.rawWebDriver), by, Some(flakeless))
+    apply(flakeless.rawWebDriver, by, Some(flakeless))
   }
 
   def apply(in: SearchContext, by: By, flakeless: Option[Flakeless] = None): Unit = {
