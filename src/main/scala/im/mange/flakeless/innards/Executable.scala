@@ -1,7 +1,7 @@
 package im.mange.flakeless.innards
 
 import im.mange.flakeless.{Config, Path}
-import org.openqa.selenium.{By, WebElement}
+import org.openqa.selenium.{By, SearchContext, WebDriver}
 
 trait Executable {
   def execute(context: Context, config: Config)
@@ -16,7 +16,7 @@ case class ReportCommand(name: String, in: Option[String], bys: Seq[By],
 
 //TODO: improve rendering of options and in etc ...
 //TODO: args at end? expected's earlier?
-case class Command(name: String, in: Option[WebElement], by: Option[By],
+case class Command(name: String, in: Option[SearchContext], by: Option[By],
                    args: Map[String, String] = Map.empty,
                    expected: Option[String] = None,
                    expectedMany: Option[List[String]] = None) {
@@ -44,8 +44,8 @@ case class Command(name: String, in: Option[WebElement], by: Option[By],
       ).flatten.map(_.describe).mkString("\n| ")
   }
 
-  private def inAsString(i: WebElement) =
-    try { if (i.getTagName == "body") "body" else i.toString }
+  private def inAsString(i: SearchContext) =
+    try { if (i.isInstanceOf[WebDriver]) "body" else i.toString }
     catch { case e: Throwable => i.toString }
 
   def report = {

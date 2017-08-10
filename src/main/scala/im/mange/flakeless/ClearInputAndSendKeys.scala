@@ -1,7 +1,7 @@
 package im.mange.flakeless
 
 import im.mange.flakeless.innards.{Body, Command, Description, WaitForInteractableElement}
-import org.openqa.selenium.{By, WebElement}
+import org.openqa.selenium.{By, SearchContext, WebElement}
 
 //TODO: should this be Enter? it isnt in webdriver
 //TODO: this should share with SendKeys
@@ -13,12 +13,12 @@ object ClearInputAndSendKeys {
     apply(Body(flakeless.rawWebDriver), by, keysToSend, Some(flakeless))
   }
 
-  def apply(in: WebElement, by: By, keysToSend: List[CharSequence], flakeless: Option[Flakeless] = None): Unit = {
+  def apply(in: SearchContext, by: By, keysToSend: List[CharSequence], flakeless: Option[Flakeless] = None): Unit = {
     new ClearInputAndSendKeys(flakeless, in, by, keysToSend).execute()
   }
 }
 
-private class ClearInputAndSendKeys(flakeless: Option[Flakeless], in: WebElement, by: By, keysToSend: List[CharSequence]) {
+private class ClearInputAndSendKeys(flakeless: Option[Flakeless], in: SearchContext, by: By, keysToSend: List[CharSequence]) {
   def execute(): Unit = {
     WaitForInteractableElement(flakeless,
       Command("ClearInputAndSendKeys", Some(in), Some(by), args = Map("keysToSend" -> keysToSend.mkString)),
