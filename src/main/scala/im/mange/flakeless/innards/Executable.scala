@@ -45,7 +45,7 @@ case class Command(name: String, in: Option[SearchContext], by: Option[By],
   }
 
   private def inAsString(i: SearchContext) =
-    try { if (i.isInstanceOf[WebDriver]) "body" else i.toString }
+    try { if (i.isInstanceOf[WebDriver]) "driver" else i.toString }
     catch { case e: Throwable => i.toString }
 
   def report = {
