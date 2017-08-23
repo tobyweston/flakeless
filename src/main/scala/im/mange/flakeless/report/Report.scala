@@ -39,7 +39,7 @@ object Example extends App {
 
     flakeless.inflightAnnouncement("foo log", Some(List("line 1", "line 2", "line 3")))
 
-    Report(flakeless, "target/test-reports", captureImage = false)
+    Report(flakeless, "target/test-reports", captureImage = false, host = Some("http://localhost:63342/root"))
   }
 
   def createElement: RemoteWebElement = {
@@ -54,7 +54,7 @@ object Example extends App {
 object Report {
   import java.nio.file.{Files, Paths, Path}
 
-  def apply(flakeless: Flakeless, outputDirectory: String, captureImage: Boolean = true) {
+  def apply(flakeless: Flakeless, outputDirectory: String, captureImage: Boolean = true, host: Option[String] = None) {
 
     try {
       val filepath = s"$outputDirectory/${"%04d".format(flakeless.getCurrentFlightNumber)}/"
@@ -63,7 +63,6 @@ object Report {
       val when = System.currentTimeMillis()
       val imagePath = path(filepath, s"$when.png")
       val htmlPath = path(filepath, s"flakeless.html")
-//      val jsonPath = path(filepath, s"$when.json")
       val jsPath = path(filepath, s"flakeless.js")
 
       if (captureImage) write(imagePath, screenshot(flakeless))
@@ -72,14 +71,18 @@ object Report {
       val b64 = Base64.getEncoder.encodeToString(data.getBytes(StandardCharsets.UTF_8))
 
       write(htmlPath, htmlContent(when, flakeless, b64).getBytes)
-//      write(jsonPath, data.getBytes)
 
       if (jsPath.toFile.exists()) jsPath.toFile.delete()
       write(jsPath, report.Assets.flakelessJs.getBytes)
 
-      System.err.println("*** Flakeless report: " + htmlPath.toAbsolutePath.toString)
+      val fileSystemReport = htmlPath.toAbsolutePath.toString
+      host match {
+        case None => System.err.println("*** Flakeless report: " + fileSystemReport)
+        case Some(h) =>  System.err.println(s"*** Flakeless report: ${h}${fileSystemReport.replaceAll("\\\\", "/")} (or ${fileSystemReport})")
+
+      }
     } catch {
-      case t: Exception => System.err.println("*** Failed to write report something bad happened ***\n")
+      case t: Exception => System.err.println(s"*** Failed to write report something bad happened ***\nProblem was:${t.getMessage}")
     }
 
     //TODO: might be able to kill the lozenge now ...
