@@ -20,8 +20,8 @@ private [flakeless] case class FlightDataRecorder() {
     dataByFlightNumber = new scala.collection.concurrent.TrieMap()
   }
 
-  def record(flightNumber: Int, description: String, log: Option[List[String]]) {
-    append(flightNumber, DataPoint(flightNumber, DateTime.now, Some(description), None, None, log))
+  def record(flightNumber: Int, description: String, log: Option[List[String]], isError: Boolean) {
+    append(flightNumber, DataPoint(flightNumber, DateTime.now, Some(description), None, Some(Context(Nil, Some(isError))), log))
   }
 
   def record(flightNumber: Int, command: Command, context: Context) {
