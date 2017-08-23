@@ -78,7 +78,7 @@ object Report {
       val fileSystemReport = htmlPath.toAbsolutePath.toString
       host match {
         case None => System.err.println("*** Flakeless report: " + fileSystemReport)
-        case Some(h) =>  System.err.println(s"*** Flakeless report: ${h}${fileSystemReport.replaceAll("\\\\", "/")} (or ${fileSystemReport})")
+        case Some(h) => System.err.println(s"*** Flakeless report: ${h}/${htmlPath.toString.replaceAll("\\\\", "/")} (or ${fileSystemReport})")
 
       }
     } catch {
