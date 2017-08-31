@@ -27,7 +27,7 @@ private [flakeless] case class FlightDataRecorder() {
 
   def jsonData(flight: Int) = Json.serialise(data(flight))
 
-  private def data(flightNumber: Int): Seq[DataPoint] = dataByFlightNumber.getOrElse(flightNumber, Nil)
+  def data(flightNumber: Int): Seq[DataPoint] = dataByFlightNumber.getOrElse(flightNumber, Nil)
 
   private def append(flightNumber: Int, dataPoint: DataPoint): Unit = {
     val current = dataByFlightNumber.getOrElse(flightNumber, Seq.empty[DataPoint])

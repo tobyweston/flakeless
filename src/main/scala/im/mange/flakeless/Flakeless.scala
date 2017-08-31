@@ -1,6 +1,7 @@
 package im.mange.flakeless
 
-import im.mange.flakeless.innards.{AtomicIntCounter, Command, Context, FlightDataRecorder}
+import im.mange.flakeless.innards._
+import org.joda.time.DateTime
 import org.openqa.selenium.WebDriver
 
 //TODO: in Config, have option to forget previous flight data when calling newFlight
@@ -11,12 +12,25 @@ object FlightNumber {
   def next = currentFlightNumberCounter.next
 }
 
-case class FlightInvestigation()
+case class FlightInvestigation(flightNumber: Int, started: Option[DateTime], finished: Option[DateTime])
 
 object FlightInvestigator {
+  private val investigationByFlightNumber: scala.collection.concurrent.TrieMap[Int, FlightInvestigation] =
+    new scala.collection.concurrent.TrieMap()
 
   def investigate(flightNumber: Int, flightDataRecorder: FlightDataRecorder): Unit = {
-//    FlightInvestigation(flightDataRecorder.)
+    update(flightNumber, createInvestigation(flightNumber, flightDataRecorder))
+  }
+
+  private def createInvestigation(flightNumber: Int, flightDataRecorder: FlightDataRecorder) = {
+    val flightData = flightDataRecorder.data(flightNumber)
+    val started = flightData.headOption.map(_.when)
+    val finished = flightData.reverse.headOption.map(_.when)
+    FlightInvestigation(flightNumber, started, finished)
+  }
+
+  private def update(flightNumber: Int, investigation: FlightInvestigation): Unit = {
+    investigationByFlightNumber.update(flightNumber, investigation)
   }
 }
 
