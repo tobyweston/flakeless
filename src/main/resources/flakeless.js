@@ -11716,14 +11716,24 @@ var _truqu$elm_base64$Base64_Encode$encode = function (input) {
 var _truqu$elm_base64$Base64$decode = _truqu$elm_base64$Base64_Decode$decode;
 var _truqu$elm_base64$Base64$encode = _truqu$elm_base64$Base64_Encode$encode;
 
-var _user$project$AllFlightsReportCodec$Investigation = function (a) {
-	return {flightNumber: a};
-};
-var _user$project$AllFlightsReportCodec$decodeInvestigation = A3(
-	_NoRedInk$elm_decode_pipeline$Json_Decode_Pipeline$required,
-	'flightNumber',
-	_elm_lang$core$Json_Decode$int,
-	_NoRedInk$elm_decode_pipeline$Json_Decode_Pipeline$decode(_user$project$AllFlightsReportCodec$Investigation));
+var _user$project$AllFlightsReportCodec$Investigation = F3(
+	function (a, b, c) {
+		return {flightNumber: a, name: b, durationMillis: c};
+	});
+var _user$project$AllFlightsReportCodec$decodeInvestigation = A4(
+	_NoRedInk$elm_decode_pipeline$Json_Decode_Pipeline$optional,
+	'durationMillis',
+	_elm_lang$core$Json_Decode$maybe(_elm_lang$core$Json_Decode$int),
+	_elm_lang$core$Maybe$Nothing,
+	A3(
+		_NoRedInk$elm_decode_pipeline$Json_Decode_Pipeline$required,
+		'name',
+		_elm_lang$core$Json_Decode$string,
+		A3(
+			_NoRedInk$elm_decode_pipeline$Json_Decode_Pipeline$required,
+			'flightNumber',
+			_elm_lang$core$Json_Decode$int,
+			_NoRedInk$elm_decode_pipeline$Json_Decode_Pipeline$decode(_user$project$AllFlightsReportCodec$Investigation))));
 var _user$project$AllFlightsReportCodec$decodeInvestigationList = _elm_lang$core$Json_Decode$list(_user$project$AllFlightsReportCodec$decodeInvestigation);
 
 var _user$project$AllFlightsReport$nowt = _elm_lang$html$Html$text('');

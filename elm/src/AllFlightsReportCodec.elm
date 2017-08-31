@@ -11,7 +11,8 @@ import Date exposing (..)
 type alias Investigation =
     { flightNumber : Int
 --    , when : Date
---    , description : Maybe String
+    , name : String
+    , durationMillis : Maybe Int
 --    , command : Maybe Command
 --    , context : Maybe Context
 --    , log : Maybe (List String)
@@ -45,10 +46,10 @@ decodeInvestigation =
     Json.Decode.Pipeline.decode Investigation
         |> Json.Decode.Pipeline.required "flightNumber" (Json.Decode.int)
 --        |> Json.Decode.Pipeline.required "when" (Json.Decode.string |> Json.Decode.map DateUtils.unsafeFromString )
---        |> Json.Decode.Pipeline.optional "description" (Json.Decode.maybe Json.Decode.string) Nothing
+        |> Json.Decode.Pipeline.required "name" (Json.Decode.string)
 --        |> Json.Decode.Pipeline.optional "command" (Json.Decode.maybe decodeDataPointCommand) Nothing
 --        |> Json.Decode.Pipeline.optional "context" (Json.Decode.maybe decodeDataPointContext) Nothing
---        |> Json.Decode.Pipeline.optional "log" (Json.Decode.maybe (Json.Decode.list Json.Decode.string)) Nothing
+        |> Json.Decode.Pipeline.optional "durationMillis" (Json.Decode.maybe (Json.Decode.int)) Nothing
 
 --decodeDataPointCommandArgs : Json.Decode.Decoder Args
 --decodeDataPointCommandArgs =
