@@ -12,6 +12,10 @@ import Date.Extra.Config.Config_en_gb exposing (config)
 import Dict
 import Base64
 
+--TODO: kill bullets!
+--TODO: make logs be expand/collapsible
+--TODO: collapse logs by defaiult, unless error
+
 --TODO: image(s)!
 --TODO: args
 --TODO: improve in_ rendering (needs better json)
