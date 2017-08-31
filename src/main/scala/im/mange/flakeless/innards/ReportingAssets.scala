@@ -1,5 +1,5 @@
-package im.mange.flakeless.reporting.innards
+package im.mange.flakeless.innards
 
-object Assets {
+object ReportingAssets {
   val flakelessJs = io.Source.fromResource("flakeless.js").mkString
 }

@@ -1,7 +1,6 @@
 package im.mange.flakeless
 
 import im.mange.flakeless.innards._
-import im.mange.flakeless.reporting.innards.{FlightDataRecorder, FlightInvestigator}
 import org.openqa.selenium.WebDriver
 
 case class Flakeless(rawWebDriver: WebDriver, config: Config = Config()) {

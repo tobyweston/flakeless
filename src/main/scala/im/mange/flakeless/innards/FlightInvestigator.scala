@@ -1,4 +1,4 @@
-package im.mange.flakeless.reporting.innards
+package im.mange.flakeless.innards
 
 import org.joda.time.{DateTime, Duration}
 

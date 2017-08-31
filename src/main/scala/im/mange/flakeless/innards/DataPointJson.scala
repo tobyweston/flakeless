@@ -1,0 +1,16 @@
+package im.mange.flakeless.innards
+
+import im.mange.little.json.{LittleJodaSerialisers, LittleSerialisers}
+import org.json4s.NoTypeHints
+import org.json4s.native.JsonMethods._
+import org.json4s.native.Serialization._
+import org.json4s.native.{JsonParser, Serialization}
+
+object DataPointJson {
+  private val shoreditchFormats = Serialization.formats(NoTypeHints) ++ LittleSerialisers.all ++ LittleJodaSerialisers.all
+
+  def serialise(r: Seq[DataPoint]) = {
+    implicit val formats = shoreditchFormats
+    pretty(render(JsonParser.parse(write(r))))
+  }
+}

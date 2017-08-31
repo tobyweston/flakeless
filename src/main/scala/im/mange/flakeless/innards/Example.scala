@@ -1,6 +1,5 @@
-package im.mange.flakeless.reporting.innards
+package im.mange.flakeless.innards
 
-import im.mange.flakeless.innards.{Command, Context}
 import im.mange.flakeless.reporting.{AllFlightsReport, FlightReport}
 import im.mange.flakeless.{Flakeless, Path}
 import org.openqa.selenium.By

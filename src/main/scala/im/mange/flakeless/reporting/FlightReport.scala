@@ -4,7 +4,7 @@ import java.nio.charset.StandardCharsets
 import java.util.Base64
 
 import im.mange.flakeless.Flakeless
-import im.mange.flakeless.reporting.innards.Assets
+import im.mange.flakeless.innards.ReportingAssets
 import org.openqa.selenium.{OutputType, TakesScreenshot}
 
 object FlightReport {
@@ -30,7 +30,7 @@ object FlightReport {
       write(htmlPath, htmlContent(when, flakeless, b64).getBytes)
 
       if (jsPath.toFile.exists()) jsPath.toFile.delete()
-      write(jsPath, Assets.flakelessJs.getBytes)
+      write(jsPath, ReportingAssets.flakelessJs.getBytes)
 
       val fileSystemReport = htmlPath.toAbsolutePath.toString
       host match {
