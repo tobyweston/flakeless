@@ -18,14 +18,14 @@ object FlightReport {
       Files.createDirectories(Paths.get(filepath))
 
       val when = System.currentTimeMillis()
-      val imagePath = path(filepath, s"$when.png")
-      val htmlPath = path(filepath, s"report.html")
 
+      val imagePath = path(filepath, s"$when.png")
       if (captureImage) write(imagePath, screenshot(flakeless))
 
       val jsonFlightData = flakeless.jsonFlightData(flightNumber)
       val b64 = Base64.getEncoder.encodeToString(jsonFlightData.getBytes(StandardCharsets.UTF_8))
 
+      val htmlPath = path(filepath, s"report.html")
       write(htmlPath, htmlContent(when, flakeless, b64).getBytes)
 
       ReportAssets.writeFlakelessJs(outputDirectory)
