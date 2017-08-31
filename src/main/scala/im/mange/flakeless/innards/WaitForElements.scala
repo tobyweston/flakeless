@@ -6,7 +6,7 @@ import org.openqa.selenium.{By, WebElement}
 import scala.collection.JavaConverters._
 
 
-private [flakeless] object WaitForElements {
+/* deliberately not private [flakeless] */ object WaitForElements {
   def apply(flakeless: Option[Flakeless], command: Command,
             description: (List[WebElement]) => String,
             condition: (List[WebElement]) => Boolean) = {
