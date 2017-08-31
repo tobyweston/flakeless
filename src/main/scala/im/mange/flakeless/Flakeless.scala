@@ -22,6 +22,10 @@ object FlightInvestigator {
     update(flightNumber, createInvestigation(flightNumber, flightDataRecorder))
   }
 
+  def summarise() = {
+    investigationByFlightNumber.keys.toList.sorted.map(k => println(investigationByFlightNumber(k)) )
+  }
+
   private def createInvestigation(flightNumber: Int, flightDataRecorder: FlightDataRecorder) = {
     val flightData = flightDataRecorder.data(flightNumber)
     val started = flightData.headOption.map(_.when)
