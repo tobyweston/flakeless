@@ -103,7 +103,7 @@ s"""
  |  <div style="font-family: Courier New;" id="content"></div>
  |  <script>
  |    var data = '${data.replaceAll("\n", "").replaceAll("'", "")}';
- |    var app = Elm.FlightReport.embed(document.getElementById('content'));
+ |    var app = Elm.AllFlightsReport.embed(document.getElementById('content'));
  |    app.ports.data.send(data);
  |  </script>
  |</body>
