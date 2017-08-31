@@ -75,81 +75,81 @@ grey = ("color", "grey")
 smaller : (String, String)
 smaller = ("font-size", "smaller")
 
-renderCommand : Maybe Command -> Html msg
-renderCommand maybeCommand =
-    case maybeCommand of
-        Nothing -> nowt
-        Just command -> span [] [
-            span [style [ gapRight, smaller ]] [text command.name]
-            , span [style [smaller]] [renderBys command.bys]
-            , span [style [smaller]] [renderArgs command.args]
-            , span [style [smaller]] [renderIn command.in_]
-            , renderExpected command.expected command.expectedMany
-            --TODO: whack me when done ....
---            , div [style [ ("margin-right", "7px")]] [ text (toString command) ]
-            ]
+--renderCommand : Maybe Command -> Html msg
+--renderCommand maybeCommand =
+--    case maybeCommand of
+--        Nothing -> nowt
+--        Just command -> span [] [
+--            span [style [ gapRight, smaller ]] [text command.name]
+--            , span [style [smaller]] [renderBys command.bys]
+--            , span [style [smaller]] [renderArgs command.args]
+--            , span [style [smaller]] [renderIn command.in_]
+--            , renderExpected command.expected command.expectedMany
+--            --TODO: whack me when done ....
+----            , div [style [ ("margin-right", "7px")]] [ text (toString command) ]
+--            ]
 
 --class "lozenge",
 
-renderExpected : Maybe String -> Maybe (List String) -> Html msg
-renderExpected expected expectedMany =
-    case (expected, expectedMany) of
-        (Just e, _) -> span [style [ gapRight, smaller ]] [ span [style [ gapRight ]] [span [style [smaller, grey ]] [text "expected:"] ], text ("\"" ++ e ++ "\"") ]
-        (_, Just me) -> span [style [ gapRight, smaller ]] [ span [style [ gapRight ]] [span [style [smaller, grey] ] [text "expected:"] ], text (toString me) ]
-        (_, _) -> nowt
+--renderExpected : Maybe String -> Maybe (List String) -> Html msg
+--renderExpected expected expectedMany =
+--    case (expected, expectedMany) of
+--        (Just e, _) -> span [style [ gapRight, smaller ]] [ span [style [ gapRight ]] [span [style [smaller, grey ]] [text "expected:"] ], text ("\"" ++ e ++ "\"") ]
+--        (_, Just me) -> span [style [ gapRight, smaller ]] [ span [style [ gapRight ]] [span [style [smaller, grey] ] [text "expected:"] ], text (toString me) ]
+--        (_, _) -> nowt
 
-renderArgs : Dict.Dict String String -> Html msg
-renderArgs args =
-    if Dict.isEmpty args then nowt else span [class "lozengex" ,style [ smaller, gapRight ]]
-      ((List.map (\k -> renderArg k (Dict.get k args)) (Dict.keys args)) |> List.intersperse (span [style [ smaller ]] [text ",  "]))
+--renderArgs : Dict.Dict String String -> Html msg
+--renderArgs args =
+--    if Dict.isEmpty args then nowt else span [class "lozengex" ,style [ smaller, gapRight ]]
+--      ((List.map (\k -> renderArg k (Dict.get k args)) (Dict.keys args)) |> List.intersperse (span [style [ smaller ]] [text ",  "]))
 
-renderArg : String -> Maybe String -> Html msg
-renderArg k v =
-    let
-      (key, value) = (k, v |> Maybe.withDefault "???" )
-    in
-      span [] [span [style [ smaller, grey ]] [text (key ++ ": ")], span [] [text value]]
-
-
-renderBys : List (List (String, String)) -> Html msg
-renderBys bys =
-    if List.isEmpty bys then nowt else span [class "lozengex" , style [ smaller, gapRight ]] [
-      span [ style [ grey] ] [ text "{" ]
-      , span [] ((List.map (\b -> renderBy b) bys) |> List.intersperse (span [style [ smaller ]] [span [style [smaller,("font-style", "bold" )]] [ text " > "]]))
-      , span [ style [ grey] ] [ text "}" ]
-      ]
+--renderArg : String -> Maybe String -> Html msg
+--renderArg k v =
+--    let
+--      (key, value) = (k, v |> Maybe.withDefault "???" )
+--    in
+--      span [] [span [style [ smaller, grey ]] [text (key ++ ": ")], span [] [text value]]
 
 
-renderBy : List (String, String) -> Html msg
-renderBy by =
-    let
-      (key, value) = List.head by |> Maybe.withDefault ("???", "???")
-    in
-      span [] [span [style [ smaller, grey ]] [text (key ++ ": ")], span [] [text value]]
+--renderBys : List (List (String, String)) -> Html msg
+--renderBys bys =
+--    if List.isEmpty bys then nowt else span [class "lozengex" , style [ smaller, gapRight ]] [
+--      span [ style [ grey] ] [ text "{" ]
+--      , span [] ((List.map (\b -> renderBy b) bys) |> List.intersperse (span [style [ smaller ]] [span [style [smaller,("font-style", "bold" )]] [ text " > "]]))
+--      , span [ style [ grey] ] [ text "}" ]
+--      ]
 
-renderIn : Maybe String -> Html msg
-renderIn maybeIn =
-    case maybeIn of
-        Nothing -> nowt
-        Just in_ -> span [style [ gapRight, smaller ]] [ span [style [ gapRight, grey, smaller ]] [text "in:" ], text in_ ]
 
-renderContext : Maybe Context -> Html msg
-renderContext maybeContext =
-    case maybeContext of
-        Nothing -> nowt
-        Just context -> if not (List.isEmpty context.failures) && not (case context.success of
-                                                                                     Nothing -> False
-                                                                                     Just success -> success) then
---                        else span [] [text "actual: ", span [] ((List.map (\f -> span [] [text f]) context.failures) |> List.intersperse (span [style [ smaller ]] [text ", "]))]
---                        span [style [smaller]] [span [style [grey, smaller]] [ text "actual: "], span [] ((List.map (\f -> span [] [text ("\"" ++ f ++ "\"")]) context.failures) |> List.intersperse (span [style [ smaller ]] [text ", "]))]
-                        span [style [smaller]] [span [style [grey, smaller]] [ text "actual: "], span [ style [ ("color", "#cc0000") ]] [text (List.reverse context.failures |> List.head |> Maybe.map (\f -> "\"" ++ f ++ "\"") |> Maybe.withDefault "???" )] ]
-                        else nowt
+--renderBy : List (String, String) -> Html msg
+--renderBy by =
+--    let
+--      (key, value) = List.head by |> Maybe.withDefault ("???", "???")
+--    in
+--      span [] [span [style [ smaller, grey ]] [text (key ++ ": ")], span [] [text value]]
 
-renderLog : Maybe (List String) -> Html msg
-renderLog maybeLog =
-    case maybeLog of
-        Nothing -> nowt
-        Just log -> div [style [ smaller, grey, ("margin-left", "25px") ]] [ pre [ style [ smaller, ("white-space", "pre-wrap") ]] [text ("\n" ++ (String.join "\n" log)) ] ]
+--renderIn : Maybe String -> Html msg
+--renderIn maybeIn =
+--    case maybeIn of
+--        Nothing -> nowt
+--        Just in_ -> span [style [ gapRight, smaller ]] [ span [style [ gapRight, grey, smaller ]] [text "in:" ], text in_ ]
+
+--renderContext : Maybe Context -> Html msg
+--renderContext maybeContext =
+--    case maybeContext of
+--        Nothing -> nowt
+--        Just context -> if not (List.isEmpty context.failures) && not (case context.success of
+--                                                                                     Nothing -> False
+--                                                                                     Just success -> success) then
+----                        else span [] [text "actual: ", span [] ((List.map (\f -> span [] [text f]) context.failures) |> List.intersperse (span [style [ smaller ]] [text ", "]))]
+----                        span [style [smaller]] [span [style [grey, smaller]] [ text "actual: "], span [] ((List.map (\f -> span [] [text ("\"" ++ f ++ "\"")]) context.failures) |> List.intersperse (span [style [ smaller ]] [text ", "]))]
+--                        span [style [smaller]] [span [style [grey, smaller]] [ text "actual: "], span [ style [ ("color", "#cc0000") ]] [text (List.reverse context.failures |> List.head |> Maybe.map (\f -> "\"" ++ f ++ "\"") |> Maybe.withDefault "???" )] ]
+--                        else nowt
+
+--renderLog : Maybe (List String) -> Html msg
+--renderLog maybeLog =
+--    case maybeLog of
+--        Nothing -> nowt
+--        Just log -> div [style [ smaller, grey, ("margin-left", "25px") ]] [ pre [ style [ smaller, ("white-space", "pre-wrap") ]] [text ("\n" ++ (String.join "\n" log)) ] ]
 
 nowt : Html msg
 nowt =
