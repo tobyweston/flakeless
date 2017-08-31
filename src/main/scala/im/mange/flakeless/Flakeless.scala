@@ -22,23 +22,23 @@ object FlightInvestigator {
 
 case class Flakeless(rawWebDriver: WebDriver, config: Config = Config()) {
   private val fdr = FlightDataRecorder()
-  private var currentFlightNumber = -1 //TODO: should be Option instead
+  private var currentFlightNumber: Option[Int] = None
 
   def newFlight(description: Option[String] = None) {
-    FlightInvestigator.investigate(currentFlightNumber, fdr)
-    currentFlightNumber = FlightNumber.next
+    currentFlightNumber.foreach(FlightInvestigator.investigate(_, fdr))
+    currentFlightNumber = Some(FlightNumber.next)
     fdr.reset() // if config.resetOnNewFlight whateva
-    description.foreach(d => fdr.record(currentFlightNumber, d, None, isError = false))
+    description.foreach(d => currentFlightNumber.foreach(fdr.record(_, d, None, isError = false)))
   }
 
   def record(command: Command, context: Context) {
-    fdr.record(currentFlightNumber, command, context)
+    currentFlightNumber.foreach(fdr.record(_, command, context))
   }
 
   def inflightAnnouncement(description: String, log: Option[List[String]] = None, isError: Boolean = false) {
-    fdr.record(currentFlightNumber, description, log, isError)
+    currentFlightNumber.foreach(fdr.record(_, description, log, isError))
   }
 
   def jsonFlightData(flightNumber: Int) = fdr.jsonData(flightNumber)
-  def getCurrentFlightNumber = currentFlightNumber
+  def getCurrentFlightNumber = currentFlightNumber.getOrElse(throw new RuntimeException("No flight number, perhaps you forgot to call newFlight"))
 }
