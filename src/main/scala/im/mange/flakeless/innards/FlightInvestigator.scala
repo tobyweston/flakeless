@@ -2,7 +2,7 @@ package im.mange.flakeless.innards
 
 import org.joda.time.{DateTime, Duration}
 
-object FlightInvestigator {
+private [flakeless] object FlightInvestigator {
   private val investigationByFlightNumber: scala.collection.concurrent.TrieMap[Int, FlightInvestigation] =
     new scala.collection.concurrent.TrieMap()
 

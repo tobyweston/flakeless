@@ -5,9 +5,6 @@ import im.mange.flakeless.{Flakeless, Path}
 import org.openqa.selenium.By
 import org.openqa.selenium.remote.RemoteWebElement
 
-/**
-  * Created by pall on 31/08/2017.
-  */
 object Example extends App {
   def go {
     val flakeless = Flakeless(null)

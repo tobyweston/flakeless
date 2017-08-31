@@ -6,7 +6,7 @@ import org.json4s.native.JsonMethods._
 import org.json4s.native.Serialization._
 import org.json4s.native.{JsonParser, Serialization}
 
-object DataPointJson {
+private [flakeless] object DataPointJson {
   private val shoreditchFormats = Serialization.formats(NoTypeHints) ++ LittleSerialisers.all ++ LittleJodaSerialisers.all
 
   def serialise(r: Seq[DataPoint]) = {

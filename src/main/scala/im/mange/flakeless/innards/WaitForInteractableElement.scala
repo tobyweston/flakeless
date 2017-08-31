@@ -3,7 +3,7 @@ package im.mange.flakeless.innards
 import im.mange.flakeless.{Config, Flakeless}
 import org.openqa.selenium.{By, WebDriver, WebElement}
 
-object WaitForInteractableElement {
+private [flakeless] object WaitForInteractableElement {
   def apply(flakeless: Option[Flakeless], command: Command,
             description: (WebElement) => String,
             condition: (WebElement) => Boolean = (e) => {true},

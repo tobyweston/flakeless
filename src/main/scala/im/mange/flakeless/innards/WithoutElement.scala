@@ -3,7 +3,7 @@ package im.mange.flakeless.innards
 import im.mange.flakeless.{Config, Flakeless}
 import org.openqa.selenium.{WebDriver, WebElement}
 
-object WithoutElement {
+private [flakeless] object WithoutElement {
   def apply(flakeless: Flakeless, command: Command,
             action: (WebDriver) => Unit) {
 
