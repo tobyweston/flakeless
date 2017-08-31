@@ -20,7 +20,7 @@ object FlightReport {
       val when = System.currentTimeMillis()
       val imagePath = path(filepath, s"$when.png")
       val htmlPath = path(filepath, s"flight-report.html")
-      val jsPath = path(filepath, s"flakeless.js")
+      val jsPath = path(outputDirectory + "/", s"flakeless.js")
 
       if (captureImage) write(imagePath, screenshot(flakeless))
 
@@ -47,7 +47,7 @@ object FlightReport {
 s"""
   |<html>
   |<head>
-  |<script type="text/javascript" src="flakeless.js"></script>
+  |<script type="text/javascript" src="../flakeless.js"></script>
   |<style>
   |.lozenge {
   |  background-color: #fff;
