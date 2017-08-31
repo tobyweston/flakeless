@@ -1,13 +1,14 @@
 package im.mange.flakeless.reports
 
 import im.mange.flakeless.Flakeless
-import im.mange.flakeless.innards.FlightInvestigator
+import im.mange.flakeless.innards.{FlightInvestigator, ReportAssets}
 
 object AllFlightsReport {
 
   def apply(flakeless: Flakeless, outputDirectory: String, host: Option[String] = None) {
     synchronized({
       try {
+        ReportAssets.writeFlakelessJs(outputDirectory)
         //TODO: write file ... if it already exists then delete it
         //TODO: follow the pattern from FlightReport
         //TODO: if test failed then give link to it (or config: report all)

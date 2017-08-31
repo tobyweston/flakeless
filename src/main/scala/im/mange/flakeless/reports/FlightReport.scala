@@ -4,7 +4,7 @@ import java.nio.charset.StandardCharsets
 import java.util.Base64
 
 import im.mange.flakeless.Flakeless
-import im.mange.flakeless.innards.ReportingAssets
+import im.mange.flakeless.innards.ReportAssets
 import org.openqa.selenium.{OutputType, TakesScreenshot}
 
 object FlightReport {
@@ -19,8 +19,7 @@ object FlightReport {
 
       val when = System.currentTimeMillis()
       val imagePath = path(filepath, s"$when.png")
-      val htmlPath = path(filepath, s"flight-report.html")
-      val jsPath = path(outputDirectory + "/", s"flakeless.js")
+      val htmlPath = path(filepath, s"report.html")
 
       if (captureImage) write(imagePath, screenshot(flakeless))
 
@@ -29,8 +28,7 @@ object FlightReport {
 
       write(htmlPath, htmlContent(when, flakeless, b64).getBytes)
 
-      if (jsPath.toFile.exists()) jsPath.toFile.delete()
-      write(jsPath, ReportingAssets.flakelessJs.getBytes)
+      ReportAssets.writeFlakelessJs(outputDirectory)
 
       val fileSystemReport = htmlPath.toAbsolutePath.toString
       host match {
