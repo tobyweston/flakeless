@@ -1,6 +1,7 @@
 package im.mange.flakeless
 
 import im.mange.flakeless.innards._
+import im.mange.flakeless.reporting.innards.FlightDataRecorder
 import org.joda.time.{DateTime, Duration}
 import org.openqa.selenium.WebDriver
 
