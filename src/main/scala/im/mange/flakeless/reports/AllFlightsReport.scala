@@ -16,6 +16,9 @@ object AllFlightsReport {
         Files.createDirectories(Paths.get(filepath))
 
         val jsonFlightData = flakeless.jsonAllFlightsData
+
+        println(jsonFlightData)
+
         val b64 = Base64.getEncoder.encodeToString(jsonFlightData.getBytes(StandardCharsets.UTF_8))
 
         val htmlPath = path(filepath, s"report.html")
@@ -104,7 +107,7 @@ s"""
  |  <script>
  |    var data = '${data.replaceAll("\n", "").replaceAll("'", "")}';
  |    var app = Elm.AllFlightsReport.embed(document.getElementById('content'));
- |    app.ports.data.send(data);
+ |    app.ports.allFlightsData.send(data);
  |  </script>
  |</body>
  |</html>

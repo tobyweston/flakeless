@@ -11716,6 +11716,904 @@ var _truqu$elm_base64$Base64_Encode$encode = function (input) {
 var _truqu$elm_base64$Base64$decode = _truqu$elm_base64$Base64_Decode$decode;
 var _truqu$elm_base64$Base64$encode = _truqu$elm_base64$Base64_Encode$encode;
 
+var _user$project$InvestigationCodec$decodeBys = _elm_lang$core$Json_Decode$keyValuePairs(_elm_lang$core$Json_Decode$string);
+var _user$project$InvestigationCodec$Investigation = function (a) {
+	return {flightNumber: a};
+};
+var _user$project$InvestigationCodec$decodeInvestigation = A3(
+	_NoRedInk$elm_decode_pipeline$Json_Decode_Pipeline$required,
+	'flightNumber',
+	_elm_lang$core$Json_Decode$int,
+	_NoRedInk$elm_decode_pipeline$Json_Decode_Pipeline$decode(_user$project$InvestigationCodec$Investigation));
+var _user$project$InvestigationCodec$decodeInvestigationList = _elm_lang$core$Json_Decode$list(_user$project$InvestigationCodec$decodeInvestigation);
+var _user$project$InvestigationCodec$Args = function (a) {
+	return {key: a};
+};
+var _user$project$InvestigationCodec$Command = F6(
+	function (a, b, c, d, e, f) {
+		return {name: a, in_: b, bys: c, args: d, expected: e, expectedMany: f};
+	});
+var _user$project$InvestigationCodec$decodeDataPointCommand = A4(
+	_NoRedInk$elm_decode_pipeline$Json_Decode_Pipeline$optional,
+	'expectedMany',
+	_elm_lang$core$Json_Decode$maybe(
+		_elm_lang$core$Json_Decode$list(_elm_lang$core$Json_Decode$string)),
+	_elm_lang$core$Maybe$Nothing,
+	A4(
+		_NoRedInk$elm_decode_pipeline$Json_Decode_Pipeline$optional,
+		'expected',
+		_elm_lang$core$Json_Decode$maybe(_elm_lang$core$Json_Decode$string),
+		_elm_lang$core$Maybe$Nothing,
+		A3(
+			_NoRedInk$elm_decode_pipeline$Json_Decode_Pipeline$required,
+			'args',
+			_elm_lang$core$Json_Decode$dict(_elm_lang$core$Json_Decode$string),
+			A3(
+				_NoRedInk$elm_decode_pipeline$Json_Decode_Pipeline$required,
+				'bys',
+				_elm_lang$core$Json_Decode$list(_user$project$InvestigationCodec$decodeBys),
+				A4(
+					_NoRedInk$elm_decode_pipeline$Json_Decode_Pipeline$optional,
+					'in',
+					_elm_lang$core$Json_Decode$maybe(_elm_lang$core$Json_Decode$string),
+					_elm_lang$core$Maybe$Nothing,
+					A3(
+						_NoRedInk$elm_decode_pipeline$Json_Decode_Pipeline$required,
+						'name',
+						_elm_lang$core$Json_Decode$string,
+						_NoRedInk$elm_decode_pipeline$Json_Decode_Pipeline$decode(_user$project$InvestigationCodec$Command)))))));
+var _user$project$InvestigationCodec$Context = F2(
+	function (a, b) {
+		return {failures: a, success: b};
+	});
+var _user$project$InvestigationCodec$decodeDataPointContext = A4(
+	_NoRedInk$elm_decode_pipeline$Json_Decode_Pipeline$optional,
+	'success',
+	_elm_lang$core$Json_Decode$maybe(
+		A2(
+			_elm_lang$core$Json_Decode$map,
+			function (v) {
+				return _elm_lang$core$Native_Utils.eq(v, 'true');
+			},
+			_elm_lang$core$Json_Decode$string)),
+	_elm_lang$core$Maybe$Nothing,
+	A3(
+		_NoRedInk$elm_decode_pipeline$Json_Decode_Pipeline$required,
+		'failures',
+		_elm_lang$core$Json_Decode$list(_elm_lang$core$Json_Decode$string),
+		_NoRedInk$elm_decode_pipeline$Json_Decode_Pipeline$decode(_user$project$InvestigationCodec$Context)));
+
+var _user$project$AllFlightsReport$nowt = _elm_lang$html$Html$text('');
+var _user$project$AllFlightsReport$smaller = {ctor: '_Tuple2', _0: 'font-size', _1: 'smaller'};
+var _user$project$AllFlightsReport$grey = {ctor: '_Tuple2', _0: 'color', _1: 'grey'};
+var _user$project$AllFlightsReport$renderArg = F2(
+	function (k, v) {
+		var _p0 = {
+			ctor: '_Tuple2',
+			_0: k,
+			_1: A2(_elm_lang$core$Maybe$withDefault, '???', v)
+		};
+		var key = _p0._0;
+		var value = _p0._1;
+		return A2(
+			_elm_lang$html$Html$span,
+			{ctor: '[]'},
+			{
+				ctor: '::',
+				_0: A2(
+					_elm_lang$html$Html$span,
+					{
+						ctor: '::',
+						_0: _elm_lang$html$Html_Attributes$style(
+							{
+								ctor: '::',
+								_0: _user$project$AllFlightsReport$smaller,
+								_1: {
+									ctor: '::',
+									_0: _user$project$AllFlightsReport$grey,
+									_1: {ctor: '[]'}
+								}
+							}),
+						_1: {ctor: '[]'}
+					},
+					{
+						ctor: '::',
+						_0: _elm_lang$html$Html$text(
+							A2(_elm_lang$core$Basics_ops['++'], key, ': ')),
+						_1: {ctor: '[]'}
+					}),
+				_1: {
+					ctor: '::',
+					_0: A2(
+						_elm_lang$html$Html$span,
+						{ctor: '[]'},
+						{
+							ctor: '::',
+							_0: _elm_lang$html$Html$text(value),
+							_1: {ctor: '[]'}
+						}),
+					_1: {ctor: '[]'}
+				}
+			});
+	});
+var _user$project$AllFlightsReport$renderBy = function (by) {
+	var _p1 = A2(
+		_elm_lang$core$Maybe$withDefault,
+		{ctor: '_Tuple2', _0: '???', _1: '???'},
+		_elm_lang$core$List$head(by));
+	var key = _p1._0;
+	var value = _p1._1;
+	return A2(
+		_elm_lang$html$Html$span,
+		{ctor: '[]'},
+		{
+			ctor: '::',
+			_0: A2(
+				_elm_lang$html$Html$span,
+				{
+					ctor: '::',
+					_0: _elm_lang$html$Html_Attributes$style(
+						{
+							ctor: '::',
+							_0: _user$project$AllFlightsReport$smaller,
+							_1: {
+								ctor: '::',
+								_0: _user$project$AllFlightsReport$grey,
+								_1: {ctor: '[]'}
+							}
+						}),
+					_1: {ctor: '[]'}
+				},
+				{
+					ctor: '::',
+					_0: _elm_lang$html$Html$text(
+						A2(_elm_lang$core$Basics_ops['++'], key, ': ')),
+					_1: {ctor: '[]'}
+				}),
+			_1: {
+				ctor: '::',
+				_0: A2(
+					_elm_lang$html$Html$span,
+					{ctor: '[]'},
+					{
+						ctor: '::',
+						_0: _elm_lang$html$Html$text(value),
+						_1: {ctor: '[]'}
+					}),
+				_1: {ctor: '[]'}
+			}
+		});
+};
+var _user$project$AllFlightsReport$renderContext = function (maybeContext) {
+	var _p2 = maybeContext;
+	if (_p2.ctor === 'Nothing') {
+		return _user$project$AllFlightsReport$nowt;
+	} else {
+		var _p4 = _p2._0;
+		return ((!_elm_lang$core$List$isEmpty(_p4.failures)) && (!function () {
+			var _p3 = _p4.success;
+			if (_p3.ctor === 'Nothing') {
+				return false;
+			} else {
+				return _p3._0;
+			}
+		}())) ? A2(
+			_elm_lang$html$Html$span,
+			{
+				ctor: '::',
+				_0: _elm_lang$html$Html_Attributes$style(
+					{
+						ctor: '::',
+						_0: _user$project$AllFlightsReport$smaller,
+						_1: {ctor: '[]'}
+					}),
+				_1: {ctor: '[]'}
+			},
+			{
+				ctor: '::',
+				_0: A2(
+					_elm_lang$html$Html$span,
+					{
+						ctor: '::',
+						_0: _elm_lang$html$Html_Attributes$style(
+							{
+								ctor: '::',
+								_0: _user$project$AllFlightsReport$grey,
+								_1: {
+									ctor: '::',
+									_0: _user$project$AllFlightsReport$smaller,
+									_1: {ctor: '[]'}
+								}
+							}),
+						_1: {ctor: '[]'}
+					},
+					{
+						ctor: '::',
+						_0: _elm_lang$html$Html$text('actual: '),
+						_1: {ctor: '[]'}
+					}),
+				_1: {
+					ctor: '::',
+					_0: A2(
+						_elm_lang$html$Html$span,
+						{
+							ctor: '::',
+							_0: _elm_lang$html$Html_Attributes$style(
+								{
+									ctor: '::',
+									_0: {ctor: '_Tuple2', _0: 'color', _1: '#cc0000'},
+									_1: {ctor: '[]'}
+								}),
+							_1: {ctor: '[]'}
+						},
+						{
+							ctor: '::',
+							_0: _elm_lang$html$Html$text(
+								A2(
+									_elm_lang$core$Maybe$withDefault,
+									'???',
+									A2(
+										_elm_lang$core$Maybe$map,
+										function (f) {
+											return A2(
+												_elm_lang$core$Basics_ops['++'],
+												'\"',
+												A2(_elm_lang$core$Basics_ops['++'], f, '\"'));
+										},
+										_elm_lang$core$List$head(
+											_elm_lang$core$List$reverse(_p4.failures))))),
+							_1: {ctor: '[]'}
+						}),
+					_1: {ctor: '[]'}
+				}
+			}) : _user$project$AllFlightsReport$nowt;
+	}
+};
+var _user$project$AllFlightsReport$renderLog = function (maybeLog) {
+	var _p5 = maybeLog;
+	if (_p5.ctor === 'Nothing') {
+		return _user$project$AllFlightsReport$nowt;
+	} else {
+		return A2(
+			_elm_lang$html$Html$div,
+			{
+				ctor: '::',
+				_0: _elm_lang$html$Html_Attributes$style(
+					{
+						ctor: '::',
+						_0: _user$project$AllFlightsReport$smaller,
+						_1: {
+							ctor: '::',
+							_0: _user$project$AllFlightsReport$grey,
+							_1: {
+								ctor: '::',
+								_0: {ctor: '_Tuple2', _0: 'margin-left', _1: '25px'},
+								_1: {ctor: '[]'}
+							}
+						}
+					}),
+				_1: {ctor: '[]'}
+			},
+			{
+				ctor: '::',
+				_0: A2(
+					_elm_lang$html$Html$pre,
+					{
+						ctor: '::',
+						_0: _elm_lang$html$Html_Attributes$style(
+							{
+								ctor: '::',
+								_0: _user$project$AllFlightsReport$smaller,
+								_1: {
+									ctor: '::',
+									_0: {ctor: '_Tuple2', _0: 'white-space', _1: 'pre-wrap'},
+									_1: {ctor: '[]'}
+								}
+							}),
+						_1: {ctor: '[]'}
+					},
+					{
+						ctor: '::',
+						_0: _elm_lang$html$Html$text(
+							A2(
+								_elm_lang$core$Basics_ops['++'],
+								'\n',
+								A2(_elm_lang$core$String$join, '\n', _p5._0))),
+						_1: {ctor: '[]'}
+					}),
+				_1: {ctor: '[]'}
+			});
+	}
+};
+var _user$project$AllFlightsReport$gapRight = {ctor: '_Tuple2', _0: 'margin-right', _1: '6px'};
+var _user$project$AllFlightsReport$renderExpected = F2(
+	function (expected, expectedMany) {
+		var _p6 = {ctor: '_Tuple2', _0: expected, _1: expectedMany};
+		if (_p6._0.ctor === 'Just') {
+			return A2(
+				_elm_lang$html$Html$span,
+				{
+					ctor: '::',
+					_0: _elm_lang$html$Html_Attributes$style(
+						{
+							ctor: '::',
+							_0: _user$project$AllFlightsReport$gapRight,
+							_1: {
+								ctor: '::',
+								_0: _user$project$AllFlightsReport$smaller,
+								_1: {ctor: '[]'}
+							}
+						}),
+					_1: {ctor: '[]'}
+				},
+				{
+					ctor: '::',
+					_0: A2(
+						_elm_lang$html$Html$span,
+						{
+							ctor: '::',
+							_0: _elm_lang$html$Html_Attributes$style(
+								{
+									ctor: '::',
+									_0: _user$project$AllFlightsReport$gapRight,
+									_1: {ctor: '[]'}
+								}),
+							_1: {ctor: '[]'}
+						},
+						{
+							ctor: '::',
+							_0: A2(
+								_elm_lang$html$Html$span,
+								{
+									ctor: '::',
+									_0: _elm_lang$html$Html_Attributes$style(
+										{
+											ctor: '::',
+											_0: _user$project$AllFlightsReport$smaller,
+											_1: {
+												ctor: '::',
+												_0: _user$project$AllFlightsReport$grey,
+												_1: {ctor: '[]'}
+											}
+										}),
+									_1: {ctor: '[]'}
+								},
+								{
+									ctor: '::',
+									_0: _elm_lang$html$Html$text('expected:'),
+									_1: {ctor: '[]'}
+								}),
+							_1: {ctor: '[]'}
+						}),
+					_1: {
+						ctor: '::',
+						_0: _elm_lang$html$Html$text(
+							A2(
+								_elm_lang$core$Basics_ops['++'],
+								'\"',
+								A2(_elm_lang$core$Basics_ops['++'], _p6._0._0, '\"'))),
+						_1: {ctor: '[]'}
+					}
+				});
+		} else {
+			if (_p6._1.ctor === 'Just') {
+				return A2(
+					_elm_lang$html$Html$span,
+					{
+						ctor: '::',
+						_0: _elm_lang$html$Html_Attributes$style(
+							{
+								ctor: '::',
+								_0: _user$project$AllFlightsReport$gapRight,
+								_1: {
+									ctor: '::',
+									_0: _user$project$AllFlightsReport$smaller,
+									_1: {ctor: '[]'}
+								}
+							}),
+						_1: {ctor: '[]'}
+					},
+					{
+						ctor: '::',
+						_0: A2(
+							_elm_lang$html$Html$span,
+							{
+								ctor: '::',
+								_0: _elm_lang$html$Html_Attributes$style(
+									{
+										ctor: '::',
+										_0: _user$project$AllFlightsReport$gapRight,
+										_1: {ctor: '[]'}
+									}),
+								_1: {ctor: '[]'}
+							},
+							{
+								ctor: '::',
+								_0: A2(
+									_elm_lang$html$Html$span,
+									{
+										ctor: '::',
+										_0: _elm_lang$html$Html_Attributes$style(
+											{
+												ctor: '::',
+												_0: _user$project$AllFlightsReport$smaller,
+												_1: {
+													ctor: '::',
+													_0: _user$project$AllFlightsReport$grey,
+													_1: {ctor: '[]'}
+												}
+											}),
+										_1: {ctor: '[]'}
+									},
+									{
+										ctor: '::',
+										_0: _elm_lang$html$Html$text('expected:'),
+										_1: {ctor: '[]'}
+									}),
+								_1: {ctor: '[]'}
+							}),
+						_1: {
+							ctor: '::',
+							_0: _elm_lang$html$Html$text(
+								_elm_lang$core$Basics$toString(_p6._1._0)),
+							_1: {ctor: '[]'}
+						}
+					});
+			} else {
+				return _user$project$AllFlightsReport$nowt;
+			}
+		}
+	});
+var _user$project$AllFlightsReport$renderArgs = function (args) {
+	return _elm_lang$core$Dict$isEmpty(args) ? _user$project$AllFlightsReport$nowt : A2(
+		_elm_lang$html$Html$span,
+		{
+			ctor: '::',
+			_0: _elm_lang$html$Html_Attributes$class('lozengex'),
+			_1: {
+				ctor: '::',
+				_0: _elm_lang$html$Html_Attributes$style(
+					{
+						ctor: '::',
+						_0: _user$project$AllFlightsReport$smaller,
+						_1: {
+							ctor: '::',
+							_0: _user$project$AllFlightsReport$gapRight,
+							_1: {ctor: '[]'}
+						}
+					}),
+				_1: {ctor: '[]'}
+			}
+		},
+		A2(
+			_elm_lang$core$List$intersperse,
+			A2(
+				_elm_lang$html$Html$span,
+				{
+					ctor: '::',
+					_0: _elm_lang$html$Html_Attributes$style(
+						{
+							ctor: '::',
+							_0: _user$project$AllFlightsReport$smaller,
+							_1: {ctor: '[]'}
+						}),
+					_1: {ctor: '[]'}
+				},
+				{
+					ctor: '::',
+					_0: _elm_lang$html$Html$text(',  '),
+					_1: {ctor: '[]'}
+				}),
+			A2(
+				_elm_lang$core$List$map,
+				function (k) {
+					return A2(
+						_user$project$AllFlightsReport$renderArg,
+						k,
+						A2(_elm_lang$core$Dict$get, k, args));
+				},
+				_elm_lang$core$Dict$keys(args))));
+};
+var _user$project$AllFlightsReport$renderBys = function (bys) {
+	return _elm_lang$core$List$isEmpty(bys) ? _user$project$AllFlightsReport$nowt : A2(
+		_elm_lang$html$Html$span,
+		{
+			ctor: '::',
+			_0: _elm_lang$html$Html_Attributes$class('lozengex'),
+			_1: {
+				ctor: '::',
+				_0: _elm_lang$html$Html_Attributes$style(
+					{
+						ctor: '::',
+						_0: _user$project$AllFlightsReport$smaller,
+						_1: {
+							ctor: '::',
+							_0: _user$project$AllFlightsReport$gapRight,
+							_1: {ctor: '[]'}
+						}
+					}),
+				_1: {ctor: '[]'}
+			}
+		},
+		{
+			ctor: '::',
+			_0: A2(
+				_elm_lang$html$Html$span,
+				{
+					ctor: '::',
+					_0: _elm_lang$html$Html_Attributes$style(
+						{
+							ctor: '::',
+							_0: _user$project$AllFlightsReport$grey,
+							_1: {ctor: '[]'}
+						}),
+					_1: {ctor: '[]'}
+				},
+				{
+					ctor: '::',
+					_0: _elm_lang$html$Html$text('{'),
+					_1: {ctor: '[]'}
+				}),
+			_1: {
+				ctor: '::',
+				_0: A2(
+					_elm_lang$html$Html$span,
+					{ctor: '[]'},
+					A2(
+						_elm_lang$core$List$intersperse,
+						A2(
+							_elm_lang$html$Html$span,
+							{
+								ctor: '::',
+								_0: _elm_lang$html$Html_Attributes$style(
+									{
+										ctor: '::',
+										_0: _user$project$AllFlightsReport$smaller,
+										_1: {ctor: '[]'}
+									}),
+								_1: {ctor: '[]'}
+							},
+							{
+								ctor: '::',
+								_0: A2(
+									_elm_lang$html$Html$span,
+									{
+										ctor: '::',
+										_0: _elm_lang$html$Html_Attributes$style(
+											{
+												ctor: '::',
+												_0: _user$project$AllFlightsReport$smaller,
+												_1: {
+													ctor: '::',
+													_0: {ctor: '_Tuple2', _0: 'font-style', _1: 'bold'},
+													_1: {ctor: '[]'}
+												}
+											}),
+										_1: {ctor: '[]'}
+									},
+									{
+										ctor: '::',
+										_0: _elm_lang$html$Html$text(' > '),
+										_1: {ctor: '[]'}
+									}),
+								_1: {ctor: '[]'}
+							}),
+						A2(
+							_elm_lang$core$List$map,
+							function (b) {
+								return _user$project$AllFlightsReport$renderBy(b);
+							},
+							bys))),
+				_1: {
+					ctor: '::',
+					_0: A2(
+						_elm_lang$html$Html$span,
+						{
+							ctor: '::',
+							_0: _elm_lang$html$Html_Attributes$style(
+								{
+									ctor: '::',
+									_0: _user$project$AllFlightsReport$grey,
+									_1: {ctor: '[]'}
+								}),
+							_1: {ctor: '[]'}
+						},
+						{
+							ctor: '::',
+							_0: _elm_lang$html$Html$text('}'),
+							_1: {ctor: '[]'}
+						}),
+					_1: {ctor: '[]'}
+				}
+			}
+		});
+};
+var _user$project$AllFlightsReport$renderIn = function (maybeIn) {
+	var _p7 = maybeIn;
+	if (_p7.ctor === 'Nothing') {
+		return _user$project$AllFlightsReport$nowt;
+	} else {
+		return A2(
+			_elm_lang$html$Html$span,
+			{
+				ctor: '::',
+				_0: _elm_lang$html$Html_Attributes$style(
+					{
+						ctor: '::',
+						_0: _user$project$AllFlightsReport$gapRight,
+						_1: {
+							ctor: '::',
+							_0: _user$project$AllFlightsReport$smaller,
+							_1: {ctor: '[]'}
+						}
+					}),
+				_1: {ctor: '[]'}
+			},
+			{
+				ctor: '::',
+				_0: A2(
+					_elm_lang$html$Html$span,
+					{
+						ctor: '::',
+						_0: _elm_lang$html$Html_Attributes$style(
+							{
+								ctor: '::',
+								_0: _user$project$AllFlightsReport$gapRight,
+								_1: {
+									ctor: '::',
+									_0: _user$project$AllFlightsReport$grey,
+									_1: {
+										ctor: '::',
+										_0: _user$project$AllFlightsReport$smaller,
+										_1: {ctor: '[]'}
+									}
+								}
+							}),
+						_1: {ctor: '[]'}
+					},
+					{
+						ctor: '::',
+						_0: _elm_lang$html$Html$text('in:'),
+						_1: {ctor: '[]'}
+					}),
+				_1: {
+					ctor: '::',
+					_0: _elm_lang$html$Html$text(_p7._0),
+					_1: {ctor: '[]'}
+				}
+			});
+	}
+};
+var _user$project$AllFlightsReport$renderCommand = function (maybeCommand) {
+	var _p8 = maybeCommand;
+	if (_p8.ctor === 'Nothing') {
+		return _user$project$AllFlightsReport$nowt;
+	} else {
+		var _p9 = _p8._0;
+		return A2(
+			_elm_lang$html$Html$span,
+			{ctor: '[]'},
+			{
+				ctor: '::',
+				_0: A2(
+					_elm_lang$html$Html$span,
+					{
+						ctor: '::',
+						_0: _elm_lang$html$Html_Attributes$style(
+							{
+								ctor: '::',
+								_0: _user$project$AllFlightsReport$gapRight,
+								_1: {
+									ctor: '::',
+									_0: _user$project$AllFlightsReport$smaller,
+									_1: {ctor: '[]'}
+								}
+							}),
+						_1: {ctor: '[]'}
+					},
+					{
+						ctor: '::',
+						_0: _elm_lang$html$Html$text(_p9.name),
+						_1: {ctor: '[]'}
+					}),
+				_1: {
+					ctor: '::',
+					_0: A2(
+						_elm_lang$html$Html$span,
+						{
+							ctor: '::',
+							_0: _elm_lang$html$Html_Attributes$style(
+								{
+									ctor: '::',
+									_0: _user$project$AllFlightsReport$smaller,
+									_1: {ctor: '[]'}
+								}),
+							_1: {ctor: '[]'}
+						},
+						{
+							ctor: '::',
+							_0: _user$project$AllFlightsReport$renderBys(_p9.bys),
+							_1: {ctor: '[]'}
+						}),
+					_1: {
+						ctor: '::',
+						_0: A2(
+							_elm_lang$html$Html$span,
+							{
+								ctor: '::',
+								_0: _elm_lang$html$Html_Attributes$style(
+									{
+										ctor: '::',
+										_0: _user$project$AllFlightsReport$smaller,
+										_1: {ctor: '[]'}
+									}),
+								_1: {ctor: '[]'}
+							},
+							{
+								ctor: '::',
+								_0: _user$project$AllFlightsReport$renderArgs(_p9.args),
+								_1: {ctor: '[]'}
+							}),
+						_1: {
+							ctor: '::',
+							_0: A2(
+								_elm_lang$html$Html$span,
+								{
+									ctor: '::',
+									_0: _elm_lang$html$Html_Attributes$style(
+										{
+											ctor: '::',
+											_0: _user$project$AllFlightsReport$smaller,
+											_1: {ctor: '[]'}
+										}),
+									_1: {ctor: '[]'}
+								},
+								{
+									ctor: '::',
+									_0: _user$project$AllFlightsReport$renderIn(_p9.in_),
+									_1: {ctor: '[]'}
+								}),
+							_1: {
+								ctor: '::',
+								_0: A2(_user$project$AllFlightsReport$renderExpected, _p9.expected, _p9.expectedMany),
+								_1: {ctor: '[]'}
+							}
+						}
+					}
+				}
+			});
+	}
+};
+var _user$project$AllFlightsReport$renderInvestigation = function (investigation) {
+	return _elm_lang$html$Html$text(
+		_elm_lang$core$Basics$toString(investigation));
+};
+var _user$project$AllFlightsReport$view = function (model) {
+	var isError = _elm_community$maybe_extra$Maybe_Extra$isJust(model.error);
+	return A2(
+		_elm_lang$html$Html$div,
+		{ctor: '[]'},
+		{
+			ctor: '::',
+			_0: isError ? A2(
+				_elm_lang$html$Html$div,
+				{ctor: '[]'},
+				{
+					ctor: '::',
+					_0: _elm_lang$html$Html$text(
+						A2(_elm_lang$core$Maybe$withDefault, '', model.error)),
+					_1: {ctor: '[]'}
+				}) : _user$project$AllFlightsReport$nowt,
+			_1: {
+				ctor: '::',
+				_0: A2(
+					_elm_lang$html$Html$ul,
+					{ctor: '[]'},
+					A2(
+						_elm_lang$core$List$map,
+						function (i) {
+							return _user$project$AllFlightsReport$renderInvestigation(i);
+						},
+						model.investigations)),
+				_1: {
+					ctor: '::',
+					_0: isError ? A2(
+						_elm_lang$html$Html$div,
+						{ctor: '[]'},
+						{
+							ctor: '::',
+							_0: A2(
+								_elm_lang$html$Html$hr,
+								{ctor: '[]'},
+								{ctor: '[]'}),
+							_1: {
+								ctor: '::',
+								_0: _elm_lang$html$Html$text(
+									A2(
+										_elm_lang$core$Basics_ops['++'],
+										'raw:',
+										_elm_lang$core$Basics$toString(model.raw))),
+								_1: {ctor: '[]'}
+							}
+						}) : _user$project$AllFlightsReport$nowt,
+					_1: {ctor: '[]'}
+				}
+			}
+		});
+};
+var _user$project$AllFlightsReport$allFlightsData = _elm_lang$core$Native_Platform.incomingPort('allFlightsData', _elm_lang$core$Json_Decode$string);
+var _user$project$AllFlightsReport$Model = F3(
+	function (a, b, c) {
+		return {raw: a, investigations: b, error: c};
+	});
+var _user$project$AllFlightsReport$init = {
+	ctor: '_Tuple2',
+	_0: A3(
+		_user$project$AllFlightsReport$Model,
+		'',
+		{ctor: '[]'},
+		_elm_lang$core$Maybe$Nothing),
+	_1: _elm_lang$core$Platform_Cmd$none
+};
+var _user$project$AllFlightsReport$ParseData = {ctor: 'ParseData'};
+var _user$project$AllFlightsReport$update = F2(
+	function (msg, model) {
+		update:
+		while (true) {
+			var _p10 = msg;
+			if (_p10.ctor === 'LoadData') {
+				var _p12 = _p10._0;
+				var result = _truqu$elm_base64$Base64$decode(_p12);
+				var _p11 = result;
+				if (_p11.ctor === 'Ok') {
+					var _v8 = _user$project$AllFlightsReport$ParseData,
+						_v9 = _elm_lang$core$Native_Utils.update(
+						model,
+						{raw: _p11._0});
+					msg = _v8;
+					model = _v9;
+					continue update;
+				} else {
+					return {
+						ctor: '_Tuple2',
+						_0: _elm_lang$core$Native_Utils.update(
+							model,
+							{
+								raw: _p12,
+								error: _elm_lang$core$Maybe$Just(_p11._0)
+							}),
+						_1: _elm_lang$core$Platform_Cmd$none
+					};
+				}
+			} else {
+				var result = A2(_elm_lang$core$Json_Decode$decodeString, _user$project$InvestigationCodec$decodeInvestigationList, model.raw);
+				var model_ = function () {
+					var _p13 = result;
+					if (_p13.ctor === 'Ok') {
+						return _elm_lang$core$Native_Utils.update(
+							model,
+							{investigations: _p13._0});
+					} else {
+						return _elm_lang$core$Native_Utils.update(
+							model,
+							{
+								error: _elm_lang$core$Maybe$Just(_p13._0)
+							});
+					}
+				}();
+				return {ctor: '_Tuple2', _0: model_, _1: _elm_lang$core$Platform_Cmd$none};
+			}
+		}
+	});
+var _user$project$AllFlightsReport$LoadData = function (a) {
+	return {ctor: 'LoadData', _0: a};
+};
+var _user$project$AllFlightsReport$subscriptions = function (model) {
+	return _user$project$AllFlightsReport$allFlightsData(_user$project$AllFlightsReport$LoadData);
+};
+var _user$project$AllFlightsReport$main = _elm_lang$html$Html$program(
+	{init: _user$project$AllFlightsReport$init, view: _user$project$AllFlightsReport$view, update: _user$project$AllFlightsReport$update, subscriptions: _user$project$AllFlightsReport$subscriptions})();
+
 var _user$project$DataPointCodec$decodeBys = _elm_lang$core$Json_Decode$keyValuePairs(_elm_lang$core$Json_Decode$string);
 var _user$project$DataPointCodec$DataPoint = F6(
 	function (a, b, c, d, e, f) {
@@ -12672,7 +13570,7 @@ var _user$project$FlightReport$view = function (model) {
 			}
 		});
 };
-var _user$project$FlightReport$data = _elm_lang$core$Native_Platform.incomingPort('data', _elm_lang$core$Json_Decode$string);
+var _user$project$FlightReport$flightData = _elm_lang$core$Native_Platform.incomingPort('flightData', _elm_lang$core$Json_Decode$string);
 var _user$project$FlightReport$Model = F3(
 	function (a, b, c) {
 		return {raw: a, dataPoints: b, error: c};
@@ -12740,12 +13638,16 @@ var _user$project$FlightReport$LoadData = function (a) {
 	return {ctor: 'LoadData', _0: a};
 };
 var _user$project$FlightReport$subscriptions = function (model) {
-	return _user$project$FlightReport$data(_user$project$FlightReport$LoadData);
+	return _user$project$FlightReport$flightData(_user$project$FlightReport$LoadData);
 };
 var _user$project$FlightReport$main = _elm_lang$html$Html$program(
 	{init: _user$project$FlightReport$init, view: _user$project$FlightReport$view, update: _user$project$FlightReport$update, subscriptions: _user$project$FlightReport$subscriptions})();
 
 var Elm = {};
+Elm['AllFlightsReport'] = Elm['AllFlightsReport'] || {};
+if (typeof _user$project$AllFlightsReport$main !== 'undefined') {
+    _user$project$AllFlightsReport$main(Elm['AllFlightsReport'], 'AllFlightsReport', undefined);
+}
 Elm['DataPointCodec'] = Elm['DataPointCodec'] || {};
 if (typeof _user$project$DataPointCodec$main !== 'undefined') {
     _user$project$DataPointCodec$main(Elm['DataPointCodec'], 'DataPointCodec', undefined);
@@ -12753,6 +13655,10 @@ if (typeof _user$project$DataPointCodec$main !== 'undefined') {
 Elm['FlightReport'] = Elm['FlightReport'] || {};
 if (typeof _user$project$FlightReport$main !== 'undefined') {
     _user$project$FlightReport$main(Elm['FlightReport'], 'FlightReport', undefined);
+}
+Elm['InvestigationCodec'] = Elm['InvestigationCodec'] || {};
+if (typeof _user$project$InvestigationCodec$main !== 'undefined') {
+    _user$project$InvestigationCodec$main(Elm['InvestigationCodec'], 'InvestigationCodec', undefined);
 }
 
 if (typeof define === "function" && define['amd'])

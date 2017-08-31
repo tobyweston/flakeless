@@ -67,7 +67,7 @@ view model =
     in
         div []
             [ if isError then div [] [text (model.error |> Maybe.withDefault "") ] else nowt
-            , ul [] (List.map (\dp -> renderDataPoint dp )model.dataPoints)
+            , ul [] (List.map (\dp -> renderDataPoint dp ) model.dataPoints)
             , if isError then div [] [
                 hr [] []
                 , text ("raw:" ++ toString model.raw)
@@ -209,11 +209,11 @@ update msg model =
             ( model_, Cmd.none )
 
 
-port data : (String -> msg) -> Sub msg
+port flightData : (String -> msg) -> Sub msg
 
 subscriptions : Model -> Sub Msg
 subscriptions model =
-  data LoadData
+  flightData LoadData
 
 
 main : Program Never Model Msg

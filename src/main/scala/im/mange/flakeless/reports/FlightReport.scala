@@ -109,7 +109,7 @@ s"""
   |  <script>
   |    var data = '${data.replaceAll("\n", "").replaceAll("'", "")}';
   |    var app = Elm.FlightReport.embed(document.getElementById('content'));
-  |    app.ports.data.send(data);
+  |    app.ports.flightData.send(data);
   |  </script>
   |</body>
   |</html>

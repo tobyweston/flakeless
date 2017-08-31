@@ -4,7 +4,7 @@ import Html exposing (..)
 import Html.Attributes exposing (..)
 import Http exposing (..)
 import RemoteData exposing (..)
-import DataPointCodec exposing (..)
+import InvestigationCodec exposing (..)
 import Json.Decode exposing (decodeString)
 import Maybe.Extra as MaybeExtra
 import Date.Extra.Format as DateFormat
@@ -15,7 +15,7 @@ import Base64
 
 type alias Model =
     { raw : String
-    , dataPoints : List DataPoint
+    , investigations : List Investigation
     , error : Maybe String
     }
 
@@ -37,7 +37,7 @@ view model =
     in
         div []
             [ if isError then div [] [text (model.error |> Maybe.withDefault "") ] else nowt
-            , ul [] (List.map (\dp -> renderDataPoint dp )model.dataPoints)
+            , ul [] (List.map (\i -> renderInvestigation i ) model.investigations)
             , if isError then div [] [
                 hr [] []
                 , text ("raw:" ++ toString model.raw)
@@ -45,25 +45,26 @@ view model =
                 else nowt
             ]
 
-renderDataPoint : DataPoint -> Html msg
-renderDataPoint dataPoint =
-    let
-        colorClass = case dataPoint.context of
-                    Nothing -> "message"
-                    Just context -> case context.success of
-                        Nothing -> "dunno"
-                        Just success -> if success then "pass" else "fail"
-    in
-        li [ class colorClass, style [ ("min-height", "20px"), ("padding-bottom", "5px") ] ] [
-            span [ ] [
-                span [style [ gapRight, smaller, grey ]] [text (DateFormat.format config "%H:%M:%S.%L" dataPoint.when)]
---                , span [style [ ("color", colorClass), ("font-weight", "bold"), gapRight ]] [ text "*"]
-                , if MaybeExtra.isJust dataPoint.description then span [style [ gapRight, smaller ] ] [text (dataPoint.description |> Maybe.withDefault "") ] else nowt
-                , renderCommand dataPoint.command
-                , renderContext dataPoint.context
-                , renderLog dataPoint.log
-            ]
-        ]
+renderInvestigation : Investigation -> Html msg
+renderInvestigation investigation =
+--    let
+--        colorClass = case dataPoint.context of
+--                    Nothing -> "message"
+--                    Just context -> case context.success of
+--                        Nothing -> "dunno"
+--                        Just success -> if success then "pass" else "fail"
+--    in
+--        li [ class colorClass, style [ ("min-height", "20px"), ("padding-bottom", "5px") ] ] [
+--            span [ ] [
+--                span [style [ gapRight, smaller, grey ]] [text (DateFormat.format config "%H:%M:%S.%L" dataPoint.when)]
+----                , span [style [ ("color", colorClass), ("font-weight", "bold"), gapRight ]] [ text "*"]
+--                , if MaybeExtra.isJust dataPoint.description then span [style [ gapRight, smaller ] ] [text (dataPoint.description |> Maybe.withDefault "") ] else nowt
+--                , renderCommand dataPoint.command
+--                , renderContext dataPoint.context
+--                , renderLog dataPoint.log
+--            ]
+--        ]
+    text (toString investigation)
 
 gapRight : (String, String)
 gapRight = ("margin-right", "6px")
@@ -171,19 +172,19 @@ update msg model =
 
         ParseData ->
             let
-                result = (Json.Decode.decodeString decodeDataPointList model.raw)
+                result = (Json.Decode.decodeString decodeInvestigationList model.raw)
                 model_ = case result of
-                    Ok x -> { model | dataPoints = x}
+                    Ok x -> { model | investigations = x}
                     Err e -> { model | error = Just e }
             in
             ( model_, Cmd.none )
 
 
-port data : (String -> msg) -> Sub msg
+port allFlightsData : (String -> msg) -> Sub msg
 
 subscriptions : Model -> Sub Msg
 subscriptions model =
-  data LoadData
+  allFlightsData LoadData
 
 
 main : Program Never Model Msg
