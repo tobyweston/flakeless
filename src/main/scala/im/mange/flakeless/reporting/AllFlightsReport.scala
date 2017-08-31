@@ -2,9 +2,9 @@ package im.mange.flakeless.reporting
 
 import im.mange.flakeless.{Flakeless, FlightInvestigator}
 
-object AllFlightsSummaryReport {
+object AllFlightsReport {
 
-  def apply(flakeless: Flakeless, outputDirectory: String, captureImage: Boolean = true, host: Option[String] = None) {
+  def apply(flakeless: Flakeless, outputDirectory: String, host: Option[String] = None) {
     try {
       FlightInvestigator.summarise()
     } catch {
