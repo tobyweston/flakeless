@@ -1,4 +1,4 @@
-module InvestigationCodec exposing (Investigation, decodeInvestigationList)
+module AllFlightsReportCodec exposing (Investigation, decodeInvestigationList)
 
 
 import Json.Encode

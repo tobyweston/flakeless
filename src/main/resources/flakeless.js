@@ -11716,15 +11716,15 @@ var _truqu$elm_base64$Base64_Encode$encode = function (input) {
 var _truqu$elm_base64$Base64$decode = _truqu$elm_base64$Base64_Decode$decode;
 var _truqu$elm_base64$Base64$encode = _truqu$elm_base64$Base64_Encode$encode;
 
-var _user$project$InvestigationCodec$Investigation = function (a) {
+var _user$project$AllFlightsReportCodec$Investigation = function (a) {
 	return {flightNumber: a};
 };
-var _user$project$InvestigationCodec$decodeInvestigation = A3(
+var _user$project$AllFlightsReportCodec$decodeInvestigation = A3(
 	_NoRedInk$elm_decode_pipeline$Json_Decode_Pipeline$required,
 	'flightNumber',
 	_elm_lang$core$Json_Decode$int,
-	_NoRedInk$elm_decode_pipeline$Json_Decode_Pipeline$decode(_user$project$InvestigationCodec$Investigation));
-var _user$project$InvestigationCodec$decodeInvestigationList = _elm_lang$core$Json_Decode$list(_user$project$InvestigationCodec$decodeInvestigation);
+	_NoRedInk$elm_decode_pipeline$Json_Decode_Pipeline$decode(_user$project$AllFlightsReportCodec$Investigation));
+var _user$project$AllFlightsReportCodec$decodeInvestigationList = _elm_lang$core$Json_Decode$list(_user$project$AllFlightsReportCodec$decodeInvestigation);
 
 var _user$project$AllFlightsReport$nowt = _elm_lang$html$Html$text('');
 var _user$project$AllFlightsReport$smaller = {ctor: '_Tuple2', _0: 'font-size', _1: 'smaller'};
@@ -11839,7 +11839,7 @@ var _user$project$AllFlightsReport$update = F2(
 					};
 				}
 			} else {
-				var result = A2(_elm_lang$core$Json_Decode$decodeString, _user$project$InvestigationCodec$decodeInvestigationList, model.raw);
+				var result = A2(_elm_lang$core$Json_Decode$decodeString, _user$project$AllFlightsReportCodec$decodeInvestigationList, model.raw);
 				var model_ = function () {
 					var _p3 = result;
 					if (_p3.ctor === 'Ok') {
@@ -11867,19 +11867,19 @@ var _user$project$AllFlightsReport$subscriptions = function (model) {
 var _user$project$AllFlightsReport$main = _elm_lang$html$Html$program(
 	{init: _user$project$AllFlightsReport$init, view: _user$project$AllFlightsReport$view, update: _user$project$AllFlightsReport$update, subscriptions: _user$project$AllFlightsReport$subscriptions})();
 
-var _user$project$DataPointCodec$decodeBys = _elm_lang$core$Json_Decode$keyValuePairs(_elm_lang$core$Json_Decode$string);
-var _user$project$DataPointCodec$DataPoint = F6(
+var _user$project$FlightReportCodec$decodeBys = _elm_lang$core$Json_Decode$keyValuePairs(_elm_lang$core$Json_Decode$string);
+var _user$project$FlightReportCodec$DataPoint = F6(
 	function (a, b, c, d, e, f) {
 		return {flightNumber: a, when: b, description: c, command: d, context: e, log: f};
 	});
-var _user$project$DataPointCodec$Args = function (a) {
+var _user$project$FlightReportCodec$Args = function (a) {
 	return {key: a};
 };
-var _user$project$DataPointCodec$Command = F6(
+var _user$project$FlightReportCodec$Command = F6(
 	function (a, b, c, d, e, f) {
 		return {name: a, in_: b, bys: c, args: d, expected: e, expectedMany: f};
 	});
-var _user$project$DataPointCodec$decodeDataPointCommand = A4(
+var _user$project$FlightReportCodec$decodeDataPointCommand = A4(
 	_NoRedInk$elm_decode_pipeline$Json_Decode_Pipeline$optional,
 	'expectedMany',
 	_elm_lang$core$Json_Decode$maybe(
@@ -11897,7 +11897,7 @@ var _user$project$DataPointCodec$decodeDataPointCommand = A4(
 			A3(
 				_NoRedInk$elm_decode_pipeline$Json_Decode_Pipeline$required,
 				'bys',
-				_elm_lang$core$Json_Decode$list(_user$project$DataPointCodec$decodeBys),
+				_elm_lang$core$Json_Decode$list(_user$project$FlightReportCodec$decodeBys),
 				A4(
 					_NoRedInk$elm_decode_pipeline$Json_Decode_Pipeline$optional,
 					'in',
@@ -11907,12 +11907,12 @@ var _user$project$DataPointCodec$decodeDataPointCommand = A4(
 						_NoRedInk$elm_decode_pipeline$Json_Decode_Pipeline$required,
 						'name',
 						_elm_lang$core$Json_Decode$string,
-						_NoRedInk$elm_decode_pipeline$Json_Decode_Pipeline$decode(_user$project$DataPointCodec$Command)))))));
-var _user$project$DataPointCodec$Context = F2(
+						_NoRedInk$elm_decode_pipeline$Json_Decode_Pipeline$decode(_user$project$FlightReportCodec$Command)))))));
+var _user$project$FlightReportCodec$Context = F2(
 	function (a, b) {
 		return {failures: a, success: b};
 	});
-var _user$project$DataPointCodec$decodeDataPointContext = A4(
+var _user$project$FlightReportCodec$decodeDataPointContext = A4(
 	_NoRedInk$elm_decode_pipeline$Json_Decode_Pipeline$optional,
 	'success',
 	_elm_lang$core$Json_Decode$maybe(
@@ -11927,8 +11927,8 @@ var _user$project$DataPointCodec$decodeDataPointContext = A4(
 		_NoRedInk$elm_decode_pipeline$Json_Decode_Pipeline$required,
 		'failures',
 		_elm_lang$core$Json_Decode$list(_elm_lang$core$Json_Decode$string),
-		_NoRedInk$elm_decode_pipeline$Json_Decode_Pipeline$decode(_user$project$DataPointCodec$Context)));
-var _user$project$DataPointCodec$decodeDataPoint = A4(
+		_NoRedInk$elm_decode_pipeline$Json_Decode_Pipeline$decode(_user$project$FlightReportCodec$Context)));
+var _user$project$FlightReportCodec$decodeDataPoint = A4(
 	_NoRedInk$elm_decode_pipeline$Json_Decode_Pipeline$optional,
 	'log',
 	_elm_lang$core$Json_Decode$maybe(
@@ -11937,12 +11937,12 @@ var _user$project$DataPointCodec$decodeDataPoint = A4(
 	A4(
 		_NoRedInk$elm_decode_pipeline$Json_Decode_Pipeline$optional,
 		'context',
-		_elm_lang$core$Json_Decode$maybe(_user$project$DataPointCodec$decodeDataPointContext),
+		_elm_lang$core$Json_Decode$maybe(_user$project$FlightReportCodec$decodeDataPointContext),
 		_elm_lang$core$Maybe$Nothing,
 		A4(
 			_NoRedInk$elm_decode_pipeline$Json_Decode_Pipeline$optional,
 			'command',
-			_elm_lang$core$Json_Decode$maybe(_user$project$DataPointCodec$decodeDataPointCommand),
+			_elm_lang$core$Json_Decode$maybe(_user$project$FlightReportCodec$decodeDataPointCommand),
 			_elm_lang$core$Maybe$Nothing,
 			A4(
 				_NoRedInk$elm_decode_pipeline$Json_Decode_Pipeline$optional,
@@ -11957,8 +11957,8 @@ var _user$project$DataPointCodec$decodeDataPoint = A4(
 						_NoRedInk$elm_decode_pipeline$Json_Decode_Pipeline$required,
 						'flightNumber',
 						_elm_lang$core$Json_Decode$int,
-						_NoRedInk$elm_decode_pipeline$Json_Decode_Pipeline$decode(_user$project$DataPointCodec$DataPoint)))))));
-var _user$project$DataPointCodec$decodeDataPointList = _elm_lang$core$Json_Decode$list(_user$project$DataPointCodec$decodeDataPoint);
+						_NoRedInk$elm_decode_pipeline$Json_Decode_Pipeline$decode(_user$project$FlightReportCodec$DataPoint)))))));
+var _user$project$FlightReportCodec$decodeDataPointList = _elm_lang$core$Json_Decode$list(_user$project$FlightReportCodec$decodeDataPoint);
 
 var _user$project$FlightReport$nowt = _elm_lang$html$Html$text('');
 var _user$project$FlightReport$smaller = {ctor: '_Tuple2', _0: 'font-size', _1: 'smaller'};
@@ -12868,7 +12868,7 @@ var _user$project$FlightReport$update = F2(
 					};
 				}
 			} else {
-				var result = A2(_elm_lang$core$Json_Decode$decodeString, _user$project$DataPointCodec$decodeDataPointList, model.raw);
+				var result = A2(_elm_lang$core$Json_Decode$decodeString, _user$project$FlightReportCodec$decodeDataPointList, model.raw);
 				var model_ = function () {
 					var _p15 = result;
 					if (_p15.ctor === 'Ok') {
@@ -12901,17 +12901,17 @@ Elm['AllFlightsReport'] = Elm['AllFlightsReport'] || {};
 if (typeof _user$project$AllFlightsReport$main !== 'undefined') {
     _user$project$AllFlightsReport$main(Elm['AllFlightsReport'], 'AllFlightsReport', undefined);
 }
-Elm['DataPointCodec'] = Elm['DataPointCodec'] || {};
-if (typeof _user$project$DataPointCodec$main !== 'undefined') {
-    _user$project$DataPointCodec$main(Elm['DataPointCodec'], 'DataPointCodec', undefined);
+Elm['AllFlightsReportCodec'] = Elm['AllFlightsReportCodec'] || {};
+if (typeof _user$project$AllFlightsReportCodec$main !== 'undefined') {
+    _user$project$AllFlightsReportCodec$main(Elm['AllFlightsReportCodec'], 'AllFlightsReportCodec', undefined);
 }
 Elm['FlightReport'] = Elm['FlightReport'] || {};
 if (typeof _user$project$FlightReport$main !== 'undefined') {
     _user$project$FlightReport$main(Elm['FlightReport'], 'FlightReport', undefined);
 }
-Elm['InvestigationCodec'] = Elm['InvestigationCodec'] || {};
-if (typeof _user$project$InvestigationCodec$main !== 'undefined') {
-    _user$project$InvestigationCodec$main(Elm['InvestigationCodec'], 'InvestigationCodec', undefined);
+Elm['FlightReportCodec'] = Elm['FlightReportCodec'] || {};
+if (typeof _user$project$FlightReportCodec$main !== 'undefined') {
+    _user$project$FlightReportCodec$main(Elm['FlightReportCodec'], 'FlightReportCodec', undefined);
 }
 
 if (typeof define === "function" && define['amd'])

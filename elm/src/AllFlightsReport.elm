@@ -4,7 +4,7 @@ import Html exposing (..)
 import Html.Attributes exposing (..)
 import Http exposing (..)
 import RemoteData exposing (..)
-import InvestigationCodec exposing (..)
+import AllFlightsReportCodec exposing (..)
 import Json.Decode exposing (decodeString)
 import Maybe.Extra as MaybeExtra
 import Date.Extra.Format as DateFormat

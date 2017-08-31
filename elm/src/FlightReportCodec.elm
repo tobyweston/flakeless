@@ -1,4 +1,4 @@
-module DataPointCodec exposing (DataPoint, Context, Command, decodeDataPointList)
+module FlightReportCodec exposing (DataPoint, Context, Command, decodeDataPointList)
 
 
 import Json.Encode
