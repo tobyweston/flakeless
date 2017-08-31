@@ -12,7 +12,7 @@ object FlightNumber {
   def next = currentFlightNumberCounter.next
 }
 
-case class FlightInvestigation(flightNumber: Int, started: Option[DateTime], finished: Option[DateTime])
+case class FlightInvestigation(flightNumber: Int, name: Option[String], started: Option[DateTime], finished: Option[DateTime])
 
 object FlightInvestigator {
   private val investigationByFlightNumber: scala.collection.concurrent.TrieMap[Int, FlightInvestigation] =
@@ -24,21 +24,26 @@ object FlightInvestigator {
 
   def summarise() = {
     val keys = investigationByFlightNumber.keys.toList.sorted
-    println(s"Flakeless Summary for ${keys.length} tests")
-    keys.map(k => {
+
+    println(s"Flakeless Summary at ${DateTime.now()} for ${keys.length} test(s)")
+
+    keys.foreach(k => {
       val i = investigationByFlightNumber(k)
       val duration = (i.started, i.finished) match {
         case (Some(start), Some(finish)) => new Duration(start, finish).getMillis.toString
         case _ => "???"
       }
-      println(s"${i.flightNumber},$duration")} )
+      println(s"${i.flightNumber},${i.name.getOrElse("???")},$duration")
+    } )
   }
 
+  //TODO; we could actually have this from the start .. and not need to poke about to get start and finish
   private def createInvestigation(flightNumber: Int, flightDataRecorder: FlightDataRecorder) = {
     val flightData = flightDataRecorder.data(flightNumber)
     val started = flightData.headOption.map(_.when)
+    val name = flightData.headOption.flatMap(_.description)
     val finished = flightData.reverse.headOption.map(_.when)
-    FlightInvestigation(flightNumber, started, finished)
+    FlightInvestigation(flightNumber, name, started, finished)
   }
 
   private def update(flightNumber: Int, investigation: FlightInvestigation): Unit = {
