@@ -4,7 +4,7 @@ import java.nio.charset.StandardCharsets
 import java.util.Base64
 
 import im.mange.flakeless.innards.{Command, Context}
-import im.mange.flakeless.{Flakeless, Path, report}
+import im.mange.flakeless.{Flakeless, FlightInvestigator, Path, report}
 import org.openqa.selenium.remote.RemoteWebElement
 import org.openqa.selenium.{By, OutputType, TakesScreenshot}
 
@@ -40,6 +40,9 @@ object Example extends App {
     flakeless.inflightAnnouncement("foo log", Some(List("line 1", "line 2", "line 3")))
 
     Report(flakeless, "target/test-reports", captureImage = false, host = Some("http://localhost:63342/root"))
+
+    flakeless.newFlight()
+    FlightInvestigator.summarise()
   }
 
   def createElement: RemoteWebElement = {

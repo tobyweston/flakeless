@@ -1,7 +1,7 @@
 package im.mange.flakeless
 
 import im.mange.flakeless.innards._
-import org.joda.time.DateTime
+import org.joda.time.{DateTime, Duration}
 import org.openqa.selenium.WebDriver
 
 //TODO: in Config, have option to forget previous flight data when calling newFlight
@@ -23,7 +23,15 @@ object FlightInvestigator {
   }
 
   def summarise() = {
-    investigationByFlightNumber.keys.toList.sorted.map(k => println(investigationByFlightNumber(k)) )
+    val keys = investigationByFlightNumber.keys.toList.sorted
+    println(s"Flakeless Summary for ${keys.length} tests")
+    keys.map(k => {
+      val i = investigationByFlightNumber(k)
+      val duration = (i.started, i.finished) match {
+        case (Some(start), Some(finish)) => new Duration(start, finish).getMillis.toString
+        case _ => "???"
+      }
+      println(s"${i.flightNumber},$duration")} )
   }
 
   private def createInvestigation(flightNumber: Int, flightDataRecorder: FlightDataRecorder) = {
