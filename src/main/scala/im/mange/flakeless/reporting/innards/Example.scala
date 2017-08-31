@@ -2,7 +2,7 @@ package im.mange.flakeless.reporting.innards
 
 import im.mange.flakeless.innards.{Command, Context}
 import im.mange.flakeless.reporting.{AllFlightsReport, FlightReport}
-import im.mange.flakeless.{Flakeless, FlightInvestigator, Path}
+import im.mange.flakeless.{Flakeless, Path}
 import org.openqa.selenium.By
 import org.openqa.selenium.remote.RemoteWebElement
 

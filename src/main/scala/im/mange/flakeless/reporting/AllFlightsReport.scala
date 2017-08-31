@@ -1,6 +1,7 @@
 package im.mange.flakeless.reporting
 
-import im.mange.flakeless.{Flakeless, FlightInvestigator}
+import im.mange.flakeless.Flakeless
+import im.mange.flakeless.reporting.innards.FlightInvestigator
 
 object AllFlightsReport {
 
