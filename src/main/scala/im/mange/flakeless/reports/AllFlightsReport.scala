@@ -17,7 +17,7 @@ object AllFlightsReport {
 
         val jsonFlightData = flakeless.jsonAllFlightsData
 
-        println(jsonFlightData)
+//        println(jsonFlightData)
 
         val b64 = Base64.getEncoder.encodeToString(jsonFlightData.getBytes(StandardCharsets.UTF_8))
 

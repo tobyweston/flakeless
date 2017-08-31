@@ -10,6 +10,7 @@ private [flakeless] object FlightInvestigator {
     update(flightNumber, createInvestigation(flightNumber, flightDataRecorder))
   }
 
+  //TODO: this should die once proper report done
   def summarise() = {
     val keys = investigationByFlightNumber.keys.toList.sorted
 

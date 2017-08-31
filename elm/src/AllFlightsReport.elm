@@ -14,6 +14,8 @@ import Dict
 import Base64
 
 
+--TODO: link through to reports (if exist)
+
 type alias Model =
     { raw : String
     , investigations : List Investigation
