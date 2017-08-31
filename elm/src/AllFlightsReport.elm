@@ -15,6 +15,8 @@ import Base64
 
 
 --TODO: link through to reports (if exist)
+--TODO: split out suite and test
+--TODO: use http://package.elm-lang.org/packages/evancz/elm-sortable-table/1.0.1
 
 type alias Model =
     { raw : String
