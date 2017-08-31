@@ -11809,10 +11809,10 @@ var _user$project$DataPointCodec$decodeDataPoint = A4(
 						_NoRedInk$elm_decode_pipeline$Json_Decode_Pipeline$decode(_user$project$DataPointCodec$DataPoint)))))));
 var _user$project$DataPointCodec$decodeDataPointList = _elm_lang$core$Json_Decode$list(_user$project$DataPointCodec$decodeDataPoint);
 
-var _user$project$Main$nowt = _elm_lang$html$Html$text('');
-var _user$project$Main$smaller = {ctor: '_Tuple2', _0: 'font-size', _1: 'smaller'};
-var _user$project$Main$grey = {ctor: '_Tuple2', _0: 'color', _1: 'grey'};
-var _user$project$Main$renderArg = F2(
+var _user$project$FlightReport$nowt = _elm_lang$html$Html$text('');
+var _user$project$FlightReport$smaller = {ctor: '_Tuple2', _0: 'font-size', _1: 'smaller'};
+var _user$project$FlightReport$grey = {ctor: '_Tuple2', _0: 'color', _1: 'grey'};
+var _user$project$FlightReport$renderArg = F2(
 	function (k, v) {
 		var _p0 = {
 			ctor: '_Tuple2',
@@ -11833,10 +11833,10 @@ var _user$project$Main$renderArg = F2(
 						_0: _elm_lang$html$Html_Attributes$style(
 							{
 								ctor: '::',
-								_0: _user$project$Main$smaller,
+								_0: _user$project$FlightReport$smaller,
 								_1: {
 									ctor: '::',
-									_0: _user$project$Main$grey,
+									_0: _user$project$FlightReport$grey,
 									_1: {ctor: '[]'}
 								}
 							}),
@@ -11862,7 +11862,7 @@ var _user$project$Main$renderArg = F2(
 				}
 			});
 	});
-var _user$project$Main$renderBy = function (by) {
+var _user$project$FlightReport$renderBy = function (by) {
 	var _p1 = A2(
 		_elm_lang$core$Maybe$withDefault,
 		{ctor: '_Tuple2', _0: '???', _1: '???'},
@@ -11881,10 +11881,10 @@ var _user$project$Main$renderBy = function (by) {
 					_0: _elm_lang$html$Html_Attributes$style(
 						{
 							ctor: '::',
-							_0: _user$project$Main$smaller,
+							_0: _user$project$FlightReport$smaller,
 							_1: {
 								ctor: '::',
-								_0: _user$project$Main$grey,
+								_0: _user$project$FlightReport$grey,
 								_1: {ctor: '[]'}
 							}
 						}),
@@ -11910,10 +11910,10 @@ var _user$project$Main$renderBy = function (by) {
 			}
 		});
 };
-var _user$project$Main$renderContext = function (maybeContext) {
+var _user$project$FlightReport$renderContext = function (maybeContext) {
 	var _p2 = maybeContext;
 	if (_p2.ctor === 'Nothing') {
-		return _user$project$Main$nowt;
+		return _user$project$FlightReport$nowt;
 	} else {
 		var _p4 = _p2._0;
 		return ((!_elm_lang$core$List$isEmpty(_p4.failures)) && (!function () {
@@ -11930,7 +11930,7 @@ var _user$project$Main$renderContext = function (maybeContext) {
 				_0: _elm_lang$html$Html_Attributes$style(
 					{
 						ctor: '::',
-						_0: _user$project$Main$smaller,
+						_0: _user$project$FlightReport$smaller,
 						_1: {ctor: '[]'}
 					}),
 				_1: {ctor: '[]'}
@@ -11944,10 +11944,10 @@ var _user$project$Main$renderContext = function (maybeContext) {
 						_0: _elm_lang$html$Html_Attributes$style(
 							{
 								ctor: '::',
-								_0: _user$project$Main$grey,
+								_0: _user$project$FlightReport$grey,
 								_1: {
 									ctor: '::',
-									_0: _user$project$Main$smaller,
+									_0: _user$project$FlightReport$smaller,
 									_1: {ctor: '[]'}
 								}
 							}),
@@ -11992,13 +11992,13 @@ var _user$project$Main$renderContext = function (maybeContext) {
 						}),
 					_1: {ctor: '[]'}
 				}
-			}) : _user$project$Main$nowt;
+			}) : _user$project$FlightReport$nowt;
 	}
 };
-var _user$project$Main$renderLog = function (maybeLog) {
+var _user$project$FlightReport$renderLog = function (maybeLog) {
 	var _p5 = maybeLog;
 	if (_p5.ctor === 'Nothing') {
-		return _user$project$Main$nowt;
+		return _user$project$FlightReport$nowt;
 	} else {
 		return A2(
 			_elm_lang$html$Html$div,
@@ -12007,10 +12007,10 @@ var _user$project$Main$renderLog = function (maybeLog) {
 				_0: _elm_lang$html$Html_Attributes$style(
 					{
 						ctor: '::',
-						_0: _user$project$Main$smaller,
+						_0: _user$project$FlightReport$smaller,
 						_1: {
 							ctor: '::',
-							_0: _user$project$Main$grey,
+							_0: _user$project$FlightReport$grey,
 							_1: {
 								ctor: '::',
 								_0: {ctor: '_Tuple2', _0: 'margin-left', _1: '25px'},
@@ -12029,7 +12029,7 @@ var _user$project$Main$renderLog = function (maybeLog) {
 						_0: _elm_lang$html$Html_Attributes$style(
 							{
 								ctor: '::',
-								_0: _user$project$Main$smaller,
+								_0: _user$project$FlightReport$smaller,
 								_1: {
 									ctor: '::',
 									_0: {ctor: '_Tuple2', _0: 'white-space', _1: 'pre-wrap'},
@@ -12051,8 +12051,8 @@ var _user$project$Main$renderLog = function (maybeLog) {
 			});
 	}
 };
-var _user$project$Main$gapRight = {ctor: '_Tuple2', _0: 'margin-right', _1: '6px'};
-var _user$project$Main$renderExpected = F2(
+var _user$project$FlightReport$gapRight = {ctor: '_Tuple2', _0: 'margin-right', _1: '6px'};
+var _user$project$FlightReport$renderExpected = F2(
 	function (expected, expectedMany) {
 		var _p6 = {ctor: '_Tuple2', _0: expected, _1: expectedMany};
 		if (_p6._0.ctor === 'Just') {
@@ -12063,10 +12063,10 @@ var _user$project$Main$renderExpected = F2(
 					_0: _elm_lang$html$Html_Attributes$style(
 						{
 							ctor: '::',
-							_0: _user$project$Main$gapRight,
+							_0: _user$project$FlightReport$gapRight,
 							_1: {
 								ctor: '::',
-								_0: _user$project$Main$smaller,
+								_0: _user$project$FlightReport$smaller,
 								_1: {ctor: '[]'}
 							}
 						}),
@@ -12081,7 +12081,7 @@ var _user$project$Main$renderExpected = F2(
 							_0: _elm_lang$html$Html_Attributes$style(
 								{
 									ctor: '::',
-									_0: _user$project$Main$gapRight,
+									_0: _user$project$FlightReport$gapRight,
 									_1: {ctor: '[]'}
 								}),
 							_1: {ctor: '[]'}
@@ -12095,10 +12095,10 @@ var _user$project$Main$renderExpected = F2(
 									_0: _elm_lang$html$Html_Attributes$style(
 										{
 											ctor: '::',
-											_0: _user$project$Main$smaller,
+											_0: _user$project$FlightReport$smaller,
 											_1: {
 												ctor: '::',
-												_0: _user$project$Main$grey,
+												_0: _user$project$FlightReport$grey,
 												_1: {ctor: '[]'}
 											}
 										}),
@@ -12130,10 +12130,10 @@ var _user$project$Main$renderExpected = F2(
 						_0: _elm_lang$html$Html_Attributes$style(
 							{
 								ctor: '::',
-								_0: _user$project$Main$gapRight,
+								_0: _user$project$FlightReport$gapRight,
 								_1: {
 									ctor: '::',
-									_0: _user$project$Main$smaller,
+									_0: _user$project$FlightReport$smaller,
 									_1: {ctor: '[]'}
 								}
 							}),
@@ -12148,7 +12148,7 @@ var _user$project$Main$renderExpected = F2(
 								_0: _elm_lang$html$Html_Attributes$style(
 									{
 										ctor: '::',
-										_0: _user$project$Main$gapRight,
+										_0: _user$project$FlightReport$gapRight,
 										_1: {ctor: '[]'}
 									}),
 								_1: {ctor: '[]'}
@@ -12162,10 +12162,10 @@ var _user$project$Main$renderExpected = F2(
 										_0: _elm_lang$html$Html_Attributes$style(
 											{
 												ctor: '::',
-												_0: _user$project$Main$smaller,
+												_0: _user$project$FlightReport$smaller,
 												_1: {
 													ctor: '::',
-													_0: _user$project$Main$grey,
+													_0: _user$project$FlightReport$grey,
 													_1: {ctor: '[]'}
 												}
 											}),
@@ -12186,12 +12186,12 @@ var _user$project$Main$renderExpected = F2(
 						}
 					});
 			} else {
-				return _user$project$Main$nowt;
+				return _user$project$FlightReport$nowt;
 			}
 		}
 	});
-var _user$project$Main$renderArgs = function (args) {
-	return _elm_lang$core$Dict$isEmpty(args) ? _user$project$Main$nowt : A2(
+var _user$project$FlightReport$renderArgs = function (args) {
+	return _elm_lang$core$Dict$isEmpty(args) ? _user$project$FlightReport$nowt : A2(
 		_elm_lang$html$Html$span,
 		{
 			ctor: '::',
@@ -12201,10 +12201,10 @@ var _user$project$Main$renderArgs = function (args) {
 				_0: _elm_lang$html$Html_Attributes$style(
 					{
 						ctor: '::',
-						_0: _user$project$Main$smaller,
+						_0: _user$project$FlightReport$smaller,
 						_1: {
 							ctor: '::',
-							_0: _user$project$Main$gapRight,
+							_0: _user$project$FlightReport$gapRight,
 							_1: {ctor: '[]'}
 						}
 					}),
@@ -12220,7 +12220,7 @@ var _user$project$Main$renderArgs = function (args) {
 					_0: _elm_lang$html$Html_Attributes$style(
 						{
 							ctor: '::',
-							_0: _user$project$Main$smaller,
+							_0: _user$project$FlightReport$smaller,
 							_1: {ctor: '[]'}
 						}),
 					_1: {ctor: '[]'}
@@ -12234,14 +12234,14 @@ var _user$project$Main$renderArgs = function (args) {
 				_elm_lang$core$List$map,
 				function (k) {
 					return A2(
-						_user$project$Main$renderArg,
+						_user$project$FlightReport$renderArg,
 						k,
 						A2(_elm_lang$core$Dict$get, k, args));
 				},
 				_elm_lang$core$Dict$keys(args))));
 };
-var _user$project$Main$renderBys = function (bys) {
-	return _elm_lang$core$List$isEmpty(bys) ? _user$project$Main$nowt : A2(
+var _user$project$FlightReport$renderBys = function (bys) {
+	return _elm_lang$core$List$isEmpty(bys) ? _user$project$FlightReport$nowt : A2(
 		_elm_lang$html$Html$span,
 		{
 			ctor: '::',
@@ -12251,10 +12251,10 @@ var _user$project$Main$renderBys = function (bys) {
 				_0: _elm_lang$html$Html_Attributes$style(
 					{
 						ctor: '::',
-						_0: _user$project$Main$smaller,
+						_0: _user$project$FlightReport$smaller,
 						_1: {
 							ctor: '::',
-							_0: _user$project$Main$gapRight,
+							_0: _user$project$FlightReport$gapRight,
 							_1: {ctor: '[]'}
 						}
 					}),
@@ -12270,7 +12270,7 @@ var _user$project$Main$renderBys = function (bys) {
 					_0: _elm_lang$html$Html_Attributes$style(
 						{
 							ctor: '::',
-							_0: _user$project$Main$grey,
+							_0: _user$project$FlightReport$grey,
 							_1: {ctor: '[]'}
 						}),
 					_1: {ctor: '[]'}
@@ -12294,7 +12294,7 @@ var _user$project$Main$renderBys = function (bys) {
 								_0: _elm_lang$html$Html_Attributes$style(
 									{
 										ctor: '::',
-										_0: _user$project$Main$smaller,
+										_0: _user$project$FlightReport$smaller,
 										_1: {ctor: '[]'}
 									}),
 								_1: {ctor: '[]'}
@@ -12308,7 +12308,7 @@ var _user$project$Main$renderBys = function (bys) {
 										_0: _elm_lang$html$Html_Attributes$style(
 											{
 												ctor: '::',
-												_0: _user$project$Main$smaller,
+												_0: _user$project$FlightReport$smaller,
 												_1: {
 													ctor: '::',
 													_0: {ctor: '_Tuple2', _0: 'font-style', _1: 'bold'},
@@ -12327,7 +12327,7 @@ var _user$project$Main$renderBys = function (bys) {
 						A2(
 							_elm_lang$core$List$map,
 							function (b) {
-								return _user$project$Main$renderBy(b);
+								return _user$project$FlightReport$renderBy(b);
 							},
 							bys))),
 				_1: {
@@ -12339,7 +12339,7 @@ var _user$project$Main$renderBys = function (bys) {
 							_0: _elm_lang$html$Html_Attributes$style(
 								{
 									ctor: '::',
-									_0: _user$project$Main$grey,
+									_0: _user$project$FlightReport$grey,
 									_1: {ctor: '[]'}
 								}),
 							_1: {ctor: '[]'}
@@ -12354,10 +12354,10 @@ var _user$project$Main$renderBys = function (bys) {
 			}
 		});
 };
-var _user$project$Main$renderIn = function (maybeIn) {
+var _user$project$FlightReport$renderIn = function (maybeIn) {
 	var _p7 = maybeIn;
 	if (_p7.ctor === 'Nothing') {
-		return _user$project$Main$nowt;
+		return _user$project$FlightReport$nowt;
 	} else {
 		return A2(
 			_elm_lang$html$Html$span,
@@ -12366,10 +12366,10 @@ var _user$project$Main$renderIn = function (maybeIn) {
 				_0: _elm_lang$html$Html_Attributes$style(
 					{
 						ctor: '::',
-						_0: _user$project$Main$gapRight,
+						_0: _user$project$FlightReport$gapRight,
 						_1: {
 							ctor: '::',
-							_0: _user$project$Main$smaller,
+							_0: _user$project$FlightReport$smaller,
 							_1: {ctor: '[]'}
 						}
 					}),
@@ -12384,13 +12384,13 @@ var _user$project$Main$renderIn = function (maybeIn) {
 						_0: _elm_lang$html$Html_Attributes$style(
 							{
 								ctor: '::',
-								_0: _user$project$Main$gapRight,
+								_0: _user$project$FlightReport$gapRight,
 								_1: {
 									ctor: '::',
-									_0: _user$project$Main$grey,
+									_0: _user$project$FlightReport$grey,
 									_1: {
 										ctor: '::',
-										_0: _user$project$Main$smaller,
+										_0: _user$project$FlightReport$smaller,
 										_1: {ctor: '[]'}
 									}
 								}
@@ -12410,10 +12410,10 @@ var _user$project$Main$renderIn = function (maybeIn) {
 			});
 	}
 };
-var _user$project$Main$renderCommand = function (maybeCommand) {
+var _user$project$FlightReport$renderCommand = function (maybeCommand) {
 	var _p8 = maybeCommand;
 	if (_p8.ctor === 'Nothing') {
-		return _user$project$Main$nowt;
+		return _user$project$FlightReport$nowt;
 	} else {
 		var _p9 = _p8._0;
 		return A2(
@@ -12428,10 +12428,10 @@ var _user$project$Main$renderCommand = function (maybeCommand) {
 						_0: _elm_lang$html$Html_Attributes$style(
 							{
 								ctor: '::',
-								_0: _user$project$Main$gapRight,
+								_0: _user$project$FlightReport$gapRight,
 								_1: {
 									ctor: '::',
-									_0: _user$project$Main$smaller,
+									_0: _user$project$FlightReport$smaller,
 									_1: {ctor: '[]'}
 								}
 							}),
@@ -12451,14 +12451,14 @@ var _user$project$Main$renderCommand = function (maybeCommand) {
 							_0: _elm_lang$html$Html_Attributes$style(
 								{
 									ctor: '::',
-									_0: _user$project$Main$smaller,
+									_0: _user$project$FlightReport$smaller,
 									_1: {ctor: '[]'}
 								}),
 							_1: {ctor: '[]'}
 						},
 						{
 							ctor: '::',
-							_0: _user$project$Main$renderBys(_p9.bys),
+							_0: _user$project$FlightReport$renderBys(_p9.bys),
 							_1: {ctor: '[]'}
 						}),
 					_1: {
@@ -12470,14 +12470,14 @@ var _user$project$Main$renderCommand = function (maybeCommand) {
 								_0: _elm_lang$html$Html_Attributes$style(
 									{
 										ctor: '::',
-										_0: _user$project$Main$smaller,
+										_0: _user$project$FlightReport$smaller,
 										_1: {ctor: '[]'}
 									}),
 								_1: {ctor: '[]'}
 							},
 							{
 								ctor: '::',
-								_0: _user$project$Main$renderArgs(_p9.args),
+								_0: _user$project$FlightReport$renderArgs(_p9.args),
 								_1: {ctor: '[]'}
 							}),
 						_1: {
@@ -12489,19 +12489,19 @@ var _user$project$Main$renderCommand = function (maybeCommand) {
 									_0: _elm_lang$html$Html_Attributes$style(
 										{
 											ctor: '::',
-											_0: _user$project$Main$smaller,
+											_0: _user$project$FlightReport$smaller,
 											_1: {ctor: '[]'}
 										}),
 									_1: {ctor: '[]'}
 								},
 								{
 									ctor: '::',
-									_0: _user$project$Main$renderIn(_p9.in_),
+									_0: _user$project$FlightReport$renderIn(_p9.in_),
 									_1: {ctor: '[]'}
 								}),
 							_1: {
 								ctor: '::',
-								_0: A2(_user$project$Main$renderExpected, _p9.expected, _p9.expectedMany),
+								_0: A2(_user$project$FlightReport$renderExpected, _p9.expected, _p9.expectedMany),
 								_1: {ctor: '[]'}
 							}
 						}
@@ -12510,7 +12510,7 @@ var _user$project$Main$renderCommand = function (maybeCommand) {
 			});
 	}
 };
-var _user$project$Main$renderDataPoint = function (dataPoint) {
+var _user$project$FlightReport$renderDataPoint = function (dataPoint) {
 	var colorClass = function () {
 		var _p10 = dataPoint.context;
 		if (_p10.ctor === 'Nothing') {
@@ -12558,13 +12558,13 @@ var _user$project$Main$renderDataPoint = function (dataPoint) {
 							_0: _elm_lang$html$Html_Attributes$style(
 								{
 									ctor: '::',
-									_0: _user$project$Main$gapRight,
+									_0: _user$project$FlightReport$gapRight,
 									_1: {
 										ctor: '::',
-										_0: _user$project$Main$smaller,
+										_0: _user$project$FlightReport$smaller,
 										_1: {
 											ctor: '::',
-											_0: _user$project$Main$grey,
+											_0: _user$project$FlightReport$grey,
 											_1: {ctor: '[]'}
 										}
 									}
@@ -12586,10 +12586,10 @@ var _user$project$Main$renderDataPoint = function (dataPoint) {
 								_0: _elm_lang$html$Html_Attributes$style(
 									{
 										ctor: '::',
-										_0: _user$project$Main$gapRight,
+										_0: _user$project$FlightReport$gapRight,
 										_1: {
 											ctor: '::',
-											_0: _user$project$Main$smaller,
+											_0: _user$project$FlightReport$smaller,
 											_1: {ctor: '[]'}
 										}
 									}),
@@ -12600,16 +12600,16 @@ var _user$project$Main$renderDataPoint = function (dataPoint) {
 								_0: _elm_lang$html$Html$text(
 									A2(_elm_lang$core$Maybe$withDefault, '', dataPoint.description)),
 								_1: {ctor: '[]'}
-							}) : _user$project$Main$nowt,
+							}) : _user$project$FlightReport$nowt,
 						_1: {
 							ctor: '::',
-							_0: _user$project$Main$renderCommand(dataPoint.command),
+							_0: _user$project$FlightReport$renderCommand(dataPoint.command),
 							_1: {
 								ctor: '::',
-								_0: _user$project$Main$renderContext(dataPoint.context),
+								_0: _user$project$FlightReport$renderContext(dataPoint.context),
 								_1: {
 									ctor: '::',
-									_0: _user$project$Main$renderLog(dataPoint.log),
+									_0: _user$project$FlightReport$renderLog(dataPoint.log),
 									_1: {ctor: '[]'}
 								}
 							}
@@ -12619,7 +12619,7 @@ var _user$project$Main$renderDataPoint = function (dataPoint) {
 			_1: {ctor: '[]'}
 		});
 };
-var _user$project$Main$view = function (model) {
+var _user$project$FlightReport$view = function (model) {
 	var isError = _elm_community$maybe_extra$Maybe_Extra$isJust(model.error);
 	return A2(
 		_elm_lang$html$Html$div,
@@ -12634,7 +12634,7 @@ var _user$project$Main$view = function (model) {
 					_0: _elm_lang$html$Html$text(
 						A2(_elm_lang$core$Maybe$withDefault, '', model.error)),
 					_1: {ctor: '[]'}
-				}) : _user$project$Main$nowt,
+				}) : _user$project$FlightReport$nowt,
 			_1: {
 				ctor: '::',
 				_0: A2(
@@ -12643,7 +12643,7 @@ var _user$project$Main$view = function (model) {
 					A2(
 						_elm_lang$core$List$map,
 						function (dp) {
-							return _user$project$Main$renderDataPoint(dp);
+							return _user$project$FlightReport$renderDataPoint(dp);
 						},
 						model.dataPoints)),
 				_1: {
@@ -12666,28 +12666,28 @@ var _user$project$Main$view = function (model) {
 										_elm_lang$core$Basics$toString(model.raw))),
 								_1: {ctor: '[]'}
 							}
-						}) : _user$project$Main$nowt,
+						}) : _user$project$FlightReport$nowt,
 					_1: {ctor: '[]'}
 				}
 			}
 		});
 };
-var _user$project$Main$data = _elm_lang$core$Native_Platform.incomingPort('data', _elm_lang$core$Json_Decode$string);
-var _user$project$Main$Model = F3(
+var _user$project$FlightReport$data = _elm_lang$core$Native_Platform.incomingPort('data', _elm_lang$core$Json_Decode$string);
+var _user$project$FlightReport$Model = F3(
 	function (a, b, c) {
 		return {raw: a, dataPoints: b, error: c};
 	});
-var _user$project$Main$init = {
+var _user$project$FlightReport$init = {
 	ctor: '_Tuple2',
 	_0: A3(
-		_user$project$Main$Model,
+		_user$project$FlightReport$Model,
 		'',
 		{ctor: '[]'},
 		_elm_lang$core$Maybe$Nothing),
 	_1: _elm_lang$core$Platform_Cmd$none
 };
-var _user$project$Main$ParseData = {ctor: 'ParseData'};
-var _user$project$Main$update = F2(
+var _user$project$FlightReport$ParseData = {ctor: 'ParseData'};
+var _user$project$FlightReport$update = F2(
 	function (msg, model) {
 		update:
 		while (true) {
@@ -12697,7 +12697,7 @@ var _user$project$Main$update = F2(
 				var result = _truqu$elm_base64$Base64$decode(_p14);
 				var _p13 = result;
 				if (_p13.ctor === 'Ok') {
-					var _v10 = _user$project$Main$ParseData,
+					var _v10 = _user$project$FlightReport$ParseData,
 						_v11 = _elm_lang$core$Native_Utils.update(
 						model,
 						{raw: _p13._0});
@@ -12736,23 +12736,23 @@ var _user$project$Main$update = F2(
 			}
 		}
 	});
-var _user$project$Main$LoadData = function (a) {
+var _user$project$FlightReport$LoadData = function (a) {
 	return {ctor: 'LoadData', _0: a};
 };
-var _user$project$Main$subscriptions = function (model) {
-	return _user$project$Main$data(_user$project$Main$LoadData);
+var _user$project$FlightReport$subscriptions = function (model) {
+	return _user$project$FlightReport$data(_user$project$FlightReport$LoadData);
 };
-var _user$project$Main$main = _elm_lang$html$Html$program(
-	{init: _user$project$Main$init, view: _user$project$Main$view, update: _user$project$Main$update, subscriptions: _user$project$Main$subscriptions})();
+var _user$project$FlightReport$main = _elm_lang$html$Html$program(
+	{init: _user$project$FlightReport$init, view: _user$project$FlightReport$view, update: _user$project$FlightReport$update, subscriptions: _user$project$FlightReport$subscriptions})();
 
 var Elm = {};
 Elm['DataPointCodec'] = Elm['DataPointCodec'] || {};
 if (typeof _user$project$DataPointCodec$main !== 'undefined') {
     _user$project$DataPointCodec$main(Elm['DataPointCodec'], 'DataPointCodec', undefined);
 }
-Elm['Main'] = Elm['Main'] || {};
-if (typeof _user$project$Main$main !== 'undefined') {
-    _user$project$Main$main(Elm['Main'], 'Main', undefined);
+Elm['FlightReport'] = Elm['FlightReport'] || {};
+if (typeof _user$project$FlightReport$main !== 'undefined') {
+    _user$project$FlightReport$main(Elm['FlightReport'], 'FlightReport', undefined);
 }
 
 if (typeof define === "function" && define['amd'])

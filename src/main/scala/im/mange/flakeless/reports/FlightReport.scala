@@ -19,7 +19,7 @@ object FlightReport {
 
       val when = System.currentTimeMillis()
       val imagePath = path(filepath, s"$when.png")
-      val htmlPath = path(filepath, s"flakeless.html")
+      val htmlPath = path(filepath, s"flight-report.html")
       val jsPath = path(filepath, s"flakeless.js")
 
       if (captureImage) write(imagePath, screenshot(flakeless))
@@ -34,12 +34,12 @@ object FlightReport {
 
       val fileSystemReport = htmlPath.toAbsolutePath.toString
       host match {
-        case None => System.err.println("*** Flakeless report: " + fileSystemReport)
-        case Some(h) => System.err.println(s"*** Flakeless report: ${h}/${htmlPath.toString.replaceAll("\\\\", "/")} (or ${fileSystemReport})")
+        case None => System.err.println("*** Flakeless Flight report: " + fileSystemReport)
+        case Some(h) => System.err.println(s"*** Flakeless Flight report: ${h}/${htmlPath.toString.replaceAll("\\\\", "/")} (or ${fileSystemReport})")
 
       }
     } catch {
-      case t: Exception => System.err.println(s"*** Failed to write report something bad happened ***\nProblem was:${t.getMessage}")
+      case t: Exception => System.err.println(s"*** Failed to write Flight report something bad happened ***\nProblem was:${t.getMessage}")
     }
 
     //TODO: might be able to kill the lozenge now ...
@@ -110,7 +110,7 @@ s"""
   |  </table>
   |  <script>
   |    var data = '${data.replaceAll("\n", "").replaceAll("'", "")}';
-  |    var app = Elm.Main.embed(document.getElementById('content'));
+  |    var app = Elm.FlightReport.embed(document.getElementById('content'));
   |    app.ports.data.send(data);
   |  </script>
   |</body>

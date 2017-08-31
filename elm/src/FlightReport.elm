@@ -1,4 +1,4 @@
-port module Main exposing (..)
+port module FlightReport exposing (..)
 
 import Html exposing (..)
 import Html.Attributes exposing (..)
