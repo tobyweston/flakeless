@@ -50,11 +50,14 @@ case class Flakeless(rawWebDriver: WebDriver, config: Config = Config()) {
   private val fdr = FlightDataRecorder()
   private var currentFlightNumber: Option[Int] = None
 
-  def newFlight(description: Option[String] = None) {
-    currentFlightNumber.foreach(FlightInvestigator.investigate(_, fdr))
+  def startFlight(description: String) {
     currentFlightNumber = Some(FlightNumber.next)
-    fdr.reset() // if config.resetOnNewFlight whateva
-    description.foreach(d => currentFlightNumber.foreach(fdr.record(_, d, None, isError = false)))
+    fdr.reset()
+    currentFlightNumber.foreach(fdr.record(_, description, None, isError = false))
+  }
+
+  def stopFlight() {
+    currentFlightNumber.foreach(FlightInvestigator.investigate(_, fdr))
   }
 
   def record(command: Command, context: Context) {

@@ -12,7 +12,7 @@ import org.openqa.selenium.{By, OutputType, TakesScreenshot}
 object Example extends App {
   def go {
     val flakeless = Flakeless(null)
-    flakeless.newFlight()
+    flakeless.startFlight("Victor Vector")
 
     flakeless.inflightAnnouncement("announcement")
     flakeless.record(Command("command with expected", None, None, Map.empty, Some("expected")), Context())
@@ -41,7 +41,7 @@ object Example extends App {
 
     Report(flakeless, "target/test-reports", captureImage = false, host = Some("http://localhost:63342/root"))
 
-    flakeless.newFlight()
+    flakeless.stopFlight()
     FlightInvestigator.summarise()
   }
 
