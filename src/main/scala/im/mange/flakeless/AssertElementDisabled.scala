@@ -1,14 +1,14 @@
 package im.mange.flakeless
 
-import im.mange.flakeless.innards.AssertElementAbleness
+import im.mange.flakeless.innards.AssertElementAbledness
 import org.openqa.selenium.{By, SearchContext}
 
 object AssertElementDisabled {
   def apply(flakeless: Flakeless, by: By): Unit = {
-    AssertElementAbleness(flakeless.rawWebDriver, by, expected = false, Some(flakeless))
+    AssertElementAbledness(flakeless.rawWebDriver, by, expected = false, Some(flakeless))
   }
 
   def apply(in: SearchContext, by: By, flakeless: Option[Flakeless] = None): Unit = {
-    AssertElementAbleness(in, by, expected = false, flakeless)
+    AssertElementAbledness(in, by, expected = false, flakeless)
   }
 }
