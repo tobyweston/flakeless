@@ -43,7 +43,7 @@ object Example extends App {
     FlightReport(flakeless, "target/test-reports", captureImage = false, host = Some("http://localhost:63342/root"))
     flakeless.stopFlight()
 
-    AllFlightsReport(flakeless, "target/test-reports")
+    AllFlightsReport(flakeless, "target/test-reports", host = Some("http://localhost:63342/root"))
   }
 
   def createElement: RemoteWebElement = {

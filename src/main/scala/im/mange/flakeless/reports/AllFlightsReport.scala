@@ -21,7 +21,7 @@ object AllFlightsReport {
 
         val b64 = Base64.getEncoder.encodeToString(jsonFlightData.getBytes(StandardCharsets.UTF_8))
 
-        val htmlPath = path(filepath, s"report.html")
+        val htmlPath = path(filepath, s"summary.html")
         write(htmlPath, htmlContent(flakeless, b64).getBytes)
 
         ReportAssets.writeFlakelessJs(outputDirectory)
