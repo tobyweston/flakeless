@@ -17,11 +17,7 @@ private [flakeless] object FlightInvestigator {
 
     keys.foreach(k => {
       val i = investigationByFlightNumber(k)
-      val duration = (i.started, i.finished) match {
-        case (Some(start), Some(finish)) => new Duration(start, finish).getMillis.toString
-        case _ => "???"
-      }
-      println(s"${i.flightNumber},${i.name.getOrElse("???")},$duration")
+      println(s"${i.flightNumber},${i.name.getOrElse("???")},${i.durationMillis.getOrElse("???")}")
     } )
   }
 
@@ -33,7 +29,13 @@ private [flakeless] object FlightInvestigator {
     val started = flightData.headOption.map(_.when)
     val name = flightData.headOption.flatMap(_.description)
     val finished = flightData.reverse.headOption.map(_.when)
-    Investigation(flightNumber, name, started, finished)
+
+    val duration = (started, finished) match {
+      case (Some(start), Some(finish)) => Some(new Duration(start, finish).getMillis)
+      case _ => None
+    }
+
+    Investigation(flightNumber, name, started, finished, duration)
   }
 
   private def update(flightNumber: Int, investigation: Investigation): Unit = {
