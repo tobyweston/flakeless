@@ -1,10 +1,10 @@
-package im.mange.flakeless.report
+package im.mange.flakeless.reporting
 
 import java.nio.charset.StandardCharsets
 import java.util.Base64
 
 import im.mange.flakeless.innards.{Command, Context}
-import im.mange.flakeless.{Flakeless, FlightInvestigator, Path, report}
+import im.mange.flakeless.{Flakeless, FlightInvestigator, Path, reporting}
 import org.openqa.selenium.remote.RemoteWebElement
 import org.openqa.selenium.{By, OutputType, TakesScreenshot}
 
@@ -39,7 +39,7 @@ object Example extends App {
 
     flakeless.inflightAnnouncement("foo log", Some(List("line 1", "line 2", "line 3")))
 
-    Report(flakeless, "target/test-reports", captureImage = false, host = Some("http://localhost:63342/root"))
+    FlightDataReport(flakeless, "target/test-reports", captureImage = false, host = Some("http://localhost:63342/root"))
 
     flakeless.stopFlight()
     FlightInvestigator.summarise()
@@ -54,7 +54,7 @@ object Example extends App {
   go
 }
 
-object Report {
+object FlightDataReport {
   import java.nio.file.{Files, Paths, Path}
 
   def apply(flakeless: Flakeless, outputDirectory: String, captureImage: Boolean = true, host: Option[String] = None) {
@@ -77,7 +77,7 @@ object Report {
       write(htmlPath, htmlContent(when, flakeless, b64).getBytes)
 
       if (jsPath.toFile.exists()) jsPath.toFile.delete()
-      write(jsPath, report.Assets.flakelessJs.getBytes)
+      write(jsPath, reporting.Assets.flakelessJs.getBytes)
 
       val fileSystemReport = htmlPath.toAbsolutePath.toString
       host match {
