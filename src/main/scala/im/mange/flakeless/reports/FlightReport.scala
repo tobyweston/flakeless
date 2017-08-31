@@ -1,4 +1,4 @@
-package im.mange.flakeless.reporting
+package im.mange.flakeless.reports
 
 import java.nio.charset.StandardCharsets
 import java.util.Base64

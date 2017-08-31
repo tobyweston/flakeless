@@ -1,6 +1,6 @@
 package im.mange.flakeless.innards
 
-import im.mange.flakeless.reporting.{AllFlightsReport, FlightReport}
+import im.mange.flakeless.reports.{AllFlightsReport, FlightReport}
 import im.mange.flakeless.{Flakeless, Path}
 import org.openqa.selenium.By
 import org.openqa.selenium.remote.RemoteWebElement
