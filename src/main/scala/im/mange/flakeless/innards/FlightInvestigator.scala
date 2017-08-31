@@ -3,7 +3,7 @@ package im.mange.flakeless.innards
 import org.joda.time.{DateTime, Duration}
 
 private [flakeless] object FlightInvestigator {
-  private val investigationByFlightNumber: scala.collection.concurrent.TrieMap[Int, FlightInvestigation] =
+  private val investigationByFlightNumber: scala.collection.concurrent.TrieMap[Int, Investigation] =
     new scala.collection.concurrent.TrieMap()
 
   def investigate(flightNumber: Int, flightDataRecorder: FlightDataRecorder): Unit = {
@@ -25,16 +25,18 @@ private [flakeless] object FlightInvestigator {
     } )
   }
 
+  def jsonData = InvestigationJson.serialise(investigationByFlightNumber.values.toList)
+
   //TODO; we could actually have this from the start .. and not need to poke about to get start and finish
   private def createInvestigation(flightNumber: Int, flightDataRecorder: FlightDataRecorder) = {
     val flightData = flightDataRecorder.data(flightNumber)
     val started = flightData.headOption.map(_.when)
     val name = flightData.headOption.flatMap(_.description)
     val finished = flightData.reverse.headOption.map(_.when)
-    FlightInvestigation(flightNumber, name, started, finished)
+    Investigation(flightNumber, name, started, finished)
   }
 
-  private def update(flightNumber: Int, investigation: FlightInvestigation): Unit = {
+  private def update(flightNumber: Int, investigation: Investigation): Unit = {
     investigationByFlightNumber.update(flightNumber, investigation)
   }
 }

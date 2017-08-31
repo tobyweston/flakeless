@@ -26,5 +26,7 @@ case class Flakeless(rawWebDriver: WebDriver, config: Config = Config()) {
   }
 
   def jsonFlightData(flightNumber: Int) = fdr.jsonData(flightNumber)
+  def jsonAllFlightsData = FlightInvestigator.jsonData
   def getCurrentFlightNumber = currentFlightNumber.getOrElse(throw new RuntimeException("No flight number, perhaps you forgot to call newFlight"))
+
 }

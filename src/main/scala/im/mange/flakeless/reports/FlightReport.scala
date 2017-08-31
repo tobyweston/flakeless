@@ -11,7 +11,6 @@ object FlightReport {
   import java.nio.file.{Files, Path, Paths}
 
   def apply(flakeless: Flakeless, outputDirectory: String, captureImage: Boolean = true, host: Option[String] = None) {
-
     try {
       val flightNumber = flakeless.getCurrentFlightNumber
       val filepath = s"$outputDirectory/${"%04d".format(flightNumber)}/"
@@ -30,10 +29,11 @@ object FlightReport {
 
       ReportAssets.writeFlakelessJs(outputDirectory)
 
-      val fileSystemReport = htmlPath.toAbsolutePath.toString
+      val fileSystemReportPath = htmlPath.toAbsolutePath.toString
+
       host match {
-        case None => System.err.println("*** Flakeless Flight report: " + fileSystemReport)
-        case Some(h) => System.err.println(s"*** Flakeless Flight report: ${h}/${htmlPath.toString.replaceAll("\\\\", "/")} (or ${fileSystemReport})")
+        case None => System.err.println("*** Flakeless Flight report: " + fileSystemReportPath)
+        case Some(h) => System.err.println(s"*** Flakeless Flight report: ${h}/${htmlPath.toString.replaceAll("\\\\", "/")} (or ${fileSystemReportPath})")
 
       }
     } catch {
