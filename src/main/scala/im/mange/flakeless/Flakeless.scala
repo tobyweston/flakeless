@@ -39,7 +39,6 @@ case class Flakeless(rawWebDriver: WebDriver, config: Config = Config()) {
     fdr.record(currentFlightNumber, description, log, isError)
   }
 
-  def flightData(flight: Int = currentFlightNumber) = fdr.data(flight)
-  def jsonFlightData(flight: Int = currentFlightNumber) = fdr.jsonData(flight)
+  def jsonFlightData(flightNumber: Int) = fdr.jsonData(flightNumber)
   def getCurrentFlightNumber = currentFlightNumber
 }

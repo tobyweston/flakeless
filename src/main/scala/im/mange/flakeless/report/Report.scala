@@ -57,7 +57,8 @@ object Report {
   def apply(flakeless: Flakeless, outputDirectory: String, captureImage: Boolean = true, host: Option[String] = None) {
 
     try {
-      val filepath = s"$outputDirectory/${"%04d".format(flakeless.getCurrentFlightNumber)}/"
+      val flightNumber = flakeless.getCurrentFlightNumber
+      val filepath = s"$outputDirectory/${"%04d".format(flightNumber)}/"
       Files.createDirectories(Paths.get(filepath))
 
       val when = System.currentTimeMillis()
@@ -67,8 +68,8 @@ object Report {
 
       if (captureImage) write(imagePath, screenshot(flakeless))
 
-      val data = flakeless.jsonFlightData()
-      val b64 = Base64.getEncoder.encodeToString(data.getBytes(StandardCharsets.UTF_8))
+      val jsonFlightData = flakeless.jsonFlightData(flightNumber)
+      val b64 = Base64.getEncoder.encodeToString(jsonFlightData.getBytes(StandardCharsets.UTF_8))
 
       write(htmlPath, htmlContent(when, flakeless, b64).getBytes)
 
