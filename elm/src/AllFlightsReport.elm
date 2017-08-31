@@ -64,7 +64,7 @@ renderInvestigation investigation =
 --                , renderLog dataPoint.log
 --            ]
 --        ]
-    text (toString investigation)
+    div [] [text (toString investigation)]
 
 gapRight : (String, String)
 gapRight = ("margin-right", "6px")

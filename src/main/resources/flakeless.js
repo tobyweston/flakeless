@@ -11731,8 +11731,15 @@ var _user$project$AllFlightsReport$smaller = {ctor: '_Tuple2', _0: 'font-size', 
 var _user$project$AllFlightsReport$grey = {ctor: '_Tuple2', _0: 'color', _1: 'grey'};
 var _user$project$AllFlightsReport$gapRight = {ctor: '_Tuple2', _0: 'margin-right', _1: '6px'};
 var _user$project$AllFlightsReport$renderInvestigation = function (investigation) {
-	return _elm_lang$html$Html$text(
-		_elm_lang$core$Basics$toString(investigation));
+	return A2(
+		_elm_lang$html$Html$div,
+		{ctor: '[]'},
+		{
+			ctor: '::',
+			_0: _elm_lang$html$Html$text(
+				_elm_lang$core$Basics$toString(investigation)),
+			_1: {ctor: '[]'}
+		});
 };
 var _user$project$AllFlightsReport$view = function (model) {
 	var isError = _elm_community$maybe_extra$Maybe_Extra$isJust(model.error);
