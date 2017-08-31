@@ -17,6 +17,9 @@ import Base64
 --TODO: link through to reports (if exist)
 --TODO: split out suite and test
 --TODO: use http://package.elm-lang.org/packages/evancz/elm-sortable-table/1.0.1
+--TODO: add search
+--TODO: find some way to track flaky tests etc, needs a server ... atomic Int/Map on a server
+-- .... useful for tracking flaky reasons, reporters etc, any kind of tracking really
 
 type alias Model =
     { raw : String
