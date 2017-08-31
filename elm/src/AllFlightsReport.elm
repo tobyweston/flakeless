@@ -21,6 +21,7 @@ import Base64
 --TODO: find some way to track flaky tests etc, needs a server ... atomic Int/Map on a server
 -- .... useful for tracking flaky reasons, reporters etc, any kind of tracking really
 --TODO: tick items to count (maybe)
+--TODO: inflightAnnounce when some rawWebDriver stuff done ....
 
 type alias Model =
     { raw : String
