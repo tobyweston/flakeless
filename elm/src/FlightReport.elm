@@ -5,6 +5,7 @@ import Html.Attributes exposing (..)
 import Http exposing (..)
 import RemoteData exposing (..)
 import FlightReportCodec exposing (..)
+import ViewShared exposing (..)
 import Json.Decode exposing (decodeString)
 import Maybe.Extra as MaybeExtra
 import Date.Extra.Format as DateFormat
@@ -95,15 +96,6 @@ renderDataPoint dataPoint =
             ]
         ]
 
-gapRight : (String, String)
-gapRight = ("margin-right", "6px")
-
-grey : (String, String)
-grey = ("color", "grey")
-
-smaller : (String, String)
-smaller = ("font-size", "smaller")
-
 renderCommand : Maybe Command -> Html msg
 renderCommand maybeCommand =
     case maybeCommand of
@@ -117,8 +109,6 @@ renderCommand maybeCommand =
             --TODO: whack me when done ....
 --            , div [style [ ("margin-right", "7px")]] [ text (toString command) ]
             ]
-
---class "lozenge",
 
 renderExpected : Maybe String -> Maybe (List String) -> Html msg
 renderExpected expected expectedMany =
@@ -179,10 +169,6 @@ renderLog maybeLog =
     case maybeLog of
         Nothing -> nowt
         Just log -> div [style [ smaller, grey, ("margin-left", "25px") ]] [ pre [ style [ smaller, ("white-space", "pre-wrap") ]] [text ("\n" ++ (String.join "\n" log)) ] ]
-
-nowt : Html msg
-nowt =
-    text ""
 
 update : Msg -> Model -> ( Model, Cmd Msg )
 update msg model =
