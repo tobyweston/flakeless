@@ -11,11 +11,21 @@ object FlightNumber {
   def next = currentFlightNumberCounter.next
 }
 
+case class FlightInvestigation()
+
+object FlightInvestigator {
+
+  def investigate(flightNumber: Int, flightDataRecorder: FlightDataRecorder): Unit = {
+//    FlightInvestigation(flightDataRecorder.)
+  }
+}
+
 case class Flakeless(rawWebDriver: WebDriver, config: Config = Config()) {
   private val fdr = FlightDataRecorder()
   private var currentFlightNumber = -1 //TODO: should be Option instead
 
   def newFlight(description: Option[String] = None) {
+    FlightInvestigator.investigate(currentFlightNumber, fdr)
     currentFlightNumber = FlightNumber.next
     fdr.reset() // if config.resetOnNewFlight whateva
     description.foreach(d => fdr.record(currentFlightNumber, d, None, isError = false))
