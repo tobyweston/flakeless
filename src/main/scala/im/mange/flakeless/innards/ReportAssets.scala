@@ -8,8 +8,7 @@ private [flakeless] object ReportAssets {
 
   def writeFlakelessJs(outputDirectory: String) = {
     val jsPath = path(outputDirectory + "/", s"$jsFilename")
-    if (jsPath.toFile.exists()) jsPath.toFile.delete()
-    write(jsPath, ReportAssets.flakelessJs.getBytes)
+    if (!jsPath.toFile.exists()) write(jsPath, ReportAssets.flakelessJs.getBytes)
   }
 
   private def path(filepath: String, filename: String) = Paths.get(filepath + filename)
