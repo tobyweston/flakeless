@@ -12318,45 +12318,68 @@ var _user$project$ViewShared$smaller = {ctor: '_Tuple2', _0: 'font-size', _1: 's
 var _user$project$ViewShared$grey = {ctor: '_Tuple2', _0: 'color', _1: 'grey'};
 var _user$project$ViewShared$gapRight = {ctor: '_Tuple2', _0: 'margin-right', _1: '6px'};
 
-var _user$project$AllFlightsReportCodec$Investigation = F3(
-	function (a, b, c) {
-		return {flightNumber: a, name: b, durationMillis: c};
+var _user$project$AllFlightsReportCodec$Investigation = F4(
+	function (a, b, c, d) {
+		return {flightNumber: a, name: b, durationMillis: c, durationMillis2: d};
 	});
 var _user$project$AllFlightsReportCodec$decodeInvestigation = A4(
 	_NoRedInk$elm_decode_pipeline$Json_Decode_Pipeline$optional,
-	'durationMillis',
+	'durationMillis2',
 	_elm_lang$core$Json_Decode$maybe(_elm_lang$core$Json_Decode$int),
 	_elm_lang$core$Maybe$Nothing,
-	A3(
-		_NoRedInk$elm_decode_pipeline$Json_Decode_Pipeline$required,
-		'name',
-		_elm_lang$core$Json_Decode$string,
+	A4(
+		_NoRedInk$elm_decode_pipeline$Json_Decode_Pipeline$optional,
+		'durationMillis',
+		_elm_lang$core$Json_Decode$maybe(_elm_lang$core$Json_Decode$int),
+		_elm_lang$core$Maybe$Nothing,
 		A3(
 			_NoRedInk$elm_decode_pipeline$Json_Decode_Pipeline$required,
-			'flightNumber',
-			_elm_lang$core$Json_Decode$int,
-			_NoRedInk$elm_decode_pipeline$Json_Decode_Pipeline$decode(_user$project$AllFlightsReportCodec$Investigation))));
+			'name',
+			_elm_lang$core$Json_Decode$string,
+			A3(
+				_NoRedInk$elm_decode_pipeline$Json_Decode_Pipeline$required,
+				'flightNumber',
+				_elm_lang$core$Json_Decode$int,
+				_NoRedInk$elm_decode_pipeline$Json_Decode_Pipeline$decode(_user$project$AllFlightsReportCodec$Investigation)))));
 var _user$project$AllFlightsReportCodec$decodeInvestigationList = _elm_lang$core$Json_Decode$list(_user$project$AllFlightsReportCodec$decodeInvestigation);
 
 var _user$project$AllFlightsReport$maybeDurationToInt = function (duration) {
 	return A2(_elm_lang$core$Maybe$withDefault, -1, duration);
 };
-var _user$project$AllFlightsReport$durationColumn = _evancz$elm_sortable_table$Table$customColumn(
+var _user$project$AllFlightsReport$durationColumn2 = _evancz$elm_sortable_table$Table$customColumn(
 	{
-		name: 'Duration (millis)',
+		name: 'Duration2 (millis)',
 		viewData: function (_p0) {
 			return _elm_lang$core$Basics$toString(
 				_user$project$AllFlightsReport$maybeDurationToInt(
 					function (_) {
-						return _.durationMillis;
+						return _.durationMillis2;
 					}(_p0)));
 		},
 		sorter: _evancz$elm_sortable_table$Table$decreasingOrIncreasingBy(
 			function (_p1) {
 				return _user$project$AllFlightsReport$maybeDurationToInt(
 					function (_) {
-						return _.durationMillis;
+						return _.durationMillis2;
 					}(_p1));
+			})
+	});
+var _user$project$AllFlightsReport$durationColumn = _evancz$elm_sortable_table$Table$customColumn(
+	{
+		name: 'Duration (millis)',
+		viewData: function (_p2) {
+			return _elm_lang$core$Basics$toString(
+				_user$project$AllFlightsReport$maybeDurationToInt(
+					function (_) {
+						return _.durationMillis;
+					}(_p2)));
+		},
+		sorter: _evancz$elm_sortable_table$Table$decreasingOrIncreasingBy(
+			function (_p3) {
+				return _user$project$AllFlightsReport$maybeDurationToInt(
+					function (_) {
+						return _.durationMillis;
+					}(_p3));
 			})
 	});
 var _user$project$AllFlightsReport$allFlightsData = _elm_lang$core$Native_Platform.incomingPort('allFlightsData', _elm_lang$core$Json_Decode$string);
@@ -12396,13 +12419,17 @@ var _user$project$AllFlightsReport$config = _evancz$elm_sortable_table$Table$con
 				_0: _user$project$AllFlightsReport$durationColumn,
 				_1: {
 					ctor: '::',
-					_0: A2(
-						_evancz$elm_sortable_table$Table$stringColumn,
-						'Name',
-						function (_) {
-							return _.name;
-						}),
-					_1: {ctor: '[]'}
+					_0: _user$project$AllFlightsReport$durationColumn2,
+					_1: {
+						ctor: '::',
+						_0: A2(
+							_evancz$elm_sortable_table$Table$stringColumn,
+							'Name',
+							function (_) {
+								return _.name;
+							}),
+						_1: {ctor: '[]'}
+					}
 				}
 			}
 		}
@@ -12457,17 +12484,17 @@ var _user$project$AllFlightsReport$update = F2(
 	function (msg, model) {
 		update:
 		while (true) {
-			var _p2 = msg;
-			switch (_p2.ctor) {
+			var _p4 = msg;
+			switch (_p4.ctor) {
 				case 'LoadData':
-					var _p4 = _p2._0;
-					var result = _truqu$elm_base64$Base64$decode(_p4);
-					var _p3 = result;
-					if (_p3.ctor === 'Ok') {
+					var _p6 = _p4._0;
+					var result = _truqu$elm_base64$Base64$decode(_p6);
+					var _p5 = result;
+					if (_p5.ctor === 'Ok') {
 						var _v2 = _user$project$AllFlightsReport$ParseData,
 							_v3 = _elm_lang$core$Native_Utils.update(
 							model,
-							{raw: _p3._0});
+							{raw: _p5._0});
 						msg = _v2;
 						model = _v3;
 						continue update;
@@ -12477,8 +12504,8 @@ var _user$project$AllFlightsReport$update = F2(
 							_0: _elm_lang$core$Native_Utils.update(
 								model,
 								{
-									raw: _p4,
-									error: _elm_lang$core$Maybe$Just(_p3._0)
+									raw: _p6,
+									error: _elm_lang$core$Maybe$Just(_p5._0)
 								}),
 							_1: _elm_lang$core$Platform_Cmd$none
 						};
@@ -12486,16 +12513,16 @@ var _user$project$AllFlightsReport$update = F2(
 				case 'ParseData':
 					var result = A2(_elm_lang$core$Json_Decode$decodeString, _user$project$AllFlightsReportCodec$decodeInvestigationList, model.raw);
 					var model_ = function () {
-						var _p5 = result;
-						if (_p5.ctor === 'Ok') {
+						var _p7 = result;
+						if (_p7.ctor === 'Ok') {
 							return _elm_lang$core$Native_Utils.update(
 								model,
-								{investigations: _p5._0});
+								{investigations: _p7._0});
 						} else {
 							return _elm_lang$core$Native_Utils.update(
 								model,
 								{
-									error: _elm_lang$core$Maybe$Just(_p5._0)
+									error: _elm_lang$core$Maybe$Just(_p7._0)
 								});
 						}
 					}();
@@ -12505,7 +12532,7 @@ var _user$project$AllFlightsReport$update = F2(
 						ctor: '_Tuple2',
 						_0: _elm_lang$core$Native_Utils.update(
 							model,
-							{tableState: _p2._0}),
+							{tableState: _p4._0}),
 						_1: _elm_lang$core$Platform_Cmd$none
 					};
 			}

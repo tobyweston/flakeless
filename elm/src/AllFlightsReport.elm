@@ -67,6 +67,7 @@ config =
     , columns =
         [ Table.intColumn "Test" .flightNumber
         , durationColumn
+        , durationColumn2
         , Table.stringColumn "Name" .name
         ]
     }
@@ -78,6 +79,14 @@ durationColumn =
     { name = "Duration (millis)"
     , viewData = toString << maybeDurationToInt << .durationMillis
     , sorter = Table.decreasingOrIncreasingBy (maybeDurationToInt << .durationMillis)
+    }
+
+durationColumn2 : Table.Column Investigation Msg
+durationColumn2 =
+  Table.customColumn
+    { name = "Duration2 (millis)"
+    , viewData = toString << maybeDurationToInt << .durationMillis2
+    , sorter = Table.decreasingOrIncreasingBy (maybeDurationToInt << .durationMillis2)
     }
 
 

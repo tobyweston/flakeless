@@ -13,6 +13,7 @@ type alias Investigation =
 --    , when : Date
     , name : String
     , durationMillis : Maybe Int
+    , durationMillis2 : Maybe Int
 --    , command : Maybe Command
 --    , context : Maybe Context
 --    , log : Maybe (List String)
@@ -50,6 +51,7 @@ decodeInvestigation =
 --        |> Json.Decode.Pipeline.optional "command" (Json.Decode.maybe decodeDataPointCommand) Nothing
 --        |> Json.Decode.Pipeline.optional "context" (Json.Decode.maybe decodeDataPointContext) Nothing
         |> Json.Decode.Pipeline.optional "durationMillis" (Json.Decode.maybe (Json.Decode.int)) Nothing
+        |> Json.Decode.Pipeline.optional "durationMillis2" (Json.Decode.maybe (Json.Decode.int)) Nothing
 
 --decodeDataPointCommandArgs : Json.Decode.Decoder Args
 --decodeDataPointCommandArgs =
