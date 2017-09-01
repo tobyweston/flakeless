@@ -76,14 +76,14 @@ durationColumn : Table.Column Investigation Msg
 durationColumn =
   Table.customColumn
     { name = "Duration (millis)"
-    , viewData = maybeDurationToString << .durationMillis
-    , sorter = Table.decreasingOrIncreasingBy (maybeDurationToString << .durationMillis)
+    , viewData = toString << maybeDurationToInt << .durationMillis
+    , sorter = Table.decreasingOrIncreasingBy (maybeDurationToInt << .durationMillis)
     }
 
 
-maybeDurationToString : Maybe Int -> String
-maybeDurationToString duration =
-  duration |> Maybe.map (toString) |> Maybe.withDefault "???"
+maybeDurationToInt : Maybe Int -> Int
+maybeDurationToInt duration =
+  duration |> Maybe.withDefault -1
 
 
 --renderInvestigation : Investigation -> Html msg

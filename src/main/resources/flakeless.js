@@ -12338,24 +12338,22 @@ var _user$project$AllFlightsReportCodec$decodeInvestigation = A4(
 			_NoRedInk$elm_decode_pipeline$Json_Decode_Pipeline$decode(_user$project$AllFlightsReportCodec$Investigation))));
 var _user$project$AllFlightsReportCodec$decodeInvestigationList = _elm_lang$core$Json_Decode$list(_user$project$AllFlightsReportCodec$decodeInvestigation);
 
-var _user$project$AllFlightsReport$maybeDurationToString = function (duration) {
-	return A2(
-		_elm_lang$core$Maybe$withDefault,
-		'???',
-		A2(_elm_lang$core$Maybe$map, _elm_lang$core$Basics$toString, duration));
+var _user$project$AllFlightsReport$maybeDurationToInt = function (duration) {
+	return A2(_elm_lang$core$Maybe$withDefault, -1, duration);
 };
 var _user$project$AllFlightsReport$durationColumn = _evancz$elm_sortable_table$Table$customColumn(
 	{
 		name: 'Duration (millis)',
 		viewData: function (_p0) {
-			return _user$project$AllFlightsReport$maybeDurationToString(
-				function (_) {
-					return _.durationMillis;
-				}(_p0));
+			return _elm_lang$core$Basics$toString(
+				_user$project$AllFlightsReport$maybeDurationToInt(
+					function (_) {
+						return _.durationMillis;
+					}(_p0)));
 		},
 		sorter: _evancz$elm_sortable_table$Table$decreasingOrIncreasingBy(
 			function (_p1) {
-				return _user$project$AllFlightsReport$maybeDurationToString(
+				return _user$project$AllFlightsReport$maybeDurationToInt(
 					function (_) {
 						return _.durationMillis;
 					}(_p1));
