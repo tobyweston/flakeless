@@ -40,7 +40,7 @@ type Msg
 
 init : ( Model, Cmd Msg )
 init =
-    ( Model "" [] Nothing (Table.initialSort "Flight Number"), Cmd.none )
+    ( Model "" [] Nothing (Table.initialSort "Test"), Cmd.none )
 
 
 view : Model -> Html Msg
@@ -51,7 +51,7 @@ view model =
         div []
             [ if isError then div [] [text (model.error |> Maybe.withDefault "") ] else nowt
             , Table.view config model.tableState model.investigations
-            , ul [] (List.map (\i -> renderInvestigation i ) model.investigations)
+--            , ul [] (List.map (\i -> renderInvestigation i ) model.investigations)
             , if isError then div [] [
                 hr [] []
                 , text ("raw:" ++ toString model.raw)
@@ -65,15 +65,29 @@ config =
     { toId = .name
     , toMsg = SetTableState
     , columns =
-        [ Table.intColumn "Flight Number" .flightNumber
+        [ Table.intColumn "Test" .flightNumber
+        , durationColumn
         , Table.stringColumn "Name" .name
---        , Table.stringColumn "City" .city
---        , Table.stringColumn "State" .state
         ]
     }
 
-renderInvestigation : Investigation -> Html msg
-renderInvestigation investigation =
+
+durationColumn : Table.Column Investigation Msg
+durationColumn =
+  Table.customColumn
+    { name = "Duration (millis)"
+    , viewData = maybeDurationToString << .durationMillis
+    , sorter = Table.decreasingOrIncreasingBy (maybeDurationToString << .durationMillis)
+    }
+
+
+maybeDurationToString : Maybe Int -> String
+maybeDurationToString duration =
+  duration |> Maybe.map (toString) |> Maybe.withDefault "???"
+
+
+--renderInvestigation : Investigation -> Html msg
+--renderInvestigation investigation =
 --    let
 --        colorClass = case dataPoint.context of
 --                    Nothing -> "message"
@@ -91,7 +105,7 @@ renderInvestigation investigation =
 --                , renderLog dataPoint.log
 --            ]
 --        ]
-    div [] [text (toString investigation)]
+--    div [] [text (toString investigation)]
 
 
 update : Msg -> Model -> ( Model, Cmd Msg )
