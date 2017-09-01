@@ -12,6 +12,7 @@ import Date.Extra.Format as DateFormat
 import Date.Extra.Config.Config_en_gb exposing (config)
 import Dict
 import Base64
+import Table
 
 
 --TODO: link through to reports (if exist)
@@ -27,17 +28,19 @@ type alias Model =
     { raw : String
     , investigations : List Investigation
     , error : Maybe String
+    , tableState : Table.State
     }
 
 
 type Msg
     = LoadData String
     | ParseData
+    | SetTableState Table.State
 
 
 init : ( Model, Cmd Msg )
 init =
-    ( Model "" [] Nothing, Cmd.none )
+    ( Model "" [] Nothing (Table.initialSort "Flight Number"), Cmd.none )
 
 
 view : Model -> Html Msg
@@ -47,6 +50,7 @@ view model =
     in
         div []
             [ if isError then div [] [text (model.error |> Maybe.withDefault "") ] else nowt
+            , Table.view config model.tableState model.investigations
             , ul [] (List.map (\i -> renderInvestigation i ) model.investigations)
             , if isError then div [] [
                 hr [] []
@@ -55,6 +59,18 @@ view model =
                 else nowt
             ]
 
+config : Table.Config Investigation Msg
+config =
+  Table.config
+    { toId = .name
+    , toMsg = SetTableState
+    , columns =
+        [ Table.intColumn "Flight Number" .flightNumber
+        , Table.stringColumn "Name" .name
+--        , Table.stringColumn "City" .city
+--        , Table.stringColumn "State" .state
+        ]
+    }
 
 renderInvestigation : Investigation -> Html msg
 renderInvestigation investigation =
@@ -99,6 +115,11 @@ update msg model =
                     Err e -> { model | error = Just e }
             in
             ( model_, Cmd.none )
+
+        SetTableState newState ->
+            ( { model | tableState = newState }
+            , Cmd.none
+            )
 
 
 port allFlightsData : (String -> msg) -> Sub msg
