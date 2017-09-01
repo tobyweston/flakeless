@@ -10,18 +10,6 @@ private [flakeless] object FlightInvestigator {
     update(flightNumber, createInvestigation(flightNumber, flightDataRecorder))
   }
 
-  //TODO: this should die once proper report done
-  def summarise() = {
-    val keys = investigationByFlightNumber.keys.toList.sorted
-
-    println(s"Flakeless Summary at ${DateTime.now()} for ${keys.length} test(s)")
-
-    keys.foreach(k => {
-      val i = investigationByFlightNumber(k)
-      println(s"${i.flightNumber},${i.name.getOrElse("???")},${i.durationMillis.getOrElse("???")}")
-    } )
-  }
-
   def jsonData = InvestigationJson.serialise(investigationByFlightNumber.values.toList)
 
   //TODO; we could actually have this from the start .. and not need to poke about to get start and finish
