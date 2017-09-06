@@ -15,7 +15,7 @@ private [flakeless] object FlightInvestigator {
   //TODO; we could actually have this from the start .. and not need to poke about to get start and finish
   private def createInvestigation(flightNumber: Int, flightDataRecorder: FlightDataRecorder) = {
     val flightData: FlightDataRecord = flightDataRecorder.data(flightNumber)
-    val name = flightData.dataPoints.headOption.flatMap(_.description)
+    val name = flightData.name
     val started = flightData.started
     val firstInteraction = flightData.dataPoints.headOption.map(_.when)
     val finished = flightData.dataPoints.reverse.headOption.map(_.when)

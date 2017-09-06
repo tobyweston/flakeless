@@ -9,12 +9,11 @@ case class Flakeless(rawWebDriver: WebDriver, config: Config = Config()) {
 
   def startFlight(description: String) {
     currentFlightNumber = Some(FlightNumber.next)
-    fdr.reset()
-    currentFlightNumber.foreach(fdr.record(_, description, None, isError = false))
+    currentFlightNumber.foreach(fdr.start(_, description))
   }
 
   def stopFlight() {
-    currentFlightNumber.foreach(FlightInvestigator.investigate(_, fdr))
+    currentFlightNumber.foreach(fdr.stop(_))
   }
 
   def record(command: Command, context: Context) {
