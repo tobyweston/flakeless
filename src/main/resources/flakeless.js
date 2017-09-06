@@ -12346,9 +12346,9 @@ var _user$project$AllFlightsReportCodec$decodeInvestigationList = _elm_lang$core
 var _user$project$AllFlightsReport$maybeDurationToInt = function (duration) {
 	return A2(_elm_lang$core$Maybe$withDefault, -1, duration);
 };
-var _user$project$AllFlightsReport$durationColumn2 = _evancz$elm_sortable_table$Table$customColumn(
+var _user$project$AllFlightsReport$netDuration = _evancz$elm_sortable_table$Table$customColumn(
 	{
-		name: 'Duration2 (millis)',
+		name: 'Net Duration (millis)',
 		viewData: function (_p0) {
 			return _elm_lang$core$Basics$toString(
 				_user$project$AllFlightsReport$maybeDurationToInt(
@@ -12364,9 +12364,9 @@ var _user$project$AllFlightsReport$durationColumn2 = _evancz$elm_sortable_table$
 					}(_p1));
 			})
 	});
-var _user$project$AllFlightsReport$durationColumn = _evancz$elm_sortable_table$Table$customColumn(
+var _user$project$AllFlightsReport$grossDuration = _evancz$elm_sortable_table$Table$customColumn(
 	{
-		name: 'Duration (millis)',
+		name: 'Gross Duration (millis)',
 		viewData: function (_p2) {
 			return _elm_lang$core$Basics$toString(
 				_user$project$AllFlightsReport$maybeDurationToInt(
@@ -12416,10 +12416,10 @@ var _user$project$AllFlightsReport$config = _evancz$elm_sortable_table$Table$con
 				}),
 			_1: {
 				ctor: '::',
-				_0: _user$project$AllFlightsReport$durationColumn,
+				_0: _user$project$AllFlightsReport$grossDuration,
 				_1: {
 					ctor: '::',
-					_0: _user$project$AllFlightsReport$durationColumn2,
+					_0: _user$project$AllFlightsReport$netDuration,
 					_1: {
 						ctor: '::',
 						_0: A2(

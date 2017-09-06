@@ -66,25 +66,25 @@ config =
     , toMsg = SetTableState
     , columns =
         [ Table.intColumn "Test" .flightNumber
-        , durationColumn
-        , durationColumn2
+        , grossDuration
+        , netDuration
         , Table.stringColumn "Name" .name
         ]
     }
 
 
-durationColumn : Table.Column Investigation Msg
-durationColumn =
+grossDuration : Table.Column Investigation Msg
+grossDuration =
   Table.customColumn
-    { name = "Duration (millis)"
+    { name = "Gross Duration (millis)"
     , viewData = toString << maybeDurationToInt << .durationMillis
     , sorter = Table.decreasingOrIncreasingBy (maybeDurationToInt << .durationMillis)
     }
 
-durationColumn2 : Table.Column Investigation Msg
-durationColumn2 =
+netDuration : Table.Column Investigation Msg
+netDuration =
   Table.customColumn
-    { name = "Duration2 (millis)"
+    { name = "Net Duration (millis)"
     , viewData = toString << maybeDurationToInt << .durationMillis2
     , sorter = Table.decreasingOrIncreasingBy (maybeDurationToInt << .durationMillis2)
     }
@@ -93,28 +93,6 @@ durationColumn2 =
 maybeDurationToInt : Maybe Int -> Int
 maybeDurationToInt duration =
   duration |> Maybe.withDefault -1
-
-
---renderInvestigation : Investigation -> Html msg
---renderInvestigation investigation =
---    let
---        colorClass = case dataPoint.context of
---                    Nothing -> "message"
---                    Just context -> case context.success of
---                        Nothing -> "dunno"
---                        Just success -> if success then "pass" else "fail"
---    in
---        li [ class colorClass, style [ ("min-height", "20px"), ("padding-bottom", "5px") ] ] [
---            span [ ] [
---                span [style [ gapRight, smaller, grey ]] [text (DateFormat.format config "%H:%M:%S.%L" dataPoint.when)]
-----                , span [style [ ("color", colorClass), ("font-weight", "bold"), gapRight ]] [ text "*"]
---                , if MaybeExtra.isJust dataPoint.description then span [style [ gapRight, smaller ] ] [text (dataPoint.description |> Maybe.withDefault "") ] else nowt
---                , renderCommand dataPoint.command
---                , renderContext dataPoint.context
---                , renderLog dataPoint.log
---            ]
---        ]
---    div [] [text (toString investigation)]
 
 
 update : Msg -> Model -> ( Model, Cmd Msg )
