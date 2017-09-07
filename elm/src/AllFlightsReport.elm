@@ -87,7 +87,7 @@ result =
 grossDuration : Table.Column Investigation Msg
 grossDuration =
   Table.customColumn
-    { name = "Gross Duration (millis)"
+    { name = "Gross Duration"
     , viewData = toString << maybeDurationToInt << .grossDurationMillis
     , sorter = Table.decreasingOrIncreasingBy (maybeDurationToInt << .grossDurationMillis)
     }
@@ -95,7 +95,7 @@ grossDuration =
 netDuration : Table.Column Investigation Msg
 netDuration =
   Table.customColumn
-    { name = "Net Duration (millis)"
+    { name = "Net Duration"
     , viewData = toString << maybeDurationToInt << .netDurationMillis
     , sorter = Table.decreasingOrIncreasingBy (maybeDurationToInt << .netDurationMillis)
     }
