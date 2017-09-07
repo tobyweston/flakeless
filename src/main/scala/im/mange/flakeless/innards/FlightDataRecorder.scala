@@ -24,11 +24,11 @@ private [flakeless] case class FlightDataRecorder() {
   }
 
   def record(flightNumber: Int, description: String, log: Option[List[String]], isError: Boolean) {
-    update(flightNumber, DataPoint(flightNumber, DateTime.now, Some(description), None, Some(Context(Nil, Some(!isError))), log))
+    update(flightNumber, DataPoint(flightNumber, DateTime.now, Some(description), None, Context(Nil, Some(!isError)), log))
   }
 
   def record(flightNumber: Int, command: Command, context: Context) {
-    update(flightNumber, DataPoint(flightNumber, DateTime.now, None, Some(command.report), Some(context), None))
+    update(flightNumber, DataPoint(flightNumber, DateTime.now, None, Some(command.report), context, None))
   }
 
   def jsonData(flight: Int) = DataPointJson.serialise(data(flight).dataPoints)

@@ -15,6 +15,7 @@ type alias Investigation =
     , grossDurationMillis : Maybe Int
     , netDurationMillis : Maybe Int
     , dataPointCount : Int
+
 --    , command : Maybe Command
 --    , context : Maybe Context
 --    , log : Maybe (List String)
