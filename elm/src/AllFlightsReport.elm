@@ -12,8 +12,7 @@ import Date.Extra.Format as DateFormat
 import Date.Extra.Config.Config_en_gb exposing (config)
 import Dict
 import Base64
-import Table
-
+import Table exposing (defaultCustomizations)
 
 --TODO: link through to reports (if exist)
 --TODO: split out suite and test
@@ -48,10 +47,13 @@ view model =
     let
         isError = MaybeExtra.isJust model.error
     in
-        div []
+        div [ ]
             [ if isError then div [] [text (model.error |> Maybe.withDefault "") ] else nowt
             , Table.view config model.tableState model.investigations
 --            , ul [] (List.map (\i -> renderInvestigation i ) model.investigations)
+            , br [] []
+            , div [ style [ smaller, grey ] ] [ div [] [ text "[1] from test start to finish"]
+                     , div [] [ text "[2] from first datapoint to finish"] ]
             , if isError then div [] [
                 hr [] []
                 , text ("raw:" ++ toString model.raw)
@@ -60,9 +62,10 @@ view model =
             ]
 
 --TODO: fix the arrow rendering in jetbrains servers ... hmmm
+--TODO: do another table, grouped by Suite .. to show the totals ...
 config : Table.Config Investigation Msg
 config =
-  Table.config
+  Table.customConfig
     { toId = .test
     , toMsg = SetTableState
     , columns =
@@ -74,8 +77,15 @@ config =
         , Table.stringColumn "Test" .test
         , Table.intColumn "Data Points" .dataPointCount
         ]
+    , customizations =
+            { defaultCustomizations | rowAttrs = toRowAttrs }
     }
 
+
+toRowAttrs : Investigation -> List (Attribute Msg)
+toRowAttrs i =
+  [ style [ smaller ]
+  ]
 
 result : Table.Column Investigation Msg
 result =
@@ -88,7 +98,7 @@ result =
 grossDuration : Table.Column Investigation Msg
 grossDuration =
   Table.customColumn
-    { name = "Gross Duration"
+    { name = "Gross Duration [1]"
     , viewData = toString << maybeDurationToInt << .grossDurationMillis
     , sorter = Table.decreasingOrIncreasingBy (maybeDurationToInt << .grossDurationMillis)
     }
@@ -96,7 +106,7 @@ grossDuration =
 netDuration : Table.Column Investigation Msg
 netDuration =
   Table.customColumn
-    { name = "Net Duration"
+    { name = "Net Duration [2]"
     , viewData = toString << maybeDurationToInt << .netDurationMillis
     , sorter = Table.decreasingOrIncreasingBy (maybeDurationToInt << .netDurationMillis)
     }

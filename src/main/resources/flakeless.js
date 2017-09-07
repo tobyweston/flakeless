@@ -12368,7 +12368,7 @@ var _user$project$AllFlightsReport$maybeDurationToInt = function (duration) {
 };
 var _user$project$AllFlightsReport$netDuration = _evancz$elm_sortable_table$Table$customColumn(
 	{
-		name: 'Net Duration',
+		name: 'Net Duration [2]',
 		viewData: function (_p0) {
 			return _elm_lang$core$Basics$toString(
 				_user$project$AllFlightsReport$maybeDurationToInt(
@@ -12386,7 +12386,7 @@ var _user$project$AllFlightsReport$netDuration = _evancz$elm_sortable_table$Tabl
 	});
 var _user$project$AllFlightsReport$grossDuration = _evancz$elm_sortable_table$Table$customColumn(
 	{
-		name: 'Gross Duration',
+		name: 'Gross Duration [1]',
 		viewData: function (_p2) {
 			return _elm_lang$core$Basics$toString(
 				_user$project$AllFlightsReport$maybeDurationToInt(
@@ -12419,6 +12419,18 @@ var _user$project$AllFlightsReport$result = _evancz$elm_sortable_table$Table$cus
 					}(_p5));
 			})
 	});
+var _user$project$AllFlightsReport$toRowAttrs = function (i) {
+	return {
+		ctor: '::',
+		_0: _elm_lang$html$Html_Attributes$style(
+			{
+				ctor: '::',
+				_0: _user$project$ViewShared$smaller,
+				_1: {ctor: '[]'}
+			}),
+		_1: {ctor: '[]'}
+	};
+};
 var _user$project$AllFlightsReport$allFlightsData = _elm_lang$core$Native_Platform.incomingPort('allFlightsData', _elm_lang$core$Json_Decode$string);
 var _user$project$AllFlightsReport$Model = F4(
 	function (a, b, c, d) {
@@ -12437,7 +12449,7 @@ var _user$project$AllFlightsReport$init = {
 var _user$project$AllFlightsReport$SetTableState = function (a) {
 	return {ctor: 'SetTableState', _0: a};
 };
-var _user$project$AllFlightsReport$config = _evancz$elm_sortable_table$Table$config(
+var _user$project$AllFlightsReport$config = _evancz$elm_sortable_table$Table$customConfig(
 	{
 		toId: function (_) {
 			return _.test;
@@ -12491,7 +12503,10 @@ var _user$project$AllFlightsReport$config = _evancz$elm_sortable_table$Table$con
 					}
 				}
 			}
-		}
+		},
+		customizations: _elm_lang$core$Native_Utils.update(
+			_evancz$elm_sortable_table$Table$defaultCustomizations,
+			{rowAttrs: _user$project$AllFlightsReport$toRowAttrs})
 	});
 var _user$project$AllFlightsReport$view = function (model) {
 	var isError = _elm_community$maybe_extra$Maybe_Extra$isJust(model.error);
@@ -12514,26 +12529,75 @@ var _user$project$AllFlightsReport$view = function (model) {
 				_0: A3(_evancz$elm_sortable_table$Table$view, _user$project$AllFlightsReport$config, model.tableState, model.investigations),
 				_1: {
 					ctor: '::',
-					_0: isError ? A2(
-						_elm_lang$html$Html$div,
+					_0: A2(
+						_elm_lang$html$Html$br,
 						{ctor: '[]'},
-						{
-							ctor: '::',
-							_0: A2(
-								_elm_lang$html$Html$hr,
-								{ctor: '[]'},
-								{ctor: '[]'}),
-							_1: {
+						{ctor: '[]'}),
+					_1: {
+						ctor: '::',
+						_0: A2(
+							_elm_lang$html$Html$div,
+							{
 								ctor: '::',
-								_0: _elm_lang$html$Html$text(
-									A2(
-										_elm_lang$core$Basics_ops['++'],
-										'raw:',
-										_elm_lang$core$Basics$toString(model.raw))),
+								_0: _elm_lang$html$Html_Attributes$style(
+									{
+										ctor: '::',
+										_0: _user$project$ViewShared$smaller,
+										_1: {
+											ctor: '::',
+											_0: _user$project$ViewShared$grey,
+											_1: {ctor: '[]'}
+										}
+									}),
 								_1: {ctor: '[]'}
-							}
-						}) : _user$project$ViewShared$nowt,
-					_1: {ctor: '[]'}
+							},
+							{
+								ctor: '::',
+								_0: A2(
+									_elm_lang$html$Html$div,
+									{ctor: '[]'},
+									{
+										ctor: '::',
+										_0: _elm_lang$html$Html$text('[1] from test start to finish'),
+										_1: {ctor: '[]'}
+									}),
+								_1: {
+									ctor: '::',
+									_0: A2(
+										_elm_lang$html$Html$div,
+										{ctor: '[]'},
+										{
+											ctor: '::',
+											_0: _elm_lang$html$Html$text('[2] from first datapoint to finish'),
+											_1: {ctor: '[]'}
+										}),
+									_1: {ctor: '[]'}
+								}
+							}),
+						_1: {
+							ctor: '::',
+							_0: isError ? A2(
+								_elm_lang$html$Html$div,
+								{ctor: '[]'},
+								{
+									ctor: '::',
+									_0: A2(
+										_elm_lang$html$Html$hr,
+										{ctor: '[]'},
+										{ctor: '[]'}),
+									_1: {
+										ctor: '::',
+										_0: _elm_lang$html$Html$text(
+											A2(
+												_elm_lang$core$Basics_ops['++'],
+												'raw:',
+												_elm_lang$core$Basics$toString(model.raw))),
+										_1: {ctor: '[]'}
+									}
+								}) : _user$project$ViewShared$nowt,
+							_1: {ctor: '[]'}
+						}
+					}
 				}
 			}
 		});
