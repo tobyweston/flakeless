@@ -12324,12 +12324,12 @@ var _user$project$AllFlightsReportCodec$Investigation = F4(
 	});
 var _user$project$AllFlightsReportCodec$decodeInvestigation = A4(
 	_NoRedInk$elm_decode_pipeline$Json_Decode_Pipeline$optional,
-	'durationMillis2',
+	'netDurationMillis',
 	_elm_lang$core$Json_Decode$maybe(_elm_lang$core$Json_Decode$int),
 	_elm_lang$core$Maybe$Nothing,
 	A4(
 		_NoRedInk$elm_decode_pipeline$Json_Decode_Pipeline$optional,
-		'durationMillis',
+		'grossDurationMillis',
 		_elm_lang$core$Json_Decode$maybe(_elm_lang$core$Json_Decode$int),
 		_elm_lang$core$Maybe$Nothing,
 		A3(

@@ -50,8 +50,8 @@ decodeInvestigation =
         |> Json.Decode.Pipeline.required "name" (Json.Decode.string)
 --        |> Json.Decode.Pipeline.optional "command" (Json.Decode.maybe decodeDataPointCommand) Nothing
 --        |> Json.Decode.Pipeline.optional "context" (Json.Decode.maybe decodeDataPointContext) Nothing
-        |> Json.Decode.Pipeline.optional "durationMillis" (Json.Decode.maybe (Json.Decode.int)) Nothing
-        |> Json.Decode.Pipeline.optional "durationMillis2" (Json.Decode.maybe (Json.Decode.int)) Nothing
+        |> Json.Decode.Pipeline.optional "grossDurationMillis" (Json.Decode.maybe (Json.Decode.int)) Nothing
+        |> Json.Decode.Pipeline.optional "netDurationMillis" (Json.Decode.maybe (Json.Decode.int)) Nothing
 
 --decodeDataPointCommandArgs : Json.Decode.Decoder Args
 --decodeDataPointCommandArgs =

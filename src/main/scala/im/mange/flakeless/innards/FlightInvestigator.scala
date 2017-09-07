@@ -20,17 +20,17 @@ private [flakeless] object FlightInvestigator {
     val firstInteraction = flightData.dataPoints.headOption.map(_.when)
     val finished = flightData.dataPoints.reverse.headOption.map(_.when)
 
-    val duration = (started, finished) match {
+    val grossDuration = (started, finished) match {
       case (Some(start), Some(finish)) => Some(new Duration(start, finish).getMillis)
       case _ => None
     }
 
-    val duration2 = (firstInteraction, finished) match {
+    val netDuration = (firstInteraction, finished) match {
       case (Some(start), Some(finish)) => Some(new Duration(start, finish).getMillis)
       case _ => None
     }
 
-    Investigation(flightNumber, name, started, finished, firstInteraction, duration, duration2)
+    Investigation(flightNumber, name, started, finished, firstInteraction, grossDuration, netDuration)
   }
 
   private def update(flightNumber: Int, investigation: Investigation): Unit = {
