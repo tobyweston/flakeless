@@ -12323,9 +12323,9 @@ var _user$project$AllFlightsReportCodec$stringToBool = function (value) {
 		_elm_lang$core$String$toLower(value));
 	return _elm_lang$core$Native_Utils.eq(x, 'true') ? true : false;
 };
-var _user$project$AllFlightsReportCodec$Investigation = F6(
-	function (a, b, c, d, e, f) {
-		return {flightNumber: a, name: b, success: c, grossDurationMillis: d, netDurationMillis: e, dataPointCount: f};
+var _user$project$AllFlightsReportCodec$Investigation = F7(
+	function (a, b, c, d, e, f, g) {
+		return {flightNumber: a, suite: b, test: c, success: d, grossDurationMillis: e, netDurationMillis: f, dataPointCount: g};
 	});
 var _user$project$AllFlightsReportCodec$decodeInvestigation = A3(
 	_NoRedInk$elm_decode_pipeline$Json_Decode_Pipeline$required,
@@ -12347,13 +12347,17 @@ var _user$project$AllFlightsReportCodec$decodeInvestigation = A3(
 				A2(_elm_lang$core$Json_Decode$map, _user$project$AllFlightsReportCodec$stringToBool, _elm_lang$core$Json_Decode$string),
 				A3(
 					_NoRedInk$elm_decode_pipeline$Json_Decode_Pipeline$required,
-					'name',
+					'test',
 					_elm_lang$core$Json_Decode$string,
 					A3(
 						_NoRedInk$elm_decode_pipeline$Json_Decode_Pipeline$required,
-						'flightNumber',
-						_elm_lang$core$Json_Decode$int,
-						_NoRedInk$elm_decode_pipeline$Json_Decode_Pipeline$decode(_user$project$AllFlightsReportCodec$Investigation)))))));
+						'suite',
+						_elm_lang$core$Json_Decode$string,
+						A3(
+							_NoRedInk$elm_decode_pipeline$Json_Decode_Pipeline$required,
+							'flightNumber',
+							_elm_lang$core$Json_Decode$int,
+							_NoRedInk$elm_decode_pipeline$Json_Decode_Pipeline$decode(_user$project$AllFlightsReportCodec$Investigation))))))));
 var _user$project$AllFlightsReportCodec$decodeInvestigationList = _elm_lang$core$Json_Decode$list(_user$project$AllFlightsReportCodec$decodeInvestigation);
 
 var _user$project$AllFlightsReport$boolToString = function (value) {
@@ -12427,7 +12431,7 @@ var _user$project$AllFlightsReport$init = {
 		'',
 		{ctor: '[]'},
 		_elm_lang$core$Maybe$Nothing,
-		_evancz$elm_sortable_table$Table$initialSort('Test')),
+		_evancz$elm_sortable_table$Table$initialSort('Id')),
 	_1: _elm_lang$core$Platform_Cmd$none
 };
 var _user$project$AllFlightsReport$SetTableState = function (a) {
@@ -12436,14 +12440,14 @@ var _user$project$AllFlightsReport$SetTableState = function (a) {
 var _user$project$AllFlightsReport$config = _evancz$elm_sortable_table$Table$config(
 	{
 		toId: function (_) {
-			return _.name;
+			return _.test;
 		},
 		toMsg: _user$project$AllFlightsReport$SetTableState,
 		columns: {
 			ctor: '::',
 			_0: A2(
 				_evancz$elm_sortable_table$Table$intColumn,
-				'Test',
+				'Id',
 				function (_) {
 					return _.flightNumber;
 				}),
@@ -12460,19 +12464,28 @@ var _user$project$AllFlightsReport$config = _evancz$elm_sortable_table$Table$con
 							ctor: '::',
 							_0: A2(
 								_evancz$elm_sortable_table$Table$stringColumn,
-								'Name',
+								'Suite',
 								function (_) {
-									return _.name;
+									return _.suite;
 								}),
 							_1: {
 								ctor: '::',
 								_0: A2(
-									_evancz$elm_sortable_table$Table$intColumn,
-									'Data Points',
+									_evancz$elm_sortable_table$Table$stringColumn,
+									'Test',
 									function (_) {
-										return _.dataPointCount;
+										return _.test;
 									}),
-								_1: {ctor: '[]'}
+								_1: {
+									ctor: '::',
+									_0: A2(
+										_evancz$elm_sortable_table$Table$intColumn,
+										'Data Points',
+										function (_) {
+											return _.dataPointCount;
+										}),
+									_1: {ctor: '[]'}
+								}
 							}
 						}
 					}

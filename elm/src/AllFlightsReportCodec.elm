@@ -12,7 +12,8 @@ import String
 type alias Investigation =
     { flightNumber : Int
 --    , when : Date
-    , name : String
+    , suite : String
+    , test : String
     , success : Bool
     , grossDurationMillis : Maybe Int
     , netDurationMillis : Maybe Int
@@ -51,7 +52,8 @@ decodeInvestigation =
     Json.Decode.Pipeline.decode Investigation
         |> Json.Decode.Pipeline.required "flightNumber" (Json.Decode.int)
 --        |> Json.Decode.Pipeline.required "when" (Json.Decode.string |> Json.Decode.map DateUtils.unsafeFromString )
-        |> Json.Decode.Pipeline.required "name" (Json.Decode.string)
+        |> Json.Decode.Pipeline.required "suite" (Json.Decode.string)
+        |> Json.Decode.Pipeline.required "test" (Json.Decode.string)
         |> Json.Decode.Pipeline.required "success" (Json.Decode.string |> Json.Decode.map stringToBool)
 --        |> Json.Decode.Pipeline.optional "command" (Json.Decode.maybe decodeDataPointCommand) Nothing
 --        |> Json.Decode.Pipeline.optional "context" (Json.Decode.maybe decodeDataPointContext) Nothing

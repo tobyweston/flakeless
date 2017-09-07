@@ -8,7 +8,7 @@ import org.openqa.selenium.remote.RemoteWebElement
 object Example extends App {
   def go {
     val flakeless = Flakeless(null)
-    flakeless.startFlight("Victor Vector")
+    flakeless.startFlight("Airplane", "Victor Vector")
 
     flakeless.inflightAnnouncement("announcement")
     flakeless.record(Command("command with expected", None, None, Map.empty, Some("expected")), Context())
@@ -39,7 +39,7 @@ object Example extends App {
 
     flakeless.stopFlight()
 
-    flakeless.startFlight("Clearance Clarence")
+    flakeless.startFlight("Airplane", "Clearance Clarence")
     FlightReport(flakeless, "target/test-reports", captureImage = false, host = Some("http://localhost:63342/root"))
     flakeless.stopFlight()
 

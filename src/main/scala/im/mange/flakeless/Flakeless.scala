@@ -7,9 +7,9 @@ case class Flakeless(rawWebDriver: WebDriver, config: Config = Config()) {
   private val fdr = FlightDataRecorder()
   private var currentFlightNumber: Option[Int] = None
 
-  def startFlight(description: String) {
+  def startFlight(suite: String, test: String) {
     currentFlightNumber = Some(FlightNumber.next)
-    currentFlightNumber.foreach(fdr.start(_, description))
+    currentFlightNumber.foreach(fdr.start(_, suite, test))
   }
 
   def stopFlight() {

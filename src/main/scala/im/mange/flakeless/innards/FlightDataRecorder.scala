@@ -5,15 +5,15 @@ import org.joda.time.DateTime
 //TODO: pull out the json bit to another thing
 //TODO: might be able to drop the whole flight number thing from the json soon
 
-case class FlightDataRecord(name: String, started: Option[DateTime], finished: Option[DateTime], dataPoints: Seq[DataPoint])
+case class FlightDataRecord(suite: String, test: String, started: Option[DateTime], finished: Option[DateTime], dataPoints: Seq[DataPoint])
 
 private [flakeless] case class FlightDataRecorder() {
   private var dataByFlightNumber: scala.collection.concurrent.TrieMap[Int, FlightDataRecord] =
     new scala.collection.concurrent.TrieMap()
 
-  def start(flightNumber: Int, name: String) = {
+  def start(flightNumber: Int, suite: String, name: String) = {
     dataByFlightNumber = new scala.collection.concurrent.TrieMap()
-    val record = FlightDataRecord(name, Some(DateTime.now()), None, Seq.empty[DataPoint])
+    val record = FlightDataRecord(suite, name, Some(DateTime.now()), None, Seq.empty[DataPoint])
     dataByFlightNumber.update(flightNumber, record)
   }
 

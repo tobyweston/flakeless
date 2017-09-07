@@ -40,7 +40,7 @@ type Msg
 
 init : ( Model, Cmd Msg )
 init =
-    ( Model "" [] Nothing (Table.initialSort "Test"), Cmd.none )
+    ( Model "" [] Nothing (Table.initialSort "Id"), Cmd.none )
 
 
 view : Model -> Html Msg
@@ -62,14 +62,15 @@ view model =
 config : Table.Config Investigation Msg
 config =
   Table.config
-    { toId = .name
+    { toId = .test
     , toMsg = SetTableState
     , columns =
-        [ Table.intColumn "Test" .flightNumber
+        [ Table.intColumn "Id" .flightNumber
         , result
         , grossDuration
         , netDuration
-        , Table.stringColumn "Name" .name
+        , Table.stringColumn "Suite" .suite
+        , Table.stringColumn "Test" .test
         , Table.intColumn "Data Points" .dataPointCount
         ]
     }
