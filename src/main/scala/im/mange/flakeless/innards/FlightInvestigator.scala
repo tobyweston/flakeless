@@ -30,7 +30,7 @@ private [flakeless] object FlightInvestigator {
       case _ => None
     }
 
-    Investigation(flightNumber, name, started, finished, firstInteraction, grossDuration, netDuration)
+    Investigation(flightNumber, name, started, finished, firstInteraction, grossDuration, netDuration, flightData.dataPoints.size)
   }
 
   private def update(flightNumber: Int, investigation: Investigation): Unit = {

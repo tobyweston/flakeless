@@ -12318,29 +12318,33 @@ var _user$project$ViewShared$smaller = {ctor: '_Tuple2', _0: 'font-size', _1: 's
 var _user$project$ViewShared$grey = {ctor: '_Tuple2', _0: 'color', _1: 'grey'};
 var _user$project$ViewShared$gapRight = {ctor: '_Tuple2', _0: 'margin-right', _1: '6px'};
 
-var _user$project$AllFlightsReportCodec$Investigation = F4(
-	function (a, b, c, d) {
-		return {flightNumber: a, name: b, durationMillis: c, durationMillis2: d};
+var _user$project$AllFlightsReportCodec$Investigation = F5(
+	function (a, b, c, d, e) {
+		return {flightNumber: a, name: b, grossDurationMillis: c, netDurationMillis: d, dataPointCount: e};
 	});
-var _user$project$AllFlightsReportCodec$decodeInvestigation = A4(
-	_NoRedInk$elm_decode_pipeline$Json_Decode_Pipeline$optional,
-	'netDurationMillis',
-	_elm_lang$core$Json_Decode$maybe(_elm_lang$core$Json_Decode$int),
-	_elm_lang$core$Maybe$Nothing,
+var _user$project$AllFlightsReportCodec$decodeInvestigation = A3(
+	_NoRedInk$elm_decode_pipeline$Json_Decode_Pipeline$required,
+	'dataPointCount',
+	_elm_lang$core$Json_Decode$int,
 	A4(
 		_NoRedInk$elm_decode_pipeline$Json_Decode_Pipeline$optional,
-		'grossDurationMillis',
+		'netDurationMillis',
 		_elm_lang$core$Json_Decode$maybe(_elm_lang$core$Json_Decode$int),
 		_elm_lang$core$Maybe$Nothing,
-		A3(
-			_NoRedInk$elm_decode_pipeline$Json_Decode_Pipeline$required,
-			'name',
-			_elm_lang$core$Json_Decode$string,
+		A4(
+			_NoRedInk$elm_decode_pipeline$Json_Decode_Pipeline$optional,
+			'grossDurationMillis',
+			_elm_lang$core$Json_Decode$maybe(_elm_lang$core$Json_Decode$int),
+			_elm_lang$core$Maybe$Nothing,
 			A3(
 				_NoRedInk$elm_decode_pipeline$Json_Decode_Pipeline$required,
-				'flightNumber',
-				_elm_lang$core$Json_Decode$int,
-				_NoRedInk$elm_decode_pipeline$Json_Decode_Pipeline$decode(_user$project$AllFlightsReportCodec$Investigation)))));
+				'name',
+				_elm_lang$core$Json_Decode$string,
+				A3(
+					_NoRedInk$elm_decode_pipeline$Json_Decode_Pipeline$required,
+					'flightNumber',
+					_elm_lang$core$Json_Decode$int,
+					_NoRedInk$elm_decode_pipeline$Json_Decode_Pipeline$decode(_user$project$AllFlightsReportCodec$Investigation))))));
 var _user$project$AllFlightsReportCodec$decodeInvestigationList = _elm_lang$core$Json_Decode$list(_user$project$AllFlightsReportCodec$decodeInvestigation);
 
 var _user$project$AllFlightsReport$maybeDurationToInt = function (duration) {
@@ -12353,14 +12357,14 @@ var _user$project$AllFlightsReport$netDuration = _evancz$elm_sortable_table$Tabl
 			return _elm_lang$core$Basics$toString(
 				_user$project$AllFlightsReport$maybeDurationToInt(
 					function (_) {
-						return _.durationMillis2;
+						return _.netDurationMillis;
 					}(_p0)));
 		},
 		sorter: _evancz$elm_sortable_table$Table$decreasingOrIncreasingBy(
 			function (_p1) {
 				return _user$project$AllFlightsReport$maybeDurationToInt(
 					function (_) {
-						return _.durationMillis2;
+						return _.netDurationMillis;
 					}(_p1));
 			})
 	});
@@ -12371,14 +12375,14 @@ var _user$project$AllFlightsReport$grossDuration = _evancz$elm_sortable_table$Ta
 			return _elm_lang$core$Basics$toString(
 				_user$project$AllFlightsReport$maybeDurationToInt(
 					function (_) {
-						return _.durationMillis;
+						return _.grossDurationMillis;
 					}(_p2)));
 		},
 		sorter: _evancz$elm_sortable_table$Table$decreasingOrIncreasingBy(
 			function (_p3) {
 				return _user$project$AllFlightsReport$maybeDurationToInt(
 					function (_) {
-						return _.durationMillis;
+						return _.grossDurationMillis;
 					}(_p3));
 			})
 	});
@@ -12428,7 +12432,16 @@ var _user$project$AllFlightsReport$config = _evancz$elm_sortable_table$Table$con
 							function (_) {
 								return _.name;
 							}),
-						_1: {ctor: '[]'}
+						_1: {
+							ctor: '::',
+							_0: A2(
+								_evancz$elm_sortable_table$Table$intColumn,
+								'Data Points',
+								function (_) {
+									return _.dataPointCount;
+								}),
+							_1: {ctor: '[]'}
+						}
 					}
 				}
 			}

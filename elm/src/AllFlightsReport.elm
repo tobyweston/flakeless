@@ -69,6 +69,7 @@ config =
         , grossDuration
         , netDuration
         , Table.stringColumn "Name" .name
+        , Table.intColumn "Data Points" .dataPointCount
         ]
     }
 
@@ -77,16 +78,16 @@ grossDuration : Table.Column Investigation Msg
 grossDuration =
   Table.customColumn
     { name = "Gross Duration (millis)"
-    , viewData = toString << maybeDurationToInt << .durationMillis
-    , sorter = Table.decreasingOrIncreasingBy (maybeDurationToInt << .durationMillis)
+    , viewData = toString << maybeDurationToInt << .grossDurationMillis
+    , sorter = Table.decreasingOrIncreasingBy (maybeDurationToInt << .grossDurationMillis)
     }
 
 netDuration : Table.Column Investigation Msg
 netDuration =
   Table.customColumn
     { name = "Net Duration (millis)"
-    , viewData = toString << maybeDurationToInt << .durationMillis2
-    , sorter = Table.decreasingOrIncreasingBy (maybeDurationToInt << .durationMillis2)
+    , viewData = toString << maybeDurationToInt << .netDurationMillis
+    , sorter = Table.decreasingOrIncreasingBy (maybeDurationToInt << .netDurationMillis)
     }
 
 

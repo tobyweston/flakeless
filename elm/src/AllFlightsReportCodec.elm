@@ -12,8 +12,9 @@ type alias Investigation =
     { flightNumber : Int
 --    , when : Date
     , name : String
-    , durationMillis : Maybe Int
-    , durationMillis2 : Maybe Int
+    , grossDurationMillis : Maybe Int
+    , netDurationMillis : Maybe Int
+    , dataPointCount : Int
 --    , command : Maybe Command
 --    , context : Maybe Context
 --    , log : Maybe (List String)
@@ -52,6 +53,7 @@ decodeInvestigation =
 --        |> Json.Decode.Pipeline.optional "context" (Json.Decode.maybe decodeDataPointContext) Nothing
         |> Json.Decode.Pipeline.optional "grossDurationMillis" (Json.Decode.maybe (Json.Decode.int)) Nothing
         |> Json.Decode.Pipeline.optional "netDurationMillis" (Json.Decode.maybe (Json.Decode.int)) Nothing
+        |> Json.Decode.Pipeline.required "dataPointCount" (Json.Decode.int)
 
 --decodeDataPointCommandArgs : Json.Decode.Decoder Args
 --decodeDataPointCommandArgs =
