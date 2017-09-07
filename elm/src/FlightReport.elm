@@ -77,6 +77,8 @@ view model =
             ]
 
 
+--TODO: render DP number instead of bullet
+--TODO: be able to toggle duration to date vs actual time, default to first
 renderDataPoint : DataPoint -> Html msg
 renderDataPoint dataPoint =
     let

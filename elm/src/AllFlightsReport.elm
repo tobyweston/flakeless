@@ -59,6 +59,7 @@ view model =
                 else nowt
             ]
 
+--TODO: fix the arrow rendering in jetbrains servers ... hmmm
 config : Table.Config Investigation Msg
 config =
   Table.config
