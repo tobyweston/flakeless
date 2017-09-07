@@ -49,7 +49,7 @@ view model =
     in
         div [ ]
             [ if isError then div [] [text (model.error |> Maybe.withDefault "") ] else nowt
-            , Table.view config model.tableState model.investigations
+            , Table.view testsTableConfig model.tableState model.investigations
 --            , ul [] (List.map (\i -> renderInvestigation i ) model.investigations)
             , br [] []
             , div [ style [ smaller, grey ] ] [ div [] [ text "[1] from test start to finish"]
@@ -61,10 +61,10 @@ view model =
                 else nowt
             ]
 
---TODO: fix the arrow rendering in jetbrains servers ... hmmm
+--TODO: fix the arrow rendering in jetbrains servers ... hmmm ... see simpleTheadHelp in customizations
 --TODO: do another table, grouped by Suite .. to show the totals ...
-testTableConfig : Table.Config Investigation Msg
-testTableConfig =
+testsTableConfig : Table.Config Investigation Msg
+testsTableConfig =
   Table.customConfig
     { toId = .test
     , toMsg = SetTableState

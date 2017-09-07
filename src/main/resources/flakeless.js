@@ -12449,7 +12449,7 @@ var _user$project$AllFlightsReport$init = {
 var _user$project$AllFlightsReport$SetTableState = function (a) {
 	return {ctor: 'SetTableState', _0: a};
 };
-var _user$project$AllFlightsReport$config = _evancz$elm_sortable_table$Table$customConfig(
+var _user$project$AllFlightsReport$testsTableConfig = _evancz$elm_sortable_table$Table$customConfig(
 	{
 		toId: function (_) {
 			return _.test;
@@ -12526,7 +12526,7 @@ var _user$project$AllFlightsReport$view = function (model) {
 				}) : _user$project$ViewShared$nowt,
 			_1: {
 				ctor: '::',
-				_0: A3(_evancz$elm_sortable_table$Table$view, _user$project$AllFlightsReport$config, model.tableState, model.investigations),
+				_0: A3(_evancz$elm_sortable_table$Table$view, _user$project$AllFlightsReport$testsTableConfig, model.tableState, model.investigations),
 				_1: {
 					ctor: '::',
 					_0: A2(
