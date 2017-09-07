@@ -63,8 +63,8 @@ view model =
 
 --TODO: fix the arrow rendering in jetbrains servers ... hmmm
 --TODO: do another table, grouped by Suite .. to show the totals ...
-config : Table.Config Investigation Msg
-config =
+testTableConfig : Table.Config Investigation Msg
+testTableConfig =
   Table.customConfig
     { toId = .test
     , toMsg = SetTableState
