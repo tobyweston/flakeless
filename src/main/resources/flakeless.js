@@ -12356,8 +12356,8 @@ var _user$project$AllFlightsReportCodec$decodeInvestigation = A3(
 						_NoRedInk$elm_decode_pipeline$Json_Decode_Pipeline$decode(_user$project$AllFlightsReportCodec$Investigation)))))));
 var _user$project$AllFlightsReportCodec$decodeInvestigationList = _elm_lang$core$Json_Decode$list(_user$project$AllFlightsReportCodec$decodeInvestigation);
 
-var _user$project$AllFlightsReport$boolToInt = function (value) {
-	return value ? 1 : 0;
+var _user$project$AllFlightsReport$boolToString = function (value) {
+	return value ? 'Pass' : 'Fail';
 };
 var _user$project$AllFlightsReport$maybeDurationToInt = function (duration) {
 	return A2(_elm_lang$core$Maybe$withDefault, -1, duration);
@@ -12398,19 +12398,18 @@ var _user$project$AllFlightsReport$grossDuration = _evancz$elm_sortable_table$Ta
 					}(_p3));
 			})
 	});
-var _user$project$AllFlightsReport$success = _evancz$elm_sortable_table$Table$customColumn(
+var _user$project$AllFlightsReport$result = _evancz$elm_sortable_table$Table$customColumn(
 	{
-		name: 'Passed',
+		name: 'Result',
 		viewData: function (_p4) {
-			return _elm_lang$core$Basics$toString(
-				_user$project$AllFlightsReport$boolToInt(
-					function (_) {
-						return _.success;
-					}(_p4)));
+			return _user$project$AllFlightsReport$boolToString(
+				function (_) {
+					return _.success;
+				}(_p4));
 		},
 		sorter: _evancz$elm_sortable_table$Table$decreasingOrIncreasingBy(
 			function (_p5) {
-				return _user$project$AllFlightsReport$boolToInt(
+				return _user$project$AllFlightsReport$boolToString(
 					function (_) {
 						return _.success;
 					}(_p5));
@@ -12450,7 +12449,7 @@ var _user$project$AllFlightsReport$config = _evancz$elm_sortable_table$Table$con
 				}),
 			_1: {
 				ctor: '::',
-				_0: _user$project$AllFlightsReport$success,
+				_0: _user$project$AllFlightsReport$result,
 				_1: {
 					ctor: '::',
 					_0: _user$project$AllFlightsReport$grossDuration,

@@ -66,7 +66,7 @@ config =
     , toMsg = SetTableState
     , columns =
         [ Table.intColumn "Test" .flightNumber
-        , success
+        , result
         , grossDuration
         , netDuration
         , Table.stringColumn "Name" .name
@@ -75,12 +75,12 @@ config =
     }
 
 
-success : Table.Column Investigation Msg
-success =
+result : Table.Column Investigation Msg
+result =
   Table.customColumn
-    { name = "Passed"
-    , viewData = toString << boolToInt << .success
-    , sorter = Table.decreasingOrIncreasingBy (boolToInt << .success)
+    { name = "Result"
+    , viewData = boolToString << .success
+    , sorter = Table.decreasingOrIncreasingBy (boolToString << .success)
     }
 
 grossDuration : Table.Column Investigation Msg
@@ -104,9 +104,9 @@ maybeDurationToInt : Maybe Int -> Int
 maybeDurationToInt duration =
   duration |> Maybe.withDefault -1
 
-boolToInt : Bool -> Int
-boolToInt value =
-  if value then 1 else 0
+boolToString : Bool -> String
+boolToString value =
+  if value then "Pass" else "Fail"
 
 
 update : Msg -> Model -> ( Model, Cmd Msg )
