@@ -16,7 +16,7 @@ private [flakeless] object FlightInvestigator {
   private def createInvestigation(flightNumber: Int, flightDataRecorder: FlightDataRecorder) = {
     val flightData: FlightDataRecord = flightDataRecorder.data(flightNumber)
     val name = flightData.name
-    val success = true//flightData.dataPoints.reverse.headOption.map(_.context.)
+    val success = flightData.dataPoints.reverse.headOption.map(_.context.success.getOrElse(false)).getOrElse(false)
     val started = flightData.started
     val firstInteraction = flightData.dataPoints.headOption.map(_.when)
     val finished = flightData.dataPoints.reverse.headOption.map(_.when)

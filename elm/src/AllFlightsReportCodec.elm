@@ -7,11 +7,13 @@ import Json.Decode.Pipeline
 import Dict as Dict
 import Date.Extra.Utils as DateUtils
 import Date exposing (..)
+import String
 
 type alias Investigation =
     { flightNumber : Int
 --    , when : Date
     , name : String
+    , success : Bool
     , grossDurationMillis : Maybe Int
     , netDurationMillis : Maybe Int
     , dataPointCount : Int
@@ -50,11 +52,19 @@ decodeInvestigation =
         |> Json.Decode.Pipeline.required "flightNumber" (Json.Decode.int)
 --        |> Json.Decode.Pipeline.required "when" (Json.Decode.string |> Json.Decode.map DateUtils.unsafeFromString )
         |> Json.Decode.Pipeline.required "name" (Json.Decode.string)
+        |> Json.Decode.Pipeline.required "success" (Json.Decode.string |> Json.Decode.map stringToBool)
 --        |> Json.Decode.Pipeline.optional "command" (Json.Decode.maybe decodeDataPointCommand) Nothing
 --        |> Json.Decode.Pipeline.optional "context" (Json.Decode.maybe decodeDataPointContext) Nothing
         |> Json.Decode.Pipeline.optional "grossDurationMillis" (Json.Decode.maybe (Json.Decode.int)) Nothing
         |> Json.Decode.Pipeline.optional "netDurationMillis" (Json.Decode.maybe (Json.Decode.int)) Nothing
         |> Json.Decode.Pipeline.required "dataPointCount" (Json.Decode.int)
+
+stringToBool : String -> Bool
+stringToBool value =
+    let
+        x = String.toLower value |> String.trim
+    in
+        if x == "true" then True else False
 
 --decodeDataPointCommandArgs : Json.Decode.Decoder Args
 --decodeDataPointCommandArgs =
