@@ -12360,6 +12360,186 @@ var _user$project$AllFlightsReportCodec$decodeInvestigation = A3(
 							_NoRedInk$elm_decode_pipeline$Json_Decode_Pipeline$decode(_user$project$AllFlightsReportCodec$Investigation))))))));
 var _user$project$AllFlightsReportCodec$decodeInvestigationList = _elm_lang$core$Json_Decode$list(_user$project$AllFlightsReportCodec$decodeInvestigation);
 
+var _user$project$AllFlightsReport$lightGrey = function (symbol) {
+	return A2(
+		_elm_lang$html$Html$span,
+		{
+			ctor: '::',
+			_0: _elm_lang$html$Html_Attributes$style(
+				{
+					ctor: '::',
+					_0: {ctor: '_Tuple2', _0: 'color', _1: '#ccc'},
+					_1: {ctor: '[]'}
+				}),
+			_1: {ctor: '[]'}
+		},
+		{
+			ctor: '::',
+			_0: _elm_lang$html$Html$text(' '),
+			_1: {
+				ctor: '::',
+				_0: symbol,
+				_1: {
+					ctor: '::',
+					_0: _elm_lang$html$Html$text(' '),
+					_1: {ctor: '[]'}
+				}
+			}
+		});
+};
+var _user$project$AllFlightsReport$darkGrey = function (symbol) {
+	return A2(
+		_elm_lang$html$Html$span,
+		{
+			ctor: '::',
+			_0: _elm_lang$html$Html_Attributes$style(
+				{
+					ctor: '::',
+					_0: {ctor: '_Tuple2', _0: 'color', _1: '#555'},
+					_1: {ctor: '[]'}
+				}),
+			_1: {ctor: '[]'}
+		},
+		{
+			ctor: '::',
+			_0: _elm_lang$html$Html$text(' '),
+			_1: {
+				ctor: '::',
+				_0: symbol,
+				_1: {
+					ctor: '::',
+					_0: _elm_lang$html$Html$text(' '),
+					_1: {ctor: '[]'}
+				}
+			}
+		});
+};
+var _user$project$AllFlightsReport$downArrow = A2(
+	_elm_lang$html$Html$span,
+	{
+		ctor: '::',
+		_0: A2(
+			_elm_lang$html$Html_Attributes$property,
+			'innerHTML',
+			_elm_lang$core$Json_Encode$string('&#9660;')),
+		_1: {ctor: '[]'}
+	},
+	{ctor: '[]'});
+var _user$project$AllFlightsReport$upArrow = A2(
+	_elm_lang$html$Html$span,
+	{
+		ctor: '::',
+		_0: A2(
+			_elm_lang$html$Html_Attributes$property,
+			'innerHTML',
+			_elm_lang$core$Json_Encode$string('&#9650;')),
+		_1: {ctor: '[]'}
+	},
+	{ctor: '[]'});
+var _user$project$AllFlightsReport$simpleTheadHelp = function (_p0) {
+	var _p1 = _p0;
+	var _p3 = _p1._0;
+	var content = function () {
+		var _p2 = _p1._1;
+		switch (_p2.ctor) {
+			case 'Unsortable':
+				return {
+					ctor: '::',
+					_0: _elm_lang$html$Html$text(_p3),
+					_1: {ctor: '[]'}
+				};
+			case 'Sortable':
+				return {
+					ctor: '::',
+					_0: _elm_lang$html$Html$text(_p3),
+					_1: {
+						ctor: '::',
+						_0: _p2._0 ? _user$project$AllFlightsReport$darkGrey(
+							A2(
+								_elm_lang$html$Html$span,
+								{ctor: '[]'},
+								{
+									ctor: '::',
+									_0: _user$project$AllFlightsReport$downArrow,
+									_1: {ctor: '[]'}
+								})) : _user$project$AllFlightsReport$lightGrey(
+							A2(
+								_elm_lang$html$Html$span,
+								{ctor: '[]'},
+								{
+									ctor: '::',
+									_0: _user$project$AllFlightsReport$upArrow,
+									_1: {ctor: '[]'}
+								})),
+						_1: {ctor: '[]'}
+					}
+				};
+			default:
+				if (_p2._0.ctor === 'Nothing') {
+					return {
+						ctor: '::',
+						_0: _elm_lang$html$Html$text(_p3),
+						_1: {
+							ctor: '::',
+							_0: _user$project$AllFlightsReport$lightGrey(
+								A2(
+									_elm_lang$html$Html$span,
+									{ctor: '[]'},
+									{
+										ctor: '::',
+										_0: _user$project$AllFlightsReport$downArrow,
+										_1: {
+											ctor: '::',
+											_0: _user$project$AllFlightsReport$upArrow,
+											_1: {ctor: '[]'}
+										}
+									})),
+							_1: {ctor: '[]'}
+						}
+					};
+				} else {
+					return {
+						ctor: '::',
+						_0: _elm_lang$html$Html$text(_p3),
+						_1: {
+							ctor: '::',
+							_0: _user$project$AllFlightsReport$darkGrey(
+								_p2._0._0 ? A2(
+									_elm_lang$html$Html$span,
+									{ctor: '[]'},
+									{
+										ctor: '::',
+										_0: _user$project$AllFlightsReport$upArrow,
+										_1: {ctor: '[]'}
+									}) : A2(
+									_elm_lang$html$Html$span,
+									{ctor: '[]'},
+									{
+										ctor: '::',
+										_0: _user$project$AllFlightsReport$downArrow,
+										_1: {ctor: '[]'}
+									})),
+							_1: {ctor: '[]'}
+						}
+					};
+				}
+		}
+	}();
+	return A2(
+		_elm_lang$html$Html$th,
+		{
+			ctor: '::',
+			_0: _p1._2,
+			_1: {ctor: '[]'}
+		},
+		content);
+};
+var _user$project$AllFlightsReport$simpleThead = function (headers) {
+	return A2(
+		_evancz$elm_sortable_table$Table$HtmlDetails,
+		{ctor: '[]'},
+		A2(_elm_lang$core$List$map, _user$project$AllFlightsReport$simpleTheadHelp, headers));
+};
 var _user$project$AllFlightsReport$boolToString = function (value) {
 	return value ? 'Pass' : 'Fail';
 };
@@ -12369,54 +12549,54 @@ var _user$project$AllFlightsReport$maybeDurationToInt = function (duration) {
 var _user$project$AllFlightsReport$netDuration = _evancz$elm_sortable_table$Table$customColumn(
 	{
 		name: 'Net Duration [2]',
-		viewData: function (_p0) {
+		viewData: function (_p4) {
 			return _elm_lang$core$Basics$toString(
 				_user$project$AllFlightsReport$maybeDurationToInt(
 					function (_) {
 						return _.netDurationMillis;
-					}(_p0)));
+					}(_p4)));
 		},
 		sorter: _evancz$elm_sortable_table$Table$decreasingOrIncreasingBy(
-			function (_p1) {
+			function (_p5) {
 				return _user$project$AllFlightsReport$maybeDurationToInt(
 					function (_) {
 						return _.netDurationMillis;
-					}(_p1));
+					}(_p5));
 			})
 	});
 var _user$project$AllFlightsReport$grossDuration = _evancz$elm_sortable_table$Table$customColumn(
 	{
 		name: 'Gross Duration [1]',
-		viewData: function (_p2) {
+		viewData: function (_p6) {
 			return _elm_lang$core$Basics$toString(
 				_user$project$AllFlightsReport$maybeDurationToInt(
 					function (_) {
 						return _.grossDurationMillis;
-					}(_p2)));
+					}(_p6)));
 		},
 		sorter: _evancz$elm_sortable_table$Table$decreasingOrIncreasingBy(
-			function (_p3) {
+			function (_p7) {
 				return _user$project$AllFlightsReport$maybeDurationToInt(
 					function (_) {
 						return _.grossDurationMillis;
-					}(_p3));
+					}(_p7));
 			})
 	});
 var _user$project$AllFlightsReport$result = _evancz$elm_sortable_table$Table$customColumn(
 	{
 		name: 'Result',
-		viewData: function (_p4) {
+		viewData: function (_p8) {
 			return _user$project$AllFlightsReport$boolToString(
 				function (_) {
 					return _.success;
-				}(_p4));
+				}(_p8));
 		},
 		sorter: _evancz$elm_sortable_table$Table$decreasingOrIncreasingBy(
-			function (_p5) {
+			function (_p9) {
 				return _user$project$AllFlightsReport$boolToString(
 					function (_) {
 						return _.success;
-					}(_p5));
+					}(_p9));
 			})
 	});
 var _user$project$AllFlightsReport$toRowAttrs = function (i) {
@@ -12465,39 +12645,35 @@ var _user$project$AllFlightsReport$testsTableConfig = _evancz$elm_sortable_table
 				}),
 			_1: {
 				ctor: '::',
-				_0: _user$project$AllFlightsReport$result,
+				_0: _user$project$AllFlightsReport$grossDuration,
 				_1: {
 					ctor: '::',
-					_0: _user$project$AllFlightsReport$grossDuration,
+					_0: _user$project$AllFlightsReport$netDuration,
 					_1: {
 						ctor: '::',
-						_0: _user$project$AllFlightsReport$netDuration,
+						_0: A2(
+							_evancz$elm_sortable_table$Table$stringColumn,
+							'Suite',
+							function (_) {
+								return _.suite;
+							}),
 						_1: {
 							ctor: '::',
 							_0: A2(
 								_evancz$elm_sortable_table$Table$stringColumn,
-								'Suite',
+								'Test',
 								function (_) {
-									return _.suite;
+									return _.test;
 								}),
 							_1: {
 								ctor: '::',
 								_0: A2(
-									_evancz$elm_sortable_table$Table$stringColumn,
-									'Test',
+									_evancz$elm_sortable_table$Table$intColumn,
+									'Data Points',
 									function (_) {
-										return _.test;
+										return _.dataPointCount;
 									}),
-								_1: {
-									ctor: '::',
-									_0: A2(
-										_evancz$elm_sortable_table$Table$intColumn,
-										'Data Points',
-										function (_) {
-											return _.dataPointCount;
-										}),
-									_1: {ctor: '[]'}
-								}
+								_1: {ctor: '[]'}
 							}
 						}
 					}
@@ -12506,7 +12682,7 @@ var _user$project$AllFlightsReport$testsTableConfig = _evancz$elm_sortable_table
 		},
 		customizations: _elm_lang$core$Native_Utils.update(
 			_evancz$elm_sortable_table$Table$defaultCustomizations,
-			{rowAttrs: _user$project$AllFlightsReport$toRowAttrs})
+			{rowAttrs: _user$project$AllFlightsReport$toRowAttrs, thead: _user$project$AllFlightsReport$simpleThead})
 	});
 var _user$project$AllFlightsReport$view = function (model) {
 	var isError = _elm_community$maybe_extra$Maybe_Extra$isJust(model.error);
@@ -12530,7 +12706,7 @@ var _user$project$AllFlightsReport$view = function (model) {
 				_1: {
 					ctor: '::',
 					_0: A2(
-						_elm_lang$html$Html$br,
+						_elm_lang$html$Html$hr,
 						{ctor: '[]'},
 						{ctor: '[]'}),
 					_1: {
@@ -12607,19 +12783,19 @@ var _user$project$AllFlightsReport$update = F2(
 	function (msg, model) {
 		update:
 		while (true) {
-			var _p6 = msg;
-			switch (_p6.ctor) {
+			var _p10 = msg;
+			switch (_p10.ctor) {
 				case 'LoadData':
-					var _p8 = _p6._0;
-					var result = _truqu$elm_base64$Base64$decode(_p8);
-					var _p7 = result;
-					if (_p7.ctor === 'Ok') {
-						var _v2 = _user$project$AllFlightsReport$ParseData,
-							_v3 = _elm_lang$core$Native_Utils.update(
+					var _p12 = _p10._0;
+					var result = _truqu$elm_base64$Base64$decode(_p12);
+					var _p11 = result;
+					if (_p11.ctor === 'Ok') {
+						var _v4 = _user$project$AllFlightsReport$ParseData,
+							_v5 = _elm_lang$core$Native_Utils.update(
 							model,
-							{raw: _p7._0});
-						msg = _v2;
-						model = _v3;
+							{raw: _p11._0});
+						msg = _v4;
+						model = _v5;
 						continue update;
 					} else {
 						return {
@@ -12627,8 +12803,8 @@ var _user$project$AllFlightsReport$update = F2(
 							_0: _elm_lang$core$Native_Utils.update(
 								model,
 								{
-									raw: _p8,
-									error: _elm_lang$core$Maybe$Just(_p7._0)
+									raw: _p12,
+									error: _elm_lang$core$Maybe$Just(_p11._0)
 								}),
 							_1: _elm_lang$core$Platform_Cmd$none
 						};
@@ -12636,16 +12812,16 @@ var _user$project$AllFlightsReport$update = F2(
 				case 'ParseData':
 					var result = A2(_elm_lang$core$Json_Decode$decodeString, _user$project$AllFlightsReportCodec$decodeInvestigationList, model.raw);
 					var model_ = function () {
-						var _p9 = result;
-						if (_p9.ctor === 'Ok') {
+						var _p13 = result;
+						if (_p13.ctor === 'Ok') {
 							return _elm_lang$core$Native_Utils.update(
 								model,
-								{investigations: _p9._0});
+								{investigations: _p13._0});
 						} else {
 							return _elm_lang$core$Native_Utils.update(
 								model,
 								{
-									error: _elm_lang$core$Maybe$Just(_p9._0)
+									error: _elm_lang$core$Maybe$Just(_p13._0)
 								});
 						}
 					}();
@@ -12655,7 +12831,7 @@ var _user$project$AllFlightsReport$update = F2(
 						ctor: '_Tuple2',
 						_0: _elm_lang$core$Native_Utils.update(
 							model,
-							{tableState: _p6._0}),
+							{tableState: _p10._0}),
 						_1: _elm_lang$core$Platform_Cmd$none
 					};
 			}

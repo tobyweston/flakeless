@@ -12,7 +12,8 @@ import Date.Extra.Format as DateFormat
 import Date.Extra.Config.Config_en_gb exposing (config)
 import Dict
 import Base64
-import Table exposing (defaultCustomizations)
+import Table exposing (..)
+import Json.Encode exposing (string)
 
 --TODO: link through to reports (if exist)
 --TODO: split out suite and test
@@ -51,7 +52,7 @@ view model =
             [ if isError then div [] [text (model.error |> Maybe.withDefault "") ] else nowt
             , Table.view testsTableConfig model.tableState model.investigations
 --            , ul [] (List.map (\i -> renderInvestigation i ) model.investigations)
-            , br [] []
+            , hr [] []
             , div [ style [ smaller, grey ] ] [ div [] [ text "[1] from test start to finish"]
                      , div [] [ text "[2] from first datapoint to finish"] ]
             , if isError then div [] [
@@ -70,7 +71,7 @@ testsTableConfig =
     , toMsg = SetTableState
     , columns =
         [ Table.intColumn "Id" .flightNumber
-        , result
+--        , result (until it's fixed)
         , grossDuration
         , netDuration
         , Table.stringColumn "Suite" .suite
@@ -78,7 +79,7 @@ testsTableConfig =
         , Table.intColumn "Data Points" .dataPointCount
         ]
     , customizations =
-            { defaultCustomizations | rowAttrs = toRowAttrs }
+            { defaultCustomizations | rowAttrs = toRowAttrs, thead = simpleThead }
     }
 
 
@@ -165,3 +166,51 @@ main =
         , update = update
         , subscriptions = subscriptions
         }
+
+--TIP: monkey patch the table ....
+simpleThead : List (String, Status, Attribute msg) -> HtmlDetails msg
+simpleThead headers =
+  HtmlDetails [] (List.map simpleTheadHelp headers)
+
+
+simpleTheadHelp : ( String, Status, Attribute msg ) -> Html msg
+simpleTheadHelp (name, status, onClick) =
+  let
+    content =
+      case status of
+        Unsortable ->
+          [ Html.text name ]
+
+        Sortable selected ->
+          [ Html.text name
+          , if selected then darkGrey (span [] [downArrow]) else lightGrey (span [] [upArrow])
+          ]
+
+        Reversible Nothing ->
+          [ Html.text name
+          , lightGrey (span [] [downArrow, upArrow])
+          ]
+
+        Reversible (Just isReversed) ->
+          [ Html.text name
+          , darkGrey (if isReversed then (span [] [upArrow]) else (span [] [downArrow]))
+          ]
+  in
+    Html.th [ onClick ] content
+
+upArrow : Html msg
+upArrow =
+    span [ property "innerHTML" (string "&#9650;") ] []
+
+downArrow : Html msg
+downArrow =
+    span [ property "innerHTML" (string "&#9660;") ] []
+
+darkGrey : Html msg -> Html msg
+darkGrey symbol =
+  Html.span [ style [("color", "#555")] ] [ Html.text (" "), symbol, Html.text (" ") ]
+
+
+lightGrey : Html msg -> Html msg
+lightGrey symbol =
+  Html.span [ style [("color", "#ccc")] ] [ Html.text (" "), symbol, Html.text (" ") ]
