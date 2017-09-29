@@ -13,7 +13,6 @@ import Date.Extra.Config.Config_en_gb exposing (config)
 import Dict
 import Base64
 import Table exposing (..)
-import Json.Encode exposing (string)
 
 --TODO: link through to reports (if exist)
 --TODO: split out suite and test
@@ -197,21 +196,3 @@ simpleTheadHelp (name, status, onClick) =
           ]
   in
     Html.th [ onClick ] content
-
---TIP: https://stackoverflow.com/questions/2701192/what-characters-can-be-used-for-up-down-triangle-arrow-without-stem-for-displa
-upArrow : Html msg
-upArrow =
-    span [ property "innerHTML" (string "&#9650;") ] []
-
-downArrow : Html msg
-downArrow =
-    span [ property "innerHTML" (string "&#9660;") ] []
-
-darkGrey : Html msg -> Html msg
-darkGrey symbol =
-  Html.span [ style [("color", "#555")] ] [ Html.text (" "), symbol, Html.text (" ") ]
-
-
-lightGrey : Html msg -> Html msg
-lightGrey symbol =
-  Html.span [ style [("color", "#ccc")] ] [ Html.text (" "), symbol, Html.text (" ") ]

@@ -12,7 +12,6 @@ import Date.Extra.Format as DateFormat
 import Date.Extra.Config.Config_en_gb exposing (config)
 import Dict
 import Base64
-import Json.Encode exposing (string)
 
 --TODO: kill bullets!
 --TODO: make logs be expand/collapsible
@@ -181,11 +180,6 @@ renderLog maybeLog =
     case maybeLog of
         Nothing -> nowt
         Just log -> div [style [ smaller, grey, ("margin-left", "25px") ]] [ pre [ style [ smaller, ("white-space", "pre-wrap") ]] [text ("\n" ++ (String.join "\n" log)) ] ]
-
-
-rightArrow : Html msg
-rightArrow =
-    span [ property "innerHTML" (string "&#9658;") ] []
 
 
 update : Msg -> Model -> ( Model, Cmd Msg )

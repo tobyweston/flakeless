@@ -12313,10 +12313,97 @@ var _truqu$elm_base64$Base64_Encode$encode = function (input) {
 var _truqu$elm_base64$Base64$decode = _truqu$elm_base64$Base64_Decode$decode;
 var _truqu$elm_base64$Base64$encode = _truqu$elm_base64$Base64_Encode$encode;
 
+var _user$project$ViewShared$rightArrow = A2(
+	_elm_lang$html$Html$span,
+	{
+		ctor: '::',
+		_0: A2(
+			_elm_lang$html$Html_Attributes$property,
+			'innerHTML',
+			_elm_lang$core$Json_Encode$string('&#9658;')),
+		_1: {ctor: '[]'}
+	},
+	{ctor: '[]'});
+var _user$project$ViewShared$downArrow = A2(
+	_elm_lang$html$Html$span,
+	{
+		ctor: '::',
+		_0: A2(
+			_elm_lang$html$Html_Attributes$property,
+			'innerHTML',
+			_elm_lang$core$Json_Encode$string('&#9660;')),
+		_1: {ctor: '[]'}
+	},
+	{ctor: '[]'});
+var _user$project$ViewShared$upArrow = A2(
+	_elm_lang$html$Html$span,
+	{
+		ctor: '::',
+		_0: A2(
+			_elm_lang$html$Html_Attributes$property,
+			'innerHTML',
+			_elm_lang$core$Json_Encode$string('&#9650;')),
+		_1: {ctor: '[]'}
+	},
+	{ctor: '[]'});
 var _user$project$ViewShared$nowt = _elm_lang$html$Html$text('');
 var _user$project$ViewShared$bold = {ctor: '_Tuple2', _0: 'font-weight', _1: 'bold'};
 var _user$project$ViewShared$larger = {ctor: '_Tuple2', _0: 'font-size', _1: 'larger'};
 var _user$project$ViewShared$smaller = {ctor: '_Tuple2', _0: 'font-size', _1: 'smaller'};
+var _user$project$ViewShared$lightGrey = function (symbol) {
+	return A2(
+		_elm_lang$html$Html$span,
+		{
+			ctor: '::',
+			_0: _elm_lang$html$Html_Attributes$style(
+				{
+					ctor: '::',
+					_0: {ctor: '_Tuple2', _0: 'color', _1: '#ccc'},
+					_1: {ctor: '[]'}
+				}),
+			_1: {ctor: '[]'}
+		},
+		{
+			ctor: '::',
+			_0: _elm_lang$html$Html$text(' '),
+			_1: {
+				ctor: '::',
+				_0: symbol,
+				_1: {
+					ctor: '::',
+					_0: _elm_lang$html$Html$text(' '),
+					_1: {ctor: '[]'}
+				}
+			}
+		});
+};
+var _user$project$ViewShared$darkGrey = function (symbol) {
+	return A2(
+		_elm_lang$html$Html$span,
+		{
+			ctor: '::',
+			_0: _elm_lang$html$Html_Attributes$style(
+				{
+					ctor: '::',
+					_0: {ctor: '_Tuple2', _0: 'color', _1: '#555'},
+					_1: {ctor: '[]'}
+				}),
+			_1: {ctor: '[]'}
+		},
+		{
+			ctor: '::',
+			_0: _elm_lang$html$Html$text(' '),
+			_1: {
+				ctor: '::',
+				_0: symbol,
+				_1: {
+					ctor: '::',
+					_0: _elm_lang$html$Html$text(' '),
+					_1: {ctor: '[]'}
+				}
+			}
+		});
+};
 var _user$project$ViewShared$grey = {ctor: '_Tuple2', _0: 'color', _1: 'grey'};
 var _user$project$ViewShared$gapRight = {ctor: '_Tuple2', _0: 'margin-right', _1: '6px'};
 
@@ -12362,82 +12449,6 @@ var _user$project$AllFlightsReportCodec$decodeInvestigation = A3(
 							_NoRedInk$elm_decode_pipeline$Json_Decode_Pipeline$decode(_user$project$AllFlightsReportCodec$Investigation))))))));
 var _user$project$AllFlightsReportCodec$decodeInvestigationList = _elm_lang$core$Json_Decode$list(_user$project$AllFlightsReportCodec$decodeInvestigation);
 
-var _user$project$AllFlightsReport$lightGrey = function (symbol) {
-	return A2(
-		_elm_lang$html$Html$span,
-		{
-			ctor: '::',
-			_0: _elm_lang$html$Html_Attributes$style(
-				{
-					ctor: '::',
-					_0: {ctor: '_Tuple2', _0: 'color', _1: '#ccc'},
-					_1: {ctor: '[]'}
-				}),
-			_1: {ctor: '[]'}
-		},
-		{
-			ctor: '::',
-			_0: _elm_lang$html$Html$text(' '),
-			_1: {
-				ctor: '::',
-				_0: symbol,
-				_1: {
-					ctor: '::',
-					_0: _elm_lang$html$Html$text(' '),
-					_1: {ctor: '[]'}
-				}
-			}
-		});
-};
-var _user$project$AllFlightsReport$darkGrey = function (symbol) {
-	return A2(
-		_elm_lang$html$Html$span,
-		{
-			ctor: '::',
-			_0: _elm_lang$html$Html_Attributes$style(
-				{
-					ctor: '::',
-					_0: {ctor: '_Tuple2', _0: 'color', _1: '#555'},
-					_1: {ctor: '[]'}
-				}),
-			_1: {ctor: '[]'}
-		},
-		{
-			ctor: '::',
-			_0: _elm_lang$html$Html$text(' '),
-			_1: {
-				ctor: '::',
-				_0: symbol,
-				_1: {
-					ctor: '::',
-					_0: _elm_lang$html$Html$text(' '),
-					_1: {ctor: '[]'}
-				}
-			}
-		});
-};
-var _user$project$AllFlightsReport$downArrow = A2(
-	_elm_lang$html$Html$span,
-	{
-		ctor: '::',
-		_0: A2(
-			_elm_lang$html$Html_Attributes$property,
-			'innerHTML',
-			_elm_lang$core$Json_Encode$string('&#9660;')),
-		_1: {ctor: '[]'}
-	},
-	{ctor: '[]'});
-var _user$project$AllFlightsReport$upArrow = A2(
-	_elm_lang$html$Html$span,
-	{
-		ctor: '::',
-		_0: A2(
-			_elm_lang$html$Html_Attributes$property,
-			'innerHTML',
-			_elm_lang$core$Json_Encode$string('&#9650;')),
-		_1: {ctor: '[]'}
-	},
-	{ctor: '[]'});
 var _user$project$AllFlightsReport$simpleTheadHelp = function (_p0) {
 	var _p1 = _p0;
 	var _p3 = _p1._0;
@@ -12456,21 +12467,21 @@ var _user$project$AllFlightsReport$simpleTheadHelp = function (_p0) {
 					_0: _elm_lang$html$Html$text(_p3),
 					_1: {
 						ctor: '::',
-						_0: _p2._0 ? _user$project$AllFlightsReport$darkGrey(
+						_0: _p2._0 ? _user$project$ViewShared$darkGrey(
 							A2(
 								_elm_lang$html$Html$span,
 								{ctor: '[]'},
 								{
 									ctor: '::',
-									_0: _user$project$AllFlightsReport$downArrow,
+									_0: _user$project$ViewShared$downArrow,
 									_1: {ctor: '[]'}
-								})) : _user$project$AllFlightsReport$lightGrey(
+								})) : _user$project$ViewShared$lightGrey(
 							A2(
 								_elm_lang$html$Html$span,
 								{ctor: '[]'},
 								{
 									ctor: '::',
-									_0: _user$project$AllFlightsReport$upArrow,
+									_0: _user$project$ViewShared$upArrow,
 									_1: {ctor: '[]'}
 								})),
 						_1: {ctor: '[]'}
@@ -12483,16 +12494,16 @@ var _user$project$AllFlightsReport$simpleTheadHelp = function (_p0) {
 						_0: _elm_lang$html$Html$text(_p3),
 						_1: {
 							ctor: '::',
-							_0: _user$project$AllFlightsReport$lightGrey(
+							_0: _user$project$ViewShared$lightGrey(
 								A2(
 									_elm_lang$html$Html$span,
 									{ctor: '[]'},
 									{
 										ctor: '::',
-										_0: _user$project$AllFlightsReport$downArrow,
+										_0: _user$project$ViewShared$downArrow,
 										_1: {
 											ctor: '::',
-											_0: _user$project$AllFlightsReport$upArrow,
+											_0: _user$project$ViewShared$upArrow,
 											_1: {ctor: '[]'}
 										}
 									})),
@@ -12505,20 +12516,20 @@ var _user$project$AllFlightsReport$simpleTheadHelp = function (_p0) {
 						_0: _elm_lang$html$Html$text(_p3),
 						_1: {
 							ctor: '::',
-							_0: _user$project$AllFlightsReport$darkGrey(
+							_0: _user$project$ViewShared$darkGrey(
 								_p2._0._0 ? A2(
 									_elm_lang$html$Html$span,
 									{ctor: '[]'},
 									{
 										ctor: '::',
-										_0: _user$project$AllFlightsReport$upArrow,
+										_0: _user$project$ViewShared$upArrow,
 										_1: {ctor: '[]'}
 									}) : A2(
 									_elm_lang$html$Html$span,
 									{ctor: '[]'},
 									{
 										ctor: '::',
-										_0: _user$project$AllFlightsReport$downArrow,
+										_0: _user$project$ViewShared$downArrow,
 										_1: {ctor: '[]'}
 									})),
 							_1: {ctor: '[]'}
@@ -12958,17 +12969,6 @@ var _user$project$FlightReportCodec$decodeFlightDataRecord = A3(
 			_elm_lang$core$Json_Decode$string,
 			_NoRedInk$elm_decode_pipeline$Json_Decode_Pipeline$decode(_user$project$FlightReportCodec$FlightDataRecord))));
 
-var _user$project$FlightReport$rightArrow = A2(
-	_elm_lang$html$Html$span,
-	{
-		ctor: '::',
-		_0: A2(
-			_elm_lang$html$Html_Attributes$property,
-			'innerHTML',
-			_elm_lang$core$Json_Encode$string('&#9658;')),
-		_1: {ctor: '[]'}
-	},
-	{ctor: '[]'});
 var _user$project$FlightReport$renderLog = function (maybeLog) {
 	var _p0 = maybeLog;
 	if (_p0.ctor === 'Nothing') {
@@ -13711,7 +13711,7 @@ var _user$project$FlightReport$renderDataPoint = function (dataPoint) {
 				},
 				{
 					ctor: '::',
-					_0: _user$project$FlightReport$rightArrow,
+					_0: _user$project$ViewShared$rightArrow,
 					_1: {
 						ctor: '::',
 						_0: _elm_lang$html$Html$text(' '),
