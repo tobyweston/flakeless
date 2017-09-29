@@ -12559,7 +12559,7 @@ var _user$project$AllFlightsReport$boolToString = function (value) {
 var _user$project$AllFlightsReport$maybeDurationToInt = function (duration) {
 	return A2(_elm_lang$core$Maybe$withDefault, -1, duration);
 };
-var _user$project$AllFlightsReport$maybeSuiteDurations = F2(
+var _user$project$AllFlightsReport$suiteDurationToInt = F2(
 	function (investigations, i) {
 		return _elm_lang$core$List$sum(
 			A2(
@@ -12580,68 +12580,63 @@ var _user$project$AllFlightsReport$suiteDuration = function (investigations) {
 			name: 'Suite Duration',
 			viewData: function (_p4) {
 				return _elm_lang$core$Basics$toString(
-					A2(_user$project$AllFlightsReport$maybeSuiteDurations, investigations, _p4));
+					A2(_user$project$AllFlightsReport$suiteDurationToInt, investigations, _p4));
 			},
 			sorter: _evancz$elm_sortable_table$Table$decreasingOrIncreasingBy(
-				function (_p5) {
-					return _user$project$AllFlightsReport$maybeDurationToInt(
-						function (_) {
-							return _.netDurationMillis;
-						}(_p5));
-				})
+				_user$project$AllFlightsReport$suiteDurationToInt(investigations))
 		});
 };
 var _user$project$AllFlightsReport$netTestDuration = _evancz$elm_sortable_table$Table$customColumn(
 	{
 		name: 'Net Duration [2]',
-		viewData: function (_p6) {
+		viewData: function (_p5) {
 			return _elm_lang$core$Basics$toString(
 				_user$project$AllFlightsReport$maybeDurationToInt(
 					function (_) {
 						return _.netDurationMillis;
-					}(_p6)));
+					}(_p5)));
 		},
 		sorter: _evancz$elm_sortable_table$Table$decreasingOrIncreasingBy(
-			function (_p7) {
+			function (_p6) {
 				return _user$project$AllFlightsReport$maybeDurationToInt(
 					function (_) {
 						return _.netDurationMillis;
-					}(_p7));
+					}(_p6));
 			})
 	});
 var _user$project$AllFlightsReport$grossTestDuration = _evancz$elm_sortable_table$Table$customColumn(
 	{
 		name: 'Gross Duration [1]',
-		viewData: function (_p8) {
+		viewData: function (_p7) {
 			return _elm_lang$core$Basics$toString(
 				_user$project$AllFlightsReport$maybeDurationToInt(
 					function (_) {
 						return _.grossDurationMillis;
-					}(_p8)));
+					}(_p7)));
 		},
 		sorter: _evancz$elm_sortable_table$Table$decreasingOrIncreasingBy(
-			function (_p9) {
+			function (_p8) {
 				return _user$project$AllFlightsReport$maybeDurationToInt(
 					function (_) {
 						return _.grossDurationMillis;
-					}(_p9));
+					}(_p8));
 			})
 	});
 var _user$project$AllFlightsReport$result = _evancz$elm_sortable_table$Table$customColumn(
 	{
 		name: 'Result',
-		viewData: function (_p10) {
+		viewData: function (_p9) {
 			return _user$project$AllFlightsReport$boolToString(
 				function (_) {
 					return _.success;
-				}(_p10));
+				}(_p9));
 		},
 		sorter: _evancz$elm_sortable_table$Table$decreasingOrIncreasingBy(
-			function (_p11) {
+			function (_p10) {
 				return _user$project$AllFlightsReport$boolToString(
 					function (_) {
 						return _.success;
-					}(_p11));
+					}(_p10));
 			})
 	});
 var _user$project$AllFlightsReport$toRowAttrs = function (i) {
@@ -12838,17 +12833,17 @@ var _user$project$AllFlightsReport$update = F2(
 	function (msg, model) {
 		update:
 		while (true) {
-			var _p12 = msg;
-			switch (_p12.ctor) {
+			var _p11 = msg;
+			switch (_p11.ctor) {
 				case 'LoadData':
-					var _p14 = _p12._0;
-					var result = _truqu$elm_base64$Base64$decode(_p14);
-					var _p13 = result;
-					if (_p13.ctor === 'Ok') {
+					var _p13 = _p11._0;
+					var result = _truqu$elm_base64$Base64$decode(_p13);
+					var _p12 = result;
+					if (_p12.ctor === 'Ok') {
 						var _v4 = _user$project$AllFlightsReport$ParseData,
 							_v5 = _elm_lang$core$Native_Utils.update(
 							model,
-							{raw: _p13._0});
+							{raw: _p12._0});
 						msg = _v4;
 						model = _v5;
 						continue update;
@@ -12858,8 +12853,8 @@ var _user$project$AllFlightsReport$update = F2(
 							_0: _elm_lang$core$Native_Utils.update(
 								model,
 								{
-									raw: _p14,
-									error: _elm_lang$core$Maybe$Just(_p13._0)
+									raw: _p13,
+									error: _elm_lang$core$Maybe$Just(_p12._0)
 								}),
 							_1: _elm_lang$core$Platform_Cmd$none
 						};
@@ -12867,16 +12862,16 @@ var _user$project$AllFlightsReport$update = F2(
 				case 'ParseData':
 					var result = A2(_elm_lang$core$Json_Decode$decodeString, _user$project$AllFlightsReportCodec$decodeInvestigationList, model.raw);
 					var model_ = function () {
-						var _p15 = result;
-						if (_p15.ctor === 'Ok') {
+						var _p14 = result;
+						if (_p14.ctor === 'Ok') {
 							return _elm_lang$core$Native_Utils.update(
 								model,
-								{investigations: _p15._0});
+								{investigations: _p14._0});
 						} else {
 							return _elm_lang$core$Native_Utils.update(
 								model,
 								{
-									error: _elm_lang$core$Maybe$Just(_p15._0)
+									error: _elm_lang$core$Maybe$Just(_p14._0)
 								});
 						}
 					}();
@@ -12886,7 +12881,7 @@ var _user$project$AllFlightsReport$update = F2(
 						ctor: '_Tuple2',
 						_0: _elm_lang$core$Native_Utils.update(
 							model,
-							{tableState: _p12._0}),
+							{tableState: _p11._0}),
 						_1: _elm_lang$core$Platform_Cmd$none
 					};
 			}

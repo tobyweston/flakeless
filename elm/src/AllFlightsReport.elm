@@ -117,12 +117,12 @@ suiteDuration : List Investigation -> Table.Column Investigation Msg
 suiteDuration investigations =
       Table.customColumn
         { name = "Suite Duration"
-        , viewData = toString << (maybeSuiteDurations investigations )
-        , sorter = Table.decreasingOrIncreasingBy (maybeDurationToInt << .netDurationMillis)
+        , viewData = toString << (suiteDurationToInt investigations )
+        , sorter = Table.decreasingOrIncreasingBy (suiteDurationToInt investigations)
         }
 
-maybeSuiteDurations : List Investigation -> Investigation -> Int
-maybeSuiteDurations investigations i =
+suiteDurationToInt : List Investigation -> Investigation -> Int
+suiteDurationToInt investigations i =
     List.filter (\si -> si.suite == i.suite) investigations
     |> List.map (\i -> i.netDurationMillis |> Maybe.withDefault 0)
     |> List.sum
