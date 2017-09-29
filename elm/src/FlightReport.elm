@@ -172,7 +172,7 @@ renderContext maybeContext =
                                                                                      Just success -> success) then
 --                        else span [] [text "actual: ", span [] ((List.map (\f -> span [] [text f]) context.failures) |> List.intersperse (span [style [ smaller ]] [text ", "]))]
 --                        span [style [smaller]] [span [style [grey, smaller]] [ text "actual: "], span [] ((List.map (\f -> span [] [text ("\"" ++ f ++ "\"")]) context.failures) |> List.intersperse (span [style [ smaller ]] [text ", "]))]
-                        span [style [smaller]] [span [style [grey, smaller]] [ text "actual: "], span [ style [ ("color", "#cc0000") ]] [text (List.reverse context.failures |> List.head |> Maybe.map (\f -> "\"" ++ f ++ "\"") |> Maybe.withDefault "???" )] ]
+                        div [style [("margin-left", "20px"),("margin-top", "6px")]] [span [style [grey, smaller]] [ text "actual: "], span [ style [ ("color", "#cc0000") ]] [text (List.reverse context.failures |> List.head |> Maybe.map (\f -> "\"" ++ f ++ "\"") |> Maybe.withDefault "???" )] ]
                         else nowt
 
 

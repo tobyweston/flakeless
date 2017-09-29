@@ -13039,14 +13039,18 @@ var _user$project$FlightReport$renderContext = function (maybeContext) {
 				return _p2._0;
 			}
 		}())) ? A2(
-			_elm_lang$html$Html$span,
+			_elm_lang$html$Html$div,
 			{
 				ctor: '::',
 				_0: _elm_lang$html$Html_Attributes$style(
 					{
 						ctor: '::',
-						_0: _user$project$ViewShared$smaller,
-						_1: {ctor: '[]'}
+						_0: {ctor: '_Tuple2', _0: 'margin-left', _1: '20px'},
+						_1: {
+							ctor: '::',
+							_0: {ctor: '_Tuple2', _0: 'margin-top', _1: '6px'},
+							_1: {ctor: '[]'}
+						}
 					}),
 				_1: {ctor: '[]'}
 			},
