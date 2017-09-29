@@ -47,20 +47,21 @@ s"""
   |<head>
   |<script type="text/javascript" src="../flakeless.js"></script>
   |<style>
-  |.lozenge {
-  |  background-color: #fff;
-  |  border: 1px solid #CCC;
-  |  padding: 1px 4px;
-  |  /*font-weight: bold;*/
-  |
-  |  -webkit-border-radius: 3px;
-  |     -moz-border-radius: 3px;
-  |          border-radius: 3px;
-  |}
   |.container {
-  |  width: 100%;
-  |  height: auto;
+  |  display: -webkit-flex;
+  |  display: flex;
   |}
+  |.flex1 {
+  |  -webkit-flex: 1;
+  |          flex: 1;
+  |}
+  |.flex2 {
+  |  -webkit-flex: 2;
+  |          flex: 2;
+  |}
+  |
+  |
+  |
   |.container img {
   |  width: 100%;
   |  height: auto;
@@ -100,12 +101,10 @@ s"""
   |</style>
   |</head>
   |<body>
-  |  <table>
-  |  <tr>
-  |  <td style="width 50%;"><div style="font-family: Courier New;" id="content"></div></td>
-  |  <td style="width 50%;"><div style="background-color: grey;" class="container"><img src="$when.png"></div></td>
-  |  </tr>
-  |  </table>
+  |  <div class="container">
+  |    <div class="flex2" style="font-family: Courier New;" id="content"></div>
+  |    <div class="flex1" style="background-color: grey;" class="container"><img src="$when.png"></div>
+  |  </div>
   |  <script>
   |    var data = '${data.replaceAll("\n", "").replaceAll("'", "")}';
   |    var app = Elm.FlightReport.embed(document.getElementById('content'));
