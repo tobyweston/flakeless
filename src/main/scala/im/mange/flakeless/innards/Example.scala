@@ -43,6 +43,10 @@ object Example extends App {
     FlightReport(flakeless, "target/test-reports", captureImage = false, host = Some("http://localhost:63342/root"))
     flakeless.stopFlight()
 
+    flakeless.startFlight("Airplane 2", "Captain Oveur")
+    FlightReport(flakeless, "target/test-reports", captureImage = false, host = Some("http://localhost:63342/root"))
+    flakeless.stopFlight()
+
     AllFlightsReport(flakeless, "target/test-reports", host = Some("http://localhost:63342/root"))
   }
 

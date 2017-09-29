@@ -49,7 +49,7 @@ view model =
     in
         div [ ]
             [ if isError then div [] [text (model.error |> Maybe.withDefault "") ] else nowt
-            , Table.view testsTableConfig model.tableState model.investigations
+            , Table.view (testsTableConfig model.investigations) model.tableState model.investigations
 --            , ul [] (List.map (\i -> renderInvestigation i ) model.investigations)
             , hr [] []
             , div [ style [ smaller, grey ] ] [ div [] [ text "[1] from test start to finish"]
@@ -63,16 +63,17 @@ view model =
 
 --TODO: fix the arrow rendering in jetbrains servers ... hmmm ... see simpleTheadHelp in customizations
 --TODO: do another table, grouped by Suite .. to show the totals ...
-testsTableConfig : Table.Config Investigation Msg
-testsTableConfig =
+testsTableConfig : List Investigation -> Table.Config Investigation Msg
+testsTableConfig investigations =
   Table.customConfig
     { toId = .test
     , toMsg = SetTableState
     , columns =
         [ Table.intColumn "Id" .flightNumber
 --        , result (until it's fixed)
-        , grossDuration
-        , netDuration
+        , grossTestDuration
+        , netTestDuration
+        , suiteDuration investigations
         , Table.stringColumn "Suite" .suite
         , Table.stringColumn "Test" .test
         , Table.intColumn "Data Points" .dataPointCount
@@ -95,21 +96,36 @@ result =
     , sorter = Table.decreasingOrIncreasingBy (boolToString << .success)
     }
 
-grossDuration : Table.Column Investigation Msg
-grossDuration =
+grossTestDuration : Table.Column Investigation Msg
+grossTestDuration =
   Table.customColumn
     { name = "Gross Duration [1]"
     , viewData = toString << maybeDurationToInt << .grossDurationMillis
     , sorter = Table.decreasingOrIncreasingBy (maybeDurationToInt << .grossDurationMillis)
     }
 
-netDuration : Table.Column Investigation Msg
-netDuration =
+netTestDuration : Table.Column Investigation Msg
+netTestDuration =
   Table.customColumn
     { name = "Net Duration [2]"
     , viewData = toString << maybeDurationToInt << .netDurationMillis
     , sorter = Table.decreasingOrIncreasingBy (maybeDurationToInt << .netDurationMillis)
     }
+
+--TIP: this needs some work obv
+suiteDuration : List Investigation -> Table.Column Investigation Msg
+suiteDuration investigations =
+      Table.customColumn
+        { name = "Suite Duration"
+        , viewData = toString << (maybeSuiteDurations investigations )
+        , sorter = Table.decreasingOrIncreasingBy (maybeDurationToInt << .netDurationMillis)
+        }
+
+maybeSuiteDurations : List Investigation -> Investigation -> Int
+maybeSuiteDurations investigations i =
+    List.filter (\si -> si.suite == i.suite) investigations
+    |> List.map (\i -> i.netDurationMillis |> Maybe.withDefault 0)
+    |> List.sum
 
 
 maybeDurationToInt : Maybe Int -> Int
