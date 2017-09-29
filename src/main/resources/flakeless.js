@@ -12847,6 +12847,9 @@ var _user$project$AllFlightsReport$main = _elm_lang$html$Html$program(
 	{init: _user$project$AllFlightsReport$init, view: _user$project$AllFlightsReport$view, update: _user$project$AllFlightsReport$update, subscriptions: _user$project$AllFlightsReport$subscriptions})();
 
 var _user$project$FlightReportCodec$decodeBys = _elm_lang$core$Json_Decode$keyValuePairs(_elm_lang$core$Json_Decode$string);
+var _user$project$FlightReportCodec$FlightDataRecord = function (a) {
+	return {dataPoints: a};
+};
 var _user$project$FlightReportCodec$DataPoint = F6(
 	function (a, b, c, d, e, f) {
 		return {flightNumber: a, when: b, description: c, command: d, context: e, log: f};
@@ -12938,6 +12941,11 @@ var _user$project$FlightReportCodec$decodeDataPoint = A4(
 						_elm_lang$core$Json_Decode$int,
 						_NoRedInk$elm_decode_pipeline$Json_Decode_Pipeline$decode(_user$project$FlightReportCodec$DataPoint)))))));
 var _user$project$FlightReportCodec$decodeDataPointList = _elm_lang$core$Json_Decode$list(_user$project$FlightReportCodec$decodeDataPoint);
+var _user$project$FlightReportCodec$decodeFlightDataRecord = A3(
+	_NoRedInk$elm_decode_pipeline$Json_Decode_Pipeline$required,
+	'dataPoints',
+	_user$project$FlightReportCodec$decodeDataPointList,
+	_NoRedInk$elm_decode_pipeline$Json_Decode_Pipeline$decode(_user$project$FlightReportCodec$FlightDataRecord));
 
 var _user$project$FlightReport$rightArrow = A2(
 	_elm_lang$html$Html$span,
@@ -13797,7 +13805,7 @@ var _user$project$FlightReport$view = function (model) {
 						function (dp) {
 							return _user$project$FlightReport$renderDataPoint(dp);
 						},
-						model.dataPoints)),
+						model.flightDataRecord.dataPoints)),
 				_1: {
 					ctor: '::',
 					_0: isError ? A2(
@@ -13827,14 +13835,15 @@ var _user$project$FlightReport$view = function (model) {
 var _user$project$FlightReport$flightData = _elm_lang$core$Native_Platform.incomingPort('flightData', _elm_lang$core$Json_Decode$string);
 var _user$project$FlightReport$Model = F3(
 	function (a, b, c) {
-		return {raw: a, dataPoints: b, error: c};
+		return {raw: a, flightDataRecord: b, error: c};
 	});
 var _user$project$FlightReport$init = {
 	ctor: '_Tuple2',
 	_0: A3(
 		_user$project$FlightReport$Model,
 		'',
-		{ctor: '[]'},
+		_user$project$FlightReportCodec$FlightDataRecord(
+			{ctor: '[]'}),
 		_elm_lang$core$Maybe$Nothing),
 	_1: _elm_lang$core$Platform_Cmd$none
 };
@@ -13869,13 +13878,13 @@ var _user$project$FlightReport$update = F2(
 					};
 				}
 			} else {
-				var result = A2(_elm_lang$core$Json_Decode$decodeString, _user$project$FlightReportCodec$decodeDataPointList, model.raw);
+				var result = A2(_elm_lang$core$Json_Decode$decodeString, _user$project$FlightReportCodec$decodeFlightDataRecord, model.raw);
 				var model_ = function () {
 					var _p15 = result;
 					if (_p15.ctor === 'Ok') {
 						return _elm_lang$core$Native_Utils.update(
 							model,
-							{dataPoints: _p15._0});
+							{flightDataRecord: _p15._0});
 					} else {
 						return _elm_lang$core$Native_Utils.update(
 							model,

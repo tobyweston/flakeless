@@ -47,7 +47,7 @@ import Json.Encode exposing (string)
 
 type alias Model =
     { raw : String
-    , dataPoints : List DataPoint
+    , flightDataRecord : FlightDataRecord
     , error : Maybe String
     }
 
@@ -59,7 +59,7 @@ type Msg
 
 init : ( Model, Cmd Msg )
 init =
-    ( Model "" [] Nothing, Cmd.none )
+    ( Model "" (FlightDataRecord []) Nothing, Cmd.none )
 
 
 view : Model -> Html Msg
@@ -69,7 +69,7 @@ view model =
     in
         div []
             [ if isError then div [] [text (model.error |> Maybe.withDefault "") ] else nowt
-            , div [] (List.map (\dp -> renderDataPoint dp ) model.dataPoints)
+            , div [] (List.map (\dp -> renderDataPoint dp ) model.flightDataRecord.dataPoints)
             , if isError then div [] [
                 hr [] []
                 , text ("raw:" ++ toString model.raw)
@@ -202,9 +202,9 @@ update msg model =
 
         ParseData ->
             let
-                result = (Json.Decode.decodeString decodeDataPointList model.raw)
+                result = (Json.Decode.decodeString decodeFlightDataRecord model.raw)
                 model_ = case result of
-                    Ok x -> { model | dataPoints = x}
+                    Ok x -> { model | flightDataRecord = x}
                     Err e -> { model | error = Just e }
             in
             ( model_, Cmd.none )

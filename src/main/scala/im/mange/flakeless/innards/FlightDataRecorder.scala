@@ -31,7 +31,7 @@ private [flakeless] case class FlightDataRecorder() {
     update(flightNumber, DataPoint(flightNumber, DateTime.now, None, Some(command.report), context, None))
   }
 
-  def jsonData(flight: Int) = DataPointJson.serialise(data(flight).dataPoints)
+  def jsonData(flight: Int) = FlightDataRecordJson.serialise(data(flight))
 
   def data(flightNumber: Int): FlightDataRecord = dataByFlightNumber.get(flightNumber).getOrElse(throw new RuntimeException(s"Not Record for flightnumber: $flightNumber"))
 

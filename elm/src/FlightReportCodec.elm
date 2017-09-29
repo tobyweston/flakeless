@@ -1,4 +1,4 @@
-module FlightReportCodec exposing (DataPoint, Context, Command, decodeDataPointList)
+module FlightReportCodec exposing (FlightDataRecord, DataPoint, Context, Command, decodeFlightDataRecord)
 
 
 import Json.Encode
@@ -7,6 +7,10 @@ import Json.Decode.Pipeline
 import Dict as Dict
 import Date.Extra.Utils as DateUtils
 import Date exposing (..)
+
+type alias FlightDataRecord =
+   { dataPoints: (List DataPoint)
+   }
 
 type alias DataPoint =
     { flightNumber : Int
@@ -35,6 +39,12 @@ type alias Context =
     { failures : List String
     , success : Maybe Bool
     }
+
+
+decodeFlightDataRecord : Json.Decode.Decoder FlightDataRecord
+decodeFlightDataRecord =
+    Json.Decode.Pipeline.decode FlightDataRecord
+        |> Json.Decode.Pipeline.required "dataPoints" decodeDataPointList
 
 decodeDataPointList : Json.Decode.Decoder (List DataPoint)
 decodeDataPointList =

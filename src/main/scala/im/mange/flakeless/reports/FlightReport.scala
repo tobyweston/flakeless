@@ -21,7 +21,7 @@ object FlightReport {
       val imagePath = path(filepath, s"$when.png")
       if (captureImage) write(imagePath, screenshot(flakeless))
 
-      val jsonFlightData = flakeless.jsonFlightData(flightNumber)
+      val jsonFlightData: String = flakeless.jsonFlightData(flightNumber)
 
 //      println(jsonFlightData + "\n")
 
