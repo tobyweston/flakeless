@@ -9,7 +9,9 @@ import Date.Extra.Utils as DateUtils
 import Date exposing (..)
 
 type alias FlightDataRecord =
-   { dataPoints: (List DataPoint)
+   { suite: String
+   , test: String
+   , dataPoints: (List DataPoint)
    }
 
 type alias DataPoint =
@@ -44,6 +46,8 @@ type alias Context =
 decodeFlightDataRecord : Json.Decode.Decoder FlightDataRecord
 decodeFlightDataRecord =
     Json.Decode.Pipeline.decode FlightDataRecord
+        |> Json.Decode.Pipeline.required "suite" Json.Decode.string
+        |> Json.Decode.Pipeline.required "test" Json.Decode.string
         |> Json.Decode.Pipeline.required "dataPoints" decodeDataPointList
 
 decodeDataPointList : Json.Decode.Decoder (List DataPoint)

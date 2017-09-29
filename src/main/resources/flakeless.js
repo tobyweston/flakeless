@@ -12847,9 +12847,10 @@ var _user$project$AllFlightsReport$main = _elm_lang$html$Html$program(
 	{init: _user$project$AllFlightsReport$init, view: _user$project$AllFlightsReport$view, update: _user$project$AllFlightsReport$update, subscriptions: _user$project$AllFlightsReport$subscriptions})();
 
 var _user$project$FlightReportCodec$decodeBys = _elm_lang$core$Json_Decode$keyValuePairs(_elm_lang$core$Json_Decode$string);
-var _user$project$FlightReportCodec$FlightDataRecord = function (a) {
-	return {dataPoints: a};
-};
+var _user$project$FlightReportCodec$FlightDataRecord = F3(
+	function (a, b, c) {
+		return {suite: a, test: b, dataPoints: c};
+	});
 var _user$project$FlightReportCodec$DataPoint = F6(
 	function (a, b, c, d, e, f) {
 		return {flightNumber: a, when: b, description: c, command: d, context: e, log: f};
@@ -12945,7 +12946,15 @@ var _user$project$FlightReportCodec$decodeFlightDataRecord = A3(
 	_NoRedInk$elm_decode_pipeline$Json_Decode_Pipeline$required,
 	'dataPoints',
 	_user$project$FlightReportCodec$decodeDataPointList,
-	_NoRedInk$elm_decode_pipeline$Json_Decode_Pipeline$decode(_user$project$FlightReportCodec$FlightDataRecord));
+	A3(
+		_NoRedInk$elm_decode_pipeline$Json_Decode_Pipeline$required,
+		'test',
+		_elm_lang$core$Json_Decode$string,
+		A3(
+			_NoRedInk$elm_decode_pipeline$Json_Decode_Pipeline$required,
+			'suite',
+			_elm_lang$core$Json_Decode$string,
+			_NoRedInk$elm_decode_pipeline$Json_Decode_Pipeline$decode(_user$project$FlightReportCodec$FlightDataRecord))));
 
 var _user$project$FlightReport$rightArrow = A2(
 	_elm_lang$html$Html$span,
@@ -13842,7 +13851,10 @@ var _user$project$FlightReport$init = {
 	_0: A3(
 		_user$project$FlightReport$Model,
 		'',
-		_user$project$FlightReportCodec$FlightDataRecord(
+		A3(
+			_user$project$FlightReportCodec$FlightDataRecord,
+			'',
+			'',
 			{ctor: '[]'}),
 		_elm_lang$core$Maybe$Nothing),
 	_1: _elm_lang$core$Platform_Cmd$none

@@ -59,7 +59,7 @@ type Msg
 
 init : ( Model, Cmd Msg )
 init =
-    ( Model "" (FlightDataRecord []) Nothing, Cmd.none )
+    ( Model "" (FlightDataRecord "" "" []) Nothing, Cmd.none )
 
 
 view : Model -> Html Msg
