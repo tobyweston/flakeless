@@ -12,6 +12,7 @@ import Date.Extra.Format as DateFormat
 import Date.Extra.Config.Config_en_gb exposing (config)
 import Dict
 import Base64
+import Json.Encode exposing (string)
 
 --TODO: kill bullets!
 --TODO: make logs be expand/collapsible
@@ -68,7 +69,7 @@ view model =
     in
         div []
             [ if isError then div [] [text (model.error |> Maybe.withDefault "") ] else nowt
-            , ul [] (List.map (\dp -> renderDataPoint dp ) model.dataPoints)
+            , div [] (List.map (\dp -> renderDataPoint dp ) model.dataPoints)
             , if isError then div [] [
                 hr [] []
                 , text ("raw:" ++ toString model.raw)
@@ -88,8 +89,9 @@ renderDataPoint dataPoint =
                         Nothing -> "dunno"
                         Just success -> if success then "pass" else "fail"
     in
-        li [ class colorClass, style [ ("min-height", "20px"), ("padding-bottom", "5px") ] ] [
-            span [ ] [
+        div [ style [ ("min-height", "20px"), ("padding-bottom", "5px") ] ] [
+            span [ class colorClass ] [rightArrow, text " "]
+            , span [ ] [
                 span [style [ gapRight, smaller, grey ]] [text (DateFormat.format config "%H:%M:%S.%L" dataPoint.when)]
 --                , span [style [ ("color", colorClass), ("font-weight", "bold"), gapRight ]] [ text "*"]
                 , if MaybeExtra.isJust dataPoint.description then span [style [ gapRight, smaller ] ] [text (dataPoint.description |> Maybe.withDefault "") ] else nowt
@@ -178,6 +180,11 @@ renderLog maybeLog =
     case maybeLog of
         Nothing -> nowt
         Just log -> div [style [ smaller, grey, ("margin-left", "25px") ]] [ pre [ style [ smaller, ("white-space", "pre-wrap") ]] [text ("\n" ++ (String.join "\n" log)) ] ]
+
+
+rightArrow : Html msg
+rightArrow =
+    span [ property "innerHTML" (string "&#9658;") ] []
 
 
 update : Msg -> Model -> ( Model, Cmd Msg )

@@ -47,57 +47,35 @@ s"""
   |<head>
   |<script type="text/javascript" src="../flakeless.js"></script>
   |<style>
+  |
   |.container {
   |  display: -webkit-flex;
   |  display: flex;
   |}
+  |
   |.flex1 {
   |  -webkit-flex: 1;
   |          flex: 1;
   |}
+  |
   |.flex2 {
   |  -webkit-flex: 2;
   |          flex: 2;
   |}
   |
-  |
-  |
-  |.container img {
-  |  width: 100%;
-  |  height: auto;
-  |}
-  |
-  |ul {
-  |  list-style: none;
-  |  padding: 0;
-  |  margin: 0;
-  |}
-  |
-  |li {
-  |  padding-left: 1em;
-  |  text-indent: -.7em;
-  |}
-  |
-  |.message::before {
-  |  content: "• ";
-  |  font-size: x-large;
+  |.message {
   |  color: grey;
   |}
-  |.pass::before {
-  |  content: "• ";
-  |  font-size: x-large;
+  |.pass {
   |  color: #00cc00;
   |}
-  |.fail::before {
-  |  content: "• ";
-  |  font-size: x-large;
+  |.fail {
   |  color: cc0000;
   |}
-  |.dunno::before {
-  |  content: "• ";
-  |  font-size: x-large;
+  |.dunno {
   |  color: cccc00;
   |}
+  |
   |</style>
   |</head>
   |<body>

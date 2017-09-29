@@ -12939,6 +12939,17 @@ var _user$project$FlightReportCodec$decodeDataPoint = A4(
 						_NoRedInk$elm_decode_pipeline$Json_Decode_Pipeline$decode(_user$project$FlightReportCodec$DataPoint)))))));
 var _user$project$FlightReportCodec$decodeDataPointList = _elm_lang$core$Json_Decode$list(_user$project$FlightReportCodec$decodeDataPoint);
 
+var _user$project$FlightReport$rightArrow = A2(
+	_elm_lang$html$Html$span,
+	{
+		ctor: '::',
+		_0: A2(
+			_elm_lang$html$Html_Attributes$property,
+			'innerHTML',
+			_elm_lang$core$Json_Encode$string('&#9658;')),
+		_1: {ctor: '[]'}
+	},
+	{ctor: '[]'});
 var _user$project$FlightReport$renderLog = function (maybeLog) {
 	var _p0 = maybeLog;
 	if (_p0.ctor === 'Nothing') {
@@ -13651,61 +13662,47 @@ var _user$project$FlightReport$renderDataPoint = function (dataPoint) {
 		}
 	}();
 	return A2(
-		_elm_lang$html$Html$li,
+		_elm_lang$html$Html$div,
 		{
 			ctor: '::',
-			_0: _elm_lang$html$Html_Attributes$class(colorClass),
-			_1: {
-				ctor: '::',
-				_0: _elm_lang$html$Html_Attributes$style(
-					{
+			_0: _elm_lang$html$Html_Attributes$style(
+				{
+					ctor: '::',
+					_0: {ctor: '_Tuple2', _0: 'min-height', _1: '20px'},
+					_1: {
 						ctor: '::',
-						_0: {ctor: '_Tuple2', _0: 'min-height', _1: '20px'},
-						_1: {
-							ctor: '::',
-							_0: {ctor: '_Tuple2', _0: 'padding-bottom', _1: '5px'},
-							_1: {ctor: '[]'}
-						}
-					}),
-				_1: {ctor: '[]'}
-			}
+						_0: {ctor: '_Tuple2', _0: 'padding-bottom', _1: '5px'},
+						_1: {ctor: '[]'}
+					}
+				}),
+			_1: {ctor: '[]'}
 		},
 		{
 			ctor: '::',
 			_0: A2(
 				_elm_lang$html$Html$span,
-				{ctor: '[]'},
 				{
 					ctor: '::',
-					_0: A2(
-						_elm_lang$html$Html$span,
-						{
-							ctor: '::',
-							_0: _elm_lang$html$Html_Attributes$style(
-								{
-									ctor: '::',
-									_0: _user$project$ViewShared$gapRight,
-									_1: {
-										ctor: '::',
-										_0: _user$project$ViewShared$smaller,
-										_1: {
-											ctor: '::',
-											_0: _user$project$ViewShared$grey,
-											_1: {ctor: '[]'}
-										}
-									}
-								}),
-							_1: {ctor: '[]'}
-						},
-						{
-							ctor: '::',
-							_0: _elm_lang$html$Html$text(
-								A3(_rluiten$elm_date_extra$Date_Extra_Format$format, _rluiten$elm_date_extra$Date_Extra_Config_Config_en_gb$config, '%H:%M:%S.%L', dataPoint.when)),
-							_1: {ctor: '[]'}
-						}),
+					_0: _elm_lang$html$Html_Attributes$class(colorClass),
+					_1: {ctor: '[]'}
+				},
+				{
+					ctor: '::',
+					_0: _user$project$FlightReport$rightArrow,
 					_1: {
 						ctor: '::',
-						_0: _elm_community$maybe_extra$Maybe_Extra$isJust(dataPoint.description) ? A2(
+						_0: _elm_lang$html$Html$text(' '),
+						_1: {ctor: '[]'}
+					}
+				}),
+			_1: {
+				ctor: '::',
+				_0: A2(
+					_elm_lang$html$Html$span,
+					{ctor: '[]'},
+					{
+						ctor: '::',
+						_0: A2(
 							_elm_lang$html$Html$span,
 							{
 								ctor: '::',
@@ -13716,7 +13713,11 @@ var _user$project$FlightReport$renderDataPoint = function (dataPoint) {
 										_1: {
 											ctor: '::',
 											_0: _user$project$ViewShared$smaller,
-											_1: {ctor: '[]'}
+											_1: {
+												ctor: '::',
+												_0: _user$project$ViewShared$grey,
+												_1: {ctor: '[]'}
+											}
 										}
 									}),
 								_1: {ctor: '[]'}
@@ -13724,25 +13725,50 @@ var _user$project$FlightReport$renderDataPoint = function (dataPoint) {
 							{
 								ctor: '::',
 								_0: _elm_lang$html$Html$text(
-									A2(_elm_lang$core$Maybe$withDefault, '', dataPoint.description)),
+									A3(_rluiten$elm_date_extra$Date_Extra_Format$format, _rluiten$elm_date_extra$Date_Extra_Config_Config_en_gb$config, '%H:%M:%S.%L', dataPoint.when)),
 								_1: {ctor: '[]'}
-							}) : _user$project$ViewShared$nowt,
+							}),
 						_1: {
 							ctor: '::',
-							_0: _user$project$FlightReport$renderCommand(dataPoint.command),
+							_0: _elm_community$maybe_extra$Maybe_Extra$isJust(dataPoint.description) ? A2(
+								_elm_lang$html$Html$span,
+								{
+									ctor: '::',
+									_0: _elm_lang$html$Html_Attributes$style(
+										{
+											ctor: '::',
+											_0: _user$project$ViewShared$gapRight,
+											_1: {
+												ctor: '::',
+												_0: _user$project$ViewShared$smaller,
+												_1: {ctor: '[]'}
+											}
+										}),
+									_1: {ctor: '[]'}
+								},
+								{
+									ctor: '::',
+									_0: _elm_lang$html$Html$text(
+										A2(_elm_lang$core$Maybe$withDefault, '', dataPoint.description)),
+									_1: {ctor: '[]'}
+								}) : _user$project$ViewShared$nowt,
 							_1: {
 								ctor: '::',
-								_0: _user$project$FlightReport$renderContext(dataPoint.context),
+								_0: _user$project$FlightReport$renderCommand(dataPoint.command),
 								_1: {
 									ctor: '::',
-									_0: _user$project$FlightReport$renderLog(dataPoint.log),
-									_1: {ctor: '[]'}
+									_0: _user$project$FlightReport$renderContext(dataPoint.context),
+									_1: {
+										ctor: '::',
+										_0: _user$project$FlightReport$renderLog(dataPoint.log),
+										_1: {ctor: '[]'}
+									}
 								}
 							}
 						}
-					}
-				}),
-			_1: {ctor: '[]'}
+					}),
+				_1: {ctor: '[]'}
+			}
 		});
 };
 var _user$project$FlightReport$view = function (model) {
@@ -13764,7 +13790,7 @@ var _user$project$FlightReport$view = function (model) {
 			_1: {
 				ctor: '::',
 				_0: A2(
-					_elm_lang$html$Html$ul,
+					_elm_lang$html$Html$div,
 					{ctor: '[]'},
 					A2(
 						_elm_lang$core$List$map,
