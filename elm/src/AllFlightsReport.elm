@@ -198,6 +198,7 @@ simpleTheadHelp (name, status, onClick) =
   in
     Html.th [ onClick ] content
 
+--TIP: https://stackoverflow.com/questions/2701192/what-characters-can-be-used-for-up-down-triangle-arrow-without-stem-for-displa
 upArrow : Html msg
 upArrow =
     span [ property "innerHTML" (string "&#9650;") ] []
