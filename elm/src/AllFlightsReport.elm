@@ -112,6 +112,7 @@ netTestDuration =
     , sorter = Table.decreasingOrIncreasingBy (maybeDurationToInt << .netDurationMillis)
     }
 
+
 --TIP: this needs some work obv
 suiteDuration : List Investigation -> Table.Column Investigation Msg
 suiteDuration investigations =
