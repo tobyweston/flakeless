@@ -22,6 +22,9 @@ object FlightReport {
       if (captureImage) write(imagePath, screenshot(flakeless))
 
       val jsonFlightData = flakeless.jsonFlightData(flightNumber)
+
+//      println(jsonFlightData + "\n")
+
       val b64 = Base64.getEncoder.encodeToString(jsonFlightData.getBytes(StandardCharsets.UTF_8))
 
       val htmlPath = path(filepath, s"report.html")
