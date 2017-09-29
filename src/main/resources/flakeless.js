@@ -12314,6 +12314,8 @@ var _truqu$elm_base64$Base64$decode = _truqu$elm_base64$Base64_Decode$decode;
 var _truqu$elm_base64$Base64$encode = _truqu$elm_base64$Base64_Encode$encode;
 
 var _user$project$ViewShared$nowt = _elm_lang$html$Html$text('');
+var _user$project$ViewShared$bold = {ctor: '_Tuple2', _0: 'font-weight', _1: 'bold'};
+var _user$project$ViewShared$larger = {ctor: '_Tuple2', _0: 'font-size', _1: 'larger'};
 var _user$project$ViewShared$smaller = {ctor: '_Tuple2', _0: 'font-size', _1: 'smaller'};
 var _user$project$ViewShared$grey = {ctor: '_Tuple2', _0: 'color', _1: 'grey'};
 var _user$project$ViewShared$gapRight = {ctor: '_Tuple2', _0: 'margin-right', _1: '6px'};
@@ -13808,35 +13810,75 @@ var _user$project$FlightReport$view = function (model) {
 				ctor: '::',
 				_0: A2(
 					_elm_lang$html$Html$div,
-					{ctor: '[]'},
-					A2(
-						_elm_lang$core$List$map,
-						function (dp) {
-							return _user$project$FlightReport$renderDataPoint(dp);
-						},
-						model.flightDataRecord.dataPoints)),
-				_1: {
-					ctor: '::',
-					_0: isError ? A2(
-						_elm_lang$html$Html$div,
-						{ctor: '[]'},
-						{
+					{
+						ctor: '::',
+						_0: _elm_lang$html$Html_Attributes$style(
+							{
+								ctor: '::',
+								_0: _user$project$ViewShared$larger,
+								_1: {
+									ctor: '::',
+									_0: _user$project$ViewShared$bold,
+									_1: {
+										ctor: '::',
+										_0: _user$project$ViewShared$grey,
+										_1: {
+											ctor: '::',
+											_0: {ctor: '_Tuple2', _0: 'margin-bottom', _1: '6px'},
+											_1: {ctor: '[]'}
+										}
+									}
+								}
+							}),
+						_1: {ctor: '[]'}
+					},
+					{
+						ctor: '::',
+						_0: _elm_lang$html$Html$text(model.flightDataRecord.suite),
+						_1: {
 							ctor: '::',
-							_0: A2(
-								_elm_lang$html$Html$hr,
-								{ctor: '[]'},
-								{ctor: '[]'}),
+							_0: _elm_lang$html$Html$text(' - '),
 							_1: {
 								ctor: '::',
-								_0: _elm_lang$html$Html$text(
-									A2(
-										_elm_lang$core$Basics_ops['++'],
-										'raw:',
-										_elm_lang$core$Basics$toString(model.raw))),
+								_0: _elm_lang$html$Html$text(model.flightDataRecord.test),
 								_1: {ctor: '[]'}
 							}
-						}) : _user$project$ViewShared$nowt,
-					_1: {ctor: '[]'}
+						}
+					}),
+				_1: {
+					ctor: '::',
+					_0: A2(
+						_elm_lang$html$Html$div,
+						{ctor: '[]'},
+						A2(
+							_elm_lang$core$List$map,
+							function (dp) {
+								return _user$project$FlightReport$renderDataPoint(dp);
+							},
+							model.flightDataRecord.dataPoints)),
+					_1: {
+						ctor: '::',
+						_0: isError ? A2(
+							_elm_lang$html$Html$div,
+							{ctor: '[]'},
+							{
+								ctor: '::',
+								_0: A2(
+									_elm_lang$html$Html$hr,
+									{ctor: '[]'},
+									{ctor: '[]'}),
+								_1: {
+									ctor: '::',
+									_0: _elm_lang$html$Html$text(
+										A2(
+											_elm_lang$core$Basics_ops['++'],
+											'raw:',
+											_elm_lang$core$Basics$toString(model.raw))),
+									_1: {ctor: '[]'}
+								}
+							}) : _user$project$ViewShared$nowt,
+						_1: {ctor: '[]'}
+					}
 				}
 			}
 		});

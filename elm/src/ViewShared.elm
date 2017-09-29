@@ -13,6 +13,12 @@ grey = ("color", "grey")
 smaller : (String, String)
 smaller = ("font-size", "smaller")
 
+larger : (String, String)
+larger = ("font-size", "larger")
+
+bold : (String, String)
+bold = ("font-weight", "bold")
+
 nowt : Html msg
 nowt =
     text ""

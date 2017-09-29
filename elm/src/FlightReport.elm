@@ -69,6 +69,7 @@ view model =
     in
         div []
             [ if isError then div [] [text (model.error |> Maybe.withDefault "") ] else nowt
+            , div [style [larger, bold, grey, ("margin-bottom", "6px")]] [text model.flightDataRecord.suite, text " - ", text model.flightDataRecord.test]
             , div [] (List.map (\dp -> renderDataPoint dp ) model.flightDataRecord.dataPoints)
             , if isError then div [] [
                 hr [] []
