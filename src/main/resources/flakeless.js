@@ -13293,7 +13293,7 @@ var _user$project$FlightReport$renderBys = function (bys) {
 									},
 									{
 										ctor: '::',
-										_0: _elm_lang$html$Html$text(' > '),
+										_0: _elm_lang$html$Html$text(' -> '),
 										_1: {ctor: '[]'}
 									}),
 								_1: {ctor: '[]'}
