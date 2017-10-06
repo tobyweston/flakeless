@@ -13728,11 +13728,15 @@ var _user$project$FlightReport$renderDataPoint = function (dataPoint) {
 			_0: _elm_lang$html$Html_Attributes$style(
 				{
 					ctor: '::',
-					_0: {ctor: '_Tuple2', _0: 'min-height', _1: '20px'},
+					_0: {ctor: '_Tuple2', _0: 'margin-left', _1: '5px'},
 					_1: {
 						ctor: '::',
-						_0: {ctor: '_Tuple2', _0: 'padding-bottom', _1: '10px'},
-						_1: {ctor: '[]'}
+						_0: {ctor: '_Tuple2', _0: 'min-height', _1: '20px'},
+						_1: {
+							ctor: '::',
+							_0: {ctor: '_Tuple2', _0: 'padding-bottom', _1: '10px'},
+							_1: {ctor: '[]'}
+						}
 					}
 				}),
 			_1: {ctor: '[]'}
@@ -13865,8 +13869,12 @@ var _user$project$FlightReport$view = function (model) {
 										_0: _user$project$ViewShared$grey,
 										_1: {
 											ctor: '::',
-											_0: {ctor: '_Tuple2', _0: 'margin-bottom', _1: '6px'},
-											_1: {ctor: '[]'}
+											_0: {ctor: '_Tuple2', _0: 'margin', _1: '10px'},
+											_1: {
+												ctor: '::',
+												_0: {ctor: '_Tuple2', _0: 'margin-left', _1: '5px'},
+												_1: {ctor: '[]'}
+											}
 										}
 									}
 								}

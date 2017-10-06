@@ -68,7 +68,7 @@ view model =
     in
         div []
             [ if isError then div [] [text (model.error |> Maybe.withDefault "") ] else nowt
-            , div [style [larger, bold, grey, ("margin-bottom", "6px")]] [text model.flightDataRecord.suite, text " - ", text model.flightDataRecord.test]
+            , div [style [larger, bold, grey, ("margin", "10px"), ("margin-left", "5px")]] [text model.flightDataRecord.suite, text " - ", text model.flightDataRecord.test]
             , div [] (List.map (\dp -> renderDataPoint dp ) model.flightDataRecord.dataPoints)
             , if isError then div [] [
                 hr [] []
@@ -89,7 +89,7 @@ renderDataPoint dataPoint =
                         Nothing -> "dunno"
                         Just success -> if success then "pass" else "fail"
     in
-        div [ style [ ("min-height", "20px"), ("padding-bottom", "10px") ] ] [
+        div [ style [ ("margin-left", "5px"), ("min-height", "20px"), ("padding-bottom", "10px") ] ] [
             span [ class colorClass ] [rightArrow, text " "]
             , span [ ] [
                 span [style [ gapRight, smaller, grey ]] [text (DateFormat.format config "%H:%M:%S.%L" dataPoint.when)]

@@ -84,7 +84,7 @@ s"""
   |<body>
   |  <div class="container">
   |    <div class="flex2" style="font-family: Courier New;" id="content"></div>
-  |    <div class="flex1" style="background-color: grey;" class="container"><img src="$when.png"></div>
+  |    <div class="flex2" style="background-color: grey;" class="container"><img src="$when.png" style="zoom: 75%;"></div>
   |  </div>
   |  <script>
   |    var data = '${data.replaceAll("\n", "").replaceAll("'", "")}';
