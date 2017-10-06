@@ -66,6 +66,10 @@ s"""
  |  height: auto;
  |}
  |
+ |img {
+ |  zoom: 50%;
+ |}
+ |
  |ul {
  |  list-style: none;
  |  padding: 0;
