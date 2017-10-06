@@ -13024,7 +13024,7 @@ var _user$project$FlightReport$renderLog = function (maybeLog) {
 							_0: _user$project$ViewShared$grey,
 							_1: {
 								ctor: '::',
-								_0: {ctor: '_Tuple2', _0: 'margin-left', _1: '20px'},
+								_0: {ctor: '_Tuple2', _0: 'margin-left', _1: '14px'},
 								_1: {ctor: '[]'}
 							}
 						}
@@ -13089,7 +13089,7 @@ var _user$project$FlightReport$renderContext = function (maybeContext) {
 						_0: _user$project$ViewShared$smaller,
 						_1: {
 							ctor: '::',
-							_0: {ctor: '_Tuple2', _0: 'margin-left', _1: '20px'},
+							_0: {ctor: '_Tuple2', _0: 'margin-left', _1: '14px'},
 							_1: {
 								ctor: '::',
 								_0: {ctor: '_Tuple2', _0: 'margin-top', _1: '6px'},
@@ -13131,8 +13131,12 @@ var _user$project$FlightReport$renderContext = function (maybeContext) {
 							_0: _elm_lang$html$Html_Attributes$style(
 								{
 									ctor: '::',
-									_0: {ctor: '_Tuple2', _0: 'color', _1: '#cc0000'},
-									_1: {ctor: '[]'}
+									_0: _user$project$ViewShared$bold,
+									_1: {
+										ctor: '::',
+										_0: {ctor: '_Tuple2', _0: 'color', _1: '#cc0000'},
+										_1: {ctor: '[]'}
+									}
 								}),
 							_1: {ctor: '[]'}
 						},
@@ -13731,11 +13735,15 @@ var _user$project$FlightReport$renderDataPoint = function (dataPoint) {
 					_0: {ctor: '_Tuple2', _0: 'margin-left', _1: '5px'},
 					_1: {
 						ctor: '::',
-						_0: {ctor: '_Tuple2', _0: 'min-height', _1: '20px'},
+						_0: {ctor: '_Tuple2', _0: 'margin-right', _1: '10px'},
 						_1: {
 							ctor: '::',
-							_0: {ctor: '_Tuple2', _0: 'padding-bottom', _1: '10px'},
-							_1: {ctor: '[]'}
+							_0: {ctor: '_Tuple2', _0: 'min-height', _1: '20px'},
+							_1: {
+								ctor: '::',
+								_0: {ctor: '_Tuple2', _0: 'padding-bottom', _1: '10px'},
+								_1: {ctor: '[]'}
+							}
 						}
 					}
 				}),
@@ -13748,16 +13756,25 @@ var _user$project$FlightReport$renderDataPoint = function (dataPoint) {
 				{
 					ctor: '::',
 					_0: _elm_lang$html$Html_Attributes$class(colorClass),
-					_1: {ctor: '[]'}
+					_1: {
+						ctor: '::',
+						_0: _elm_lang$html$Html_Attributes$style(
+							{
+								ctor: '::',
+								_0: _user$project$ViewShared$smaller,
+								_1: {
+									ctor: '::',
+									_0: {ctor: '_Tuple2', _0: 'margin-right', _1: '5px'},
+									_1: {ctor: '[]'}
+								}
+							}),
+						_1: {ctor: '[]'}
+					}
 				},
 				{
 					ctor: '::',
 					_0: _user$project$ViewShared$rightArrow,
-					_1: {
-						ctor: '::',
-						_0: _elm_lang$html$Html$text(' '),
-						_1: {ctor: '[]'}
-					}
+					_1: {ctor: '[]'}
 				}),
 			_1: {
 				ctor: '::',

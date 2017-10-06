@@ -89,8 +89,8 @@ renderDataPoint dataPoint =
                         Nothing -> "dunno"
                         Just success -> if success then "pass" else "fail"
     in
-        div [ style [ ("margin-left", "5px"), ("min-height", "20px"), ("padding-bottom", "10px") ] ] [
-            span [ class colorClass ] [rightArrow, text " "]
+        div [ style [ ("margin-left", "5px"), ("margin-right", "10px"), ("min-height", "20px"), ("padding-bottom", "10px") ] ] [
+            span [ class colorClass, style [smaller,("margin-right", "5px")]  ] [rightArrow]
             , span [ ] [
                 span [style [ gapRight, smaller, grey ]] [span [style [smaller]] [text (DateFormat.format config "%H:%M:%S.%L" dataPoint.when)]]
 --                , span [style [ ("color", colorClass), ("font-weight", "bold"), gapRight ]] [ text "*"]
@@ -171,7 +171,7 @@ renderContext maybeContext =
                                                                                      Just success -> success) then
 --                        else span [] [text "actual: ", span [] ((List.map (\f -> span [] [text f]) context.failures) |> List.intersperse (span [style [ smaller ]] [text ", "]))]
 --                        span [style [smaller]] [span [style [grey, smaller]] [ text "actual: "], span [] ((List.map (\f -> span [] [text ("\"" ++ f ++ "\"")]) context.failures) |> List.intersperse (span [style [ smaller ]] [text ", "]))]
-                        div [style [smaller, ("margin-left", "20px"),("margin-top", "6px")]] [span [style [grey, smaller]] [ text "actual: "], span [ style [ ("color", "#cc0000") ]] [text (List.reverse context.failures |> List.head |> Maybe.map (\f -> "\"" ++ f ++ "\"") |> Maybe.withDefault "???" )] ]
+                        div [style [smaller, ("margin-left", "14px"),("margin-top", "6px")]] [span [style [grey, smaller]] [ text "actual: "], span [ style [bold, ("color", "#cc0000") ]] [text (List.reverse context.failures |> List.head |> Maybe.map (\f -> "\"" ++ f ++ "\"") |> Maybe.withDefault "???" )] ]
                         else nowt
 
 
@@ -179,7 +179,7 @@ renderLog : Maybe (List String) -> Html msg
 renderLog maybeLog =
     case maybeLog of
         Nothing -> nowt
-        Just log -> div [style [ smaller, grey, ("margin-left", "20px") ]] [ pre [ style [ smaller, ("white-space", "pre-wrap"), ("margin-top", "0px") ]] [text ("\n" ++ (String.join "\n" log)) ] ]
+        Just log -> div [style [ smaller, grey, ("margin-left", "14px") ]] [ pre [ style [ smaller, ("white-space", "pre-wrap"), ("margin-top", "0px") ]] [text ("\n" ++ (String.join "\n" log)) ] ]
 
 
 update : Msg -> Model -> ( Model, Cmd Msg )
