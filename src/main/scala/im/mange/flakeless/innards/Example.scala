@@ -48,7 +48,7 @@ object Example extends App {
     TestsSummaryReport(flakeless)
   }
 
-  def createElement: RemoteWebElement = {
+  private def createElement: RemoteWebElement = {
     val element = new RemoteWebElement()
     element.setId("elementId")
     element
