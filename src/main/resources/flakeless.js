@@ -13024,7 +13024,7 @@ var _user$project$FlightReport$renderLog = function (maybeLog) {
 							_0: _user$project$ViewShared$grey,
 							_1: {
 								ctor: '::',
-								_0: {ctor: '_Tuple2', _0: 'margin-left', _1: '25px'},
+								_0: {ctor: '_Tuple2', _0: 'margin-left', _1: '20px'},
 								_1: {ctor: '[]'}
 							}
 						}
@@ -13082,11 +13082,15 @@ var _user$project$FlightReport$renderContext = function (maybeContext) {
 				_0: _elm_lang$html$Html_Attributes$style(
 					{
 						ctor: '::',
-						_0: {ctor: '_Tuple2', _0: 'margin-left', _1: '20px'},
+						_0: _user$project$ViewShared$smaller,
 						_1: {
 							ctor: '::',
-							_0: {ctor: '_Tuple2', _0: 'margin-top', _1: '6px'},
-							_1: {ctor: '[]'}
+							_0: {ctor: '_Tuple2', _0: 'margin-left', _1: '20px'},
+							_1: {
+								ctor: '::',
+								_0: {ctor: '_Tuple2', _0: 'margin-top', _1: '6px'},
+								_1: {ctor: '[]'}
+							}
 						}
 					}),
 				_1: {ctor: '[]'}
@@ -13260,21 +13264,17 @@ var _user$project$FlightReport$renderBys = function (bys) {
 		_elm_lang$html$Html$span,
 		{
 			ctor: '::',
-			_0: _elm_lang$html$Html_Attributes$class('lozengex'),
-			_1: {
-				ctor: '::',
-				_0: _elm_lang$html$Html_Attributes$style(
-					{
+			_0: _elm_lang$html$Html_Attributes$style(
+				{
+					ctor: '::',
+					_0: _user$project$ViewShared$smaller,
+					_1: {
 						ctor: '::',
-						_0: _user$project$ViewShared$smaller,
-						_1: {
-							ctor: '::',
-							_0: _user$project$ViewShared$gapRight,
-							_1: {ctor: '[]'}
-						}
-					}),
-				_1: {ctor: '[]'}
-			}
+						_0: _user$project$ViewShared$gapRight,
+						_1: {ctor: '[]'}
+					}
+				}),
+			_1: {ctor: '[]'}
 		},
 		{
 			ctor: '::',
@@ -13424,21 +13424,17 @@ var _user$project$FlightReport$renderArgs = function (args) {
 		_elm_lang$html$Html$span,
 		{
 			ctor: '::',
-			_0: _elm_lang$html$Html_Attributes$class('lozengex'),
-			_1: {
-				ctor: '::',
-				_0: _elm_lang$html$Html_Attributes$style(
-					{
+			_0: _elm_lang$html$Html_Attributes$style(
+				{
+					ctor: '::',
+					_0: _user$project$ViewShared$smaller,
+					_1: {
 						ctor: '::',
-						_0: _user$project$ViewShared$smaller,
-						_1: {
-							ctor: '::',
-							_0: _user$project$ViewShared$gapRight,
-							_1: {ctor: '[]'}
-						}
-					}),
-				_1: {ctor: '[]'}
-			}
+						_0: _user$project$ViewShared$gapRight,
+						_1: {ctor: '[]'}
+					}
+				}),
+			_1: {ctor: '[]'}
 		},
 		A2(
 			_elm_lang$core$List$intersperse,

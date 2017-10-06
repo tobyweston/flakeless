@@ -33,7 +33,7 @@ object Example extends App {
     flakeless.record(Command("Click", Some(createElement), Some(By.id("id"))), Context(List("failed for a bit"), success = Some(true)))
     flakeless.record(Command("AssertElementListTextEquals", Some(createElement), Some(By.id("id")), expectedMany = Some(List("expected"))), Context(List("failures"), success = Some(false)))
 
-    flakeless.inflightAnnouncement("foo log", Some(List("line 1", "line 2", "line 3")))
+    flakeless.inflightAnnouncement("foo log", Some(List("line 1", "line 2", "line 3", "line long long longgggggggggggg  dfg fdg fd gfd gdf gfd g dfg fd gfd g fdg fd gdf g fdg df gd fg df gdf g dfg fd gd fg dfg fd gf dg fdg df gd fg ")))
     CurrentTestReport(flakeless, captureImage = false)
     flakeless.stopFlight()
 

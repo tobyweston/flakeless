@@ -126,7 +126,7 @@ renderExpected expected expectedMany =
 
 renderArgs : Dict.Dict String String -> Html msg
 renderArgs args =
-    if Dict.isEmpty args then nowt else span [class "lozengex" ,style [ smaller, gapRight ]]
+    if Dict.isEmpty args then nowt else span [style [ smaller, gapRight ]]
       ((List.map (\k -> renderArg k (Dict.get k args)) (Dict.keys args)) |> List.intersperse (span [style [ smaller ]] [text ",  "]))
 
 
@@ -140,7 +140,7 @@ renderArg k v =
 
 renderBys : List (List (String, String)) -> Html msg
 renderBys bys =
-    if List.isEmpty bys then nowt else span [class "lozengex" , style [ smaller, gapRight ]] [
+    if List.isEmpty bys then nowt else span [style [ smaller, gapRight ]] [
       span [ style [ grey] ] [ text "{" ]
       , span [] ((List.map (\b -> renderBy b) bys) |> List.intersperse (span [style [ smaller ]] [span [style [smaller,("font-style", "bold" )]] [ text " -> "]]))
       , span [ style [ grey] ] [ text "}" ]
@@ -171,7 +171,7 @@ renderContext maybeContext =
                                                                                      Just success -> success) then
 --                        else span [] [text "actual: ", span [] ((List.map (\f -> span [] [text f]) context.failures) |> List.intersperse (span [style [ smaller ]] [text ", "]))]
 --                        span [style [smaller]] [span [style [grey, smaller]] [ text "actual: "], span [] ((List.map (\f -> span [] [text ("\"" ++ f ++ "\"")]) context.failures) |> List.intersperse (span [style [ smaller ]] [text ", "]))]
-                        div [style [("margin-left", "20px"),("margin-top", "6px")]] [span [style [grey, smaller]] [ text "actual: "], span [ style [ ("color", "#cc0000") ]] [text (List.reverse context.failures |> List.head |> Maybe.map (\f -> "\"" ++ f ++ "\"") |> Maybe.withDefault "???" )] ]
+                        div [style [smaller, ("margin-left", "20px"),("margin-top", "6px")]] [span [style [grey, smaller]] [ text "actual: "], span [ style [ ("color", "#cc0000") ]] [text (List.reverse context.failures |> List.head |> Maybe.map (\f -> "\"" ++ f ++ "\"") |> Maybe.withDefault "???" )] ]
                         else nowt
 
 
@@ -179,7 +179,7 @@ renderLog : Maybe (List String) -> Html msg
 renderLog maybeLog =
     case maybeLog of
         Nothing -> nowt
-        Just log -> div [style [ smaller, grey, ("margin-left", "25px") ]] [ pre [ style [ smaller, ("white-space", "pre-wrap") ]] [text ("\n" ++ (String.join "\n" log)) ] ]
+        Just log -> div [style [ smaller, grey, ("margin-left", "20px") ]] [ pre [ style [ smaller, ("white-space", "pre-wrap") ]] [text ("\n" ++ (String.join "\n" log)) ] ]
 
 
 update : Msg -> Model -> ( Model, Cmd Msg )
