@@ -112,8 +112,6 @@ renderCommand maybeCommand =
             , span [style [smaller]] [renderArgs command.args]
             , span [style [smaller]] [renderIn command.in_]
             , renderExpected command.expected command.expectedMany
-            --TODO: whack me when done ....
---            , div [style [ ("margin-right", "7px")]] [ text (toString command) ]
             ]
 
 renderExpected : Maybe String -> Maybe (List String) -> Html msg
@@ -171,7 +169,7 @@ renderContext maybeContext =
                                                                                      Just success -> success) then
 --                        else span [] [text "actual: ", span [] ((List.map (\f -> span [] [text f]) context.failures) |> List.intersperse (span [style [ smaller ]] [text ", "]))]
 --                        span [style [smaller]] [span [style [grey, smaller]] [ text "actual: "], span [] ((List.map (\f -> span [] [text ("\"" ++ f ++ "\"")]) context.failures) |> List.intersperse (span [style [ smaller ]] [text ", "]))]
-                        div [style [smaller, ("margin-left", "14px"),("margin-top", "6px")]] [span [style [grey, smaller]] [ text "actual: "], span [ style [bold, ("color", "#cc0000") ]] [text (List.reverse context.failures |> List.head |> Maybe.map (\f -> "\"" ++ f ++ "\"") |> Maybe.withDefault "???" )] ]
+                        div [style [smaller, ("margin-left", "14 px"),("margin-top", "6px")]] [span [style [grey, smaller]] [ text "actual: "], span [ style [bold, ("color", "#cc0000") ]] [text (List.reverse context.failures |> List.head |> Maybe.map (\f -> "\"" ++ f ++ "\"") |> Maybe.withDefault "???" )] ]
                         else nowt
 
 
