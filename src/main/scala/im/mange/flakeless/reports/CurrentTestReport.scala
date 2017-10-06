@@ -10,10 +10,10 @@ import org.openqa.selenium.{OutputType, TakesScreenshot}
 object CurrentTestReport {
   import java.nio.file.{Files, Path, Paths}
 
-  def apply(flakeless: Flakeless, outputDirectory: String, captureImage: Boolean = true, host: Option[String] = None) {
+  def apply(flakeless: Flakeless, captureImage: Boolean = true, host: Option[String] = None) {
     try {
       val flightNumber = flakeless.getCurrentFlightNumber
-      val filepath = s"$outputDirectory/${"%04d".format(flightNumber)}/"
+      val filepath = s"${flakeless.config.outputDirectory}/${"%04d".format(flightNumber)}/"
       Files.createDirectories(Paths.get(filepath))
 
       val when = System.currentTimeMillis()
@@ -30,7 +30,7 @@ object CurrentTestReport {
       val htmlPath = path(filepath, s"report.html")
       write(htmlPath, htmlContent(when, flakeless, b64).getBytes)
 
-      ReportAssets.writeFlakelessJs(outputDirectory)
+      ReportAssets.writeFlakelessJs(flakeless.config.outputDirectory)
 
       val fileSystemReportPath = htmlPath.toAbsolutePath.toString
 
