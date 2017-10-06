@@ -89,7 +89,7 @@ renderDataPoint dataPoint =
                         Nothing -> "dunno"
                         Just success -> if success then "pass" else "fail"
     in
-        div [ style [ ("min-height", "20px"), ("padding-bottom", "5px") ] ] [
+        div [ style [ ("min-height", "20px"), ("padding-bottom", "10px") ] ] [
             span [ class colorClass ] [rightArrow, text " "]
             , span [ ] [
                 span [style [ gapRight, smaller, grey ]] [text (DateFormat.format config "%H:%M:%S.%L" dataPoint.when)]

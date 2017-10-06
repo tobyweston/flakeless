@@ -13731,7 +13731,7 @@ var _user$project$FlightReport$renderDataPoint = function (dataPoint) {
 					_0: {ctor: '_Tuple2', _0: 'min-height', _1: '20px'},
 					_1: {
 						ctor: '::',
-						_0: {ctor: '_Tuple2', _0: 'padding-bottom', _1: '5px'},
+						_0: {ctor: '_Tuple2', _0: 'padding-bottom', _1: '10px'},
 						_1: {ctor: '[]'}
 					}
 				}),
