@@ -34,9 +34,7 @@ object Example extends App {
     flakeless.record(Command("AssertElementListTextEquals", Some(createElement), Some(By.id("id")), expectedMany = Some(List("expected"))), Context(List("failures"), success = Some(false)))
 
     flakeless.inflightAnnouncement("foo log", Some(List("line 1", "line 2", "line 3")))
-
     CurrentTestReport(flakeless, captureImage = false)
-
     flakeless.stopFlight()
 
     flakeless.startFlight("Airplane", "Clearance Clarence")
