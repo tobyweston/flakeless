@@ -9,7 +9,7 @@ import im.mange.flakeless.innards.{FlightInvestigator, ReportAssets}
 object AllTestsReport {
   import java.nio.file.{Files, Path, Paths}
 
-  def apply(flakeless: Flakeless, host: Option[String] = None) {
+  def apply(flakeless: Flakeless) {
     synchronized({
       try {
         val filepath = s"${flakeless.config.outputDirectory}/"
@@ -28,7 +28,7 @@ object AllTestsReport {
 
         val fileSystemReportPath = htmlPath.toAbsolutePath.toString
 
-        host match {
+        flakeless.config.host match {
           case None => System.err.println("*** Flakeless All Flights report: " + fileSystemReportPath)
           case Some(h) => System.err.println(s"*** Flakeless All Flights report: ${h}/${htmlPath.toString.replaceAll("\\\\", "/")} (or ${fileSystemReportPath})")
 
