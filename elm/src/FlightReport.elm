@@ -92,7 +92,7 @@ renderDataPoint dataPoint =
         div [ style [ ("margin-left", "5px"), ("min-height", "20px"), ("padding-bottom", "10px") ] ] [
             span [ class colorClass ] [rightArrow, text " "]
             , span [ ] [
-                span [style [ gapRight, smaller, grey ]] [text (DateFormat.format config "%H:%M:%S.%L" dataPoint.when)]
+                span [style [ gapRight, smaller, grey ]] [span [style [smaller]] [text (DateFormat.format config "%H:%M:%S.%L" dataPoint.when)]]
 --                , span [style [ ("color", colorClass), ("font-weight", "bold"), gapRight ]] [ text "*"]
                 , if MaybeExtra.isJust dataPoint.description then span [style [ gapRight, smaller ] ] [text (dataPoint.description |> Maybe.withDefault "") ] else nowt
                 , renderCommand dataPoint.command
@@ -179,7 +179,7 @@ renderLog : Maybe (List String) -> Html msg
 renderLog maybeLog =
     case maybeLog of
         Nothing -> nowt
-        Just log -> div [style [ smaller, grey, ("margin-left", "20px") ]] [ pre [ style [ smaller, ("white-space", "pre-wrap") ]] [text ("\n" ++ (String.join "\n" log)) ] ]
+        Just log -> div [style [ smaller, grey, ("margin-left", "20px") ]] [ pre [ style [ smaller, ("white-space", "pre-wrap"), ("margin-top", "0px") ]] [text ("\n" ++ (String.join "\n" log)) ] ]
 
 
 update : Msg -> Model -> ( Model, Cmd Msg )

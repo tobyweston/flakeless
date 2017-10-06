@@ -13044,7 +13044,11 @@ var _user$project$FlightReport$renderLog = function (maybeLog) {
 								_1: {
 									ctor: '::',
 									_0: {ctor: '_Tuple2', _0: 'white-space', _1: 'pre-wrap'},
-									_1: {ctor: '[]'}
+									_1: {
+										ctor: '::',
+										_0: {ctor: '_Tuple2', _0: 'margin-top', _1: '0px'},
+										_1: {ctor: '[]'}
+									}
 								}
 							}),
 						_1: {ctor: '[]'}
@@ -13784,8 +13788,24 @@ var _user$project$FlightReport$renderDataPoint = function (dataPoint) {
 							},
 							{
 								ctor: '::',
-								_0: _elm_lang$html$Html$text(
-									A3(_rluiten$elm_date_extra$Date_Extra_Format$format, _rluiten$elm_date_extra$Date_Extra_Config_Config_en_gb$config, '%H:%M:%S.%L', dataPoint.when)),
+								_0: A2(
+									_elm_lang$html$Html$span,
+									{
+										ctor: '::',
+										_0: _elm_lang$html$Html_Attributes$style(
+											{
+												ctor: '::',
+												_0: _user$project$ViewShared$smaller,
+												_1: {ctor: '[]'}
+											}),
+										_1: {ctor: '[]'}
+									},
+									{
+										ctor: '::',
+										_0: _elm_lang$html$Html$text(
+											A3(_rluiten$elm_date_extra$Date_Extra_Format$format, _rluiten$elm_date_extra$Date_Extra_Config_Config_en_gb$config, '%H:%M:%S.%L', dataPoint.when)),
+										_1: {ctor: '[]'}
+									}),
 								_1: {ctor: '[]'}
 							}),
 						_1: {
