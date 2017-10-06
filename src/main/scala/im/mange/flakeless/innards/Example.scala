@@ -1,6 +1,6 @@
 package im.mange.flakeless.innards
 
-import im.mange.flakeless.reports.{AllTestsReport, CurrentTestReport}
+import im.mange.flakeless.reports.{TestsSummaryReport, CurrentTestReport}
 import im.mange.flakeless.{Flakeless, Path}
 import org.openqa.selenium.By
 import org.openqa.selenium.remote.RemoteWebElement
@@ -47,7 +47,7 @@ object Example extends App {
     CurrentTestReport(flakeless, captureImage = false)
     flakeless.stopFlight()
 
-    AllTestsReport(flakeless)
+    TestsSummaryReport(flakeless)
   }
 
   def createElement: RemoteWebElement = {

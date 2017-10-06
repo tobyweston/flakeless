@@ -13,7 +13,7 @@ object CurrentTestReport {
   def apply(flakeless: Flakeless, captureImage: Boolean = true) {
     try {
       val flightNumber = flakeless.getCurrentFlightNumber
-      val filepath = s"${flakeless.config.outputDirectory}/${"%04d".format(flightNumber)}/"
+      val filepath = s"${flakeless.config.reportDirectory}/${"%04d".format(flightNumber)}/"
       Files.createDirectories(Paths.get(filepath))
 
       val when = System.currentTimeMillis()
@@ -30,17 +30,17 @@ object CurrentTestReport {
       val htmlPath = path(filepath, s"report.html")
       write(htmlPath, htmlContent(when, flakeless, b64).getBytes)
 
-      ReportAssets.writeFlakelessJs(flakeless.config.outputDirectory)
+      ReportAssets.writeFlakelessJs(flakeless.config.reportDirectory)
 
       val fileSystemReportPath = htmlPath.toAbsolutePath.toString
 
-      flakeless.config.host match {
-        case None => System.err.println("*** Flakeless Flight report: " + fileSystemReportPath)
-        case Some(h) => System.err.println(s"*** Flakeless Flight report: ${h}/${htmlPath.toString.replaceAll("\\\\", "/")} (or ${fileSystemReportPath})")
+      flakeless.config.reportHost match {
+        case None => System.err.println("*** Test Report: " + fileSystemReportPath)
+        case Some(h) => System.err.println(s"*** Test Report: ${h}/${htmlPath.toString.replaceAll("\\\\", "/")} (or ${fileSystemReportPath})")
 
       }
     } catch {
-      case t: Exception => System.err.println(s"*** Failed to write Flight report something bad happened ***\nProblem was:${t.getMessage}")
+      case t: Exception => System.err.println(s"*** Failed to write Test Report something bad happened ***\nProblem was:${t.getMessage}")
     }
 
     //TODO: might be able to kill the lozenge now ...

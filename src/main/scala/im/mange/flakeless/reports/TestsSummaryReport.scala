@@ -6,13 +6,13 @@ import java.util.Base64
 import im.mange.flakeless.Flakeless
 import im.mange.flakeless.innards.{FlightInvestigator, ReportAssets}
 
-object AllTestsReport {
+object TestsSummaryReport {
   import java.nio.file.{Files, Path, Paths}
 
   def apply(flakeless: Flakeless) {
     synchronized({
       try {
-        val filepath = s"${flakeless.config.outputDirectory}/"
+        val filepath = s"${flakeless.config.reportDirectory}/"
         Files.createDirectories(Paths.get(filepath))
 
         val jsonFlightData = flakeless.jsonAllFlightsData
@@ -24,18 +24,18 @@ object AllTestsReport {
         val htmlPath = path(filepath, s"summary.html")
         write(htmlPath, htmlContent(flakeless, b64).getBytes)
 
-        ReportAssets.writeFlakelessJs(flakeless.config.outputDirectory)
+        ReportAssets.writeFlakelessJs(flakeless.config.reportDirectory)
 
         val fileSystemReportPath = htmlPath.toAbsolutePath.toString
 
-        flakeless.config.host match {
-          case None => System.err.println("*** Flakeless All Flights report: " + fileSystemReportPath)
-          case Some(h) => System.err.println(s"*** Flakeless All Flights report: ${h}/${htmlPath.toString.replaceAll("\\\\", "/")} (or ${fileSystemReportPath})")
+        flakeless.config.reportHost match {
+          case None => System.err.println("*** Tests Summary Report: " + fileSystemReportPath)
+          case Some(h) => System.err.println(s"*** Tests Summary Report: ${h}/${htmlPath.toString.replaceAll("\\\\", "/")} (or ${fileSystemReportPath})")
 
         }
         //TODO: if test failed then give link to it (or config: report all)
       } catch {
-        case t: Exception => System.err.println(s"*** Failed to write All Flights report something bad happened ***\nProblem was:${t.getMessage}")
+        case t: Exception => System.err.println(s"*** Failed to write Tests Summary Report something bad happened ***\nProblem was:${t.getMessage}")
       }
     })
   }
