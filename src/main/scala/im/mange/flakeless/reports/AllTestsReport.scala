@@ -6,7 +6,7 @@ import java.util.Base64
 import im.mange.flakeless.Flakeless
 import im.mange.flakeless.innards.{FlightInvestigator, ReportAssets}
 
-object AllFlightsReport {
+object AllTestsReport {
   import java.nio.file.{Files, Path, Paths}
 
   def apply(flakeless: Flakeless, outputDirectory: String, host: Option[String] = None) {

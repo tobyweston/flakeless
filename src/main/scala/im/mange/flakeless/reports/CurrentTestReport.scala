@@ -7,7 +7,7 @@ import im.mange.flakeless.Flakeless
 import im.mange.flakeless.innards.ReportAssets
 import org.openqa.selenium.{OutputType, TakesScreenshot}
 
-object FlightReport {
+object CurrentTestReport {
   import java.nio.file.{Files, Path, Paths}
 
   def apply(flakeless: Flakeless, outputDirectory: String, captureImage: Boolean = true, host: Option[String] = None) {

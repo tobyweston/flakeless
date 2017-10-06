@@ -1,6 +1,6 @@
 package im.mange.flakeless.innards
 
-import im.mange.flakeless.reports.{AllFlightsReport, FlightReport}
+import im.mange.flakeless.reports.{AllTestsReport, CurrentTestReport}
 import im.mange.flakeless.{Flakeless, Path}
 import org.openqa.selenium.By
 import org.openqa.selenium.remote.RemoteWebElement
@@ -35,19 +35,19 @@ object Example extends App {
 
     flakeless.inflightAnnouncement("foo log", Some(List("line 1", "line 2", "line 3")))
 
-    FlightReport(flakeless, "target/test-reports", captureImage = false, host = Some("http://localhost:63342/root"))
+    CurrentTestReport(flakeless, "target/test-reports", captureImage = false, host = Some("http://localhost:63342/root"))
 
     flakeless.stopFlight()
 
     flakeless.startFlight("Airplane", "Clearance Clarence")
-    FlightReport(flakeless, "target/test-reports", captureImage = false, host = Some("http://localhost:63342/root"))
+    CurrentTestReport(flakeless, "target/test-reports", captureImage = false, host = Some("http://localhost:63342/root"))
     flakeless.stopFlight()
 
     flakeless.startFlight("Airplane 2", "Captain Oveur")
-    FlightReport(flakeless, "target/test-reports", captureImage = false, host = Some("http://localhost:63342/root"))
+    CurrentTestReport(flakeless, "target/test-reports", captureImage = false, host = Some("http://localhost:63342/root"))
     flakeless.stopFlight()
 
-    AllFlightsReport(flakeless, "target/test-reports", host = Some("http://localhost:63342/root"))
+    AllTestsReport(flakeless, "target/test-reports", host = Some("http://localhost:63342/root"))
   }
 
   def createElement: RemoteWebElement = {
