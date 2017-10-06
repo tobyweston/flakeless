@@ -9,10 +9,10 @@ import im.mange.flakeless.innards.{FlightInvestigator, ReportAssets}
 object AllTestsReport {
   import java.nio.file.{Files, Path, Paths}
 
-  def apply(flakeless: Flakeless, outputDirectory: String, host: Option[String] = None) {
+  def apply(flakeless: Flakeless, host: Option[String] = None) {
     synchronized({
       try {
-        val filepath = s"$outputDirectory/"
+        val filepath = s"${flakeless.config.outputDirectory}/"
         Files.createDirectories(Paths.get(filepath))
 
         val jsonFlightData = flakeless.jsonAllFlightsData
@@ -24,7 +24,7 @@ object AllTestsReport {
         val htmlPath = path(filepath, s"summary.html")
         write(htmlPath, htmlContent(flakeless, b64).getBytes)
 
-        ReportAssets.writeFlakelessJs(outputDirectory)
+        ReportAssets.writeFlakelessJs(flakeless.config.outputDirectory)
 
         val fileSystemReportPath = htmlPath.toAbsolutePath.toString
 
