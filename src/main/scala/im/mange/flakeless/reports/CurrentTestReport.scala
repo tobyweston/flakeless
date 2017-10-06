@@ -10,7 +10,7 @@ import org.openqa.selenium.{OutputType, TakesScreenshot}
 object CurrentTestReport {
   import java.nio.file.{Files, Path, Paths}
 
-  def apply(flakeless: Flakeless, captureImage: Boolean = true, host: Option[String] = None) {
+  def apply(flakeless: Flakeless, captureImage: Boolean = true) {
     try {
       val flightNumber = flakeless.getCurrentFlightNumber
       val filepath = s"${flakeless.config.outputDirectory}/${"%04d".format(flightNumber)}/"
@@ -34,7 +34,7 @@ object CurrentTestReport {
 
       val fileSystemReportPath = htmlPath.toAbsolutePath.toString
 
-      host match {
+      flakeless.config.host match {
         case None => System.err.println("*** Flakeless Flight report: " + fileSystemReportPath)
         case Some(h) => System.err.println(s"*** Flakeless Flight report: ${h}/${htmlPath.toString.replaceAll("\\\\", "/")} (or ${fileSystemReportPath})")
 

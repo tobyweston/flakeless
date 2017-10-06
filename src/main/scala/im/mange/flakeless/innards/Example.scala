@@ -35,16 +35,16 @@ object Example extends App {
 
     flakeless.inflightAnnouncement("foo log", Some(List("line 1", "line 2", "line 3")))
 
-    CurrentTestReport(flakeless, captureImage = false, host = Some("http://localhost:63342/root"))
+    CurrentTestReport(flakeless, captureImage = false)
 
     flakeless.stopFlight()
 
     flakeless.startFlight("Airplane", "Clearance Clarence")
-    CurrentTestReport(flakeless, captureImage = false, host = Some("http://localhost:63342/root"))
+    CurrentTestReport(flakeless, captureImage = false)
     flakeless.stopFlight()
 
     flakeless.startFlight("Airplane 2", "Captain Oveur")
-    CurrentTestReport(flakeless, captureImage = false, host = Some("http://localhost:63342/root"))
+    CurrentTestReport(flakeless, captureImage = false)
     flakeless.stopFlight()
 
     AllTestsReport(flakeless, host = Some("http://localhost:63342/root"))
