@@ -18,3 +18,6 @@ Add the following lines to your build.sbt (click on the 'build passing' link abo
     libraryDependencies += "im.mange" %% "flakeless" % "version"
 
 
+-----
+
+Copyright © 2016-2017 Spabloshi Ltd
