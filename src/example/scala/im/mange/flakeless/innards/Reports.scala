@@ -1,11 +1,11 @@
 package im.mange.flakeless.innards
 
-import im.mange.flakeless.reports.{TestsSummaryReport, CurrentTestReport}
+import im.mange.flakeless.reports.{CurrentTestReport, TestsSummaryReport}
 import im.mange.flakeless.{Flakeless, Path}
 import org.openqa.selenium.By
 import org.openqa.selenium.remote.RemoteWebElement
 
-object Example extends App {
+object Reports extends App {
   def go {
     val flakeless = Flakeless(null)
     flakeless.startFlight("Airplane", "Victor Vector")

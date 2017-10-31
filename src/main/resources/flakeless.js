@@ -13089,7 +13089,7 @@ var _user$project$FlightReport$renderContext = function (maybeContext) {
 						_0: _user$project$ViewShared$smaller,
 						_1: {
 							ctor: '::',
-							_0: {ctor: '_Tuple2', _0: 'margin-left', _1: '14px'},
+							_0: {ctor: '_Tuple2', _0: 'margin-left', _1: '14 px'},
 							_1: {
 								ctor: '::',
 								_0: {ctor: '_Tuple2', _0: 'margin-top', _1: '6px'},
