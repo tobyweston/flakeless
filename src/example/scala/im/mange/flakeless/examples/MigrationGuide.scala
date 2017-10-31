@@ -11,27 +11,27 @@ object MigrationGuide extends App {
 
   //(1) Replace side effecting actions on webElements e.g. .click(), .sendKeys() with corresponding primitive Click(), SendKeys()
 
-    //e.g.
+    //unsafe
     element.findElement(By.id("container")).click()
-    //becomes
+    //safe
     Click(element, By.id("container"))
 
-    //e.g.
+    //unsafe
     element.findElement(By.id("container")).sendKeys("foo")
-    //becomes
+    //safe
     SendKeys(element, By.id("container"), List("foo"))
 
 
   //(2) Replace all state querying on webElements with corresponding assertions
 
-    //e.g.
+    //unsafe
     element.findElement(By.id("value")).getText == "expected"
-    //becomes
+    //safe
     AssertElementTextEquals(element, By.id("value"), "expected")
 
-    //e.g.
+    //unsafe
     element.findElement(By.id("value")).getText.contains("contains")
-    //becomes
+    //safe
     AssertElementTextContains(element, By.id("value"), "contains")
 
 
@@ -39,11 +39,11 @@ object MigrationGuide extends App {
 
   //(4) Stop holding onto webElements they could be stale, always start from webDriver, if nesting is required use a Path
 
-    //e.g.
+    //unsafe
     val parentElement = element.findElement(By.id("parent"))
     val childElement = parentElement.findElement(By.id("child"))
     childElement.click()
-    //becomes
+    //safe
     val parentPath = Path(By.id("parent"))
     Click(webDriver, parentPath.extend(By.id("child")))
     //or
