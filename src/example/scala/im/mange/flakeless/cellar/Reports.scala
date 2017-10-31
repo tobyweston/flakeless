@@ -1,5 +1,6 @@
-package im.mange.flakeless.innards
+package im.mange.flakeless.cellar
 
+import im.mange.flakeless.innards.{Command, Context}
 import im.mange.flakeless.reports.{CurrentTestReport, TestsSummaryReport}
 import im.mange.flakeless.{Flakeless, Path}
 import org.openqa.selenium.By

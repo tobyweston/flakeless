@@ -4,12 +4,12 @@
 ### Flakeless - light touch, flake free browser testing for scala
 
 
-### Migrating an existing flaky WebDriver test suite
+**Migrating an existing flaky WebDriver test suite**
 - Read the [Migration Guide](src/example/scala/im/mange/flakeless/examples/MigrationGuide.scala)
 
 
-### Installing
------
+**Installing**
+
 Add the following lines to your build.sbt
 
     resolvers += "Sonatype Repo" at "http://oss.sonatype.org/content/groups/public/"
