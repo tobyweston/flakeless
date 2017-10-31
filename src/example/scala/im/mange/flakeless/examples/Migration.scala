@@ -7,15 +7,14 @@ import org.openqa.selenium.chrome.ChromeDriver
 object Migration extends App {
   val driver = new ChromeDriver()
 
-  //(1) actions:
-  //replace
+  //For actions, replace:
   driver.findElement(By.id("container")).click()
   //with
   Click(driver, By.id("container"))
 
-  //(2) assertions
-  //replace
+  //For assertions, replace
   driver.findElement(By.id("value")).getText == "expected"
   //with
   AssertElementTextEquals(driver, By.id("value"), "expected")
+
 }
