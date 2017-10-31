@@ -1,15 +1,15 @@
 <a href="https://travis-ci.org/alltonp/flakeless" target="_blank"><img src="https://travis-ci.org/alltonp/flakeless.png?branch=master"></a>
 
 
-### Flakeless - light touch, flake free browser testing for scala
+Flakeless - light touch, flake free browser testing for scala
 
 
-**Migrating an existing flaky WebDriver test suite**
+### Migrating an existing flaky WebDriver test suite ###
 - Read the [Migration Guide](src/example/scala/im/mange/flakeless/examples/MigrationGuide.scala)
 
 
 
-**Installing**
+### Installing ###
 
 Add the following lines to your build.sbt (click on the build passing link above to get the version number)
 
@@ -18,7 +18,7 @@ Add the following lines to your build.sbt (click on the build passing link above
     libraryDependencies += "im.mange" %% "flakeless" % "version"
 
 
-Code license
+### Code license ###
 ------------
 Apache License 2.0
 
