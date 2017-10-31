@@ -5,7 +5,7 @@
 
 
 ### Migrating an existing flaky WebDriver test suite
-- Read the [Migration Guide](src/example/scala/im/mange/flakeless/MigrationGuide.scala)
+- Read the [Migration Guide](src/example/scala/im/mange/flakeless/examples/MigrationGuide.scala)
 
 
 ### Installing
