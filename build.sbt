@@ -15,6 +15,8 @@ resolvers ++= Seq(
   "Sonatype OSS Releases" at "http://oss.sonatype.org/content/repositories/releases/"
 )
 
+unmanagedSourceDirectories in Test += baseDirectory.value / "src" / "example" / "scala"
+
 libraryDependencies ++= Seq(
   "org.seleniumhq.selenium" % "selenium-java" % "[2.53.1,2.99.9]" % "provided",
   "im.mange"          %% "little"                 % "0.0.44",
