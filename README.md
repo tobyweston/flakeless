@@ -8,9 +8,10 @@
 - Read the [Migration Guide](src/example/scala/im/mange/flakeless/examples/MigrationGuide.scala)
 
 
+
 **Installing**
 
-Add the following lines to your build.sbt
+Add the following lines to your build.sbt (click on the build passing link above to get the version number)
 
     resolvers += "Sonatype Repo" at "http://oss.sonatype.org/content/groups/public/"
 
