@@ -3,7 +3,7 @@
 
 # Flakeless - light touch, flake free browser testing in scala
 
-#What is it?
+### What is it?
 - A lightweight library that wraps WebDriver for easy integration into both new and existing projects
 
 ### Why would I use it?
@@ -15,7 +15,8 @@
 
 ### How?
 - No big bang changes, Flakeless lets you gradually migrate your tests one interaction at a time
-- Replace each browser action/assertion with one of Flakeless' simple [Tell Dont Ask](https://martinfowler.com/bliki/TellDontAsk.html) style primitives
+- Replace each browser action/assertion with one of Flakeless' simple [Tell Dont Ask](https://martinfowler.com/bliki/TellDontAsk.html) style primitives e.g. [Migration Guide](src/main/scala/im/mange/flakeless/)
+- Unable to find a primitive for X - raise an Issue
 
 ### Sounds good, how do I start eradicating my existing flaky tests?
 - Read the [Migration Guide](src/example/scala/im/mange/flakeless/examples/MigrationGuide.scala)
