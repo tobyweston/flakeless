@@ -21,7 +21,7 @@
 ### Sounds good, how do I start eradicating my existing flaky tests?
 - Read the [Migration Guide](src/example/scala/im/mange/flakeless/examples/MigrationGuide.scala)
 
-### Sounds good, how do I using flakeless on a new project?
+### Sounds good, how do I start using flakeless on a new project?
 - Read the New Project Guide (coming soon)
 
 ### I'm using it, how do I better understand my test suite?
