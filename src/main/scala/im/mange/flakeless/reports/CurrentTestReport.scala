@@ -40,7 +40,7 @@ object CurrentTestReport {
 
       }
     } catch {
-      case t: Exception => System.err.println(s"*** Failed to write Test Report something bad happened ***\nProblem was:${t.getMessage}")
+      case t: Exception => System.err.println(s"*** Failed to write Test Report something bad happened ***\nProblem was: ${t.getMessage}")
     }
 
     //TODO: might be able to kill the lozenge now ...
