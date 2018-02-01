@@ -7,9 +7,7 @@ organization := "im.mange"
 
 version := Try(sys.env("TRAVIS_BUILD_NUMBER")).map("0.0." + _).getOrElse("1.0-SNAPSHOT")
 
-scalaVersion:= "2.12.1"
-
-//crossScalaVersions := Seq("2.10.4"/*, "2.11.0"*/)
+scalaVersion:= "2.12.4"
 
 resolvers ++= Seq(
   "Sonatype OSS Releases" at "http://oss.sonatype.org/content/repositories/releases/"
@@ -18,10 +16,12 @@ resolvers ++= Seq(
 unmanagedSourceDirectories in Test += baseDirectory.value / "src" / "example" / "scala"
 
 libraryDependencies ++= Seq(
-  "org.seleniumhq.selenium" % "selenium-java" % "[2.53.1,2.99.9]" % "provided",
-  "im.mange"          %% "little"                 % "0.0.44",
+  "org.seleniumhq.selenium" % "selenium-java" % "[2.53.1,3.99.9]" % "provided",
+  "im.mange"          %% "little"                 % "[0.0.45,0.0.99]" % "provided",
 
-  "org.json4s"     %% "json4s-native" % "[3.2.11,3.99.99]"// % "provided"
+  //TODO: should always be provided ... (unless running local)
+  //TIP: think this comes in from little too ...
+  "org.json4s"     %% "json4s-native" % "[3.2.11,3.99.99]" % "provided"
     exclude("org.scala-lang", "scala-compiler")
     exclude("org.scala-lang", "scalap")
     exclude("joda-time", "joda-time")
@@ -31,8 +31,7 @@ libraryDependencies ++= Seq(
     exclude("joda-time", "joda-time")
   ,
 
-  "com.github.nscala-time" %% "nscala-time" % "2.16.0" //,
-
+  "com.github.nscala-time" %% "nscala-time" % "[2.16.0,2.99.99]" % "provided"//,
 
   //  "com.codeborne" % "phantomjsdriver" % "[1.3.0,1.99.9]" % "provided"//,
 //  "org.seleniumhq.selenium" % "selenium-java" % "[2.53.1,2.99.9]" % "provided"//,
@@ -40,15 +39,6 @@ libraryDependencies ++= Seq(
 //	"junit" % "junit" % "4.11" % "test->default",
 //	"org.scalatest" %% "scalatest" % "2.2.0" % "test"
 )
-
-//libraryDependencies := {
-//  CrossVersion.partialVersion(scalaVersion.value) match {
-//    case Some((2, scalaMajor)) if scalaMajor >= 11 => libraryDependencies.value :+ "org.scala-lang.modules" %% "scala-xml" % "1.0.1"
-//    case _ => libraryDependencies.value
-//  }
-//}
-
-//net.virtualvoid.sbt.graph.Plugin.graphSettings
 
 sonatypeSettings
 
