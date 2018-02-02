@@ -17,7 +17,7 @@ unmanagedSourceDirectories in Test += baseDirectory.value / "src" / "example" / 
 
 libraryDependencies ++= Seq(
   "org.seleniumhq.selenium" % "selenium-java" % "[2.53.1,3.99.9]" % "provided",
-  "im.mange"          %% "little"                 % "[0.0.46,0.0.999]" % "provided",
+  "im.mange"          %% "little"             % "[0.0.47,0.0.999]" % "provided",
 
   //TODO: should always be provided ... (unless running local)
   //TIP: think this comes in from little too ...
