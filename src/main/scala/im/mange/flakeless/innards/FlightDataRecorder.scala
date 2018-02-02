@@ -33,7 +33,7 @@ private [flakeless] case class FlightDataRecorder() {
 
   def jsonData(flight: Int) = FlightDataRecordJson.serialise(data(flight))
 
-  def data(flightNumber: Int): FlightDataRecord = dataByFlightNumber.get(flightNumber).getOrElse(throw new RuntimeException(s"Not Record for flightnumber: $flightNumber"))
+  def data(flightNumber: Int): FlightDataRecord = dataByFlightNumber.get(flightNumber).getOrElse(throw new RuntimeException(s"No Record for flightnumber: $flightNumber"))
 
   private def update(flightNumber: Int, dataPoint: DataPoint): Unit = {
     val current: FlightDataRecord = data(flightNumber)
