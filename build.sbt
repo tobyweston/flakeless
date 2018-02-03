@@ -16,11 +16,11 @@ resolvers ++= Seq(
 unmanagedSourceDirectories in Test += baseDirectory.value / "src" / "example" / "scala"
 
 libraryDependencies ++= Seq(
-  "org.seleniumhq.selenium" % "selenium-java" % "[2.53.1,3.99.9]" % "provided",
-  "im.mange"          %% "little"             % "[0.0.47,0.0.999]" % "provided",
+  //TIP: although it looks like more could be provided, it seems they can't...
 
-  //TODO: should always be provided ... (unless running local)
-  //TIP: think this comes in from little too ...
+  "org.seleniumhq.selenium" % "selenium-java" % "[2.53.1,3.99.9]" % "provided",
+  "im.mange"          %% "little"             % "[0.0.47,0.0.999]", // % "provided",
+
   "org.json4s"     %% "json4s-native" % "[3.2.11,3.99.99]"// % "provided"
     exclude("org.scala-lang", "scala-compiler")
     exclude("org.scala-lang", "scalap")
