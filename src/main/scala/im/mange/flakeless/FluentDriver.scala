@@ -45,51 +45,51 @@ trait FluentDriver {
     AssertElementListCountEquals(flakeless, by, expected); this
   }
 
-  def assertElementListTextContains(by: By, expected: String) : this.type = {
+  def assertElementListTextContains(by: By, expected: String): this.type = {
     AssertElementListTextContains(flakeless, by, expected); this
   }
 
-  def assertElementListTextEquals(by: By, expected: List[String]) : this.type = {
+  def assertElementListTextEquals(by: By, expected: List[String]): this.type = {
     AssertElementListTextEquals(flakeless, by, expected); this
   }
 
-  def assertElementSelected(by: By) : this.type = {
+  def assertElementSelected(by: By): this.type = {
     AssertElementSelected(flakeless, by); this
   }
 
-  def assertElementSetTextEquals(by: By, expected: Set[String]) : this.type = {
+  def assertElementSetTextEquals(by: By, expected: Set[String]): this.type = {
     AssertElementSetTextEquals(flakeless, by, expected); this
   }
 
-  def assertElementTextContains(by: By, expected: String) : this.type = {
+  def assertElementTextContains(by: By, expected: String): this.type = {
     AssertElementTextContains(flakeless, by, expected); this
   }
 
-  def assertElementTextEquals(by: By, expected: String) : this.type = {
+  def assertElementTextEquals(by: By, expected: String): this.type = {
     AssertElementTextEquals(flakeless, by, expected); this
   }
 
-  def assertElementUnselected(by: By) : this.type = {
+  def assertElementUnselected(by: By): this.type = {
     AssertElementUnselected(flakeless, by); this
   }
 
-  def clearAndSendKeys(by: By, keysToSend: String) : this.type = {
+  def clearAndSendKeys(by: By, keysToSend: String): this.type = {
     ClearInputAndSendKeys(flakeless, by, keysToSend); this
   }
 
-  def click(by: By) : this.type = {
+  def click(by: By): this.type = {
     Click(flakeless, by); this
   }
 
-  def goto(url: String) : this.type = {
+  def goto(url: String): this.type = {
     Goto(flakeless, url); this
   }
 
-  def sendKeys(by: By, keysToSend: String) : this.type = {
+  def sendKeys(by: By, keysToSend: String): this.type = {
     SendKeys(flakeless, by, keysToSend); this
   }
 
-  def uploadFile(by: By, filename: String) : this.type = {
+  def uploadFile(by: By, filename: String): this.type = {
     UploadFile(flakeless, by, filename); this
   }
 }
