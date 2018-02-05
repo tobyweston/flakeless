@@ -3,7 +3,7 @@ package im.mange.flakeless
 import org.openqa.selenium.By
 
 trait FluentDriver {
-  val flakeless: Flakeless
+  protected val flakeless: Flakeless
 
   def assertElementAttributeContains(by: By, attribute: String, expected: String): this.type = {
     AssertElementAttributeContains(flakeless, by, attribute, expected); this
