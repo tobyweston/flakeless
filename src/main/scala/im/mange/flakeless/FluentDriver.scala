@@ -92,4 +92,8 @@ trait FluentDriver {
   def uploadFile(by: By, filename: String): this.type = {
     UploadFile(flakeless, by, filename); this
   }
+
+  def announce(description: String): this.type = {
+    flakeless.inflightAnnouncement(description); this
+  }
 }
