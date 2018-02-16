@@ -10,11 +10,11 @@
 - You want to write your tests in blissful ignorance of async/ajax browser updates
 - You never want to write another sleep, explicit, implicit or fluent wait
 - You value zero tolerance to flaky tests
-- You value strong assertions (i.e. 'assert Element Not Found' is the most useless assertion one could possibly write - so Flakeless does not support it)
+- You value strong assertions (i.e. 'assert Element Not Found' is the most useless assertion one could possibly write - so Flakeless does not have it)
 - You want zero-effort test reporting
 
 ### How?
-- No big bang changes, Flakeless lets you gradually migrate your tests one interaction at a time
+- No big bang migration, Flakeless lets you gradually migrate your tests one interaction at a time
 - Replace each browser action/assertion with one of Flakeless' simple [Tell Dont Ask](https://martinfowler.com/bliki/TellDontAsk.html) style [primitives](src/main/scala/im/mange/flakeless/)
 - Unable to find a primitive for X - raise an Issue
 
@@ -39,4 +39,4 @@ Add the following lines to your build.sbt (click on the 'build passing' link abo
 
 -----
 
-Copyright © 2016-2017 Spabloshi Ltd
+Copyright © 2016-2018 Spabloshi Ltd
