@@ -2,13 +2,13 @@ package im.mange.flakeless.cellar
 
 import im.mange.flakeless.innards.{Command, Context}
 import im.mange.flakeless.reports.{CurrentTestReport, TestsSummaryReport}
-import im.mange.flakeless.{Flakeless, Path}
+import im.mange.flakeless.{Config, Flakeless, Path}
 import org.openqa.selenium.By
 import org.openqa.selenium.remote.RemoteWebElement
 
 object Reports extends App {
   def go {
-    val flakeless = Flakeless(null)
+    val flakeless = Flakeless(null, Config(reportHost = Some("http://localhost:63342/flakeless")))
     flakeless.startFlight("Airplane", "Victor Vector")
 
     flakeless.inflightAnnouncement("announcement")
@@ -23,7 +23,7 @@ object Reports extends App {
     flakeless.record(Command("command with context false", None, None), Context(success = Some(false)))
     flakeless.record(Command("command with context failures", None, None), Context(List("failures")))
 
-    //  if by's are a list then we are probably fine ... next Paths could be interesting .... (eek)
+    //if by's are a list then we are probably fine ... next Paths could be interesting .... (eek)
     flakeless.record(Command("everything", Some(createElement), Some(By.id("id")), Map("key" -> "value"), Some("expected"), Some(List("expected", "expected2"))), Context(List("failures"), success = Some(false)))
     flakeless.record(Command("everything with path", Some(createElement), Some(Path(By.id("id"))), Map("key" -> "value"), Some("expected"), Some(List("expected", "expected2"))), Context(List("failures"), success = Some(false)))
 
