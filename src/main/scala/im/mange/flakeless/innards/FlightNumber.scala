@@ -7,5 +7,5 @@ import im.mange.little.counter.AtomicIntCounter
 private [flakeless] object FlightNumber {
   private val currentFlightNumberCounter = AtomicIntCounter()
 
-  def next = currentFlightNumberCounter.next
+  def next: Int = currentFlightNumberCounter.next
 }

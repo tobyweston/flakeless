@@ -4,6 +4,7 @@ import im.mange.flakeless.{ConditionNotMetException, Config}
 
 import scala.annotation.tailrec
 
+//TODO: is this the same as little Wait - one of them should die ...
 private object Wait {
   def waitUpTo(config: Config) = new Wait(config)
 }
