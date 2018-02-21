@@ -11,6 +11,7 @@ private [flakeless] object ReportAssets {
     if (!jsPath.toFile.exists()) write(jsPath, ReportAssets.flakelessJs.getBytes)
   }
 
+  //TODO: should all use little instead
   private def path(filepath: String, filename: String) = Paths.get(filepath + filename)
   private def write(path: Path, content: Array[Byte]) = Files.write(path, content)
 }

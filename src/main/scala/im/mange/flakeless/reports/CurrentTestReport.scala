@@ -14,6 +14,7 @@ object CurrentTestReport {
     try {
       val flightNumber = flakeless.getCurrentFlightNumber
       val filepath = s"${flakeless.config.reportDirectory}/${"%04d".format(flightNumber)}/"
+      //TODO: should use little createDir
       Files.createDirectories(Paths.get(filepath))
 
       val when = System.currentTimeMillis()
