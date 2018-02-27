@@ -31,7 +31,7 @@ private class ClearInputAndSendKeys(flakeless: Option[Flakeless], in: SearchCont
         delayMillis match {
           case None => e.sendKeys(keysToSend:_*)
 
-          case Some(delay) => keysToSend.toString.foreach(k => {
+          case Some(delay) => keysToSend.mkString.toString.foreach(k => {
             e.sendKeys(k.toString)
             Thread.sleep(delay)
           })
