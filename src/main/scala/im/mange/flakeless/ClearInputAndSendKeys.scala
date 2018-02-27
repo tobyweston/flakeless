@@ -4,21 +4,21 @@ import im.mange.flakeless.innards.{Command, Description, WaitForInteractableElem
 import org.openqa.selenium.{By, SearchContext, WebElement}
 
 //TODO: should this be Enter? it isnt in webdriver
-//TODO: this should share with SendKeys
+//TODO: this should definitely share with SendKeys
 object ClearInputAndSendKeys {
-  def apply(flakeless: Flakeless, by: By, keysToSend: CharSequence): Unit = {
-    apply(flakeless.rawWebDriver, by, List(keysToSend), Some(flakeless))
+  def apply(flakeless: Flakeless, by: By, keysToSend: CharSequence, delayMillis: Option[Int] = None): Unit = {
+    apply(flakeless.rawWebDriver, by, List(keysToSend), Some(flakeless), delayMillis)
   }
-  def apply(flakeless: Flakeless, by: By, keysToSend: List[CharSequence]): Unit = {
-    apply(flakeless.rawWebDriver, by, keysToSend, Some(flakeless))
+  def apply(flakeless: Flakeless, by: By, keysToSend: List[CharSequence], delayMillis: Option[Int] = None): Unit = {
+    apply(flakeless.rawWebDriver, by, keysToSend, Some(flakeless), delayMillis)
   }
 
-  def apply(in: SearchContext, by: By, keysToSend: List[CharSequence], flakeless: Option[Flakeless] = None): Unit = {
-    new ClearInputAndSendKeys(flakeless, in, by, keysToSend).execute()
+  def apply(in: SearchContext, by: By, keysToSend: List[CharSequence], flakeless: Option[Flakeless] = None, delayMillis: Option[Int] = None): Unit = {
+    new ClearInputAndSendKeys(flakeless, in, by, keysToSend, delayMillis).execute()
   }
 }
 
-private class ClearInputAndSendKeys(flakeless: Option[Flakeless], in: SearchContext, by: By, keysToSend: List[CharSequence]) {
+private class ClearInputAndSendKeys(flakeless: Option[Flakeless], in: SearchContext, by: By, keysToSend: List[CharSequence], delayMillis: Option[Int]) {
   def execute(): Unit = {
     WaitForInteractableElement(flakeless,
       Command("ClearInputAndSendKeys", Some(in), Some(by), args = Map("keysToSend" -> keysToSend.mkString)),
@@ -27,7 +27,14 @@ private class ClearInputAndSendKeys(flakeless: Option[Flakeless], in: SearchCont
 
       action = e => {
         e.clear()
-        e.sendKeys(keysToSend:_*)
+        delayMillis match {
+          case None => e.sendKeys(keysToSend:_*)
+
+          case Some(delay) => keysToSend.toString.foreach(k => {
+            e.sendKeys(k.toString)
+            Thread.sleep(delay)
+          })
+        }
       }
 
     )
