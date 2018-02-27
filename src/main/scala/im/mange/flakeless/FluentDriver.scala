@@ -73,8 +73,8 @@ trait FluentDriver {
     AssertElementUnselected(flakeless, by); this
   }
 
-  def clearAndSendKeys(by: By, keysToSend: CharSequence): this.type = {
-    ClearInputAndSendKeys(flakeless, by, keysToSend); this
+  def clearAndSendKeys(by: By, keysToSend: CharSequence, delayMillis: Option[Int] = None): this.type = {
+    ClearInputAndSendKeys(flakeless, delayMillis, by, keysToSend); this
   }
 
   def click(by: By): this.type = {

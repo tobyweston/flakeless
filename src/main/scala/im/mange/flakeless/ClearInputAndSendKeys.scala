@@ -6,14 +6,15 @@ import org.openqa.selenium.{By, SearchContext, WebElement}
 //TODO: should this be Enter? it isnt in webdriver
 //TODO: this should definitely share with SendKeys
 object ClearInputAndSendKeys {
-  def apply(flakeless: Flakeless, by: By, keysToSend: CharSequence, delayMillis: Option[Int] = None): Unit = {
-    apply(flakeless.rawWebDriver, by, List(keysToSend), Some(flakeless), delayMillis)
-  }
-  def apply(flakeless: Flakeless, by: By, keysToSend: List[CharSequence], delayMillis: Option[Int] = None): Unit = {
-    apply(flakeless.rawWebDriver, by, keysToSend, Some(flakeless), delayMillis)
+  def apply(flakeless: Flakeless, delayMillis: Option[Int], by: By, keysToSend: CharSequence): Unit = {
+    apply(flakeless.rawWebDriver, delayMillis, by, List(keysToSend), Some(flakeless))
   }
 
-  def apply(in: SearchContext, by: By, keysToSend: List[CharSequence], flakeless: Option[Flakeless] = None, delayMillis: Option[Int] = None): Unit = {
+  def apply(flakeless: Flakeless, delayMillis: Option[Int], by: By, keysToSend: List[CharSequence]): Unit = {
+    apply(flakeless.rawWebDriver, delayMillis, by, keysToSend, Some(flakeless))
+  }
+
+  def apply(in: SearchContext, delayMillis: Option[Int], by: By, keysToSend: List[CharSequence], flakeless: Option[Flakeless] = None): Unit = {
     new ClearInputAndSendKeys(flakeless, in, by, keysToSend, delayMillis).execute()
   }
 }
