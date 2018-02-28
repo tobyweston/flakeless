@@ -19,7 +19,7 @@ object MigrationGuide extends App {
     //unsafe
     element.findElement(By.id("container")).sendKeys("foo")
     //safe
-    SendKeys(element, By.id("container"), List("foo"))
+    SendKeys(element, By.id("container"), clear = true, "foo")
 
 
   //(2) Replace all state querying on webElements with corresponding assertions

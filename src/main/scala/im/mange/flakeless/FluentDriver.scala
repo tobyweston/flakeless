@@ -73,8 +73,8 @@ trait FluentDriver {
     AssertElementUnselected(flakeless, by); this
   }
 
-  def clearAndSendKeys(by: By, keysToSend: CharSequence, delayMillis: Option[Int] = None): this.type = {
-    ClearInputAndSendKeys(flakeless, delayMillis, by, keysToSend); this
+  def clearAndSendKeys(by: By, keysToSend: CharSequence): this.type = {
+    SendKeys(flakeless, by, clear = true, keysToSend); this
   }
 
   def click(by: By): this.type = {
@@ -86,7 +86,7 @@ trait FluentDriver {
   }
 
   def sendKeys(by: By, keysToSend: CharSequence): this.type = {
-    SendKeys(flakeless, by, keysToSend); this
+    SendKeys(flakeless, by, clear = false, keysToSend); this
   }
 
   def uploadFile(by: By, filename: String): this.type = {
