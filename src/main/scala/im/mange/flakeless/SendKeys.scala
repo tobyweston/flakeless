@@ -20,7 +20,8 @@ object SendKeys {
 private class SendKeys(flakeless: Option[Flakeless], in: SearchContext, by: By, clear: Boolean, keysToSend: List[CharSequence]) {
   def execute(): Unit = {
     WaitForInteractableElement(flakeless,
-      Command((if (clear)"ClearAnd" else "") + "SendKeys", Some(in), Some(by), args = Map("keysToSend" -> keysToSend.mkString, "clear" -> (if (clear) "true" else "false"))),
+      Command((if (clear)"ClearAnd" else "") + "SendKeys", Some(in), Some(by),
+        args = Map("keysToSend" -> keysToSend.mkString, "clear" -> (if (clear) "true" else "false"))),
 
       description = e => Description().describeActual(e),
 
