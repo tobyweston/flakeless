@@ -18,9 +18,11 @@ unmanagedSourceDirectories in Test += baseDirectory.value / "src" / "example" / 
 libraryDependencies ++= Seq(
   //TIP: although it looks like more could be provided, it seems they can't...
   "org.seleniumhq.selenium" % "selenium-java" % "[2.53.1,3.99.9]" % "provided",
-  "im.mange" %% "little" % "[0.0.57,0.0.999]", 
-  "org.json4s" %% "json4s-native" % "3.6.0-M4",
-  "org.json4s" %% "json4s-ext" % "3.6.0-M4",
+  "im.mange" %% "little" % "[0.0.57,0.0.999]",
+  "io.circe" %% "circe-core" % "0.9.3",
+  "io.circe" %% "circe-generic" % "0.9.3",
+  "io.circe" %% "circe-parser" % "0.9.3",
+
 
   //TODO: I suspect this also should not be provided ...
   "com.github.nscala-time" %% "nscala-time" % "[2.16.0,2.99.99]" % "provided",

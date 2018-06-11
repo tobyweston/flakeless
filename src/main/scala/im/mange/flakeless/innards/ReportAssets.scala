@@ -4,7 +4,7 @@ import java.nio.file.{Files, Path, Paths}
 
 private [flakeless] object ReportAssets {
   private val jsFilename = "flakeless.js"
-  private val flakelessJs = io.Source.fromResource(jsFilename).mkString
+  private val flakelessJs = scala.io.Source.fromResource(jsFilename).mkString
 
   def writeFlakelessJs(outputDirectory: String) = {
     val jsPath = path(outputDirectory + "/", s"$jsFilename")

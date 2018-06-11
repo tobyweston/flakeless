@@ -10,7 +10,7 @@ class FlightDataRecordJsonTest extends Specification {
     val start = DateTime.parse("2018-06-30T01:20+00:00")
     val end = DateTime.parse("2018-06-30T02:20+00:00")
 
-    val command = ReportCommand("command", Some("thing"), List(By.id("id")), Map("A" -> "B"), Some("expected"), Some(List("many?")))
+    val command = ReportCommand("command", Some("thing"), List(By.id("id"), By.className("foo")), Map("A" -> "B"), Some("expected"), Some(List("many?")))
     val context = Context(List("context"), Some(true))
     val flightData = FlightDataRecord("suite", "test", Some(start), Some(end), List(
       DataPoint(1, start, Some("description"), Some(command), context, Some(List("log")))
@@ -29,7 +29,8 @@ class FlightDataRecordJsonTest extends Specification {
                                                          |      "name":"command",
                                                          |      "in":"thing",
                                                          |      "bys":[{
-                                                         |        "id":"id"
+                                                         |        "id":"id",
+                                                         |        "classname":"foo"
                                                          |      }],
                                                          |      "args":{
                                                          |        "A":"B"

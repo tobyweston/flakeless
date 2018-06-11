@@ -1,6 +1,9 @@
 package im.mange.flakeless.innards
 
 import im.mange.flakeless.{Config, Path}
+import io.circe.Encoder
+import io.circe.generic.semiauto.deriveEncoder
+import io.circe.syntax._
 import org.openqa.selenium.{By, SearchContext, WebDriver}
 
 trait Executable {
@@ -13,6 +16,11 @@ case class ReportCommand(name: String, in: Option[String], bys: Seq[By],
                    args: Map[String, String] = Map.empty,
                    expected: Option[String] = None,
                    expectedMany: Option[List[String]] = None)
+
+object ReportCommand {
+  implicit val byEncoder: Encoder[By] = Encoder.instance(a => a.getClass.getSimpleName.toLowerCase.asJson)
+  implicit val encoder: Encoder[ReportCommand] = deriveEncoder[ReportCommand]
+}
 
 //TODO: improve rendering of options and in etc ...
 //TODO: args at end? expected's earlier?
