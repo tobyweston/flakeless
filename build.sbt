@@ -36,11 +36,13 @@ libraryDependencies ++= Seq(
 
 )
 
+import xerial.sbt.Sonatype._
+
 sonatypeSettings
 
-publishTo <<= version { project_version ⇒
+publishTo := {
   val nexus = "https://oss.sonatype.org/"
-  if (project_version.trim.endsWith("SNAPSHOT"))
+  if (isSnapshot.value)
     Some("snapshots" at nexus + "content/repositories/snapshots")
   else
     Some("releases" at nexus + "service/local/staging/deploy/maven2")
